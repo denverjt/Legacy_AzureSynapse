@@ -112779,12 +112779,12 @@
 					"connectionString": "[parameters('Precog_connectionString')]"
 				},
 				"connectVia": {
-					"referenceName": "tlcdwintegration",
+					"referenceName": "AutoResolveIntegrationRuntime",
 					"type": "IntegrationRuntimeReference"
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('workspaceId'), '/integrationRuntimes/tlcdwintegration')]"
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
 			]
 		},
 		{
