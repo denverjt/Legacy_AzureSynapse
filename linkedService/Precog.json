@@ -1,6 +1,5 @@
 {
 	"name": "Precog",
-	"type": "Microsoft.Synapse/workspaces/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "AzureSqlDatabase",
@@ -8,8 +7,9 @@
 			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tlcus.database.windows.net;Initial Catalog=precog"
 		},
 		"connectVia": {
-			"referenceName": "tlcdwintegration",
+			"referenceName": "AutoResolveIntegrationRuntime",
 			"type": "IntegrationRuntimeReference"
 		}
-	}
+	},
+	"type": "Microsoft.Synapse/workspaces/linkedservices"
 }
