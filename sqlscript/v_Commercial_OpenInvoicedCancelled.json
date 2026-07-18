@@ -1,0 +1,17 @@
+{
+	"name": "v_Commercial_OpenInvoicedCancelled",
+	"properties": {
+		"content": {
+			"query": "create view         v_Commercial_OpenInvoicedCancelled\n-- drop view v_Commercial_OpenInvoicedCancelled\nas\nSELECT DISTINCT \n                         CASE WHEN OC.CUNO like 'COM%' then 'COM' else 'CNR' END AS Division, OC.CFC4 AS [Legacy System], OH.ORNO AS [Sales Order Number], OH.CUOR AS [Customer Po Number], OH.ORSL AS [Order Status], IM.ITCL AS Brand, IM.GRP3 as [Finance Brand], OC.SDST AS BuyingGroup, OH.CUNO AS [Customer ID], OC.CUNM AS [Customer Name], OH.RESP AS Responsible, OH.OBLC AS [Stop Code], OH.ORDT AS [Order Date], \n                         OH.RLDT AS [Requested Delivery Date], OL.PONR AS [Line Number], OL.ITNO AS [Item ID], IM.ITDS AS [Item Name], OL.WHLO AS Warehouse, OL.ORQT AS [Order Qty], OL.NEPR * OL.ORQT AS [Order Amt]\nFROM            M3.OOHEAD AS OH INNER JOIN\n                         M3.OOLINE AS OL ON OH.ORNO = OL.ORNO INNER JOIN\n                         M3.OCUSMA AS OC ON OH.CUNO = OC.CUNO INNER JOIN\n                         M3.MITMAS AS IM ON OL.ITNO = IM.ITNO",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

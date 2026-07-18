@@ -1,0 +1,17 @@
+{
+	"name": "v_AP_Aging_Weekly",
+	"properties": {
+		"content": {
+			"query": "create view     v_AP_Aging_Weekly\nas\nSELECT          /*Division\n,               [Business Unit]\n,               [Supplier Number]\n,               [Supplier Name]\n,               Category\n,               DATEDIFF(DAY, [Due Date], [Accounting Date]) as [Days Aged Weekly]\n,               [Accounting Date]\n,               [Due Date]\n,               [Prepaid]\n,               */CASE WHEN DATEDIFF(DAY, [Due Date], [Accounting Date]) < 0 then 'Current'\n                WHEN DATEDIFF(DAY, [Due Date], [Accounting Date]) < 31 then '1 - 30'\n                WHEN DATEDIFF(DAY, [Due Date], [Accounting Date]) < 61 then '31 - 60'\n                WHEN DATEDIFF(DAY, [Due Date], [Accounting Date]) < 91 then '61 - 90'\n                WHEN DATEDIFF(DAY, [Due Date], [Accounting Date]) < 121 then '91 - 120'\n                WHEN DATEDIFF(DAY, [Due Date], [Accounting Date]) < 181 then '121 - 180'\n                WHEN DATEDIFF(DAY, [Due Date], [Accounting Date]) < 366 then '181 - 365'\n                ELSE '365+' end AS [Aging Buckets Weekly]\n,               SUM(Amount*-1) as [Amount]\nFROM            v_AP_Aging_Test2\nWHERE           [Supplier Name] not like '%ORIEN%'\nAND             [Supplier Name] not like '%QINGDAO OTO%'\nGROUP BY        /*Division\n,               [Business Unit]\n,               [Supplier Number]\n,               [Supplier Name]\n,               Category\n,               DATEDIFF(DAY, [Due Date], [Accounting Date])\n,               [Accounting Date]\n,               [Due Date]\n,               [Prepaid]\n,               */CASE WHEN DATEDIFF(DAY, [Due Date], [Accounting Date]) < 0 then 'Current'\n                WHEN DATEDIFF(DAY, [Due Date], [Accounting Date]) < 31 then '1 - 30'\n                WHEN DATEDIFF(DAY, [Due Date], [Accounting Date]) < 61 then '31 - 60'\n                WHEN DATEDIFF(DAY, [Due Date], [Accounting Date]) < 91 then '61 - 90'\n                WHEN DATEDIFF(DAY, [Due Date], [Accounting Date]) < 121 then '91 - 120'\n                WHEN DATEDIFF(DAY, [Due Date], [Accounting Date]) < 181 then '121 - 180'\n                WHEN DATEDIFF(DAY, [Due Date], [Accounting Date]) < 366 then '181 - 365'\n                ELSE '365+' end",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": -1
+		},
+		"type": "SqlQuery"
+	}
+}

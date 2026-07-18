@@ -1,0 +1,338 @@
+{
+	"name": "IN_v_OpenOrdersByStatus",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "TLCDW",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ERP",
+				"type": "varchar"
+			},
+			{
+				"name": "Line Status",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Order Stop Code",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "Order Stop Code Description",
+				"type": "varchar"
+			},
+			{
+				"name": "Qty Status",
+				"type": "varchar"
+			},
+			{
+				"name": "Bridge Category",
+				"type": "varchar"
+			},
+			{
+				"name": "Customer Number",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Payer",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Customer Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Credit Limit",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "SalesRep",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SalesRepName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Territory",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OrderEntryUser",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Buying Group",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Address ID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Address 1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Adddress 2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "City",
+				"type": "nvarchar"
+			},
+			{
+				"name": "State",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Zip Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Phone Number",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Country",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Payment Terms",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Cash Terms",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Freight Terms",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Carrier",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Sales Order",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Invoice Number",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Customer PO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Sales Admin Responsible",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Order Type",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Line Entry Date",
+				"type": "date"
+			},
+			{
+				"name": "Order Entry Date",
+				"type": "date"
+			},
+			{
+				"name": "Requested Date",
+				"type": "date"
+			},
+			{
+				"name": "Last Date",
+				"type": "date"
+			},
+			{
+				"name": "DI Date",
+				"type": "date"
+			},
+			{
+				"name": "Inv Date",
+				"type": "date"
+			},
+			{
+				"name": "Brand",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Division",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Finance Brand",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Line Number",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "Line Suffix",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "Item Number",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Item Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Warehouse",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Unit Price",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Order Quantity",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Quantity",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "IC Flag",
+				"type": "varchar"
+			},
+			{
+				"name": "Shipping Method",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DS Flag",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Tracking Number",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Sales Type",
+				"type": "varchar"
+			},
+			{
+				"name": "Expected Arrival Date",
+				"type": "date"
+			},
+			{
+				"name": "ORNO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CUNM",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CUA1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CUA2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TOWN",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PONO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ECAR",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CSCD",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CUNO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Address ID 2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CUNM2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CUA12",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CUA22",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TOWN2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PONO2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ECAR2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CSCD2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PO Number",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Overdue Invoice Amount",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Overdue Days",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "Outstanding Invoice Amount",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Outstanding Orders Not Invoiced",
+				"type": "float",
+				"precision": 15
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "v_OpenOrdersByStatus"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

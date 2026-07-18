@@ -1,0 +1,17 @@
+{
+	"name": "Item Creation Views",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW v_Categories\nas\nSELECT      DISTINCT TX40+' - @'+ITGR AS Categories\nFROM        M3.MITMAS MM \nJOIN        M3.CSYTAB CS ON MM.ITGR = CS.STKY AND CS.STCO = 'ITGR'\n;\n\nCREATE VIEW v_SubCategories\nAS\nSELECT      DISTINCT SC.TX40+' - @'+SC.PDLN AS 'Sub Categories'\nFROM        M3.CRPDLN SC\n;\n\nCREATE VIEW v_Brands\nas\nSELECT      DISTINCT TX40+' - @'+ITCL AS Brands\nFROM        M3.MITMAS MM \nJOIN        M3.CSYTAB CS ON MM.ITCL = CS.STKY AND CS.STCO = 'ITCL'\n;\n\nCREATE VIEW v_Warehouses\nas\nSELECT      WHNM+' - @'+WHLO as Warehouse\nFROM        M3.MITWHL\nWHERE       CONO = 100 and DIVI = 'TLC'\n;\n\nCREATE VIEW v_Suppliers\nas\nSELECT      SUNM+' - @'+SUNO AS Supplier\nFROM        M3.CIDMAS",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

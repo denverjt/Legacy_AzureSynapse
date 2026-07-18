@@ -1,0 +1,17 @@
+{
+	"name": "v_Commercial_SerialTracking",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW     v_Commercial_SerialTracking\n-- drop view v_Commercial_SerialTracking\nAS\n\nSELECT      'Syspro AFS' as ERP\n,\t\t\tSDSR.Serial\n,\t\t\tSM.SalesOrder\n,\t\t\tSD.SalesOrderLine\n,\t\t\tATD.Customer\n,\t\t\tSM.CustomerPoNumber\n--,\t\t\tSD.LineType\n,\t\t\tATD.StockCode AS Item\n,\t\t\tSD.MStockDes AS ItemDescription\n,\t\t\tATD.Warehouse\n,\t\t\tATD.QtyInvoiced\n,\t\t\tSD.MOrderQty AS QtyOrdered\n--,\t\t\tSD.MUnitCost\n,\t\t\tSD.MPrice AS UnitPrice\n,\t\t\tATD.NetSalesValue \n,\t\t\tCAST(ATD.Invoice AS VARCHAR(255)) AS Invoice\n,\t\t\tATD.InvoiceDate\n--,\t\t\tATD.Branch\n,\t\t\tATD.Salesperson\n--,\t\t\tATD.OrderType\n--,\t\t\tATD.Area\n--,\t\t\tATD.ProductClass\nFROM        SCA.SorMaster SM\nJOIN        SCA.SorDetail SD ON SM.SalesOrder = SD.SalesOrder\nJOIN\t\tSCA.ArTrnDetail ATD ON SM.SalesOrder = ATD.SalesOrder AND SD.SalesOrderLine = ATD.SalesOrderLine \nJOIN\t\tSCA.SorDetailSerRep SDSR ON SM.SalesOrder = SDSR.SalesOrder AND SD.SalesOrderLine = SDSR.SalesOrderLine\n\nUNION ALL\n\nSELECT          'M3' as ERP\n,               BREF as Serial\n,               OH.ORNO as SalesOrder\n,               OL.PONR AS SalesOrderLine\n,               OH.CUNO as Customer\n,               OH.CUOR AS CustomerPoNumber\n,               IM.ITNO AS Item\n,               IM.ITDS AS ItemDescription\n,               IT.WHLO AS Warehouse\n,               OL.IVQT AS QtyInvoiced\n,               OL.ORQT AS QtyOrdered\n,               OL.NEPR AS UnitPrice\n,               OL.IVQT*OL.NEPR as NetSalesValue\n,               CAST(OD.IVNO AS VARCHAR(255)) as Invoice\n,               CAST(CAST(OD.IVDT AS VARCHAR(8)) AS DATE) as InvoiceDate\n,               OC.SMCD as Salesperson\nFROM            M3.MITTRA IT \nJOIN            M3.MITMAS IM ON IT.ITNO = IM.ITNO\nJOIN            M3.OOHEAD OH ON IT.RIDN = OH.ORNO\nJOIN            M3.OOLINE OL ON OH.ORNO = OL.ORNO AND IT.RIDL = OL.PONR\nJOIN            M3.OCUSMA OC on OH.CUNO = OC.CUNO\nJOIN            M3.ODHEAD OD ON OH.ORNO = OD.ORNO AND OD.WHLO = OH.WHLO\nWHERE           1=1\nAND             IM.BUAR = 'COM'\nAND             TTYP = 93\nAND             IT.WHSL LIKE CONCAT('%', IT.WHLO, '%')\nAND             LEN(BREF) >= 2\nAND             TRQT > 0\nAND             BREF <> IM.ITNO\n\n\n\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

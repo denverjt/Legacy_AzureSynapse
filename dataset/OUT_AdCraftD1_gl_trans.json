@@ -1,0 +1,22 @@
+{
+	"name": "OUT_AdCraftD1_gl_trans",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "tlcdw-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "gl_trans.parquet",
+				"folderPath": "AdCraft",
+				"fileSystem": "tlclakefs"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

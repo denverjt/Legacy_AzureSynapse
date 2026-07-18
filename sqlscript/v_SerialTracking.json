@@ -1,0 +1,17 @@
+{
+	"name": "v_SerialTracking",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW     v_SerialTracking\nAS\n\nSELECT          'M3' as ERP\n,               IM.BUAR as Division\n,               IM.ITCL as Brand\n,               BREF as Serial\n,               OH.ORNO as SalesOrder\n,               OL.PONR AS SalesOrderLine\n,               OH.CUNO as Customer\n,               OH.CUOR AS CustomerPoNumber\n,               IM.ITNO AS Item\n,               IM.ITDS AS ItemDescription\n,               IT.WHLO AS Warehouse\n,               OL.IVQT AS QtyInvoiced\n,               OL.ORQT AS QtyOrdered\n,               OL.NEPR AS UnitPrice\n,               OL.IVQT*OL.NEPR as NetSalesValue\n,               CAST(OD.IVNO AS VARCHAR(255)) as Invoice\n,               CAST(CAST(OD.IVDT AS VARCHAR(8)) AS DATE) as InvoiceDate\n,               OC.SMCD as Salesperson\nFROM            M3_MITTRA IT \nJOIN            M3_MITMAS IM ON IT.ITNO = IM.ITNO\nJOIN            M3_OOHEAD OH ON IT.RIDN = OH.ORNO\nJOIN            M3_OOLINE OL ON OH.ORNO = OL.ORNO AND IT.RIDL = OL.PONR\nJOIN            M3_OCUSMA OC on OH.CUNO = OC.CUNO\nJOIN            M3_ODHEAD OD ON OH.ORNO = OD.ORNO AND OD.WHLO = OH.WHLO\nWHERE           1=1\nAND             TTYP = 93\nAND             IT.WHSL LIKE CONCAT('%', IT.WHLO, '%')\nAND             LEN(BREF) >= 2\nAND             TRQT > 0\nAND             BREF <> IM.ITNO\n\n\n\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

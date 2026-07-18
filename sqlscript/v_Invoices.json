@@ -1,0 +1,17 @@
+{
+	"name": "v_Invoices",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW v_Invoices as\n--drop view v_Invoices\n\n\nselect A.*, [Inv Qty]*1.0000/NULLIF(SUM([Inv Qty]) OVER (PARTITION BY A.[Sales Order]),0)*B.[Freight] as [Billed Freight]\n, [Inv Qty]*1.0000/NULLIF(SUM([Inv Qty]) OVER (PARTITION BY A.[Sales Order]),0)*C.[Other_Freight] as [Other Freight]\nFROM\n(\nSELECT          [Sales Type] as             [Invoice Type]\n,               MM.GRP3 as                  [Finance Brand]\n,               OC.SDST AS                  [Buying Group]\n,                                           [Customer ID]\n,                                           [Customer Name]\n,              ISNULL(CX.SMD1, CX2.SMD1) AS [External Rep ID]\n,               CS.TX40 AS                  [External Rep Name]\n,               OC.RESP AS                  [Sales Manager]\n,               [Order ID] AS               [Sales Order]\n,                                           [Customer PO]\n,               [Invoice ID] AS             [Invoice Number]\n,               [Date] AS                   [Invoice Date]\n,               [Part ID - Actual] AS       Item\n,               [Part Description] AS       [Item Name]\n,               MM.PRGP AS                  [Item Type]\n,                                           Brand\n,                                           Warehouse\n,                                           Division\n,               [Sales Qty] AS              [Inv Qty]\n,               [Sales Amt] AS              [Inv Amt]\n,               [Net Sales Amt] AS          [Inv Net Amt]\n,               Cost AS                     [Inv Cost]\n,               OH.ORTP as                  [Order Type]\n,               OH.TEDL as                  [Freight Terms]\n,               OH.ADID as                  [Address ID]\nFROM            a_SalesData SD\nJOIN            M3.MITMAS MM on SD.[Part ID - Actual] = MM.ITNO\nJOIN            M3.OOHEAD OH ON SD.[Order ID] = OH.ORNO\nJOIN            M3.OCUSMA OC ON SD.[Customer ID] = OC.CUNO\nLEFT JOIN       M3.CSMCDX AS CX ON OC.CFC9 = CX.OBV1 AND CX.PREX = 3 \nLEFT JOIN       M3.CSMCDX AS CX2 ON OC.CFC9 = CX2.OBV1 AND MM.ITCL = CX2.OBV2 AND CX2.PREX = 4 \nLEFT JOIN       M3.CSYTAB AS CS ON ISNULL(CX.SMD1, CX2.SMD1) = CS.STKY AND cs.STCO = 'SMCD' \nWHERE           [Date] >= '2023-01-01'\n) A\n\nLEFT JOIN\n\n(\nSELECT ORNO as [Sales Order], SUM(CRAM) AS Freight\nFROM M3.OOCHRG\nWHERE CRID = 'FRE002'\nAND DLIX <> 0\nGROUP BY ORNO\n) B on A.[Sales Order] = B.[Sales Order]\n\nLEFT JOIN\n\n(\nSELECT ORNO as [Sales Order], SUM(CRAM) AS Other_Freight\nFROM M3.OOCHRG\nWHERE CRID = 'FRE003'\nAND DLIX <> 0\nGROUP BY ORNO\n) C on A.[Sales Order] = C.[Sales Order]\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

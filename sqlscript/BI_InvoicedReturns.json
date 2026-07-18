@@ -1,0 +1,17 @@
+{
+	"name": "BI_InvoicedReturns",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW BI_InvoicedReturns\n-- Drop view BI_InvoicedReturns\n\nAS\n\nSELECT\n    TRY_CAST(\n            LEFT(CONVERT(VARCHAR(8), H.IVDT), 4) + '-' + \n            SUBSTRING(CONVERT(VARCHAR(8), H.IVDT), 5, 2) + '-' + \n            RIGHT(CONVERT(VARCHAR(8), H.IVDT), 2) AS DATE) AS [Invoice Date],\n    H.YEA4 AS [Year],\n    CONVERT(VARCHAR(20),H.EXIN) AS [Extended Invoice Number],\n    CONVERT(VARCHAR(20),H.IVNO) AS [Invoice Number],\n    H.ORNO AS [Order Number],\n    H.ORTP AS [Order Type],\n    H.CUNO AS [Customer Number],\n    H.PYNO AS [Payer],\n    L.ITNO AS [Item Number],\n    L.PONR AS [Order Line],\n    L.POSX AS [Line Suffix],\n    L.LNCL AS [Line Classification],\n    L.IVQT AS [Qty],\n    L.SAPR AS [Unit Price],\n    L.UCOS AS [Unit Cost],\n    CASE WHEN L.LNCL = 2 THEN 0 ELSE (L.IVQT * L.SAPR * H.RAIN) END AS [Dollar Amount],\n    CASE WHEN L.LNCL = 2 THEN 0 ELSE L.DCOS END AS [Total Cost],\n    L.WHLO AS [Warehouse],\n    L.CUOR AS [Customer PO],\n    L.DLIX AS [Delivery Number],\n    O.REPN AS [Receiving Number],\n    O.SERN AS [Serial Number],\n    CASE WHEN O.RSCD IS NULL OR O.RSCD = '' THEN 'NA' ELSE O.RSCD END AS [Transaction Reason],\n    CASE WHEN O.RSCD IS NULL OR O.RSCD = '' THEN 'NA' ELSE C.TX40 END AS [Transaction Reason Description],\n    R.YREF AS [Reference],\n    R.RORN AS [Reference Sales Order Number]\n\nFROM M3.ODHEAD H\nLEFT JOIN M3.ODLINE L ON H.ORNO = L.ORNO AND H.EXIN = L.EXIN AND H.DLIX = L.DLIX\nLEFT JOIN M3.OOLINE O ON L.ORNO = O.ORNO AND L.PONR = O.PONR AND L.POSX = O.POSX\nLEFT JOIN M3.OCHEAD R ON O.REPN = R.REPN\nLEFT JOIN M3.CSYTAB C ON O.RSCD = C.STKY AND C.STCO = 'RSCD'\n\nWHERE\n    H.IVNO <> 0 AND\n    H.YEA4 >= '2022' AND\n    H.ORTP IN ('RMA','X90','E90')\n\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

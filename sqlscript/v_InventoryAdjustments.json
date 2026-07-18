@@ -1,0 +1,17 @@
+{
+	"name": "v_InventoryAdjustments",
+	"properties": {
+		"content": {
+			"query": "create view v_InventoryAdjustments\n-- drop view v_InventoryAdjustments\nas\nSELECT      Case when TTYP = 40 then 'Adjustment In' when TTYP = 41 then 'Adjustment Out' else 'Cycle Count' end as [Transaction Type]\n,           WHLO as Warehouse\n,           WHSL as [Warehouse Location]\n,           MM.ITNO as [Item Number]\n,           MM.ITDS as [Item Description]\n,           MM.ITCL as [Brand]\n,           TRDT as [Transaction Date]\n,           TRQT as [Qty]\n,           TRPR as [Unit Price]\n,           TRQT*TRPR as [Total Value]\n,           mt.RESP as [User]\n,           CASE WHEN RSCD = '' then 'NO REASON' else CS.TX40 end AS [Reason]\nFROM        M3.MITTRA MT\nJOIN        M3.MITMAS MM on MT.ITNO = MM.ITNO\nLEFT JOIN   M3.CSYTAB CS on MT.RSCD = CS.STKY and CS.STCO = 'RSCD'\nWHERE       TTYP IN (40, 41, 90)\nAND         TRQT <> 0",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": -1
+		},
+		"type": "SqlQuery"
+	}
+}

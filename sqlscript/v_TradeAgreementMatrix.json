@@ -1,0 +1,17 @@
+{
+	"name": "v_TradeAgreementMatrix",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW     v_TradeAgreementMatrix\nas\nSELECT          FW.*\n,               A.[Priority 3 - Customer]\n,               C.[Priority 3 - Sales Territory]\n,               B.[Priority 5 - Brand]\n,               D.[Priority 5 - Sales Territory]\nFROM\n(\nSELECT          TA.TAGN AS [Trade Agreement]\n,               TA.TX40 as [Trade Agreeement Description]\n,               TR.TREC as [Sales Rep ID]\n,               CS.TX40 as [Sales Rep Name]\n,               TR.RATE as [Commission Rate]\n,               TA.STDE as [Start Date]\n,               TA.LVDT as [End Date]\nFROM            M3.OBTRAG TA\nJOIN            M3.OBTREC TR on TA.TAGN = TR.TAGN\nLEFT JOIN       M3.CSYTAB CS ON TR.TREC = CS.STKY \nWHERE           STCO = 'SMCD'\nAND             TA.TATB = 'COML-01'\n) FW\n\nLEFT JOIN\n\n(\nSELECT          TX.TAGN AS [Trade Agreement]\n,               TX.OBV1 as [Priority 3 - Customer]\nFROM            M3.OBTMTX TX\nWHERE           PREX = 3\n) A             on FW.[Trade Agreement] = A.[Trade Agreement]\n\nLEFT JOIN\n\n(\nSELECT          TX.TAGN AS [Trade Agreement]\n,               TX.OBV2 as [Priority 5 - Brand]\nFROM            M3.OBTMTX TX\nWHERE           PREX = 5\n) B             on FW.[Trade Agreement] = B.[Trade Agreement]\n\nLEFT JOIN\n\n(\nSELECT          SMD1 as [Sales Rep ID]\n,               OBV1 as [Priority 3 - Sales Territory]\nFROM            M3.CSMCDX\nWHERE           PREX = 3\n) C             on FW.[Sales Rep ID] = C.[Sales Rep ID] and A.[Priority 3 - Customer] is not null\n\nLEFT JOIN\n\n(\nSELECT          SMD1 as [Sales Rep ID]\n,               OBV1 as [Priority 5 - Sales Territory]\n,               OBV2 as [Priority 5 - Brand]\nFROM            M3.CSMCDX\nWHERE           PREX = 4\n) D             on FW.[Sales Rep ID] = D.[Sales Rep ID] and B.[Priority 5 - Brand] = D.[Priority 5 - Brand] and B.[Priority 5 - Brand] is not null\n\n\n\n\n\n\n\n\n/*\nselect * from M3.CSMCDX\nselect * from M3.OBTREC\n*/",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

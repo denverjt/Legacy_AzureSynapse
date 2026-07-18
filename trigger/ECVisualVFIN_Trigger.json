@@ -1,0 +1,1324 @@
+{
+	"name": "ECVisualVFIN_Trigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "ECVisualVFIN_Pipeline",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"cw_items": [
+						{
+							"source": {
+								"table": "RECEIVABLES_RECEIVABLE_DIST"
+							},
+							"destination": {
+								"fileName": "RECEIVABLES_RECEIVABLE_DIST.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "RECEIVABLES_RECEIVABLE_LINE"
+							},
+							"destination": {
+								"fileName": "RECEIVABLES_RECEIVABLE_LINE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "RECEIVABLES_CUST_ORDER_LINE"
+							},
+							"destination": {
+								"fileName": "RECEIVABLES_CUST_ORDER_LINE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "CUSTOM_SALES_HIST_LINE"
+							},
+							"destination": {
+								"fileName": "CUSTOM_SALES_HIST_LINE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "CUSTOM_COMMISSION"
+							},
+							"destination": {
+								"fileName": "CUSTOM_COMMISSION.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "RECEIVABLES_SHIPPER_LINE"
+							},
+							"destination": {
+								"fileName": "RECEIVABLES_SHIPPER_LINE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "CASHMGMT_PAYMENT_DIST"
+							},
+							"destination": {
+								"fileName": "CASHMGMT_PAYMENT_DIST.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "RECEIVABLES_CUSTOMER_ORDER"
+							},
+							"destination": {
+								"fileName": "RECEIVABLES_CUSTOMER_ORDER.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "CASHMGMT_PAYMENT_LINE"
+							},
+							"destination": {
+								"fileName": "CASHMGMT_PAYMENT_LINE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "CUSTOM_SALES_HISTORY"
+							},
+							"destination": {
+								"fileName": "CUSTOM_SALES_HISTORY.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "RECEIVABLES_SHIPPER"
+							},
+							"destination": {
+								"fileName": "RECEIVABLES_SHIPPER.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "RECEIVABLES_RECEIVABLE"
+							},
+							"destination": {
+								"fileName": "RECEIVABLES_RECEIVABLE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "RECEIVABLES_RECEIVABLE_AGING"
+							},
+							"destination": {
+								"fileName": "RECEIVABLES_RECEIVABLE_AGING.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "RECEIVABLES_RECEIVABLE_WRITEOF"
+							},
+							"destination": {
+								"fileName": "RECEIVABLES_RECEIVABLE_WRITEOF.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "RECEIVABLES_RECEIVABLE_CURR"
+							},
+							"destination": {
+								"fileName": "RECEIVABLES_RECEIVABLE_CURR.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "PAYABLES_PAYABLE_DIST"
+							},
+							"destination": {
+								"fileName": "PAYABLES_PAYABLE_DIST.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LEDGER_ACCOUNT_BALANCE"
+							},
+							"destination": {
+								"fileName": "LEDGER_ACCOUNT_BALANCE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "PAYABLES_PAYABLE_LINE"
+							},
+							"destination": {
+								"fileName": "PAYABLES_PAYABLE_LINE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "CASHMGMT_PAYMENT"
+							},
+							"destination": {
+								"fileName": "CASHMGMT_PAYMENT.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "PAYABLES_PAYABLE"
+							},
+							"destination": {
+								"fileName": "PAYABLES_PAYABLE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LEDGER_GEN_JOURN_LINE"
+							},
+							"destination": {
+								"fileName": "LEDGER_GEN_JOURN_LINE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "PAYABLES_PAYABLE_AGING"
+							},
+							"destination": {
+								"fileName": "PAYABLES_PAYABLE_AGING.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "CASHMGMT_BANK_PAY_RUN_LINE_DET"
+							},
+							"destination": {
+								"fileName": "CASHMGMT_BANK_PAY_RUN_LINE_DET.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "CASHMGMT_BANK_DEP_LINE"
+							},
+							"destination": {
+								"fileName": "CASHMGMT_BANK_DEP_LINE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "PAYABLES_PURC_ORDER_LINE"
+							},
+							"destination": {
+								"fileName": "PAYABLES_PURC_ORDER_LINE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "RECEIVABLES_CUST_ORDER_COMM"
+							},
+							"destination": {
+								"fileName": "RECEIVABLES_CUST_ORDER_COMM.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "PAYABLES_RECEIVER_LINE"
+							},
+							"destination": {
+								"fileName": "PAYABLES_RECEIVER_LINE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LEDGER_GEN_JOURN_DIST"
+							},
+							"destination": {
+								"fileName": "LEDGER_GEN_JOURN_DIST.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LEDGER_ACCOUNT_CAT_BAL"
+							},
+							"destination": {
+								"fileName": "LEDGER_ACCOUNT_CAT_BAL.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "PAYABLES_PURCHASE_ORDER"
+							},
+							"destination": {
+								"fileName": "PAYABLES_PURCHASE_ORDER.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "PAYABLES_RECEIVER"
+							},
+							"destination": {
+								"fileName": "PAYABLES_RECEIVER.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "CASHMGMT_BANK_PAY_RUN_LINE"
+							},
+							"destination": {
+								"fileName": "CASHMGMT_BANK_PAY_RUN_LINE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "CASHMGMT_PAYMENT_CURR"
+							},
+							"destination": {
+								"fileName": "CASHMGMT_PAYMENT_CURR.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "CustomerswithSalesTax"
+							},
+							"destination": {
+								"fileName": "CustomerswithSalesTax.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "PAYABLES_PAYABLE_CURR"
+							},
+							"destination": {
+								"fileName": "PAYABLES_PAYABLE_CURR.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "RECEIVABLES_RECEIVABLE_TAX"
+							},
+							"destination": {
+								"fileName": "RECEIVABLES_RECEIVABLE_TAX.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "CASHMGMT_BANK_DEPOSIT"
+							},
+							"destination": {
+								"fileName": "CASHMGMT_BANK_DEPOSIT.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "RECEIVABLES_CUSTOMER_TURNOVER"
+							},
+							"destination": {
+								"fileName": "RECEIVABLES_CUSTOMER_TURNOVER.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "RECEIVABLES_CUSTOMER_CONTACT"
+							},
+							"destination": {
+								"fileName": "RECEIVABLES_CUSTOMER_CONTACT.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "CASHMGMT_BANK_ADJ_DIST"
+							},
+							"destination": {
+								"fileName": "CASHMGMT_BANK_ADJ_DIST.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "PAYABLES_SUPPLIER_TURNOVER"
+							},
+							"destination": {
+								"fileName": "PAYABLES_SUPPLIER_TURNOVER.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "CASHMGMT_BANK_PAY_RUN"
+							},
+							"destination": {
+								"fileName": "CASHMGMT_BANK_PAY_RUN.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "RECEIVABLES_CUSTOMER_ENTITY"
+							},
+							"destination": {
+								"fileName": "RECEIVABLES_CUSTOMER_ENTITY.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "RECEIVABLES_CUSTOMER"
+							},
+							"destination": {
+								"fileName": "RECEIVABLES_CUSTOMER.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "CASHMGMT_BANK_ADJ_LINE"
+							},
+							"destination": {
+								"fileName": "CASHMGMT_BANK_ADJ_LINE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "PAYABLES_SUPPLIER"
+							},
+							"destination": {
+								"fileName": "PAYABLES_SUPPLIER.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "PAYABLES_SUPPLIER_ENTITY"
+							},
+							"destination": {
+								"fileName": "PAYABLES_SUPPLIER_ENTITY.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LEDGER_GEN_JOURNAL"
+							},
+							"destination": {
+								"fileName": "LEDGER_GEN_JOURNAL.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "CASHMGMT_BANK_ADJUSTMENT"
+							},
+							"destination": {
+								"fileName": "CASHMGMT_BANK_ADJUSTMENT.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "PAYABLES_PAYABLE_TAX"
+							},
+							"destination": {
+								"fileName": "PAYABLES_PAYABLE_TAX.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LSA_COLUMN"
+							},
+							"destination": {
+								"fileName": "LSA_COLUMN.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LEDGER_REPORT_LINE"
+							},
+							"destination": {
+								"fileName": "LEDGER_REPORT_LINE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LEDGER_ACCOUNT_BAL_FWD"
+							},
+							"destination": {
+								"fileName": "LEDGER_ACCOUNT_BAL_FWD.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LEDGER_ACCOUNT"
+							},
+							"destination": {
+								"fileName": "LEDGER_ACCOUNT.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LEDGER_GEN_JOURN_CURR"
+							},
+							"destination": {
+								"fileName": "LEDGER_GEN_JOURN_CURR.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LEDGER_NATURAL_ACCT_SEG_2"
+							},
+							"destination": {
+								"fileName": "LEDGER_NATURAL_ACCT_SEG_2.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_SHIP_VIA"
+							},
+							"destination": {
+								"fileName": "SHARED_SHIP_VIA.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "CUSTOM_COMMISSION_RATE"
+							},
+							"destination": {
+								"fileName": "CUSTOM_COMMISSION_RATE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "amazon"
+							},
+							"destination": {
+								"fileName": "amazon.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "RECEIVABLES_RECEIVABLE_COMM"
+							},
+							"destination": {
+								"fileName": "RECEIVABLES_RECEIVABLE_COMM.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LSA_RELATIONSHIP"
+							},
+							"destination": {
+								"fileName": "LSA_RELATIONSHIP.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "CASHMGMT_BANK_ADJ_CURR"
+							},
+							"destination": {
+								"fileName": "CASHMGMT_BANK_ADJ_CURR.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "aa_xx_QcustomerU4"
+							},
+							"destination": {
+								"fileName": "aa_xx_QcustomerU4.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LEDGER_ACCOUNT_CAT_BAL_FWD"
+							},
+							"destination": {
+								"fileName": "LEDGER_ACCOUNT_CAT_BAL_FWD.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LEDGER_NATURAL_ACCOUNT"
+							},
+							"destination": {
+								"fileName": "LEDGER_NATURAL_ACCOUNT.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LSA_ENUM"
+							},
+							"destination": {
+								"fileName": "LSA_ENUM.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_COMMODITY"
+							},
+							"destination": {
+								"fileName": "SHARED_COMMODITY.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_FILE_FORMAT_DETAIL"
+							},
+							"destination": {
+								"fileName": "SHARED_FILE_FORMAT_DETAIL.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_CURRENCY_EXCHANGE"
+							},
+							"destination": {
+								"fileName": "SHARED_CURRENCY_EXCHANGE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "CUSTOM_CUST_HANDLING_CHG_RATE"
+							},
+							"destination": {
+								"fileName": "CUSTOM_CUST_HANDLING_CHG_RATE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_SALES_REP"
+							},
+							"destination": {
+								"fileName": "SHARED_SALES_REP.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_SALES_REP_ENTITY"
+							},
+							"destination": {
+								"fileName": "SHARED_SALES_REP_ENTITY.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LSA_TABLE"
+							},
+							"destination": {
+								"fileName": "LSA_TABLE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LEDGER_ACCOUNT_PERIOD"
+							},
+							"destination": {
+								"fileName": "LEDGER_ACCOUNT_PERIOD.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_PRODUCT"
+							},
+							"destination": {
+								"fileName": "SHARED_PRODUCT.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LSA_DOMAIN"
+							},
+							"destination": {
+								"fileName": "LSA_DOMAIN.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "PAYABLES_SUPPLIER_CONTACT"
+							},
+							"destination": {
+								"fileName": "PAYABLES_SUPPLIER_CONTACT.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LSA_PASSWORD_LOG"
+							},
+							"destination": {
+								"fileName": "LSA_PASSWORD_LOG.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_ENTITY_LANG_SUB_REPORT"
+							},
+							"destination": {
+								"fileName": "SHARED_ENTITY_LANG_SUB_REPORT.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "CASHMGMT_BANK_STATEMENT"
+							},
+							"destination": {
+								"fileName": "CASHMGMT_BANK_STATEMENT.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "Begbal2020"
+							},
+							"destination": {
+								"fileName": "Begbal2020.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_TERMS_RULE"
+							},
+							"destination": {
+								"fileName": "SHARED_TERMS_RULE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_ENTITY_LANGUAGE_REPORT"
+							},
+							"destination": {
+								"fileName": "SHARED_ENTITY_LANGUAGE_REPORT.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LSA_USER"
+							},
+							"destination": {
+								"fileName": "LSA_USER.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "CUSTOM_CUSTOMER_HANDLING_CHG"
+							},
+							"destination": {
+								"fileName": "CUSTOM_CUSTOMER_HANDLING_CHG.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_TERRITORY"
+							},
+							"destination": {
+								"fileName": "SHARED_TERRITORY.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LEDGER_REPORT_COLUMN"
+							},
+							"destination": {
+								"fileName": "LEDGER_REPORT_COLUMN.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "CUSTOM_CUST_WRITEOFF_CODE"
+							},
+							"destination": {
+								"fileName": "CUSTOM_CUST_WRITEOFF_CODE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_STATE_PROVINCE"
+							},
+							"destination": {
+								"fileName": "SHARED_STATE_PROVINCE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LEDGER_SEGMENT_VALUE"
+							},
+							"destination": {
+								"fileName": "LEDGER_SEGMENT_VALUE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LSA_SETTINGS"
+							},
+							"destination": {
+								"fileName": "LSA_SETTINGS.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "PAYABLES_SUPPLIER_GROUP_MBR"
+							},
+							"destination": {
+								"fileName": "PAYABLES_SUPPLIER_GROUP_MBR.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LSA_INDEX"
+							},
+							"destination": {
+								"fileName": "LSA_INDEX.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_FILE_FORMAT_820_DETAIL"
+							},
+							"destination": {
+								"fileName": "SHARED_FILE_FORMAT_820_DETAIL.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "CUSTOM_CUSTOMER_WRITEOFF"
+							},
+							"destination": {
+								"fileName": "CUSTOM_CUSTOMER_WRITEOFF.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "AA_CustomerHandlingCost"
+							},
+							"destination": {
+								"fileName": "AA_CustomerHandlingCost.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LSA_NUMBERING"
+							},
+							"destination": {
+								"fileName": "LSA_NUMBERING.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_ENTITY_LANG_SUB2_REPORT"
+							},
+							"destination": {
+								"fileName": "SHARED_ENTITY_LANG_SUB2_REPORT.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "edgearselections2"
+							},
+							"destination": {
+								"fileName": "edgearselections2.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LEDGER_ACCOUNT_CATEGORY"
+							},
+							"destination": {
+								"fileName": "LEDGER_ACCOUNT_CATEGORY.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_FOB"
+							},
+							"destination": {
+								"fileName": "SHARED_FOB.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_FILE_FORMAT_TYPE"
+							},
+							"destination": {
+								"fileName": "SHARED_FILE_FORMAT_TYPE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_ENTITY_ROLE_CURR"
+							},
+							"destination": {
+								"fileName": "SHARED_ENTITY_ROLE_CURR.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_DOCUMENT_TYPE"
+							},
+							"destination": {
+								"fileName": "SHARED_DOCUMENT_TYPE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LEDGER_NATURAL_ACCT_SEG_3"
+							},
+							"destination": {
+								"fileName": "LEDGER_NATURAL_ACCT_SEG_3.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_UOM"
+							},
+							"destination": {
+								"fileName": "SHARED_UOM.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "edgearselections"
+							},
+							"destination": {
+								"fileName": "edgearselections.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_CONTACT_TYPE"
+							},
+							"destination": {
+								"fileName": "SHARED_CONTACT_TYPE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_ENTITY_LANGUAGE"
+							},
+							"destination": {
+								"fileName": "SHARED_ENTITY_LANGUAGE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_TAX_PCT"
+							},
+							"destination": {
+								"fileName": "SHARED_TAX_PCT.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_LANGUAGE"
+							},
+							"destination": {
+								"fileName": "SHARED_LANGUAGE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "CASHMGMT_WRITEOFF_CATEGORY"
+							},
+							"destination": {
+								"fileName": "CASHMGMT_WRITEOFF_CATEGORY.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "CASHMGMT_WRITEOFF_ENTITY"
+							},
+							"destination": {
+								"fileName": "CASHMGMT_WRITEOFF_ENTITY.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LSA_ROLE"
+							},
+							"destination": {
+								"fileName": "LSA_ROLE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_ENTITY_ROLE"
+							},
+							"destination": {
+								"fileName": "SHARED_ENTITY_ROLE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_TAX_GROUP_TAX"
+							},
+							"destination": {
+								"fileName": "SHARED_TAX_GROUP_TAX.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LEDGER_REPORT"
+							},
+							"destination": {
+								"fileName": "LEDGER_REPORT.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_ENTITY_ACCOUNT"
+							},
+							"destination": {
+								"fileName": "SHARED_ENTITY_ACCOUNT.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_TAX_ENTITY"
+							},
+							"destination": {
+								"fileName": "SHARED_TAX_ENTITY.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_TAX_GROUP"
+							},
+							"destination": {
+								"fileName": "SHARED_TAX_GROUP.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_TAX"
+							},
+							"destination": {
+								"fileName": "SHARED_TAX.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "PAYABLES_PROJECT_DEPARTMENT"
+							},
+							"destination": {
+								"fileName": "PAYABLES_PROJECT_DEPARTMENT.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_ENTITY_REPORT_PAYABLES"
+							},
+							"destination": {
+								"fileName": "SHARED_ENTITY_REPORT_PAYABLES.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_ENTITY_REPORT_RECV"
+							},
+							"destination": {
+								"fileName": "SHARED_ENTITY_REPORT_RECV.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "AA_ProductHandlingCost"
+							},
+							"destination": {
+								"fileName": "AA_ProductHandlingCost.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LEDGER_SEGMENT"
+							},
+							"destination": {
+								"fileName": "LEDGER_SEGMENT.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_ENTITY_ROLE_VIEW"
+							},
+							"destination": {
+								"fileName": "SHARED_ENTITY_ROLE_VIEW.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_FILE_FORMAT_820"
+							},
+							"destination": {
+								"fileName": "SHARED_FILE_FORMAT_820.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_ENTITY_REPORT_ADMIN"
+							},
+							"destination": {
+								"fileName": "SHARED_ENTITY_REPORT_ADMIN.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_ENTITY_REPORT_CASHMGMT"
+							},
+							"destination": {
+								"fileName": "SHARED_ENTITY_REPORT_CASHMGMT.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_FILE_FORMAT"
+							},
+							"destination": {
+								"fileName": "SHARED_FILE_FORMAT.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "PAYABLES_SUPPLIER_GROUP"
+							},
+							"destination": {
+								"fileName": "PAYABLES_SUPPLIER_GROUP.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LSA_DATASPACE"
+							},
+							"destination": {
+								"fileName": "LSA_DATASPACE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LEDGER_RCR_GEN_JOURN_LINE"
+							},
+							"destination": {
+								"fileName": "LEDGER_RCR_GEN_JOURN_LINE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_ENTITY_REPORT_LEDGER"
+							},
+							"destination": {
+								"fileName": "SHARED_ENTITY_REPORT_LEDGER.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_ENTITY_SUB_REPORT_PAYB"
+							},
+							"destination": {
+								"fileName": "SHARED_ENTITY_SUB_REPORT_PAYB.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_PAYMENT_METHOD"
+							},
+							"destination": {
+								"fileName": "SHARED_PAYMENT_METHOD.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "PAYABLES_DISTRIBUTIONS_1099"
+							},
+							"destination": {
+								"fileName": "PAYABLES_DISTRIBUTIONS_1099.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "CASHMGMT_BANK_ACCOUNT"
+							},
+							"destination": {
+								"fileName": "CASHMGMT_BANK_ACCOUNT.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_INDUSTRY"
+							},
+							"destination": {
+								"fileName": "SHARED_INDUSTRY.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_ENTITY_SUB_REPORT_RECV"
+							},
+							"destination": {
+								"fileName": "SHARED_ENTITY_SUB_REPORT_RECV.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_ENTITY_CURRENCY"
+							},
+							"destination": {
+								"fileName": "SHARED_ENTITY_CURRENCY.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_CURRENCY"
+							},
+							"destination": {
+								"fileName": "SHARED_CURRENCY.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "CUSTOM_COMMODITY_HANDLING_CHG"
+							},
+							"destination": {
+								"fileName": "CUSTOM_COMMODITY_HANDLING_CHG.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LEDGER_ACCOUNT_VIEW"
+							},
+							"destination": {
+								"fileName": "LEDGER_ACCOUNT_VIEW.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "PAYABLES_CODES_1099"
+							},
+							"destination": {
+								"fileName": "PAYABLES_CODES_1099.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "PAYABLES_RCR_PAYABLE"
+							},
+							"destination": {
+								"fileName": "PAYABLES_RCR_PAYABLE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "PAYABLES_RCR_PAYB_LINE"
+							},
+							"destination": {
+								"fileName": "PAYABLES_RCR_PAYB_LINE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "PAYABLES_PAYABLE_USRCURR"
+							},
+							"destination": {
+								"fileName": "PAYABLES_PAYABLE_USRCURR.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "PAYABLES_PAYABLE_CTL"
+							},
+							"destination": {
+								"fileName": "PAYABLES_PAYABLE_CTL.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LEDGER_RCR_GEN_JOURNAL"
+							},
+							"destination": {
+								"fileName": "LEDGER_RCR_GEN_JOURNAL.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LEDGER_ACCOUNT_CALENDAR"
+							},
+							"destination": {
+								"fileName": "LEDGER_ACCOUNT_CALENDAR.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "CUSTOM_ENTITY"
+							},
+							"destination": {
+								"fileName": "CUSTOM_ENTITY.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LEDGER_ACCOUNT_CTL"
+							},
+							"destination": {
+								"fileName": "LEDGER_ACCOUNT_CTL.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_CREDIT_MGMT_CTL"
+							},
+							"destination": {
+								"fileName": "SHARED_CREDIT_MGMT_CTL.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_COUNTRY_CODE"
+							},
+							"destination": {
+								"fileName": "SHARED_COUNTRY_CODE.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_COMPANY_CTL"
+							},
+							"destination": {
+								"fileName": "SHARED_COMPANY_CTL.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_ENTITY_ADDRESS"
+							},
+							"destination": {
+								"fileName": "SHARED_ENTITY_ADDRESS.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_EARNING"
+							},
+							"destination": {
+								"fileName": "SHARED_EARNING.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_ENTITY"
+							},
+							"destination": {
+								"fileName": "SHARED_ENTITY.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "RECEIVABLES_RECEIVABLE_CTL"
+							},
+							"destination": {
+								"fileName": "RECEIVABLES_RECEIVABLE_CTL.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "SHARED_TAX_CATEGORY"
+							},
+							"destination": {
+								"fileName": "SHARED_TAX_CATEGORY.parquet"
+							}
+						}
+					]
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2022-06-23T02:30:00",
+				"timeZone": "Eastern Standard Time"
+			}
+		}
+	}
+}

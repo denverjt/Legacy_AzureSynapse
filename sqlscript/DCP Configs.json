@@ -1,0 +1,17 @@
+{
+	"name": "DCP Configs",
+	"properties": {
+		"content": {
+			"query": "SELECT          ODH.ORNO, ODL.DLIX, ODL.ITNO, ODL.IVQT, VLMM, PACL, PACW, PACH, GWTM\nFROM            M3.ODHEAD ODH\nJOIN            M3.ODLINE ODL ON ODH.ORNO = ODL.ORNO AND ODH.DLIX = ODL.DLIX\nLEFT JOIN       (SELECT DISTINCT DLIX, SORT, VLMM, PACL, PACW, PACH, GWTM FROM M3.MPTRNS) MPT ON ODL.DLIX = MPT.DLIX AND ODL.ITNO = MPT.SORT",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

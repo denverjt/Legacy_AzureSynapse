@@ -1,0 +1,27 @@
+{
+	"name": "OUT_M3_JSONSource",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "tlcdw-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"M3FileName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": {
+					"value": "@concat('M3/JSONProcess/', dataset().M3FileName)",
+					"type": "Expression"
+				},
+				"fileSystem": "tlclakefs"
+			}
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

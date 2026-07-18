@@ -1,0 +1,7 @@
+{
+	"name": "tlcdwintegration-par",
+	"properties": {
+		"type": "SelfHosted",
+		"description": "TLCDW Integration Runtime for Paris"
+	}
+}

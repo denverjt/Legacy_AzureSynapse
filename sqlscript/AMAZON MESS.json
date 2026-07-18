@@ -1,0 +1,17 @@
+{
+	"name": "AMAZON MESS",
+	"properties": {
+		"content": {
+			"query": "SELECT oh.orno, oh.orst, oh.orsl, oh.rldt, oh.oref, oh.cuor, ol.ponr, ol.orst, ol.whlo, ol.itno, ol.orqt, ol.rnqt, ol.plqt, ol.sapr FROM m3.oohead oh join m3.ooline ol on oh.orno = ol.orno where oh.cuno = '70006' and oh.oref like 'E%'",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

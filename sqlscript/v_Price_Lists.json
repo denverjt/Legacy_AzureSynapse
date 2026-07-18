@@ -1,0 +1,17 @@
+{
+	"name": "v_Price_Lists",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW v_Price_Lists\n-- drop view v_Price_Lists\nas\nSELECT      DISTINCT OC.CUNO AS             [Customer Number]\n,           OC.CUNM AS                      [Customer Name]\n,           OC.CFC8 AS                      [Price List Market]\n,           CS.TX15 AS                      [Delivery Terms]\n,           PRL.ITNO AS                     [Item Number]\n,           PRL.SAPR AS                     [Price - Customer Specific]\n,           PRL.LMDT AS                     [Change Date]\n,           PRL.CHNO AS                     [Change Number]\n,           PRL.CHID AS                     [Change by]\n,           PRL.FVDT AS                     [Valid from]\n,           PRL.LVDT AS                     [Valid to]\n,           MM.SAPR AS                      [Wholesale Price]\nFROM        M3.OCUSMA OC\nLEFT JOIN   M3.OPRMTX PLT ON OC.PLTB = PLT.PLTB AND OC.CUNO = PLT.OBV1 AND PLT.PREX = 2\nLEFT JOIN   M3.OPRBAS PRL ON PLT.PRRF = PRL.PRRF\nLEFT JOIN   M3.MITMAS MM ON PRL.ITNO = MM.ITNO\nLEFT JOIN   M3.CSYTAB CS ON OC.TEDL = CS.STKY AND CS.STCO = 'TEDL'\nWHERE       PLT.PRRF IS NOT NULL",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": -1
+		},
+		"type": "SqlQuery"
+	}
+}

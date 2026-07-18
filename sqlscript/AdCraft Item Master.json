@@ -1,0 +1,17 @@
+{
+	"name": "AdCraft Item Master",
+	"properties": {
+		"content": {
+			"query": "SELECT      i.item\n,           i.descr\n,           i.um\n,           i.product_line\n,           i.upc1\n,           i.vendor\n,           i.ship_length\n,           i.ship_width\n,           i.ship_height\n,           i.weight\n,           AVG(WI.list_price) as msrp\n,           AVG(WI.std_cost) as std_cost\nFROM        ADC.ITEM I\nJOIN        ADC.wa_item WI on i.item = WI.item\nWHERE       I.COMPANY_IT = 'AD'\nAND         WI.COMPANY_IT = 'AD'\nGROUP BY    i.item\n,           i.descr\n,           i.um\n,           i.product_line\n,           i.upc1\n,           i.vendor\n,           i.ship_length\n,           i.ship_width\n,           i.ship_height\n,           i.weight\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": -1
+		},
+		"type": "SqlQuery"
+	}
+}

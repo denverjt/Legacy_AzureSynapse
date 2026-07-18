@@ -1,0 +1,17 @@
+{
+	"name": "BI_Deliveries",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW BI_Deliveries\n--drop view BI_Deliveries\n\nAS\n\nSELECT\n    CONA AS [Consignee],\n    DLIX AS [Delivery Number],\n    WHLO AS [Warehouse],\n    RIDN AS [Order Number],\n    RASN AS [Rail Station]\nFROM M3.MHDISH\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

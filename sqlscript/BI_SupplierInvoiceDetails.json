@@ -1,0 +1,17 @@
+{
+	"name": "BI_SupplierInvoiceDetails",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW BI_SupplierInvoiceDetails\n-- Drop view BI_SupplierInvoiceDetails\n\nAS\n\nSELECT \nL.DIVI AS [Division],\nL.YEA4 AS [Year],\nL.RGDT AS [Entry Date],\nL.ACDT AS [Accounting Date],\nL.ACAM AS [Amount],\nL.VONO AS [Voucher Number],\nL.VTXT AS [Voucher Text],\nL.TRCD AS [Transaction Code],\nL.JRNO AS [Journal Number],\nL.AIT1 AS [GL],\nN.TX40 AS [GL Description],\nL.AIT2 AS [Business Unit],\nL.AIT3 AS [CC],\nL.AIT4 AS [Brand],\nS.SUNO AS [Supplier Number],\nSN.SUNM AS [Supplier Name],\nS.SUCL AS [Supplier Group],\nS.APCD AS [Authorized User],\nS.SINO AS [Supplier Invoice Number],\nS.IVDT AS [Invoice Date],\nS.RECO AS [Internal Reconciliation Code],\nTRY_CAST(\n        LEFT(CONVERT(VARCHAR(8), S.REDE), 4) + '-' + \n        SUBSTRING(CONVERT(VARCHAR(8), S.REDE), 5, 2) + '-' + \n        RIGHT(CONVERT(VARCHAR(8), S.REDE), 2) AS DATE) AS [Reconciliation Date]\nFROM M3.FGLEDG L\nLEFT JOIN M3.FPLEDG S ON L.VONO = S.VONO AND L.JRNO = S.JRNO AND L.YEA4 = S.YEA4\nLEFT JOIN M3.FCHACC N ON L.AIT1 = N.AITM AND N.AITP = 1\nLEFT JOIN M3.CIDMAS SN ON S.SUNO = SN.SUNO\nWHERE\n        L.TRCD IN ('40', '41') AND\n        L.FNCN = '120' AND -- 120 Approved Coded\n        L.YEA4 >= '2025' AND\n        L.AIT1 >= '600000' AND L.AIT1 < '800000' -- AP GLs\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

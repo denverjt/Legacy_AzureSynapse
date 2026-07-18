@@ -1,0 +1,16 @@
+{
+	"name": "NetsuiteVT",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=AVPBI01.avantiproducts.com;initial catalog=VinotempDW;user id=AzureSynapse",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIxZTg4MGViZS1jODc5LTRmMDQtYmQ0Yy1mNjU2NjVlMTFlNjMiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "tlcdwintegration",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

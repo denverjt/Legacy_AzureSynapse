@@ -1,0 +1,206 @@
+{
+	"name": "IN_M3_FGRECL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "tlcdw-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "FGRECL_2023-01-08_01-49-26-315.json",
+				"folderPath": "M3/JSONProcess/FGRECL",
+				"fileSystem": "tlclakefs"
+			},
+			"compression": {
+				"type": "deflate",
+				"level": "Optimal"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"CONO": {
+					"type": "integer"
+				},
+				"DIVI": {
+					"type": "string"
+				},
+				"PUNO": {
+					"type": "string"
+				},
+				"PNLI": {
+					"type": "integer"
+				},
+				"PNLS": {
+					"type": "integer"
+				},
+				"REPN": {
+					"type": "integer"
+				},
+				"RELP": {
+					"type": "integer"
+				},
+				"FACI": {
+					"type": "string"
+				},
+				"WHLO": {
+					"type": "string"
+				},
+				"SUDO": {
+					"type": "string"
+				},
+				"SUNO": {
+					"type": "string"
+				},
+				"SORN": {
+					"type": "string"
+				},
+				"TRDT": {
+					"type": "integer"
+				},
+				"ITNO": {
+					"type": "string"
+				},
+				"IMST": {
+					"type": "integer"
+				},
+				"IMDT": {
+					"type": "integer"
+				},
+				"SCOC": {
+					"type": "number"
+				},
+				"SCOP": {
+					"type": "number"
+				},
+				"SCDC": {
+					"type": "number"
+				},
+				"PUCD": {
+					"type": "integer"
+				},
+				"CUCD": {
+					"type": "string"
+				},
+				"SERA": {
+					"type": "number"
+				},
+				"CRTP": {
+					"type": "integer"
+				},
+				"RPQT": {
+					"type": "number"
+				},
+				"RPQA": {
+					"type": "number"
+				},
+				"CAWE": {
+					"type": "number"
+				},
+				"IVQT": {
+					"type": "number"
+				},
+				"IVQA": {
+					"type": "number"
+				},
+				"IVCW": {
+					"type": "number"
+				},
+				"RCAC": {
+					"type": "number"
+				},
+				"ICAC": {
+					"type": "number"
+				},
+				"IASR": {
+					"type": "integer"
+				},
+				"IASD": {
+					"type": "integer"
+				},
+				"ANBR": {
+					"type": "integer"
+				},
+				"SENO": {
+					"type": "integer"
+				},
+				"HSIN": {
+					"type": "string"
+				},
+				"SBAN": {
+					"type": "string"
+				},
+				"FGTP": {
+					"type": "string"
+				},
+				"ORTY": {
+					"type": "string"
+				},
+				"PIDT": {
+					"type": "integer"
+				},
+				"BUYE": {
+					"type": "string"
+				},
+				"RGDT": {
+					"type": "integer"
+				},
+				"RGTM": {
+					"type": "integer"
+				},
+				"LMDT": {
+					"type": "integer"
+				},
+				"CHNO": {
+					"type": "integer"
+				},
+				"CHID": {
+					"type": "string"
+				},
+				"FIAS": {
+					"type": "integer"
+				},
+				"LMTS": {
+					"type": "integer"
+				},
+				"BANO": {
+					"type": "string"
+				},
+				"TRTM": {
+					"type": "integer"
+				},
+				"CLAN": {
+					"type": "string"
+				},
+				"CLLN": {
+					"type": "integer"
+				},
+				"SCOA": {
+					"type": "integer"
+				},
+				"BLSB": {
+					"type": "integer"
+				},
+				"SUIR": {
+					"type": "integer"
+				},
+				"accountingEntity": {
+					"type": "string"
+				},
+				"variationNumber": {
+					"type": "integer"
+				},
+				"timestamp": {
+					"type": "string"
+				},
+				"deleted": {
+					"type": "boolean"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

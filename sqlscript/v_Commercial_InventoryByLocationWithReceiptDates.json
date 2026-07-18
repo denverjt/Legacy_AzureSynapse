@@ -1,0 +1,17 @@
+{
+	"name": "v_Commercial_InventoryByLocationWithReceiptDates",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW         v_Commercial_InventoryByLocationWithReceiptDates\n-- drop view v_Commercial_InventoryByLocationWithReceiptDates\nas\n\nSELECT              A.*\n,                   ISNULL([Incoming Qty],0) as [Incoming Qty]\n,                   [Expected Receipt Date]\nFROM\n(\nSELECT              IM.BUAR as [Division]\n,                   IB.ITNO AS [Item Number]\n,                   IM.ITDS as [Item Name]\n,                   IM.ITCL as [Brand]\n,                   IM.GRP3 as [Finacne Brand]\n,                   IB.WHLO as [Warehouse]\n,                   IW.WHNM as [Warehouse Name]\n,                   IM.PRGP as [Procurement Group]\n,                   STQT AS [On Hand Qty]\n,                   ALQT AS [Allocated Qty]\n,                   REQT AS [Reserved Qty]\n,                   STQT - REQT AS [Available Qty]\nFROM                M3.MITBAL IB\nJOIN                M3.MITMAS IM ON IB.ITNO = IM.ITNO\nJOIN                M3.MITWHL IW on IB.WHLO = IW.WHLO-- and IB.ITNO = IW.ITNO\n--WHERE               STQT + ALQT > 0\n) A\n\nLEFT JOIN\n\n(\nSELECT              X.[Item Number], X.[Warehouse], [Incoming Qty], [Expected Receipt Date]\nFROM\n(\nSELECT              ITNO AS [Item Number]\n,                   WHLO AS [Warehouse]\n,                   SUM(ORQA) AS [Incoming Qty]\nFROM                M3.MPLINE\nWHERE               DWDT >= GETDATE()\nGROUP BY            ITNO, WHLO\n) X\n\nLEFT JOIN\n\n(\nSELECT              ITNO AS [Item Number]\n,                   WHLO AS [Warehouse]\n,                   ISNULL(DATEADD(DAY, 14, CAST(CAST(NULLIF(UID2, 0) AS VARCHAR(MAX)) AS DATE)), DATEADD(DAY, 90, DWDT)) AS [Expected Receipt Date]\nFROM                M3.MPLINE\nWHERE               DWDT >= GETDATE()\n) Y                 on X.[Item Number] = Y.[Item Number] AND X.[Warehouse] = Y.[Warehouse]\n) B                 on A.[Item Number] = B.[Item Number] AND A.[Warehouse] = B.[Warehouse]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": -1
+		},
+		"type": "SqlQuery"
+	}
+}

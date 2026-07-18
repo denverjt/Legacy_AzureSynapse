@@ -1,0 +1,6 @@
+{
+	"name": "tlcdwintegration-adc",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"name": "v_BOM_Structures",
+	"properties": {
+		"content": {
+			"query": "-- DROP VIEW    v_BOM_Structures\nCREATE VIEW v_BOM_Structures\nAS\nSELECT      PRNO as [Finished Good]\n,           MTNO as [Component]\n,           CNQT as [Component Qty per Unit]\n,           STRT as [Product Sctructure]\nFROM        M3.MPDMAT\nWHERE       CNQT > 0",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

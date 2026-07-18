@@ -1,0 +1,17 @@
+{
+	"name": "v_BOM_Costs",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW     v_BOM_Costs\n--DROP VIEW v_BOM_Costs\nas\nSELECT          A.[Item Number]\n,               [Units per Day]\n,               [Material Cost]\n,               [Labor Cost]\n,               [Burden Cost]\n,               [Material Cost] + [Labor Cost] + [Burden Cost] as [Total Product Cost]\n,               C.STRT AS [Product Structure]\nFROM\n  (\n  SELECT        MM.ITNO as [Item Number]\n,               CTCD as [Units per Day]\n,               PIPR as [Labor Cost]\n,               PIPR*.75 as [Burden Cost]\n  FROM          M3.MITMAS MM\n  LEFT JOIN     M3.MPDOPE MD ON MM.ITNO = MD.PRNO\n  ) A\n\nLEFT JOIN\n\n(\n  SELECT          C1.ITNO, C2.MAXDATE, C1.CSU2 AS [Material Cost]\n  FROM            M3.MCHEAD C1\n  INNER JOIN      \n(\n  SELECT        MAX(PCDT) AS MAXDATE, ITNO\n  FROM          M3.MCHEAD\n  GROUP BY      ITNO\n) C2\nON              C1.ITNO = C2.ITNO AND C1.PCDT = C2.MAXDATE\n) B             ON A.[Item Number] = B.ITNO\n\nLEFT JOIN\n\n(\n  SELECT DISTINCT PRNO, STRT\n  FROM    M3.MPDMAT\n) C             ON A.[Item Number] = C.PRNO\nWHERE C.PRNO IS NOT NULL",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": -1
+		},
+		"type": "SqlQuery"
+	}
+}

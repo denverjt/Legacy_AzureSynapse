@@ -1,0 +1,17 @@
+{
+	"name": "v_PCRichards",
+	"properties": {
+		"content": {
+			"query": "create view v_PCRichards\n-- drop view v_PCRichards\nas\nSELECT          DISTINCT City\n,               ITNO as ItemNumber\n,               ITDS as ItemName \n,               ITCL as Brand\n,               ORNO as [Sales Order]\n,               CUOR as [Purchase Order Number]\n,               RLDT as [Required Date]\n,               WHLO as Warehouse\n,               SUM(RNQT) as OpenQty\n,               SUM(ALQT) as AllocatedQty\n,               SUM(PLQT) as PickQty\nFROM\n(\nSELECT          DISTINCT CASE WHEN UPPER(OA.TOWN) like '%CARTERET%' then 'Carteret'\n                else 'Farmingdale' end as City\n,               OL.ITNO\n,               MM.ITDS\n,               MM.ITCL\n,               OH.ORNO\n,               OH.CUOR\n,               OH.RLDT\n,               OL.WHLO\n,               OL.RNQT\n,               OL.ALQT\n,               OL.PLQT\nFROM            M3.OOHEAD OH\nJOIN            M3.OOLINE OL ON OH.ORNO = OL.ORNO\nJOIN            M3.OCUSMA OC ON OH.CUNO = OC.CUNO\nJOIN            M3.MITMAS MM ON OL.ITNO = MM.ITNO\nLEFT JOIN       M3.OOADRE OA ON OL.ORNO = OA.ORNO\nLEFT JOIN       M3.OCUSAD OA2 on OL.CUNO = OA2.CUNO and OL.ADID = OA2.ADID\nWHERE           OL.ORST <= '44'\nAND             OC.CUNO = '50333'\nAND             OH.RLDT <= GETDATE() + 45\n) A\nGROUP BY       City, ITNO, ITDS, ITCL, ORNO, WHLO, CUOR, RLDT",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

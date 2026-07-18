@@ -1,0 +1,17 @@
+{
+	"name": "cino",
+	"properties": {
+		"content": {
+			"query": "select a.*, b.ivno, ''''+c.orno as orno, ''''+cuor as cuor\nfrom\n(\nselect distinct ''''+fs.CINO as cino from m3.fsledg fs\n) a\n\nleft join\n\n(\nselect\t\t\tDISTINCT IVNO, ''''+EXIN as exin\nfrom\t\t\tm3.oinvoh\n) b on a .CINO = b.EXIN\n\nleft join\n\n(\nselect IVNO, ORNO\nfrom M3.ODHEAD\n) c on b.ivno = c.IVNO\n\nleft join\n\n(\nselect orno, cuor\nfrom m3.oohead\n) d on c.orno = d.orno",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": -1
+		},
+		"type": "SqlQuery"
+	}
+}

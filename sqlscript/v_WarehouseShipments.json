@@ -1,0 +1,17 @@
+{
+	"name": "v_WarehouseShipments",
+	"properties": {
+		"content": {
+			"query": "SELECT          OC.CUNO AS [Customer ID]\n,               OC.CUNM as [Customer Name]\n,               ODH.ORNO as [Sales Order]\n,               ODH.DLIX as [Delivery Number]\n,               ODL.PONR as [Line Number]\n,               ODL.POSX as [Line Number - Sub]\n,               MM.ITNO as [Item Number]\n,               MM.ITDS as [Item Description]\n,               ODL.IVQT as [Invoice Qty]\n,               ODL.NEPR as [Net Price]\n,               OH.UCA9 as [Carrier Type]\n,               DLRM as [Carrier SCAC]\n,               ETRN as [Tracking/Pro Number]\n,               ODH.IVDT as [Invoice Date]\nFROM            M3.ODHEAD ODH\nJOIN            M3.ODLINE ODL ON ODH.ORNO = ODL.ORNO AND ODH.DLIX = ODL.DLIX\nJOIN            M3.OOHEAD OH on ODH.ORNO = OH.ORNO\nJOIN            M3.OCUSMA OC ON ODH.CUNO = OC.CUNO\nJOIN            M3.MITMAS MM ON ODL.ITNO = MM.ITNO\nLEFT JOIN       M3.MPTRNS MP on ODH.DLIX = MP.DLIX\nWHERE           DLDT >= GETDATE() - 14",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

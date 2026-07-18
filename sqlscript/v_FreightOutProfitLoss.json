@@ -1,0 +1,17 @@
+{
+	"name": "v_FreightOutProfitLoss",
+	"properties": {
+		"content": {
+			"query": "Create view v_FreightOutProfitLoss\n-- drop view v_FreightOutProfitLoss\nas \nSELECT AIT1 , CUNO , [Item Number] , Month , Year \n, SUM([Total Weight]/NULLIF(InvWeightTotal, 0)*Amount) as Amount \nFROM ( \n    SELECT '711020' as [AIT1] , [Invoice ID] , cast([Customer ID] as varchar(max)) collate database_default as [CUNO] \n    , SD.[Part ID - Actual] as [Item Number] , COALESCE(NULLIF(MM.Weight,0), NULLIF(NULLIF(IM.GRWE,''),0))*[Sales Qty] as [Total Weight] \n    , [Sales Qty] \n    , SUM(COALESCE(NULLIF(MM.Weight,0), NULLIF(NULLIF(IM.GRWE,''),0))*[Sales Qty]) OVER (PARTITION BY [Customer ID], [Invoice ID]) as InvWeightTotal \n    , MONTH(ACDT) as Month , YEAR(ACDT) as Year , SUM([ACAM]) as Amount \n    FROM M3.FGLEDG FG \n    JOIN a_SalesData SD on LEFT(SUBSTRING(FG.VTXT,CHARINDEX(' 24',FG.VTXT)+1,LEN(FG.VTXT)),10) = SD.[Invoice ID] \n    LEFT JOIN BI_ItemMaster MM on SD.[Part ID - Actual] = MM.[Item Number] \n    LEFT JOIN M3.MITMAS IM on SD.[Part ID - Actual] = IM.ITNO \n    WHERE FG.AIT1 = '711020' \n    AND AIT7 = 'OI201411' \n    AND YEAR(ACDT) in (2024)\n    GROUP BY [Customer ID] , [Invoice ID] , SD.[Part ID - Actual] , [Sales Qty] \n    , YEAR([ACDT]) , MONTH([ACDT]) , COALESCE(NULLIF(MM.Weight,0), NULLIF(NULLIF(IM.GRWE,''),0))*[Sales Qty] \n    ) A \n    GROUP BY AIT1 , CUNO , [Item Number] , Month , Year\n\n    UNION ALL\n\nSELECT AIT1 , CUNO , [Item Number] , Month , Year \n, SUM([Total Weight]/NULLIF(InvWeightTotal, 0)*Amount) as Amount \nFROM ( \n    SELECT '431010' as [AIT1] , [Invoice ID] , cast([Customer ID] as varchar(max)) collate database_default as [CUNO] \n    , SD.[Part ID - Actual] as [Item Number] , COALESCE(NULLIF(MM.Weight,0), NULLIF(NULLIF(IM.GRWE,''),0))*[Sales Qty] as [Total Weight] \n    , [Sales Qty] \n    , SUM(COALESCE(NULLIF(MM.Weight,0), NULLIF(NULLIF(IM.GRWE,''),0))*[Sales Qty]) OVER (PARTITION BY [Customer ID], [Invoice ID]) as InvWeightTotal \n    , MONTH(ACDT) as Month , YEAR(ACDT) as Year , SUM([ACAM]*-1) as Amount \n    FROM M3.FGLEDG FG \n    JOIN a_SalesData SD on LEFT(SUBSTRING(FG.VTXT,CHARINDEX(' 24',FG.VTXT)+1,LEN(FG.VTXT)),10) = SD.[Invoice ID] \n    LEFT JOIN BI_ItemMaster MM on SD.[Part ID - Actual] = MM.[Item Number] \n    LEFT JOIN M3.MITMAS IM on SD.[Part ID - Actual] = IM.ITNO \n    WHERE FG.AIT1 = '431010' \n    AND AIT7 = 'OI201401' \n    AND YEAR(ACDT) in (2024)\n    GROUP BY [Customer ID] , [Invoice ID] , SD.[Part ID - Actual] , [Sales Qty] \n    , YEAR([ACDT]) , MONTH([ACDT]) , COALESCE(NULLIF(MM.Weight,0), NULLIF(NULLIF(IM.GRWE,''),0))*[Sales Qty] \n    ) A \n    GROUP BY AIT1 , CUNO , [Item Number] , Month , Year",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

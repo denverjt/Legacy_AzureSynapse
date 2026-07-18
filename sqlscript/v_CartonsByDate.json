@@ -1,0 +1,17 @@
+{
+	"name": "v_CartonsByDate",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW     v_CartonsByDate\n-- drop view v_CartonsByDate\nas\nSELECT          MP.WHLO as Warehouse\n,               MP.RGDT as ShipDate\n,               COUNT(DISTINCT MP.DLIX) as DeliveryCount\n,               COUNT(DISTINCT PANR) as PackageCount\nFROM            M3.MPTRNS MP\nJOIN            M3.MHDISH MH ON MP.DLIX = MH.DLIX\nJOIN            M3.MHDISL ML ON MH.DLIX = ML.DLIX\nJOIN            M3.MITMAS MM ON ML.ITNO = MM.ITNO\nWHERE           PISS = '90'\nGROUP BY        MP.WHLO, MP.RGDT, BUAR, PRGP\n--ORDER BY        MP.RGDT DESC",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

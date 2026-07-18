@@ -1,0 +1,212 @@
+{
+	"name": "IN_M3_FFRPCL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "tlcdw-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "FFRPCL_2022-11-04_21-33-20-212.json",
+				"folderPath": "M3/JSONProcess/FFRPCL",
+				"fileSystem": "tlclakefs"
+			},
+			"compression": {
+				"type": "deflate",
+				"level": "Optimal"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"CONO": {
+					"type": "integer"
+				},
+				"DIVI": {
+					"type": "string"
+				},
+				"RGID": {
+					"type": "string"
+				},
+				"PCSX": {
+					"type": "string"
+				},
+				"ACYP": {
+					"type": "integer"
+				},
+				"RLN1": {
+					"type": "integer"
+				},
+				"SEQN": {
+					"type": "integer"
+				},
+				"BAKY": {
+					"type": "integer"
+				},
+				"LNTX": {
+					"type": "string"
+				},
+				"LNTP": {
+					"type": "integer"
+				},
+				"BIRD": {
+					"type": "string"
+				},
+				"BIR1": {
+					"type": "string"
+				},
+				"BIR2": {
+					"type": "string"
+				},
+				"BIR3": {
+					"type": "string"
+				},
+				"BIR4": {
+					"type": "string"
+				},
+				"BIR5": {
+					"type": "string"
+				},
+				"BIR6": {
+					"type": "string"
+				},
+				"BIR7": {
+					"type": "string"
+				},
+				"BITD": {
+					"type": "string"
+				},
+				"BIT1": {
+					"type": "string"
+				},
+				"BIT2": {
+					"type": "string"
+				},
+				"BIT3": {
+					"type": "string"
+				},
+				"BIT4": {
+					"type": "string"
+				},
+				"BIT5": {
+					"type": "string"
+				},
+				"BIT6": {
+					"type": "string"
+				},
+				"BIT7": {
+					"type": "string"
+				},
+				"AM01": {
+					"type": "number"
+				},
+				"AM02": {
+					"type": "number"
+				},
+				"AM03": {
+					"type": "number"
+				},
+				"AM04": {
+					"type": "number"
+				},
+				"AM05": {
+					"type": "integer"
+				},
+				"AM06": {
+					"type": "integer"
+				},
+				"AM07": {
+					"type": "integer"
+				},
+				"AM08": {
+					"type": "integer"
+				},
+				"AM09": {
+					"type": "integer"
+				},
+				"AM10": {
+					"type": "integer"
+				},
+				"AM11": {
+					"type": "integer"
+				},
+				"AM12": {
+					"type": "integer"
+				},
+				"AM13": {
+					"type": "integer"
+				},
+				"AM14": {
+					"type": "integer"
+				},
+				"AM15": {
+					"type": "integer"
+				},
+				"AM16": {
+					"type": "integer"
+				},
+				"AM17": {
+					"type": "integer"
+				},
+				"AM18": {
+					"type": "integer"
+				},
+				"AM19": {
+					"type": "integer"
+				},
+				"AM20": {
+					"type": "integer"
+				},
+				"AM21": {
+					"type": "integer"
+				},
+				"AM22": {
+					"type": "integer"
+				},
+				"AM23": {
+					"type": "integer"
+				},
+				"AM24": {
+					"type": "integer"
+				},
+				"AM25": {
+					"type": "integer"
+				},
+				"RGDT": {
+					"type": "integer"
+				},
+				"RGTM": {
+					"type": "integer"
+				},
+				"LMDT": {
+					"type": "integer"
+				},
+				"CHNO": {
+					"type": "integer"
+				},
+				"CHID": {
+					"type": "string"
+				},
+				"LMTS": {
+					"type": "integer"
+				},
+				"accountingEntity": {
+					"type": "string"
+				},
+				"variationNumber": {
+					"type": "integer"
+				},
+				"timestamp": {
+					"type": "string"
+				},
+				"deleted": {
+					"type": "boolean"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

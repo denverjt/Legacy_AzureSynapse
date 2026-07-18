@@ -1,0 +1,13 @@
+{
+	"name": "IN_AdCraftD1_Query",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AdCraftD1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "OdbcTable",
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

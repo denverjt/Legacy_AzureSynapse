@@ -1,0 +1,17 @@
+{
+	"name": "v_Adjustments",
+	"properties": {
+		"content": {
+			"query": "create view v_Adjustments\nas\nSELECT        'Distributions' AS TransactionType, CASE WHEN TTYP = '50' THEN 'Distribution In' ELSE 'Distribution Out' END AS TransactionDesc, MT.RIDN AS OrderNumber, MT.WHLO AS Warehouse, MT.WHSL AS WarehouseLocation, \n                         MT.ITNO AS ItemNumber, MT.TRDT AS TransactionDate, MT.RESP AS TransactionUser, CASE WHEN FC.AITM IN ('131000', '134000') THEN TRQT ELSE TRQT * - 1 END AS TransactionQty, TRPR AS TransactionUnitPrice, \n                         (CASE WHEN FC.AITM IN ('131000', '134000') THEN TRQT ELSE TRQT * - 1 END) * TRPR AS TransactionValue, FC.AITM AS GlCode, FC.TX40 AS GlDescription, MT.ANBR AS AccountingNumber\nFROM            M3.MITTRA MT JOIN\n                         M3.CINACC CN ON MT.ANBR = CN.ANBR JOIN\n                         M3.FCHACC FC ON CN.AIT1 = FC.AITM\nWHERE        MT.TTYP IN ('50', '51')\nUNION ALL\nSELECT        'Adjustments' AS TransactionType, CASE WHEN TTYP = '40' THEN 'Adjustment In' ELSE 'Adjustment Out' END AS TransactionDesc, MT.RIDN AS OrderNumber, MT.WHLO AS Warehouse, MT.WHSL AS WarehouseLocation, \n                         MT.ITNO AS ItemNumber, MT.TRDT AS TransactionDate, MT.RESP AS TransactionUser, CASE WHEN FC.AITM LIKE '1%' THEN TRQT ELSE TRQT * - 1 END AS TransactionQty, TRPR AS TransactionUnitPrice, \n                         (CASE WHEN FC.AITM LIKE '1%' THEN TRQT ELSE TRQT * - 1 END) * TRPR AS TransactionValue, FC.AITM AS GlCode, FC.TX40 AS GlDescription, MT.ANBR AS AccountingNumber\nFROM            M3.MITTRA MT JOIN\n                         M3.CINACC CN ON MT.ANBR = CN.ANBR JOIN\n                         M3.FCHACC FC ON CN.AIT1 = FC.AITM\nWHERE        MT.TTYP IN ('40', '41')\nUNION ALL\nSELECT        'Physical Count' AS TransactionType, 'Physical Inventory' TransactionDesc, MT.RIDN AS OrderNumber, MT.WHLO AS Warehouse, MT.WHSL AS WarehouseLocation, MT.ITNO AS ItemNumber, MT.TRDT AS TransactionDate, \n                         MT.RESP AS TransactionUser, CASE WHEN FC.AITM LIKE '1%' THEN TRQT ELSE TRQT * - 1 END AS TransactionQty, TRPR AS TransactionUnitPrice, (CASE WHEN FC.AITM LIKE '1%' THEN TRQT ELSE TRQT * - 1 END) \n                         * TRPR AS TransactionValue, FC.AITM AS GlCode, FC.TX40 AS GlDescription, MT.ANBR AS AccountingNumber\nFROM            M3.MITTRA MT JOIN\n                         M3.CINACC CN ON MT.ANBR = CN.ANBR JOIN\n                         M3.FCHACC FC ON CN.AIT1 = FC.AITM\nWHERE        MT.TTYP IN ('90')",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

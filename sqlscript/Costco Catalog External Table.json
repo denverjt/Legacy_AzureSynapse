@@ -1,0 +1,17 @@
+{
+	"name": "Costco Catalog External Table",
+	"properties": {
+		"content": {
+			"query": "--DROP EXTERNAL TABLE SLS.CostcoCatalog\n\nCREATE EXTERNAL TABLE SLS.CostcoCatalog (\n[SKU] nvarchar(4000),\n[Aligned Item Number] nvarchar(4000),\n[M3 TLC Model] nvarchar(4000),\n[Costco (US) ID] nvarchar(4000),\n[Costco (US) Vendor #] nvarchar(4000),\n[Costco (US) URL] nvarchar(4000),\n[Costco (US) Unit Cost] nvarchar(4000)\n)\nWITH (\nLOCATION = 'Salsify/CostcoCatalog_PowerBI.csv',\nDATA_SOURCE = [tlclakefs_tlclake_dfs_core_windows_net],\nFILE_FORMAT = [SynapseDelimitedTextFormatQuote]\n)\nGO\n\n\nSELECT TOP 100 * FROM SLS.CostcoCatalog\nGO",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

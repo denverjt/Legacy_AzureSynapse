@@ -1,0 +1,17 @@
+{
+	"name": "OODOCU Fix 20230920",
+	"properties": {
+		"content": {
+			"query": "--DROP EXTERNAL TABLE M3.OODOCU\nCREATE VIEW M3.OODOCU AS\nSELECT * FROM M3.OODOCU_PRE\nUNION ALL\nSELECT * FROM M3.OODOCU_ARC\n\n--DROP VIEW M3.OODOCU_ARC\nCREATE VIEW M3.OODOCU_ARC AS \nSELECT  \n\tCONVERT(bigint,[CONO]) [CONO],\n\tCONVERT(nvarchar(4000),[DIVI]) [DIVI],\n\tCONVERT(nvarchar(4000),[ORNO]) [ORNO],\n\tCONVERT(nvarchar(4000),[DONR]) [DONR],\n\tCONVERT(nvarchar(4000),[DOVA]) [DOVA],\n\tCONVERT(bigint,[DOTP]) [DOTP],\n\tCONVERT(bigint,[NOEX]) [NOEX],\n\tCONVERT(bigint,[DOCD]) [DOCD],\n\tCONVERT(bigint,[DODT]) [DODT],\n\tCONVERT(bigint,[TXID]) [TXID],\n\tCONVERT(date,[RGDT]) [RGDT],\n\tCONVERT(bigint,[RGTM]) [RGTM],\n\tCONVERT(date,[LMDT]) [LMDT],\n\tCONVERT(bigint,[CHNO]) [CHNO],\n\tCONVERT(nvarchar(4000),[CHID]) [CHID],\n\tCONVERT(nvarchar(4000),[EMAL]) [EMAL],\n\tCONVERT(nvarchar(4000),[DEV]) [DEV]\nFROM\n    OPENROWSET(\n        BULK 'https://tlclake.dfs.core.windows.net/tlclakefs/M3P/OODOCU_ARC.parquet',\n        FORMAT = 'PARQUET'\n    ) AS [result]\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

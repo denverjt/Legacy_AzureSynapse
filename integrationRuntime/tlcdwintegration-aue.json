@@ -1,0 +1,6 @@
+{
+	"name": "tlcdwintegration-aue",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}

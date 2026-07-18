@@ -1,0 +1,87 @@
+{
+	"name": "OUT_M3Precog",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "tlcdw-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "CIDMAS.parquet",
+				"folderPath": "M3P",
+				"fileSystem": "tlclakefs"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "amount",
+				"type": "DECIMAL",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "cd_register",
+				"type": "INT32"
+			},
+			{
+				"name": "company_ap",
+				"type": "UTF8"
+			},
+			{
+				"name": "dsc_amount",
+				"type": "DECIMAL",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "opn",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "remit",
+				"type": "UTF8"
+			},
+			{
+				"name": "vendor",
+				"type": "UTF8"
+			},
+			{
+				"name": "voucher",
+				"type": "INT32"
+			},
+			{
+				"name": "company_ve",
+				"type": "UTF8"
+			},
+			{
+				"name": "check_no",
+				"type": "INT32"
+			},
+			{
+				"name": "curx_amount",
+				"type": "DECIMAL",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "curx_dsc_amount",
+				"type": "DECIMAL",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "ref_date",
+				"type": "INT96"
+			},
+			{
+				"name": "invoice",
+				"type": "UTF8"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

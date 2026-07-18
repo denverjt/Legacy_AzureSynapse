@@ -1,0 +1,18 @@
+{
+	"name": "Convert DB PSV to M3 View",
+	"properties": {
+		"description": "Convert DB Pipe Separated Files to M3 View",
+		"content": {
+			"query": "-- This is auto-generated code\nCREATE VIEW M3_MITBAL_CV AS\n\nSELECT\n    *\nFROM\n    OPENROWSET(\n        BULK 'https://tlclake.dfs.core.windows.net/tlclakefs/M3/DBJSON/MITBAL_202301160925.csv',\n        FORMAT = 'CSV',\n        FIELDTERMINATOR ='0x7c',\n        HEADER_ROW=TRUE,\n        PARSER_VERSION = '2.0'\n    ) AS [result]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

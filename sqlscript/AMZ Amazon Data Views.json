@@ -1,0 +1,17 @@
+{
+	"name": "AMZ Amazon Data Views",
+	"properties": {
+		"content": {
+			"query": "/*\n\nCREATE VIEW AMZ.RTSales AS\nSELECT *\nFROM\n    OPENROWSET(\n        BULK 'https://tlclake.dfs.core.windows.net/tlclakefs/parquet/sp_vendor_rt_sales_v1/*.parquet',\n        FORMAT = 'PARQUET'\n    ) AS [result]\n\nCREATE VIEW AMZ.RTInventory AS\nSELECT *\nFROM\n    OPENROWSET(\n        BULK 'https://tlclake.dfs.core.windows.net/tlclakefs/parquet/sp_vendor_rt_inventory_v1/*.parquet',\n        FORMAT = 'PARQUET'\n    ) AS [result]\n\nCREATE VIEW AMZ.Forecast AS\nSELECT * FROM\n    OPENROWSET(\n        BULK 'https://tlclake.dfs.core.windows.net/tlclakefs/parquet/sp_vendor_forecasting_v2/*.parquet',\n        FORMAT = 'PARQUET'\n    ) AS [result]\nWHERE ob_modified_date = (SELECT MAX(ob_modified_date) FROM\n    OPENROWSET(\n        BULK 'https://tlclake.dfs.core.windows.net/tlclakefs/parquet/sp_vendor_forecasting_v2/*.parquet',\n        FORMAT = 'PARQUET'\n    ) AS [result])\n\n*/\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

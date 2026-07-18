@@ -1,0 +1,17 @@
+{
+	"name": "v_AutoCommissions",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW\t\tv_AutoCommissions\n-- drop view v_AutoCommissions\nas\nSELECT          A.[Customer Number], A.[Customer Name], A.[Order Number], A.[PO Number]\n,               A.[Line Number], A.Brand, A.[Item Number], A.[Item Description]\n,               A.[Invoice Number], [Invoice Date], Year, Month, [Invoice Amt], [Commission Amt]\n,               [Sales Rep ID], [Sales Rep Name], [Trade Agreement Number], [Trade Agreement Description]\n,               [Trade Agreement Name]\n,               COALESCE(TOWN2, C.TOWN, A.City) as ShipToCity\n,               COALESCE(ECAR2, C.ECAR, A.State) as ShipToState\n,               COALESCE(PONO2, C.PONO, A.[Zip Code]) as ShipToZip\nFROM\n(\nSELECT\t\t\tdistinct OBT.CUNO AS [Customer Number]\n,\t\t\t\tOC.CUNM AS [Customer Name]\n,\t\t\t\tOBT.ORNO AS [Order Number]\n,               OH.CUOR AS [PO Number]\n,\t\t\t\tOBT.PONR AS [Line Number]\n,\t\t\t\tMI.ITCL AS [Brand]\n,\t\t\t\tOBT.ITNO AS [Item Number]\n,\t\t\t\tMI.ITDS AS [Item Description]\n,\t\t\t\tOBT.EXIN AS [Invoice Number]\n,\t\t\t\tCAST(NULLIF(CAST(IVDT AS VARCHAR(MAX)),0) AS DATE) AS [Invoice Date]\n,\t\t\t\tOBT.YEA4 AS [Year]\n,\t\t\t\tOBT.PERI AS [Month]\n,\t\t\t\tOBT.ABOV AS [Invoice Amt]\n,\t\t\t\tOBT.ALBO AS [Commission Amt]\n,\t\t\t\tOBT.TREC AS [Sales Rep ID]\n,\t\t\t\tCS.TX40 AS [Sales Rep Name]\n,\t\t\t\tOBT.TAGN AS [Trade Agreement Number]\n,           \tOBT2.TX40 AS [Trade Agreement Description]\n,           \tOBT2.TX15 AS [Trade Agreement Name]\n,               OH.ADID AS [Address ID]\n,               OC.CUA1 as [Address 1]\n,               OC.CUA2 as [Adddress 2]\n,               OC.TOWN as [City]\n,               OC.ECAR as [State]\n,               OC.PONO as [Zip Code]\nFROM\t\t\tM3.OBTTRA OBT\nLEFT JOIN\t\tM3.OBTRAG OBT2 ON OBT.TAGN = OBT2.TAGN\nLEFT JOIN\t\tM3.OCUSMA OC ON OBT.CUNO = OC.CUNO\nLEFT JOIN\t\tM3.MITMAS MI ON OBT.ITNO = MI.ITNO\nLEFT JOIN\t\tM3.CSYTAB CS ON OBT.TREC = CS.STKY \nLEFT JOIN       M3.OOHEAD OH on OBT.ORNO = OH.ORNO\nWHERE \t\t\tSTCO = 'SMCD'\nAND             OBT.CUNO NOT LIKE 'COM%'\n) A\n\nLEFT JOIN\n\n(\nSELECT          DISTINCT ORNO\n,               CUNM\n,               CUA1\n,               CUA2\n,               TOWN\n,               PONO\n,               ECAR\n,               CSCD\nFROM            M3.OOADRE\nWHERE           ADID <> ''\nAND             ADRT = '1'\n) C             on A.[Order Number] = C.[ORNO]\n\nLEFT JOIN\n\n(\nSELECT          DISTINCT CUNO\n,               ADID as [Address ID 2]\n,               CUNM as CUNM2\n,               CUA1 AS CUA12\n,               CUA2 AS CUA22\n,               TOWN AS TOWN2\n,               PONO AS PONO2\n,               ECAR AS ECAR2\n,               CSCD AS CSCD2\nFROM            M3.OCUSAD\nWHERE           ADID <> ''\nAND             ADRT = '1'\n) D             on A.[Customer Number] = D.[CUNO] and A.[Address ID] = D.[Address ID 2]\n\n\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": -1
+		},
+		"type": "SqlQuery"
+	}
+}

@@ -1,0 +1,114 @@
+{
+	"name": "AIOrderSummary_Pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy Order Summary",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "SELECT TOP 1000\n  H.ORNO [OrderNumber]\n, H.ORTP [OrderType]\n, H.WHLO [Warehouse]\n, CASE H.ORST\n    WHEN '05' THEN '05 | Quote'\n    WHEN '20' THEN '20 | Registered'\n    WHEN '22' THEN '22 | Reserved'\n    WHEN '23' THEN '23 | Reserved / Allocated'\n    WHEN '24' THEN '24 | Reserved / Picking'\n    WHEN '26' THEN '26 | Reserved / Delivered'\n    WHEN '27' THEN '27 | Reserved / Invoiced'\n    WHEN '33' THEN '33 | Allocated'\n    WHEN '37' THEN '37 | Allocated / Invoiced'\n    WHEN '44' THEN '44 | Picking'\n    WHEN '46' THEN '46 | Picking / Delivered'\n    WHEN '47' THEN '47 | Picking / Invoiced'\n    WHEN '66' THEN '66 | Delivered'\n    WHEN '67' THEN '67 | Delivered / Invoiced'\n    WHEN '77' THEN '77 | Invoiced'\n    WHEN '79' THEN '79 | Invoices / Deleted'\n    WHEN '90' THEN '90 | Deleted'\n    WHEN '99' THEN '99 | Deleted'\n    END [OrderStatus]\n, H.CUNO + ' | ' + O.CUNM [CustomerNameFull]\n, H.ORDT [OrderDate]\nFROM M3.OOHEAD H LEFT JOIN M3.OCUSMA O ON H.CUNO=O.CUNO\nWHERE H.DIVI='TLC' AND ORDT>'8/1/2024'",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings",
+							"copyBehavior": "PreserveHierarchy"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings",
+							"filePattern": "setOfObjects"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "OrderNumber",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['OrderNumber']"
+								}
+							},
+							{
+								"source": {
+									"name": "OrderType",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['OrderType']"
+								}
+							},
+							{
+								"source": {
+									"name": "Warehouse",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['Warehouse']"
+								}
+							},
+							{
+								"source": {
+									"name": "OrderStatus",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['OrderStatus']"
+								}
+							},
+							{
+								"source": {
+									"name": "CustomerNameFull",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['CustomerNameFull']"
+								}
+							},
+							{
+								"source": {
+									"name": "OrderDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"path": "$['OrderDate']"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "IN_AIOrderSummary",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "OUT_AIOrderSummary_JSON",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2024-08-30T18:58:53Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

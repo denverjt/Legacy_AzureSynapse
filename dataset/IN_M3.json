@@ -1,0 +1,25 @@
+{
+	"name": "IN_M3",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "tlcdw-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "OSASTD/OSASTD_2022-10-10_04-57-15-762.json",
+				"folderPath": "M3/JSON",
+				"fileSystem": "tlclakefs"
+			},
+			"compression": {
+				"type": "deflate",
+				"level": "Optimal"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

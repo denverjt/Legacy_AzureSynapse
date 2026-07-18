@@ -1,0 +1,17 @@
+{
+	"name": "case pack and sales",
+	"properties": {
+		"content": {
+			"query": "SELECT      DISTINCT MM.ITNO\n,           ITDS\n,           MM.GRP2\n,           MM.GRWE\n,           MP.PACT as each_pck\n,           MP.PACL as each_L\n,           MP.PACW as each_w\n,           MP.PACH as each_h\n,           Mt.D1QT as each_qty\n,           MP2.PACT as case_pck\n,           MP2.PACL as case_L\n,           MP2.PACW as case_w\n,           MP2.PACH as case_h\n,           Mt2.D1QT as case_qty\n,           MP3.PACT as pallet_pck\n,           MP3.PACL as pallet_L\n,           MP3.PACW as pallet_w\n,           MP3.PACH as pallet_h\n,           Mt3.D1QT as pallet_qty\n,           SUM([Sales Amt])\nFROM        M3.MITMAS MM\nLEFT JOIN   M3.MPACIT MT ON MM.ITNO = MT.ITNO AND MT.PACT LIKE 'E%' AND PACT <>'E00000'\nLEFT JOIN   M3.MITPAC MP ON MT.PACT = MP.PACT\nLEFT JOIN   M3.MPACIT MT2 ON MM.ITNO = MT2.ITNO AND MT2.PACT LIKE 'C%'\nLEFT JOIN   M3.MITPAC MP2 ON MT2.PACT = MP2.PACT\nLEFT JOIN   M3.MPACIT MT3 ON MM.ITNO = MT3.ITNO AND MT3.PACT LIKE 'P%'\nLEFT JOIN   M3.MITPAC MP3 ON MT3.PACT = MP3.PACT\nLEFT JOIN   a_SalesData SD on MM.ITNO = SD.[Part ID - Actual] AND Date >= GETDATE() - 365 AND [Sales Amt] > 0\nGROUP BY    MM.ITNO\n,           ITDS\n,           MM.GRP2\n,           MM.GRWE\n,           MP.PACT\n,           mp.PACL\n,           mp.PACW\n,           mp.PACH\n,           mt.D1QT\n,           mp2.PACT\n,           mp2.PACL\n,           mp2.PACW\n,           mp2.PACH\n,           mt2.D1QT\n,           mp3.PACT\n,           mp3.PACL\n,           mp3.PACW\n,           mp3.PACH\n,           mt3.D1QT\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": -1
+		},
+		"type": "SqlQuery"
+	}
+}

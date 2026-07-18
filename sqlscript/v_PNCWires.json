@@ -1,0 +1,17 @@
+{
+	"name": "v_PNCWires",
+	"properties": {
+		"content": {
+			"query": "DROP EXTERNAL TABLE [PNCWires] \nDROP VIEW [v_PNCWires] \nCREATE VIEW [PNCWires] AS \nSELECT\n    *\nFROM\n    OPENROWSET(\n        BULK 'https://tlclake.dfs.core.windows.net/tlclakefs/PNC/PNCWires*.csv',\n        FORMAT = 'CSV',\n        PARSER_VERSION = '2.0',\n        HEADER_ROW=TRUE\n    ) AS [result]\n\n/*\nSELECT\n    SUBSTRING([TraceID],2,1000) as [TraceID], [Type], [Beneficiary], TRY_CAST([ValueSendDate] as date) [SendDate], Amount, [Status], FedRefNumber \nFROM\n    OPENROWSET(\n        BULK 'https://tlclake.dfs.core.windows.net/tlclakefs/PNC/PNCWires*.csv',\n        FORMAT = 'CSV',\n        PARSER_VERSION = '2.0',\n        HEADER_ROW=TRUE\n    ) AS [result]\n*/",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

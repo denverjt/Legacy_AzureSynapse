@@ -1,0 +1,36 @@
+{
+	"name": "SourceDataset_vhs",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SysproCompanyL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "Branch",
+				"type": "varchar",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "ProductClass",
+				"type": "varchar",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "Brand",
+				"type": "varchar",
+				"precision": 0,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "SalProductClass+"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

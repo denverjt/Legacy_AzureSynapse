@@ -1,0 +1,152 @@
+{
+	"name": "AvantiWH_Pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach_Table",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.cw_items",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy_Tables",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [
+								{
+									"name": "Source",
+									"value": "dbo.@{item().source.table}"
+								},
+								{
+									"name": "Destination",
+									"value": "tlclakefs/AvantiWH/@{item().destination.fileName}"
+								}
+							],
+							"typeProperties": {
+								"source": {
+									"type": "SqlServerSource",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
+									}
+								},
+								"enableStaging": false,
+								"validateDataConsistency": false
+							},
+							"inputs": [
+								{
+									"referenceName": "IN_AvantiWH",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_table": "@item().source.table"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "OUT_AvantiWH",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_fileName": "@item().destination.fileName"
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"cw_items": {
+				"type": "Array",
+				"defaultValue": [
+					{
+						"source": {
+							"table": "Customer"
+						},
+						"destination": {
+							"fileName": "Customer.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "Dim_Scenario"
+						},
+						"destination": {
+							"fileName": "Dim_Scenario.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "DimDate"
+						},
+						"destination": {
+							"fileName": "DimDate.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "FactSales"
+						},
+						"destination": {
+							"fileName": "FactSales.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "GLBalance_Staging"
+						},
+						"destination": {
+							"fileName": "GLBalance_Staging.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "Location"
+						},
+						"destination": {
+							"fileName": "Location.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "Product"
+						},
+						"destination": {
+							"fileName": "Product.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "Supplier"
+						},
+						"destination": {
+							"fileName": "Supplier.parquet"
+						}
+					}
+				]
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-08-26T00:34:53Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

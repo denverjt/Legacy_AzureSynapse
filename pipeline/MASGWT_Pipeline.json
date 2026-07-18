@@ -1,0 +1,431 @@
+{
+	"name": "MASGWT_Pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach_Table",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.cw_items",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy_Tables",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SqlServerSource",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
+									}
+								},
+								"enableStaging": false,
+								"validateDataConsistency": false
+							},
+							"inputs": [
+								{
+									"referenceName": "IN_MASGWT",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_table": "@item().source.tableName"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "OUT_MASGWT",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_fileName": "@item().destination.fileName"
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"cw_items": {
+				"type": "Array",
+				"defaultValue": [
+					{
+						"source": {
+							"tableName": "GWT_GL_DetailPosting"
+						},
+						"destination": {
+							"fileName": "GWT_GL_DetailPosting.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "GWT_IM5_TransactionDetail"
+						},
+						"destination": {
+							"fileName": "GWT_IM5_TransactionDetail.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "ASBURY_IM5_TransactionDetail"
+						},
+						"destination": {
+							"fileName": "ASBURY_IM5_TransactionDetail.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "GWT_ARO_InvHistoryDetail"
+						},
+						"destination": {
+							"fileName": "GWT_ARO_InvHistoryDetail.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "ASBURY_ARO_InvHistoryDetail"
+						},
+						"destination": {
+							"fileName": "ASBURY_ARO_InvHistoryDetail.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "ASBURY_GL_DetailPosting"
+						},
+						"destination": {
+							"fileName": "ASBURY_GL_DetailPosting.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "IM_03ItemEndedDescription$"
+						},
+						"destination": {
+							"fileName": "IM_03ItemEndedDescription$.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "ItemExtendedDescription$"
+						},
+						"destination": {
+							"fileName": "ItemExtendedDescription$.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "GWT_IM2_InventoryItemWhseDetl"
+						},
+						"destination": {
+							"fileName": "GWT_IM2_InventoryItemWhseDetl.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "z_IM2_InventoryItemWhseDetl"
+						},
+						"destination": {
+							"fileName": "z_IM2_InventoryItemWhseDetl.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "z_IM2_InventoryItemWhseDetl_old"
+						},
+						"destination": {
+							"fileName": "z_IM2_InventoryItemWhseDetl_old.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "GWT_ARN_InvHistoryHeader"
+						},
+						"destination": {
+							"fileName": "GWT_ARN_InvHistoryHeader.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "GWT_IM1_InventoryMasterfile"
+						},
+						"destination": {
+							"fileName": "GWT_IM1_InventoryMasterfile.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "AP_13InvHistoryDetail"
+						},
+						"destination": {
+							"fileName": "AP_13InvHistoryDetail.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "GWT_GL_PeriodPostingHistory"
+						},
+						"destination": {
+							"fileName": "GWT_GL_PeriodPostingHistory.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "ASBURY_ARN_InvHistoryHeader"
+						},
+						"destination": {
+							"fileName": "ASBURY_ARN_InvHistoryHeader.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "API_InvoiceHistory"
+						},
+						"destination": {
+							"fileName": "API_InvoiceHistory.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "AP_15CheckHistoryHeader"
+						},
+						"destination": {
+							"fileName": "AP_15CheckHistoryHeader.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "AP_12InvHistoryHeader"
+						},
+						"destination": {
+							"fileName": "AP_12InvHistoryHeader.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "AP_16CheckHistoryDetail"
+						},
+						"destination": {
+							"fileName": "AP_16CheckHistoryDetail.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "AP4_OpenInvoice$"
+						},
+						"destination": {
+							"fileName": "AP4_OpenInvoice$.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "AR4_OpenInvoice"
+						},
+						"destination": {
+							"fileName": "AR4_OpenInvoice.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "GWT_PO2_PurchaseOrderEntryLine"
+						},
+						"destination": {
+							"fileName": "GWT_PO2_PurchaseOrderEntryLine.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "ASBURY_GL_PeriodPostingHistory"
+						},
+						"destination": {
+							"fileName": "ASBURY_GL_PeriodPostingHistory.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "APB_CheckHistory"
+						},
+						"destination": {
+							"fileName": "APB_CheckHistory.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "APP_VendorMemoMaintenance"
+						},
+						"destination": {
+							"fileName": "APP_VendorMemoMaintenance.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "ASBURY_IM1_InventoryMasterfile"
+						},
+						"destination": {
+							"fileName": "ASBURY_IM1_InventoryMasterfile.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "GWT_AR1_CustomerMaster"
+						},
+						"destination": {
+							"fileName": "GWT_AR1_CustomerMaster.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "GWT_PO1_PurchaseOrderEntryHeader"
+						},
+						"destination": {
+							"fileName": "GWT_PO1_PurchaseOrderEntryHeader.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "AP_23_VendorRemitTo"
+						},
+						"destination": {
+							"fileName": "AP_23_VendorRemitTo.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "AP1_VendorMaster$"
+						},
+						"destination": {
+							"fileName": "AP1_VendorMaster$.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "GWT_AP1_VendorMaster"
+						},
+						"destination": {
+							"fileName": "GWT_AP1_VendorMaster.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "ASBURY_AP1_VendorMaster"
+						},
+						"destination": {
+							"fileName": "ASBURY_AP1_VendorMaster.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "GWT_GL_Account"
+						},
+						"destination": {
+							"fileName": "GWT_GL_Account.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "MAS-2017-Period-End"
+						},
+						"destination": {
+							"fileName": "MAS-2017-Period-End.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "ASBURY_AR1_CustomerMaster"
+						},
+						"destination": {
+							"fileName": "ASBURY_AR1_CustomerMaster.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "ASBURY_GL_Account"
+						},
+						"destination": {
+							"fileName": "ASBURY_GL_Account.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "AP_17VendorContact"
+						},
+						"destination": {
+							"fileName": "AP_17VendorContact.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "GWT_IMA_ProductLine"
+						},
+						"destination": {
+							"fileName": "GWT_IMA_ProductLine.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "MAS_GWT_GL_2017_MTD"
+						},
+						"destination": {
+							"fileName": "MAS_GWT_GL_2017_MTD.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "MAS_GWT_GL_2017_YTD"
+						},
+						"destination": {
+							"fileName": "MAS_GWT_GL_2017_YTD.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "IMP_ItemMemo"
+						},
+						"destination": {
+							"fileName": "IMP_ItemMemo.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "ASBURY_IMA_ProductLine"
+						},
+						"destination": {
+							"fileName": "ASBURY_IMA_ProductLine.parquet"
+						}
+					},
+					{
+						"source": {
+							"tableName": "APE_TermsCodeMasterfile"
+						},
+						"destination": {
+							"fileName": "APE_TermsCodeMasterfile.parquet"
+						}
+					}
+				]
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-05-24T16:18:22Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

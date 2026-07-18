@@ -1,0 +1,224 @@
+{
+	"name": "IN_M3_MCCOMA",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "tlcdw-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "MCCOMA_2022-10-13_00-24-55-316.json",
+				"folderPath": "M3/JSON/MCCOMA",
+				"fileSystem": "tlclakefs"
+			},
+			"compression": {
+				"type": "deflate",
+				"level": "Optimal"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"CONO": {
+					"type": "integer"
+				},
+				"FACI": {
+					"type": "string"
+				},
+				"ITNO": {
+					"type": "string"
+				},
+				"STRT": {
+					"type": "string"
+				},
+				"VASE": {
+					"type": "string"
+				},
+				"CROC": {
+					"type": "integer"
+				},
+				"RORN": {
+					"type": "string"
+				},
+				"RORL": {
+					"type": "integer"
+				},
+				"ECVS": {
+					"type": "integer"
+				},
+				"SMFN": {
+					"type": "string"
+				},
+				"PCTP": {
+					"type": "string"
+				},
+				"PCDT": {
+					"type": "integer"
+				},
+				"CA01": {
+					"type": "number"
+				},
+				"CA02": {
+					"type": "integer"
+				},
+				"CA03": {
+					"type": "integer"
+				},
+				"CA04": {
+					"type": "integer"
+				},
+				"CA05": {
+					"type": "integer"
+				},
+				"CB01": {
+					"type": "integer"
+				},
+				"CB02": {
+					"type": "integer"
+				},
+				"CB03": {
+					"type": "integer"
+				},
+				"CB04": {
+					"type": "integer"
+				},
+				"CB05": {
+					"type": "number"
+				},
+				"CB06": {
+					"type": "integer"
+				},
+				"CB07": {
+					"type": "integer"
+				},
+				"CB08": {
+					"type": "integer"
+				},
+				"CB09": {
+					"type": "integer"
+				},
+				"CB10": {
+					"type": "integer"
+				},
+				"CB11": {
+					"type": "integer"
+				},
+				"CB12": {
+					"type": "integer"
+				},
+				"CB13": {
+					"type": "integer"
+				},
+				"CB14": {
+					"type": "integer"
+				},
+				"CC01": {
+					"type": "integer"
+				},
+				"CC02": {
+					"type": "integer"
+				},
+				"CD01": {
+					"type": "integer"
+				},
+				"CD02": {
+					"type": "integer"
+				},
+				"CE01": {
+					"type": "integer"
+				},
+				"CE02": {
+					"type": "integer"
+				},
+				"CE03": {
+					"type": "integer"
+				},
+				"CE04": {
+					"type": "integer"
+				},
+				"CE05": {
+					"type": "integer"
+				},
+				"CE06": {
+					"type": "integer"
+				},
+				"CE07": {
+					"type": "integer"
+				},
+				"CE08": {
+					"type": "integer"
+				},
+				"CE09": {
+					"type": "number"
+				},
+				"CE10": {
+					"type": "integer"
+				},
+				"SSU1": {
+					"type": "integer"
+				},
+				"SSU2": {
+					"type": "integer"
+				},
+				"SSU3": {
+					"type": "integer"
+				},
+				"TMAH": {
+					"type": "number"
+				},
+				"TSET": {
+					"type": "number"
+				},
+				"TMCH": {
+					"type": "number"
+				},
+				"TACL": {
+					"type": "number"
+				},
+				"EOQT": {
+					"type": "number"
+				},
+				"TXID": {
+					"type": "integer"
+				},
+				"RGDT": {
+					"type": "integer"
+				},
+				"RGTM": {
+					"type": "integer"
+				},
+				"LMDT": {
+					"type": "integer"
+				},
+				"CHNO": {
+					"type": "integer"
+				},
+				"CHID": {
+					"type": "string"
+				},
+				"RORX": {
+					"type": "integer"
+				},
+				"LMTS": {
+					"type": "integer"
+				},
+				"accountingEntity": {
+					"type": "string"
+				},
+				"variationNumber": {
+					"type": "integer"
+				},
+				"timestamp": {
+					"type": "string"
+				},
+				"deleted": {
+					"type": "boolean"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

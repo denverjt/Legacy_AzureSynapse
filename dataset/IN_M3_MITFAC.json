@@ -1,0 +1,281 @@
+{
+	"name": "IN_M3_MITFAC",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "tlcdw-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "MITFAC_2023-01-13_20-16-05-131.json",
+				"folderPath": "M3/JSONProcess/MITFAC",
+				"fileSystem": "tlclakefs"
+			},
+			"compression": {
+				"type": "deflate",
+				"level": "Optimal"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"CONO": {
+					"type": "integer"
+				},
+				"FACI": {
+					"type": "string"
+				},
+				"ITNO": {
+					"type": "string"
+				},
+				"LEA4": {
+					"type": "integer"
+				},
+				"CSNO": {
+					"type": "string"
+				},
+				"SPFA": {
+					"type": "number"
+				},
+				"ORCO": {
+					"type": "string"
+				},
+				"APPR": {
+					"type": "integer"
+				},
+				"UCOS": {
+					"type": "integer"
+				},
+				"SOCO": {
+					"type": "integer"
+				},
+				"EXPC": {
+					"type": "number"
+				},
+				"BQTY": {
+					"type": "number"
+				},
+				"BQTM": {
+					"type": "integer"
+				},
+				"LLCM": {
+					"type": "integer"
+				},
+				"DLET": {
+					"type": "integer"
+				},
+				"DLEF": {
+					"type": "integer"
+				},
+				"DIDY": {
+					"type": "integer"
+				},
+				"DIDF": {
+					"type": "integer"
+				},
+				"PRRA": {
+					"type": "integer"
+				},
+				"TRHC": {
+					"type": "number"
+				},
+				"MARC": {
+					"type": "integer"
+				},
+				"JITF": {
+					"type": "integer"
+				},
+				"REWH": {
+					"type": "string"
+				},
+				"OPFQ": {
+					"type": "number"
+				},
+				"FANO": {
+					"type": "number"
+				},
+				"FANQ": {
+					"type": "number"
+				},
+				"FANR": {
+					"type": "number"
+				},
+				"FATM": {
+					"type": "integer"
+				},
+				"WCLN": {
+					"type": "string"
+				},
+				"EDEC": {
+					"type": "string"
+				},
+				"AUGE": {
+					"type": "integer"
+				},
+				"ECCC": {
+					"type": "string"
+				},
+				"ECAR": {
+					"type": "string"
+				},
+				"CPRI": {
+					"type": "string"
+				},
+				"CPRE": {
+					"type": "string"
+				},
+				"WSCA": {
+					"type": "string"
+				},
+				"PRCM": {
+					"type": "string"
+				},
+				"PLAP": {
+					"type": "string"
+				},
+				"PLUP": {
+					"type": "string"
+				},
+				"SCMO": {
+					"type": "string"
+				},
+				"CPL0": {
+					"type": "integer"
+				},
+				"CPL1": {
+					"type": "integer"
+				},
+				"CPL2": {
+					"type": "integer"
+				},
+				"PPL0": {
+					"type": "integer"
+				},
+				"PPL1": {
+					"type": "integer"
+				},
+				"PPL2": {
+					"type": "integer"
+				},
+				"TXID": {
+					"type": "integer"
+				},
+				"DTID": {
+					"type": "integer"
+				},
+				"CPDC": {
+					"type": "integer"
+				},
+				"COCD": {
+					"type": "integer"
+				},
+				"EVGR": {
+					"type": "string"
+				},
+				"VAMT": {
+					"type": "integer"
+				},
+				"LAMA": {
+					"type": "number"
+				},
+				"GRTI": {
+					"type": "string"
+				},
+				"MOLL": {
+					"type": "number"
+				},
+				"RGDT": {
+					"type": "integer"
+				},
+				"RGTM": {
+					"type": "integer"
+				},
+				"LMDT": {
+					"type": "integer"
+				},
+				"CHNO": {
+					"type": "integer"
+				},
+				"CHID": {
+					"type": "string"
+				},
+				"LMTS": {
+					"type": "integer"
+				},
+				"CRTM": {
+					"type": "integer"
+				},
+				"DICM": {
+					"type": "string"
+				},
+				"ACRF": {
+					"type": "string"
+				},
+				"ECVE": {
+					"type": "string"
+				},
+				"ATTC": {
+					"type": "integer"
+				},
+				"ATNR": {
+					"type": "integer"
+				},
+				"STCW": {
+					"type": "number"
+				},
+				"QUCW": {
+					"type": "number"
+				},
+				"RJCW": {
+					"type": "number"
+				},
+				"CAWC": {
+					"type": "integer"
+				},
+				"COFA": {
+					"type": "number"
+				},
+				"ALTS": {
+					"type": "integer"
+				},
+				"CSTQ": {
+					"type": "number"
+				},
+				"CQUQ": {
+					"type": "number"
+				},
+				"CRJQ": {
+					"type": "number"
+				},
+				"CSTW": {
+					"type": "number"
+				},
+				"CQUW": {
+					"type": "number"
+				},
+				"CRJW": {
+					"type": "number"
+				},
+				"SQCO": {
+					"type": "string"
+				},
+				"accountingEntity": {
+					"type": "string"
+				},
+				"variationNumber": {
+					"type": "integer"
+				},
+				"timestamp": {
+					"type": "string"
+				},
+				"deleted": {
+					"type": "boolean"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

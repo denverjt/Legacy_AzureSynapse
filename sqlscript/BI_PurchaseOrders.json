@@ -1,0 +1,17 @@
+{
+	"name": "BI_PurchaseOrders",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW BI_PurchaseOrders\n-- DROP VIEW BI_PurchaseOrders\n\nAS\n\nSELECT\n    POL.PUNO AS [PO Number],\n    POL.PNLI AS [PO Line],\n    POL.PNLS AS [PO Line Subnumber],\n    POL.PUSL AS [PO Line Status],\n    CASE\n        WHEN POL.PUSL BETWEEN 46 AND 90 THEN 'Received'\n\t\tELSE 'Open'\n    END AS [PO Status],\n    POL.ITNO AS [Item Number],\n    POL.ORQA AS [Order Qty],\n\tPOL.RVQA AS [Received Qty],\n    TRY_CONVERT(date, TRY_CONVERT(varchar(10), POL.RCDT)) AS [Last Received Date],\n    POL.PUPR AS [Price],\n\tPOL.LNAM AS [Total Amt],\n    POL.WHLO AS [Final Warehouse],\n    POL.PLDT AS [Planning Date],\n    POL.SUDO AS [Container Number],\n\n    POH.RGDT AS [Order Date],\n    POH.DWDT AS [Factory Ready Date],\n\tPOH.BUYE AS [Buyer],\n    POH.SUNO AS [Supplier],\n\tPOH.TEPY AS [Terms],\n    POH.TEDL AS [Delivery Terms],\n    POH.UCA2 AS [Origin Port Name],\n    POH.UCA3 AS [Discharge Port Name],\n\tCASE\n        WHEN POH.UCA4 = 'ARRIVES DISCHG PORT' THEN 'ARRIVES AT DISCHARGE PORT'\n\t\tWHEN POH.UCA4 = 'ARRIVES WAREHOUSE' THEN 'ARRIVES AT WAREHOUSE'\n\t\tWHEN POH.UCA4 = 'DOMESTIC ARRIVES WAR' THEN 'DOMESTIC ARRIVES AT WAREHOUSE'\n\t\tWHEN POH.UCA4 = 'EX WORKS' THEN 'EX WORKS'\n\t\tWHEN POH.UCA4 = 'LEAVES ORIGIN PORT' THEN 'LEAVES ORIGIN PORT'\n\t\tELSE 'UNDEFINED'\n    END AS [Product Receipt Type],\n\tPOH.UCA5 AS [Final Destination],\n\tTRY_CONVERT(date, TRY_CONVERT(varchar(10), POH.UID1)) AS [ETA/ETD Date],\n\tPOH.YRE1 AS [Reference Number],\n\n    TRY_CONVERT(date, TRY_CONVERT(varchar(10), POD.ARDT)) AS [Arrival Date]\n\nFROM M3.MPLINE POL\n\nLEFT JOIN M3.MPHEAD POH ON POL.PUNO = POH.PUNO\nLEFT JOIN (\n    SELECT DISTINCT\n        PUNO,\n        PNLI,\n        PNLS,\n        PUOS,\n        ARDT\n    FROM M3.MPLIND\n    WHERE PUOS = '45') POD\nON POL.PUNO = POD.PUNO AND POL.PNLI = POD.PNLI AND POL.PNLS = POD.PNLS\n\nWHERE\n    POL.FACI = 'TLC' AND\n    POL.PUSL BETWEEN 15 AND 90 AND\n    POH.ORTY <> 'C01'\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

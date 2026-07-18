@@ -1,0 +1,17 @@
+{
+	"name": "v_Commercial_DailyOrderEntry",
+	"properties": {
+		"content": {
+			"query": "create view         v_Commercial_DailyOrderEntry\n-- drop view v_Commercial_DailyOrderEntry\nas\nSELECT              OC.CFC3 as [Division]\n,                   OC.CFC4 as [Legacy System]\n,                   OH.ORNO AS [Sales Order Number]\n,                   OH.CUOR AS [Customer PO Number]\n,                   OH.ORSL AS [Order Status]\n,                   OH.CUNO AS [Customer ID]\n,                   OC.CUNM AS [Customer Name]\n--,                   CA.ECAR AS [Ship To State]\n,                   OH.RESP AS [Responsible]\n,                   LEFT(CAST(CAST(OH.ORDT AS VARCHAR(8)) AS DATE), 10) AS [Order Date]\n,                   LEFT(CAST(CAST(OH.RLDT AS VARCHAR(8)) AS DATE), 10) AS [Requested Delivery Date]\n,                   OL.PONR AS [Line Number]\n,                   OL.ITNO AS [Item ID]\n,                   IM.ITDS AS [Item Name]\n,                   OL.WHLO AS [Warehouse]\n,                   OL.ORQT AS [Order Qty]\n,                   OL.NEPR*OL.ORQT AS [Order Amt]\nFROM                DBO.M3_OOHEAD OH\nJOIN                DBO.M3_OOLINE OL ON OH.ORNO = OL.ORNO\nJOIN                DBO.M3_OCUSMA OC ON OH.CUNO = OC.CUNO\nJOIN                DBO.M3_MITMAS IM ON OL.ITNO = IM.ITNO\n--JOIN                DBO.M3_OCUSAD CA ON OC.CUNO = CA.CUNO AND OH.ADID = CA.ADID\nWHERE               LEFT(CAST(CAST(OH.RGDT AS VARCHAR(8)) AS DATE), 10) = CAST(GETDATE() as DATE)",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

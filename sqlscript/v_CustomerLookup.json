@@ -1,0 +1,17 @@
+{
+	"name": "v_CustomerLookup",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW     v_CustomerLookup\n--drop view v_CustomerLookup\nAS\nSELECT          CUNO AS [Customer ID]\n,               ALCU AS [Search Key]\n,               CUNM AS [Customer Name]\n,               YRE2 as [Vendor Number]\n,               SMCD as [Sales Rep ID]\n,               CS.TX40 AS [Sales Rep Name]\n,               RESP as [Sales Manager ID]\n,               CUCL AS [Market]\n,               A330 AS [Sales Admin]\n,               FRE1 AS [Business Unit]\n,               CFC0 as [EDI Flag]\n,               TEDL AS [Delivery Terms]\n,               TEPY AS [Payment Terms]\n,               CFC8 AS [Base Price List]\n,               STAT AS [Status]\n,               CUA1 AS [Address 1]\n,               CUA2 AS [Address 2]\n,               CUA3 AS [Address 3]\n,               CUA4 AS [Address 4]\nFROM            M3.OCUSMA OC\nJOIN            M3.CSYTAB CS ON OC.SMCD = CS.STKY AND CS.STCO = 'SMCD'\nLEFT JOIN       M3.CUGEX1 CG ON OC.CUNO = CG.PK01 AND CG.[FILE] = 'OCUSMA' AND A330 <> ''",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

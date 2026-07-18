@@ -1,0 +1,17 @@
+{
+	"name": "v_OrderAllocations",
+	"properties": {
+		"content": {
+			"query": "--DROP VIEW v_OrderAllocations\n\nCREATE VIEW     v_OrderAllocations\nAS\n\nSELECT * FROM M3.MITPLO\nWHERE CONO = '100' AND ORCA >= '300' AND ORCA < '400'",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

@@ -1,0 +1,218 @@
+{
+	"name": "IN_M3_MCHEAD",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "tlcdw-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "MCHEAD_2022-10-12_22-01-20-236.json",
+				"folderPath": "M3/JSON/MCHEAD",
+				"fileSystem": "tlclakefs"
+			},
+			"compression": {
+				"type": "deflate",
+				"level": "Optimal"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"CONO": {
+					"type": "integer"
+				},
+				"FACI": {
+					"type": "string"
+				},
+				"ITNO": {
+					"type": "string"
+				},
+				"STRT": {
+					"type": "string"
+				},
+				"VASE": {
+					"type": "string"
+				},
+				"CROC": {
+					"type": "integer"
+				},
+				"RORN": {
+					"type": "string"
+				},
+				"RORL": {
+					"type": "integer"
+				},
+				"ECVS": {
+					"type": "integer"
+				},
+				"SMFN": {
+					"type": "string"
+				},
+				"PCTP": {
+					"type": "string"
+				},
+				"PCDT": {
+					"type": "integer"
+				},
+				"CSU1": {
+					"type": "integer"
+				},
+				"CSU2": {
+					"type": "integer"
+				},
+				"CSU3": {
+					"type": "integer"
+				},
+				"CSU4": {
+					"type": "integer"
+				},
+				"CSU5": {
+					"type": "integer"
+				},
+				"CSU6": {
+					"type": "integer"
+				},
+				"CSU7": {
+					"type": "integer"
+				},
+				"CSU8": {
+					"type": "integer"
+				},
+				"CSU9": {
+					"type": "integer"
+				},
+				"ASU1": {
+					"type": "integer"
+				},
+				"ASU2": {
+					"type": "integer"
+				},
+				"ASU3": {
+					"type": "integer"
+				},
+				"ASU4": {
+					"type": "integer"
+				},
+				"ASU5": {
+					"type": "integer"
+				},
+				"ASU6": {
+					"type": "integer"
+				},
+				"ASU7": {
+					"type": "integer"
+				},
+				"ASU8": {
+					"type": "integer"
+				},
+				"ASU9": {
+					"type": "integer"
+				},
+				"SSU1": {
+					"type": "integer"
+				},
+				"SSU2": {
+					"type": "integer"
+				},
+				"SSU3": {
+					"type": "integer"
+				},
+				"COSN": {
+					"type": "string"
+				},
+				"EOQT": {
+					"type": "number"
+				},
+				"PRCM": {
+					"type": "string"
+				},
+				"STRD": {
+					"type": "integer"
+				},
+				"MAUM": {
+					"type": "integer"
+				},
+				"MAUP": {
+					"type": "integer"
+				},
+				"BRAS": {
+					"type": "integer"
+				},
+				"NUMA": {
+					"type": "integer"
+				},
+				"NUOP": {
+					"type": "integer"
+				},
+				"NUSC": {
+					"type": "integer"
+				},
+				"AVST": {
+					"type": "number"
+				},
+				"YEQT": {
+					"type": "number"
+				},
+				"LEAL": {
+					"type": "number"
+				},
+				"SCOM": {
+					"type": "integer"
+				},
+				"CFI2": {
+					"type": "number"
+				},
+				"COSH": {
+					"type": "number"
+				},
+				"TXID": {
+					"type": "integer"
+				},
+				"RGDT": {
+					"type": "integer"
+				},
+				"RGTM": {
+					"type": "integer"
+				},
+				"LMDT": {
+					"type": "integer"
+				},
+				"CHNO": {
+					"type": "integer"
+				},
+				"CHID": {
+					"type": "string"
+				},
+				"RORX": {
+					"type": "integer"
+				},
+				"LMTS": {
+					"type": "integer"
+				},
+				"UUID": {
+					"type": "string"
+				},
+				"MIGI": {
+					"type": "string"
+				},
+				"accountingEntity": {
+					"type": "string"
+				},
+				"variationNumber": {
+					"type": "integer"
+				},
+				"timestamp": {
+					"type": "string"
+				},
+				"deleted": {
+					"type": "boolean"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

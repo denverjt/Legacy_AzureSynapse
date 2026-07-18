@@ -1,0 +1,17 @@
+{
+	"name": "BI_Inventory",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW BI_Inventory\n--drop view BI_Inventory\nAS\n\nSELECT\n    ML.ITNO AS [Item Number],\n    ML.WHLO AS [Warehouse],\n    MF.APPR AS [Average Cost],\n    ML.STQT AS [Qty on Hand],\n    ML.REQT AS [Qty on Reserve],\n    ML.ALQT AS [Qty Allocated],\n    ML.SSQT AS [Qty on Safety Stock],\n    ML.QUQT AS [Qty on Inspection],\n    ML.RJQT AS [Qty Rejected],\n    ML.BUYE AS [Buyer],\n    ML.MXST AS [Maximun Stock],\n    ML.LOQT AS [Minimum Order Qty],\n    ML.REOP AS [Reorder Point]\nFROM M3.MITBAL ML\nLEFT JOIN M3.MITFAC MF ON ML.ITNO = MF.ITNO AND MF.FACI = 'TLC'\n\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

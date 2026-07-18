@@ -1,0 +1,17 @@
+{
+	"name": "v_M3_Sales_Costco",
+	"properties": {
+		"content": {
+			"query": "create view         v_M3_Sales_Costco\n-- drop view v_M3_Sales_Costco\nas\nSELECT              OH.ORNO AS [Sales Order Number]\n,                   OH.CUNO AS [Customer ID]\n,                   OC.CUNM AS [Customer Name]\n--,                   OH.RESP AS [Responsible]\n,                   cast(cast(OL.LMDT as varchar(255)) as date) AS [Order Date]\n--,                   OL.PONR AS [Line Number]\n,                   OL.ITNO AS [Item ID]\n,                   IM.ITDS AS [Item Name]\n,                   OL.IVQT AS [Invoiced Qty]\n,                   OL.NEPR*OL.IVQT AS [Invoiced Amt]\nFROM                M3.OOHEAD OH\nJOIN                M3.OOLINE OL ON OH.ORNO = OL.ORNO\nJOIN                M3.OCUSMA OC ON OH.CUNO = OC.CUNO\nJOIN                M3.MITMAS IM ON OL.ITNO = IM.ITNO\nWHERE               OL.IVQT > 0\nAND                 OC.CUNO IN ('50011', '50177', '50974')\n\nUNION ALL\n\nSELECT\t\t\t    cast(uniquekey as varchar(max)) as [Sales Order Number]\n,\t\t\t\t    cast(E.id as varchar(max)) as [Customer ID]\n,\t\t\t\t    E.altname as [Customer Name]\n,\t\t\t\t    trandate as [Order Date]\n,\t\t\t\t    CAST(itemid as varchar(max)) as [Item ID]\n,\t\t\t\t    description as [Item Name]\n,\t\t\t\t    itemcount as [Invoiced Qty]\n,\t\t\t        amount as [Invoiced Amt]\nFROM\t\t\t    NET.SalesInvoiced SI\nJOIN\t\t\t    NET.Item I on SI.item = I.id\nLEFT JOIN\t\t    NET.Entity E on SI.entity = E.id\nLEFT JOIN\t\t    NET.Class C on I.class = C.id\nWHERE\t\t\t    trandate >= '2022-01-01'\nAND\t\t\t\t    amount > 0\nAND\t\t\t\t    SI.type = 'CustInvc'\nAND\t\t\t\t    itemid <> 'UNVERIFIED CREDITS'\nAND                 E.altname = 'Costco'",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"name": "v_CasePackSetup",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW     v_CasePackSetup\n--DROP VIEW v_CasePackSetup\nas\nSELECT          MM.ITNO as         [Item Number]\n,               ITDS as         [Item Description]\n,               PRGP as         [Product Group]\n,               BUAR as         [Business Unit]\n,               CS.TX40 AS      [Brand]\n,               MP.PACT AS      [Each Package Name]\n,               MP.D1QT as      [Each Qty]\n,               PC.PACL AS      [Each Length]\n,               PC.PACW AS      [Each Width]\n,               PC.PACH AS      [Each Height]\n,               MP2.PACT AS      [Case Package Name]\n,               MP2.D1QT as      [Case Qty]\n,               PC2.PACL AS      [Case Length]\n,               PC2.PACW AS      [Case Width]\n,               PC2.PACH AS      [Case Height]\n,               MP3.PACT AS      [Pallet Package Name]\n,               MP3.D1QT as      [Pallet Qty]\n,               PC3.PACL AS      [Pallet Length]\n,               PC3.PACW AS      [Pallet Width]\n,               PC3.PACH AS      [Pallet Height]\nFROM            M3.MITMAS MM\nLEFT JOIN       M3.MPACIT MP ON MM.ITNO = MP.ITNO AND MP.PACT LIKE 'E%'\nLEFT JOIN       M3.MITPAC PC ON MP.PACT = PC.PACT\nLEFT JOIN       M3.MPACIT MP2 ON MM.ITNO = MP2.ITNO AND MP2.PACT LIKE 'C%'\nLEFT JOIN       M3.MITPAC PC2 ON MP2.PACT = PC2.PACT\nLEFT JOIN       M3.MPACIT MP3 ON MM.ITNO = MP3.ITNO AND MP3.PACT LIKE 'P%'\nLEFT JOIN       M3.MITPAC PC3 ON MP3.PACT = PC3.PACT\nLEFT JOIN       M3.CSYTAB CS ON MM.ITCL = CS.STKY AND STCO = 'ITCL'",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

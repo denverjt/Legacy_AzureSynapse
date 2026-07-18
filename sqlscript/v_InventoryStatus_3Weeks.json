@@ -1,0 +1,17 @@
+{
+	"name": "v_InventoryStatus_3Weeks",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW v_InventoryStatus_3Weeks\n--drop view v_InventoryStatus_3Weeks\nas\nSELECT      A.*\n,           B.[3 Week Backorder Qty]\n,           [Qty on Order (Incoming)]\nFROM\n(\nSELECT      DISTINCT Brand\n,           [Item Number] as [Product Code]\n,           [Item Description] as [Product Description]\n,           Warehouse\n,           [Product Group]\n,           [Qty on Hand]\n,           [Qty Allocated]\n,           [YTD Qty]\n,           [LastPurchasePrice]\nFROM        v_InventoryStatus\n) A\n\nLEFT JOIN\n\n(\nSELECT      [Item Number]\n,           Warehouse\n,           SUM(Quantity) as [3 Week Backorder Qty]\nFROM        v_OpenOrdersByStatus\nWHERE       [Qty Status] = '2 - Reserved/Backorder'\nAND         ERP = 'M3'\nAND         [Requested Date] <= GETDATE() + 21\nGROUP BY    [Item Number], Warehouse\n) B on A.[Product Code] = B.[Item Number] and A.Warehouse = B.Warehouse\n\nLEFT JOIN\n\n(\nSELECT      ITNO as [Item Number]\n,           WHLO as [Warehouse]\n,           SUM(ORQA - RVQA) as [Qty on Order (Incoming)]\nFROM        M3.MPLINE\nWHERE       cast(CAST(NULLIF(UID2,0) as varchar(10)) as date) <= GETDATE() + 21\nGROUP BY    ITNO, WHLO\n) C         on A. [Product Code] = C.[Item Number] and A.Warehouse = C.Warehouse",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"name": "v_SCA_WarrantyReport",
+	"properties": {
+		"content": {
+			"query": "-- View for CommercialWarranty Report v20220707\n-- v20220801 Updated for Schema Change to System ID in Schema\n--\n-- DROP VIEW [dbo].[SCA_WarrantyReport]\n--\n\nCREATE VIEW [dbo].[SCA_WarrantyReport]\n\t\n\tAS \n\nSELECT TransactionDate GLDate, '' RMADate, '' RMANum, SubModCustomer Customer, '' StockCode, \n       '' Supplier, '' Serial, '' [Initial Serial Number], EntryValue Price, 0 CostValue,\n\t  '' ProblemDesc, '' ProblemDetails, SubModArInvoice Invoice\nFROM SCA.GenTransaction \nWHERE GlCode LIKE '4950%' AND TransactionDate >= datefromparts(2021,1,1) AND SubModArInvoice NOT IN \n\t(SELECT SCA.ArTrnDetail.Invoice FROM SCA.ArTrnDetail LEFT JOIN SCA.RmaDetail ON substring(CustomerPoNumber,5,8) = RmaNumber  \n    WHERE InvoiceDate >= datefromparts(2021,1,1) AND SCA.RmaDetail.RmaNumber IS NOT NULL)\n\nUNION ALL\n\nSELECT InvoiceDate GLDate, IssueDate RMADate, substring(CustomerPoNumber,5,8) RMANum, Customer, SCA.ArTrnDetail.StockCode, \n       Supplier, SCA.RmaDetailSer.Serial, SCA.RmaDetailPlus.InitialSerialNumbe [Initial Serial Number], Price, CostValue, \n\t  ProblemDesc, ProblemDetails, SCA.ArTrnDetail.Invoice\nFROM SCA.ArTrnDetail LEFT JOIN \n     SCA.RmaDetail ON substring(CustomerPoNumber,5,8) = RmaNumber AND SCA.ArTrnDetail.StockCode=SCA.RmaDetail.StockCode LEFT JOIN\n     SCA.RmaDetailSer ON SCA.RmaDetailSer.RmaNumber = SCA.RmaDetail.RmaNumber AND SCA.RmaDetailSer.RmaLineNumber = SCA.RmaDetail.RmaLineNumber LEFT JOIN\n     SCA.RmaDetailPlus ON SCA.RmaDetailPlus.RmaNumber = SCA.RmaDetail.RmaNumber AND SCA.RmaDetailPlus.RmaLineNumber = SCA.RmaDetail.RmaLineNumber LEFT JOIN\n     SCA.RmaProblemCodes ON SCA.RmaProblemCodes.ProblemCode = SCA.RmaDetail.ProblemCode LEFT JOIN\n\tSCA.InvMaster ON SCA.ArTrnDetail.StockCode = SCA.InvMaster.StockCode \nWHERE InvoiceDate >= datefromparts(2021,1,1) AND SCA.ArTrnDetail.LineType = 1 AND SCA.RmaDetail.RmaNumber IS NOT NULL",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

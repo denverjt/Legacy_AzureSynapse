@@ -1,0 +1,17 @@
+{
+	"name": "v_SysproPaidInvoicesFromM3",
+	"properties": {
+		"content": {
+			"query": "create view v_SysproPaidInvoicesFromM3\nas\nSELECT inv.cuno AS CustomerNumber, oc.cunm as CustomerName, inv.cino as Invoice, inv.acdt as PaidDate, inv.cuam*-1 as PaidAmt\nFROM M3.FSLEDG inv\njoin M3.ocusma oc on inv.cuno = oc.cuno\nWHERE TRCD = '20'\nand (CINO LIKE 'L%' OR CINO LIKE 'AAS%')",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

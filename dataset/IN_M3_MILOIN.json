@@ -1,0 +1,386 @@
+{
+	"name": "IN_M3_MILOIN",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "tlcdw-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "MILOIN_2023-01-13_20-16-07-681.json",
+				"folderPath": "M3/JSONProcess/MILOIN",
+				"fileSystem": "tlclakefs"
+			},
+			"compression": {
+				"type": "deflate",
+				"level": "Optimal"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"CONO": {
+					"type": "integer"
+				},
+				"ITNO": {
+					"type": "string"
+				},
+				"SERN": {
+					"type": "string"
+				},
+				"ASID": {
+					"type": "string"
+				},
+				"SBNO": {
+					"type": "integer"
+				},
+				"ABBD": {
+					"type": "integer"
+				},
+				"STAT": {
+					"type": "string"
+				},
+				"WADT": {
+					"type": "integer"
+				},
+				"WAGR": {
+					"type": "string"
+				},
+				"WAL1": {
+					"type": "number"
+				},
+				"WAL2": {
+					"type": "number"
+				},
+				"WAL3": {
+					"type": "number"
+				},
+				"WAL4": {
+					"type": "number"
+				},
+				"NESA": {
+					"type": "string"
+				},
+				"NSUF": {
+					"type": "string"
+				},
+				"MPGM": {
+					"type": "string"
+				},
+				"MAPL": {
+					"type": "string"
+				},
+				"CUNO": {
+					"type": "string"
+				},
+				"FCCM": {
+					"type": "string"
+				},
+				"PUPR": {
+					"type": "integer"
+				},
+				"CUCD": {
+					"type": "string"
+				},
+				"PPDT": {
+					"type": "integer"
+				},
+				"BIRT": {
+					"type": "integer"
+				},
+				"BIRS": {
+					"type": "integer"
+				},
+				"ALII": {
+					"type": "string"
+				},
+				"DPID": {
+					"type": "integer"
+				},
+				"CONC": {
+					"type": "integer"
+				},
+				"PLMZ": {
+					"type": "integer"
+				},
+				"SHRE": {
+					"type": "integer"
+				},
+				"INSN": {
+					"type": "string"
+				},
+				"EQNO": {
+					"type": "string"
+				},
+				"EQNL": {
+					"type": "integer"
+				},
+				"PRIP": {
+					"type": "string"
+				},
+				"PRSS": {
+					"type": "string"
+				},
+				"SBPR": {
+					"type": "string"
+				},
+				"AESC": {
+					"type": "integer"
+				},
+				"TEFF": {
+					"type": "number"
+				},
+				"DWTC": {
+					"type": "integer"
+				},
+				"CMDD": {
+					"type": "integer"
+				},
+				"ACRF": {
+					"type": "string"
+				},
+				"COCE": {
+					"type": "string"
+				},
+				"DTID": {
+					"type": "integer"
+				},
+				"TXID": {
+					"type": "integer"
+				},
+				"RGDT": {
+					"type": "integer"
+				},
+				"RGTM": {
+					"type": "integer"
+				},
+				"LMDT": {
+					"type": "integer"
+				},
+				"CHNO": {
+					"type": "integer"
+				},
+				"CHID": {
+					"type": "string"
+				},
+				"LMTS": {
+					"type": "integer"
+				},
+				"PLGR": {
+					"type": "string"
+				},
+				"MLYR": {
+					"type": "string"
+				},
+				"AREA": {
+					"type": "string"
+				},
+				"LOCS": {
+					"type": "string"
+				},
+				"BRAN": {
+					"type": "string"
+				},
+				"EQTP": {
+					"type": "string"
+				},
+				"EQGR": {
+					"type": "string"
+				},
+				"PROJ": {
+					"type": "string"
+				},
+				"ELNO": {
+					"type": "string"
+				},
+				"EQGC": {
+					"type": "string"
+				},
+				"INDA": {
+					"type": "integer"
+				},
+				"SNRC": {
+					"type": "integer"
+				},
+				"RFIA": {
+					"type": "string"
+				},
+				"TAIL": {
+					"type": "string"
+				},
+				"FLEE": {
+					"type": "string"
+				},
+				"TECN": {
+					"type": "string"
+				},
+				"INAP": {
+					"type": "string"
+				},
+				"OENV": {
+					"type": "string"
+				},
+				"FLNO": {
+					"type": "string"
+				},
+				"SKEY": {
+					"type": "string"
+				},
+				"ASLM": {
+					"type": "string"
+				},
+				"APRM": {
+					"type": "string"
+				},
+				"ADLM": {
+					"type": "string"
+				},
+				"CFI1": {
+					"type": "string"
+				},
+				"CFI2": {
+					"type": "number"
+				},
+				"CFI3": {
+					"type": "string"
+				},
+				"CFI4": {
+					"type": "string"
+				},
+				"CFI5": {
+					"type": "string"
+				},
+				"ACMC": {
+					"type": "string"
+				},
+				"LIFE": {
+					"type": "integer"
+				},
+				"LFDT": {
+					"type": "integer"
+				},
+				"LAMA": {
+					"type": "number"
+				},
+				"LKST": {
+					"type": "integer"
+				},
+				"LKDT": {
+					"type": "integer"
+				},
+				"SMC0": {
+					"type": "string"
+				},
+				"SMC1": {
+					"type": "string"
+				},
+				"SMC2": {
+					"type": "string"
+				},
+				"SMC3": {
+					"type": "string"
+				},
+				"SMC4": {
+					"type": "string"
+				},
+				"SMC5": {
+					"type": "string"
+				},
+				"SMC6": {
+					"type": "string"
+				},
+				"SMC7": {
+					"type": "string"
+				},
+				"SMC8": {
+					"type": "string"
+				},
+				"SMC9": {
+					"type": "string"
+				},
+				"PUNO": {
+					"type": "string"
+				},
+				"PNLI": {
+					"type": "integer"
+				},
+				"PNLS": {
+					"type": "integer"
+				},
+				"CUOW": {
+					"type": "string"
+				},
+				"CUPL": {
+					"type": "string"
+				},
+				"ADID": {
+					"type": "string"
+				},
+				"IVDT": {
+					"type": "integer"
+				},
+				"EXIN": {
+					"type": "string"
+				},
+				"YEA4": {
+					"type": "integer"
+				},
+				"OWTP": {
+					"type": "string"
+				},
+				"RBDT": {
+					"type": "integer"
+				},
+				"PUEX": {
+					"type": "integer"
+				},
+				"EQCL": {
+					"type": "string"
+				},
+				"EQCC": {
+					"type": "string"
+				},
+				"EQTC": {
+					"type": "string"
+				},
+				"ORCA": {
+					"type": "string"
+				},
+				"DTI1": {
+					"type": "integer"
+				},
+				"AGOW": {
+					"type": "string"
+				},
+				"COTB": {
+					"type": "string"
+				},
+				"SPTB": {
+					"type": "string"
+				},
+				"ATNG": {
+					"type": "integer"
+				},
+				"ATNT": {
+					"type": "integer"
+				},
+				"accountingEntity": {
+					"type": "string"
+				},
+				"variationNumber": {
+					"type": "integer"
+				},
+				"timestamp": {
+					"type": "string"
+				},
+				"deleted": {
+					"type": "boolean"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

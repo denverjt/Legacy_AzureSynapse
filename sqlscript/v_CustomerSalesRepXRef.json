@@ -1,0 +1,17 @@
+{
+	"name": "v_CustomerSalesRepXRef",
+	"properties": {
+		"content": {
+			"query": "create view v_CustomerSalesRepXRef\n--drop view v_CustomerSalesRepXRef\nas\nselect distinct CUNO, CUNM, SMCD, TX40 from M3.OCUSMA OC JOIN M3.CSYTAB CS on OC.SMCD = CS.STKY and STCO = 'SMCD'",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

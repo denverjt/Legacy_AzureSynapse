@@ -1,0 +1,131 @@
+{
+	"name": "IN_M3_FGRPCL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "tlcdw-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "FGRPCL_2023-01-19_03-28-52-144.json",
+				"folderPath": "M3/JSONProcess/FGRPCL",
+				"fileSystem": "tlclakefs"
+			},
+			"compression": {
+				"type": "deflate",
+				"level": "Optimal"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"CONO": {
+					"type": "integer"
+				},
+				"DIVI": {
+					"type": "string"
+				},
+				"PUNO": {
+					"type": "string"
+				},
+				"PNLI": {
+					"type": "integer"
+				},
+				"PNLS": {
+					"type": "integer"
+				},
+				"REPN": {
+					"type": "integer"
+				},
+				"RELP": {
+					"type": "integer"
+				},
+				"CDSE": {
+					"type": "integer"
+				},
+				"CDSS": {
+					"type": "integer"
+				},
+				"CEID": {
+					"type": "string"
+				},
+				"EXTY": {
+					"type": "integer"
+				},
+				"SCOC": {
+					"type": "integer"
+				},
+				"SCOP": {
+					"type": "integer"
+				},
+				"IVQT": {
+					"type": "number"
+				},
+				"IVQA": {
+					"type": "number"
+				},
+				"RCAC": {
+					"type": "number"
+				},
+				"ICAC": {
+					"type": "number"
+				},
+				"ANBR": {
+					"type": "integer"
+				},
+				"SENO": {
+					"type": "integer"
+				},
+				"RGDT": {
+					"type": "integer"
+				},
+				"RGTM": {
+					"type": "integer"
+				},
+				"LMDT": {
+					"type": "integer"
+				},
+				"CHNO": {
+					"type": "integer"
+				},
+				"CHID": {
+					"type": "string"
+				},
+				"LMTS": {
+					"type": "integer"
+				},
+				"CUCD": {
+					"type": "string"
+				},
+				"SERA": {
+					"type": "number"
+				},
+				"CRTP": {
+					"type": "integer"
+				},
+				"NICH": {
+					"type": "integer"
+				},
+				"SCOA": {
+					"type": "integer"
+				},
+				"accountingEntity": {
+					"type": "string"
+				},
+				"variationNumber": {
+					"type": "integer"
+				},
+				"timestamp": {
+					"type": "string"
+				},
+				"deleted": {
+					"type": "boolean"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

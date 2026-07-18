@@ -1,0 +1,17 @@
+{
+	"name": "Item Warehouse Combinations",
+	"properties": {
+		"content": {
+			"query": "SELECT      ITNO, WHLO, SUNO\nFROM        M3.MITBAL\nWHERE       ITNO IN\n(\n'010A500'    \n)",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

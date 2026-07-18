@@ -1,0 +1,17 @@
+{
+	"name": "AdCraft Sales Order Info",
+	"properties": {
+		"content": {
+			"query": "SELECT          DISTINCT C.customer as [Customer ID]\n,               C.name as [Customer Name]\n,               oh.name as [Sub Name]\n,               OH.[order] as [Order Number]\n,               OH.delivery_date as [Req Delivery Date]\n,               OL.item as [Item Number]\n,               OL.descr as [Item Description]\n,               OL.q_ord as [Order Quantity]\n,               OL.price as [Unit Price]\n,               OL.q_ord*OL.price as [Total Price]\nFROM            ADC.oe_head OH\nJOIN            ADC.oe_line OL on OH.[order] = OL.[order]\nJOIN            ADC.customer C on OH.customer = C.customer\nWHERE           OH.company_oe = 'AD' and C.company_cu = 'AD'\nAND             delivery_date >= '2021-01-01'\nAND             upper(oh.name) like '%AMAZON%'",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": -1
+		},
+		"type": "SqlQuery"
+	}
+}

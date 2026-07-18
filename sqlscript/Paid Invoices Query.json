@@ -1,0 +1,17 @@
+{
+	"name": "Paid Invoices Query",
+	"properties": {
+		"content": {
+			"query": "SELECT      FS.CUNO AS          CustomerNumber\n,           OC.CUNM AS          CustomerName\n,           CINO AS             InvoiceNumber\n,           IVDT AS             InvoiceDate\n,           ACDT AS             PaidDate\n,           OD.CUOR AS          CustomerPoNumber\n,           OD.ITNO AS          ItemNumber\n,           MM.ITDS AS          ItemDescription\n,           CS.TX40 AS          Brand\n,           OD.IVQT AS          InvoicedQuantity\n--,           CUAM*-1 AS          PaidAmount\nFROM        M3.FSLEDG FS\nJOIN        M3.OCUSMA OC ON FS.CUNO = OC.CUNO\nLEFT JOIN   M3.ODLINE OD ON FS.CINO = OD.EXIN\nJOIN        M3.MITMAS MM ON OD.ITNO = MM.ITNO\nLEFT JOIN   M3.CSYTAB AS CS ON MM.ITCL = CS.STKY AND CS.STCO = 'ITCL'\nWHERE       FS.CUNO IN\n(\n'50009', '50322', '50002', '50438', '50290', '50016',\n'50481', '50742', '50218', '50018', '50025', '50582',\n'50761'\n)\nAND         FS.TRCD = '20'\nAND         ACDT BETWEEN '2023-08-01' AND '2023-11-30'\n\nUNION ALL\n\nSELECT\t\t\tDISTINCT \n\t\t\t\tRR.BILL_TO_CUST_ID AS\t\t\tCustomerNumber\n,\t\t\t\tC.NAME AS\t\t\t\t\t\tCustomerName\n,\t\t\t\tRR.INVOICE_ID AS\t\t\t\tInvoiceNumber\n,\t\t\t\tRR.INVOICE_DATE AS\t\t\t\tInvoiceDate\n,\t\t\t\tRR.LAST_PAID_DATE AS\t\t\tPaidDate\n,\t\t\t\tRRL.CUSTOMER_PO_REF AS\t\t\tCustomerPoNumber\n,\t\t\t\tRRL.PART_ID AS\t\t\t\t\tItemNumber\n,\t\t\t\tP.DESCRIPTION AS\t\t\t\tItemDescription\n,\t\t\t\tP.USER_1 AS\t\t\t\t\t\tBrand\n,\t\t\t\tRRL.QTY\tAS\t\t\t\t\t\tInvoicedQuantity\n--,\t\t\t\tCASE WHEN RR.INVOICE_TYPE = 'MEMO' THEN RR.TOTAL_PAID_AMOUNT*-1\n--\t\t\t\tELSE RR.TOTAL_PAID_AMOUNT\n--\t\t\t\tEND AS\t\t\t\t\t\t\tPaidAmount\nFROM\t\t\tECV.RECEIVABLES_RECEIVABLE RR\nJOIN\t\t\tECV.RECEIVABLES_RECEIVABLE_LINE RRL ON RR.INVOICE_ID = RRL.INVOICE_ID\nLEFT JOIN\t\tECM.PART P ON RRL.PART_ID = P.ID\nJOIN\t\t\tECM.CUSTOMER C ON RR.BILL_TO_CUST_ID = C.ID\nWHERE\t\t\tRR.BILL_TO_CUST_ID IN\n(\n'HD1000', 'HOM003', 'LO4000', 'LO4001', 'LO4003',\n'NO4564', 'NO4565', 'TA8583', 'CS8100', 'CS8101',\n'HD1000'\n)\nAND\t\t\t\tLAST_PAID_DATE BETWEEN '2023-08-01' AND '2023-11-30'\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": -1
+		},
+		"type": "SqlQuery"
+	}
+}

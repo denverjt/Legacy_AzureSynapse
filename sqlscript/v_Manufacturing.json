@@ -1,0 +1,17 @@
+{
+	"name": "v_Manufacturing",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW v_Manufacturing\nas\nSELECT      MFNO as     [Manufacturing Number]\n,           WHST as     [Order Status]\n,           WHLO as     [Warehouse]\n,           ITNO as     [Item Number]\n,           IM.Description as [Description]\n--,           IM.Brand as [Brand]\n--,           IM.Division as [Division]\n--,           IM.[Item Type] as [Item Type]\n,           STDT as     [Start Date]\n,           ORQA as     [Order Qty]\n,           RVQA as     [Received Qty]\n,           CASE WHEN WCLN in ('ALINE', 'BEVLINE', 'BLINE', 'CLINE', 'EXC10LIN', 'WMLINE') THEN 'Assembly'\n            WHEN WCLN in ('ZEROLLFG', 'ZEROLLIP') THEN 'Zeroll'\n            WHEN WCLN IN ('PLATING') then 'Plating'\n            WHEN WCLN IN ('MOLDING') then 'Molding'\n            else WCLN end as [Production Line]\nFROM        M3.MWOHED MW\nLEFT JOIN   BI_ItemMaster IM on MW.ITNO = IM.[Item Number]\nWHERE       ORTY IN ('D95', 'D96')\nAND         WHST < 80",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

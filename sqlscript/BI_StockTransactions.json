@@ -1,0 +1,17 @@
+{
+	"name": "BI_StockTransactions",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW BI_StockTransactions\n --drop view BI_StockTransactions\n\nAS\n\n    SELECT\n        S.ITNO AS [Item Number],\n        S.TRDT AS [Transaction Date],\n        S.TTYP AS [Transaction Type],\n        S.RIDN AS [Order Number],\n        S.RIDL AS [Order Line],\n        S.WHLO AS [Warehouse],\n        S.TRQT AS [Transaction Qty],\n        S.NSTQ AS [New On Hand Balance],\n        S.NSTT AS [New On Hand Balance per Transaction Date],\n        S.TRPR AS [Inventory Accounting Price],\n        S.MFCO AS [Acquisition Cost],\n        S.CADT AS [Accounting Date],\n        S.RFTX AS [Reference Text],\n        S.BREF AS [Lot Ref],\n        S.WHSL AS [Location],\n        S.TRTP AS [Order Type],\n        S.RESP AS [Responsible],\n        S.RGDT AS [Entry Date],\n        --S.RGTM AS [Entry Time],\n        TIMEFROMPARTS(\n            S.RGTM / 10000,\n            (S.RGTM % 10000) / 100,\n            S.RGTM % 100,\n            0,\n            0) AS [Entry Time],\n\n        CAST(CAST(S.RGDT AS datetime) + CAST(TIMEFROMPARTS(\n            S.RGTM / 10000,\n            (S.RGTM % 10000) / 100,\n            S.RGTM % 100,\n            0,\n            0) AS datetime)\n                AT TIME ZONE 'UTC'\n                AT TIME ZONE 'Eastern Standard Time' AS date) AS [Eastern Entry Date],\n        \n        CAST(CAST(S.RGDT AS datetime) + CAST(TIMEFROMPARTS(\n            S.RGTM / 10000,\n            (S.RGTM % 10000) / 100,\n            S.RGTM % 100,\n            0,\n            0) AS datetime)\n                AT TIME ZONE 'UTC'\n                AT TIME ZONE 'Eastern Standard Time' AS time) AS [Eastern Entry Time]\n\n    FROM M3.MITTRA S\n    WHERE\n        TRDT >= '2025-01-01' AND\n        TTYP <> '99'\n\n        --AND S.RIDN = '1000573900'\n        --select * from M3.MITTRA where RIDN = '1000573900'\n        --select * from M3.MITTRA where ITNO = 'XKA-2-008-02190'\n\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

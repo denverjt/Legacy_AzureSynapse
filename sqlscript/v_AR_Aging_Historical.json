@@ -1,0 +1,17 @@
+{
+	"name": "v_AR_Aging_Historical",
+	"properties": {
+		"content": {
+			"query": "create view v_AR_Aging_Historical\n--drop view v_AR_Aging_Historical\nas\n--select sum(Amount) from v_AR_Aging_Historical\n\nSELECT      A.Amount, B.*\nFROM\n(\nSELECT      CUNO as [Customer Number]\n,           CINO as [Invoice Number]\n,           SUM(CUAM*ARAT) as Amount\nFROM        M3.FSLEDG\nWHERE         /*RECO <> '9'\nAND         */[ACDT] <= '2024-11-30'\nGROUP BY    CUNO, CINO\n) A\n\nLEFT JOIN\n\n(\nSELECT      DISTINCT CASE WHEN OC.CUNO LIKE 'COM%' then 'Commercial'\n            WHEN OC.CUNO LIKE 'GWT%' then 'International'\n            WHEN LEFT(OC.CUNO,1) in ('5', '7') then 'Consumer'\n            end as Division\n,           CASE WHEN OC.CUNO LIKE 'COM%' then 'Commercial'\n            WHEN OC.CUNO LIKE '7%' then 'Countertop'\n            WHEN OC.CUNO LIKE '5%' then 'Compact' \n            WHEN OC.CUNO LIKE 'GWT%' then 'International'\n            end as [Business Unit]\n,           OC.CUNO as [Customer Number]\n,           OC.CUNM as [Customer Name]\n,           CINO as [Invoice Number]\n,           IVDT as [Invoice Date]\n,           DUDT as [Due Date]\n,           CS2.TX15 as [Payment Terms]\n,           DATEDIFF(day, FS.IVDT, FS.DUDT) as [Terms Code]\nFROM        M3.FSLEDG FS\nJOIN        M3.OCUSMA OC on FS.CUNO = OC.CUNO\nLEFT JOIN   M3.CSYTAB CS2 ON FS.TEPY = CS2.STKY AND CS2.STCO = 'TEPY'\nWHERE       FS.TRCD = '10'\nAND         FS.RECO <> '9'\n) B         ON A.[Invoice Number] = B.[Invoice Number] and A.[Customer Number] = B.[Customer Number]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

@@ -1,0 +1,741 @@
+{
+	"name": "IN_M3P_OOHEAD",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Precog",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "abno_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "accounting_entity_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "adid_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "agno_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "agnt_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "aicd_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "arat_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "bagc_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "bagd_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "bkid_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "blro_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "bram_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "brec_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "brla_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ccac_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "chid_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "chl1_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "chl2_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "chl3_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "chl4_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "chl5_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "chl6_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "chl7_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "chl8_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "chl9_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "chno_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "chsy_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "cmpn_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "coam_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "cono_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "cpre_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "crtp_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "cucd_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "cuch_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "cudt_oohead",
+				"type": "date"
+			},
+			{
+				"name": "cuno_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "cuor_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "curd_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "dccd_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "decu_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "deleted_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dicd_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "disy_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "divi_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dlsp_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dmcu_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "dmdt_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "dstx_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dtid_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "eclc_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ectt_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "elno_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "excd_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "faci_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "fddt_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "fded_oohead",
+				"type": "date"
+			},
+			{
+				"name": "fecn_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "fre1_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "grwe_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "hafe_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "hocd_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "iapd_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ictr_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "infor_client_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "infor_compass_timestamp_oohead",
+				"type": "datetimeoffset",
+				"scale": 7
+			},
+			{
+				"name": "infor_data_object_id_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "infor_data_object_seq_id_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "infor_last_modified_oohead",
+				"type": "datetimeoffset",
+				"scale": 7
+			},
+			{
+				"name": "infor_partition_oohead",
+				"type": "date"
+			},
+			{
+				"name": "inrc_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ipad_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ipiv_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "jna_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "jnu_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "lded_oohead",
+				"type": "date"
+			},
+			{
+				"name": "lmdt_oohead",
+				"type": "date"
+			},
+			{
+				"name": "lmts_oohead",
+				"type": "datetimeoffset",
+				"scale": 7
+			},
+			{
+				"name": "lncd_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "locd_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "migi_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "modl_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "nbns_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "newe_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "nref_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ntam_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ntla_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "oblc_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "ofno_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "oivr_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "oohead_precog_key",
+				"type": "nvarchar"
+			},
+			{
+				"name": "opri_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "ordt_oohead",
+				"type": "date"
+			},
+			{
+				"name": "oref_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "orno_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "orsl_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "orst_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ortp_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ot38_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "otba_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "otdp_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "oyea_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "pcla_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "pltb_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "potx_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "precog_delta_key_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "precog_delta_version_oohead",
+				"type": "datetimeoffset",
+				"scale": 7
+			},
+			{
+				"name": "proj_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "prp2_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "prtx_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "pycd_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "pyno_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "pyre_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "rasn_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "rdp_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "resp_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "rgdt_oohead",
+				"type": "date"
+			},
+			{
+				"name": "rgtm_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "rldt_oohead",
+				"type": "date"
+			},
+			{
+				"name": "rldz_oohead",
+				"type": "date"
+			},
+			{
+				"name": "rlhm_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "rlhz_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "rodn_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "rout_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "rpiv_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "sced_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "smcd_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "splm_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "tagy_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "taxc_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "tblg_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "tecd_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "tedl_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "tel2_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "tepa_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "tepy_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "timestamp_oohead",
+				"type": "datetimeoffset",
+				"scale": 7
+			},
+			{
+				"name": "tinc_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "tizo_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "topr_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "txap_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "txid_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "uca0_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "uca1_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "uca2_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "uca3_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "uca4_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "uca5_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "uca6_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "uca7_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "uca8_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "uca9_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "uct1_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "udn1_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "udn2_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "udn3_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "udn4_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "udn5_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "udn6_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "uid1_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "uid2_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "uid3_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "vapd_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "variation_number_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "vctp_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "vol3_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "vrcd_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "vtcd_oohead",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "wcon_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "whlo_oohead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "yref_oohead",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "M3_Infor Data Lake_TLC",
+			"table": "oohead"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

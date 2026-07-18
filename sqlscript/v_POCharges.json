@@ -1,0 +1,17 @@
+{
+	"name": "v_POCharges",
+	"properties": {
+		"content": {
+			"query": "CREATE view     v_POCharges\n--drop view v_POCharges\nas\nSELECT          POH.PUNO as PurchaseOrder\n,               POL.PNLI as PurchaseOrderLine\n,               POL.PUSL as OrderStatus\n,               POH.PUDT as PurchaseOrderDate\n,               POL.SUDO as ContainerNumber\n,               ITM.ITCL as Brand\n,               ITM.PRGP as ItemType\n,               POL.ITNO as ItemNumber\n,               ITM.ITDS as ItemDescription\n,               POL.CSNO as HTS\n,               ITM.CFI4 as TrumpTariff\n,               POH.WHLO as Warehouse\n,               SUM(POL.ORQA) as OrderQuantity\n,               SUM(POL.PUPR*POL.ORQA) as OrderValue\n,               PCL.CEID AS ChargeType\n,               SUM(PCL.RCAC) as ChargeAmount\nFROM            M3_MPHEAD POH\nJOIN            M3_MPLINE POL ON POH.PUNO = POL.PUNO\nJOIN            M3_MITMAS ITM ON POL.ITNO = ITM.ITNO\nJOIN            M3_CSYTAB CST ON ITM.ITGR = CST.STKY\nLEFT JOIN       M3_FGRPCL PCL ON POH.PUNO = PCL.PUNO AND POL.PNLI = PCL.PNLI\nWHERE           1=1\nGROUP BY        POH.PUNO\n,               POL.PNLI\n,               POH.PUDT\n,               POL.SUDO\n,               POL.PUSL\n,               ITM.ITCL\n,               ITM.PRGP\n,               POL.ITNO\n,               ITM.ITDS\n,               POL.CSNO\n,               ITM.CFI4\n,               POH.WHLO\n,               PCL.CEID",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

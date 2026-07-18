@@ -1,0 +1,17 @@
+{
+	"name": "BI_Dilution",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW BI_Dilution\n --drop view BI_Dilution\n\nAS\n\n    SELECT \n        FG.YEA4 AS [Year],\n        FG.JRNO AS [Journal Number],\n        FG.JSNO AS [Journal Sequence Number],\n        FG.TRCD AS [Transaction Code],\n        FG.VSER AS [Voucher Number Series],\n        FG.VONO AS [Voucher Number],\n        FG.VDSC AS [Voucher Name],\n        FP.SUNO AS [Supplier],\n        CM.SUNM AS [Supplier Name],\n        FG.ACDT AS [Invoice Date],\n        FG.AIT1 AS [GL],\n        FCH.TX40 AS [GL Description],\n        FG.AIT1,\n        FG.AIT1 + ' - ' + L1.TX40 AS [Dimension 1],\n        FG.AIT2,\n        FG.AIT2 + ' - ' + L2.TX40 AS [Dimension 2],\n        FG.AIT3,\n        FG.AIT3 + ' - ' + L3.TX40 AS [Dimension 3],\n        FG.AIT4,\n        FG.AIT4 + ' - ' + L4.TX40 AS [Dimension 4],\n        FG.AIT5,\n        FG.AIT5 + ' - ' + L5.TX40 AS [Dimension 5],\n        FG.AIT6,\n        FG.AIT7,\n        FG.VTXT AS [Voucher Text],\n        FG.ACQT AS [QTY],\n        FG.ACAM AS [Amount],\n        FG.ECAR AS [State],\n        FG.VSNO AS [Voucher Sequence Number]\n    FROM M3.FGLEDG AS FG\n    LEFT JOIN (SELECT DISTINCT VONO, JRNO, SUNO FROM M3.FPLEDG) FP ON FG.VONO = FP.VONO AND FG.JRNO = FP.JRNO\n    LEFT JOIN M3.CIDMAS AS CM ON CM.SUNO = FP.SUNO\n    LEFT JOIN M3.FCHACC AS FCH ON FCH.AITM = FG.AIT1\n    LEFT JOIN (SELECT DISTINCT AITP, AITM, TX40 FROM M3.FCHACC) L1 ON FG.AIT1 = L1.AITM AND L1.AITP = 1\n    LEFT JOIN (SELECT DISTINCT AITP, AITM, TX40 FROM M3.FCHACC) L2 ON FG.AIT2 = L2.AITM AND L2.AITP = 2\n    LEFT JOIN (SELECT DISTINCT AITP, AITM, TX40 FROM M3.FCHACC) L3 ON FG.AIT3 = L3.AITM AND L3.AITP = 3\n    LEFT JOIN (SELECT DISTINCT AITP, AITM, TX40 FROM M3.FCHACC) L4 ON FG.AIT4 = L4.AITM AND L4.AITP = 4\n    LEFT JOIN (SELECT DISTINCT AITP, AITM, TX40 FROM M3.FCHACC) L5 ON FG.AIT5 = L5.AITM AND L5.AITP = 5\n    WHERE FG.YEA4 > '2023'\n    AND FG.AIT1 IN ('421020', '421030', '421040', '421050', '421055', '421060', '421070', '421010', '620000')\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

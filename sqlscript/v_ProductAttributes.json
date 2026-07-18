@@ -1,0 +1,17 @@
+{
+	"name": "v_ProductAttributes",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW     v_ProductAttributes\nas\nSELECT          ITNO as [Item Number]\n,               ITDS AS [Item Description]\n,               ITCL as [Brand]\n,               ILEN as [Unit Length]\n,               IWID as [Unit Width] \n,               IHEI as [Unit Height] \nFROM            M3.MITMAS",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

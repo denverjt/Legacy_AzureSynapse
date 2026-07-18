@@ -1,0 +1,17 @@
+{
+	"name": "a_SalesData",
+	"properties": {
+		"content": {
+			"query": "-- DROP VIEW a_SalesData\n-- SELECT Brand, Sum([Sales Amt]), sum([Net Sales Amt]) from a_SalesData group by Brand\n-- SELECT TOP 10 COUNT(*) FROM v_SalesData\nCREATE VIEW a_SalesData AS\nSELECT\n [D]     [Division]\n,[C]     [Company]\n,[CID]   [Customer ID]\n,[CN]    [Customer Name]\n,[CPO]   [Customer PO]\n,[WH]    [Warehouse]\n,[OID]  [Order ID]\n,[IID]  [Invoice ID]\n,[Date]\n,[Brand]\n,[PC]   [Product Category]\n,[PIDA] [Part ID - Actual] \n,[PIGF] [Part ID - Go Forward]\n,[DESC] [Part Description]\n,[SID]  [Supplier ID]\n,[Amt]  [Sales Amt]\n,[NetAmt] [Net Sales Amt]\n,[Qty]  [Sales Qty]\n,[Type] [Sales Type]\n, [STN] as [Ship to Name]\n, SA1 as [Ship to Address 1]\n, SA2 as [Ship to Address 2]\n,[STC] [Ship to City]\n,[STS] [Ship to State]\n,[STZ] [Ship to Zip Code]\n, BTN as [Bill to Name]\n, BA1 as [Bill to Address 1]\n, BA2 as [Bill to Address 2]\n,[BTC] [Bill to City]\n,[BTS] [Bill to State]\n,[BTZ] [Bill to Zip Code]\n,[Cost]\n\nFROM\n    OPENROWSET(\n        BULK 'https://tlclake.dfs.core.windows.net/tlclakefs/Analytics/a_SalesData.parquet',\n        FORMAT = 'PARQUET'\n    ) AS [result]\n\n/* Pipeline Query \n\nSELECT \n [Division]             [D]\n,[Company]              [C]\n,[Customer ID]          [CID]\n,[Customer Name]        [CN]\n,[Customer PO]          [CPO]\n,[Warehouse]            [WH]\n,[Cost]\n,[Part ID - Go Forward] [PIDGF]\n,[Part Description]     [DESC]\n,[Supplier ID]          [SID]\n,[Sales Amt]            [Amt]\n,[Sales Qty]            [Qty]\n,[Sales Type]           [Type]\n,[Order ID]             [OID]\n,[Invoice ID]           [IID]\n,[Date]\n,[Brand]\n,[Product Category]     [PC]\n,[Part ID - Actual]     [PIDA]\n FROM [dbo].[v_SalesData]\n\n*/",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

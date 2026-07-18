@@ -1,0 +1,17 @@
+{
+	"name": "v_AP_Aging_New",
+	"properties": {
+		"content": {
+			"query": "create view v_AP_Aging_New\n--drop view v_AP_Aging_New\nas\n\n--SELECT * FROM M3.FPLEDG WHERE SINO = '9302022'\n-- reco = 9, AND REDE = PAID DATE\n\nSELECT      A.Amount, B.*\nFROM\n(\nSELECT      SUNO as [Supplier Number]\n,           SINO as [Invoice Number]\n,           SUM(CUAM*ARAT) as Amount\nFROM        M3.FPLEDG\nWHERE         RECO <> '9'\nGROUP BY    SUNO, SINO\n) A\n\nLEFT JOIN\n\n(\nSELECT      DISTINCT CASE WHEN CM.CFI3 = 'COM' then 'Commercial'\n            WHEN CM.CFI3 = 'INT' then 'International'\n            WHEN CM.CFI3 = 'SHS' then 'Shared Services'\n            WHEN CM.CFI3 in ('CMP', 'CNR') then 'Consumer'\n            else 'Pending' end as Division\n,           CASE WHEN CM.CFI4 = 'CMP' then 'Compact'\n            WHEN CM.CFI4 = 'CNT' then 'Countertop'\n            WHEN CM.CFI4 = 'COM' then 'Commercial' \n            WHEN CM.CFI4 = 'INT' then 'International'\n            WHEN CM.CFI4 = 'SHS' then 'Shared Services'\n            else 'Pending' end as [Business Unit]\n,           FP.SUNO as [Supplier Number]\n,           CM.SUNM as [Supplier Name]\n,           SINO as [Invoice Number]\n,           CASE WHEN FP.SUNO = '30514' AND FP.SINO = '2849' THEN '2017-12-11' ELSE IVDT END as [Invoice Date]\n,           CASE WHEN FP.SUNO = '30514' AND FP.SINO = '2849' THEN '2017-12-11' ELSE DUDT END as [Due Date]\n,           CS2.TX15 as [Payment Terms]\n,           DATEDIFF(day, FP.IVDT, FP.DUDT) as [Terms Code]\n,           CS.TX40 as [Category]\n,           CASE WHEN CV.PACD = '' then 'No Priority'\n            WHEN CV.PACD = 'A' then 'Highest Priority'\n            WHEN CV.PACD = '9' then 'Stopped'\n            WHEN CV.PACD = '3' then 'Priority 3'\n            ELSE 'Priority '+CV.PACD END as [Priority]\n,           CASE WHEN IVTP in ('PR', 'CP' ,'RC') then 'Prepaid' else 'Not Prepaid' end as [Prepaid Flag]\nFROM        M3.FPLEDG FP\nJOIN        M3.CIDMAS CM ON FP.SUNO = CM.SUNO\nLEFT JOIN   M3.CIDVEN CV ON FP.SUNO = CV.SUNO\nLEFT JOIN   M3.CSYTAB CS ON CV.SUCL = CS.STKY AND CS.STCO = 'SUCL'\nLEFT JOIN   M3.CSYTAB CS2 ON FP.TEPY = CS2.STKY AND CS2.STCO = 'TEPY'\nWHERE       FP.TRCD = '40'\nAND         FP.RECO <> '9'\n) B         ON A.[Invoice Number] = B.[Invoice Number] and A.[Supplier Number] = B.[Supplier Number]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": -1
+		},
+		"type": "SqlQuery"
+	}
+}

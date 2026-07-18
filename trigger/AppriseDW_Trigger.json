@@ -1,0 +1,100 @@
+{
+	"name": "AppriseDW_Trigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "AvantiDW_Pipeline",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"cw_items": [
+						{
+							"source": {
+								"table": "Dim_Category"
+							},
+							"destination": {
+								"fileName": "Dim_Category.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "Dim_Customer"
+							},
+							"destination": {
+								"fileName": "Dim_Customer.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "Dim_Date"
+							},
+							"destination": {
+								"fileName": "Dim_Date.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "Dim_ForecastGroup"
+							},
+							"destination": {
+								"fileName": "Dim_ForecastGroup.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "Dim_Product"
+							},
+							"destination": {
+								"fileName": "Dim_Product.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "Dim_Scenario"
+							},
+							"destination": {
+								"fileName": "Dim_Scenario.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "Dim_Territory"
+							},
+							"destination": {
+								"fileName": "Dim_Territory.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "Fact_ScenarioSales"
+							},
+							"destination": {
+								"fileName": "Fact_ScenarioSales.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "Log"
+							},
+							"destination": {
+								"fileName": "Log.parquet"
+							}
+						}
+					]
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2022-08-10T04:30:00",
+				"timeZone": "Eastern Standard Time"
+			}
+		}
+	}
+}

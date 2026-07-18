@@ -1,0 +1,17 @@
+{
+	"name": "v_SafetyStock",
+	"properties": {
+		"content": {
+			"query": "Create view v_SafetyStock\nas\nselect WHLO as Warehouse\n, MB.ITNO as [Item Number]\n, MM.ITDS as [Item Description]\n, MM.GRP3 as [Finance Brand]\n, SSQT as [Safety Stock]\nfrom M3.MITBAL MB\nJOIN M3.MITMAS MM ON MB.ITNO = MM.ITNO\nwhere SSQT > 0 \nand MB.FACI = 'TLC'",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

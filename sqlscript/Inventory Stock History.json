@@ -1,0 +1,17 @@
+{
+	"name": "Inventory Stock History",
+	"properties": {
+		"content": {
+			"query": "SELECT          A.*\n,               B.[First Inventory Received]\nFROM\n(\nSELECT          ITNO as [Item Number]\n,               IM.Division\n,               IM.Brand\n,               IM.[Item Type]\n,               IM.Status\n,               SUM(STQT) as [On Hand]\n,               MIN(RGDT) as [First Entry Date]\n,               CAST(CAST(NULLIF(MAX(IDDT),0) AS VARCHAR(10)) AS DATE) as [Last Receipt Date]\n,               CAST(CAST(NULLIF(MAX(ODDT),0) AS VARCHAR(10)) AS DATE) as [Last Issue Date]\nFROM            M3.MITBAL MT\nJOIN            BI_ItemMaster IM on MT.ITNO = IM.[Item Number]\nWHERE           TRDT <> 0\nAND             WHLO NOT IN ('AMS', 'HKG', 'MEX', 'ITC', 'DDS', 'DFF', 'DFD', 'DIW', 'DIF', 'DFS', 'DIX', 'HKX')\nGROUP BY        ITNO, Division, Brand, [Item Type], Status\n) A\n\nLEFT JOIN\n\n(\n\nSELECT          ITNO, MIN(TRDT) as [First Inventory Received]\nFROM            M3.MITTRA\nWHERE           TRQT > 0\nAND             WHSL NOT LIKE 'GRN%'\nGROUP BY        ITNO\n) B             ON A.[Item Number] = B.ITNO\n\n\nWHERE           [Last Issue Date] IS NULL\nAND             [On Hand] <> 0\nAND             [Item Type] = 'Finished Good'\nAND             B.[First Inventory Received] < '2024-03-01'",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

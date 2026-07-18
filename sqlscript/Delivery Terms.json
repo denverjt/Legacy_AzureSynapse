@@ -1,0 +1,17 @@
+{
+	"name": "Delivery Terms",
+	"properties": {
+		"content": {
+			"query": "select distinct Company\n, [Order ID]\n, CS.TX15\nfrom a_SalesData a\nLEFT JOIN M3.OOHEAD OH on a.[Order ID] = OH.[ORNO]\nLEFT JOIN M3.CSYTAB CS on OH.TEDL = CS.STKY AND STCO = 'TEDL'\nLEFT JOIN ADC.oe_head oh\nwhere [Division] = 'Commercial'\nand [Date] >= '2023-01-01'\n\n\n\n\n\n        SELECT          A.Division, A.Company, [Customer ID], [Customer Name], A.[Customer PO], A.Warehouse, NULL as [Order Entry User]\n,               A.[Order ID], A.[Invoice ID], A.Date, A.Brand, A.[Finance Brand], A.[Product Category], A.[Part ID - Actual], A.[Part ID - Go Forward], A.[Part Description]\n,               A.[Supplier ID], A.[Sales Amt], A.[Sales Amt] as [Net Sales Amt], A.[Sales Qty]\n,               ship_via_code\n,               [Cost ADC]\n,               'adc' as test, NULL as [Ship to Name], NULL as [Ship to Address 1], NULL as [Ship to Address 2], [Ship to City], [Ship to State], [Ship to Zip Code]\n,               NULL as [Bill to Name], NULL as [Bill to Address 1], NULL as [Bill to Address 2], NULL as [Bill to City], NULL as [Bill to State], NULL as [Bill to Zip Code]\n,               NULL as [Line Number]\nFROM\n(\nselect      COALESCE(SS.Division, SS2.Division) as Division\n,           'ERP1' as Company\n,           c.customer as [Customer ID]\n,           c.name as [Customer Name]\n,           oh.cu_po as [Customer PO]\n,           cast(oh.[order] as NVARCHAR(4000)) as [Order ID]\n,           cast(oh.[order] as NVARCHAR(4000)) as [Invoice ID]\n,           oh.warehouse as [Warehouse]\n,           oh.invc_date as [Date]\n,           COALESCE(SS.[Sub-Brand], SS2.[Sub-Brand]) AS [Brand]\n,           COALESCE(SS.[Finance Brand], SS2.[Finance Brand]) as [Finance Brand]\n,\t\t\tCOALESCE(SS.Category, SS2.Category) as [Product Category]\n,           i.item as [Part ID - Actual]\n,           i.item as [Part ID - Go Forward]\n,           COALESCE(SS.Description, SS2.Description) as [Part Description]\n,           ol.vendor as [Supplier ID]\n,           ol.q_itd*ol.price as [Sales Amt]\n,           ol.q_itd as [Sales Qty]\n,           ol.cost_a*ol.q_itd as [Cost ADC]\n,           NULL as [Ship to City]\n,           oh.state as [Ship to State]\n,           oh.postal_code as [Ship to Zip Code]\n,           oh.ship_via_code\nfrom        ADC.oe_head oh\nJOIN        ADC.oe_line ol on oh.[order] = ol.[order] and oh.invc_seq=ol.invc_seq and ol.q_comm <> 0\njoin        ADC.customer c on oh.customer = c.customer\njoin        ADC.item i on ol.item = i.item\nLEFT JOIN               BI_ItemMaster SS ON i.item = SS.[Item Number]\nLEFT JOIN               BI_ItemMaster SS2 ON i.item = SS2.[Item Number]\nwhere           oh.company_oe = 'AD'\nand             ol.company_oe = 'AD'\nand             c.company_cu = 'AD'\nand             i.company_it = 'AD'\nand             ol.ar_flag = 'True'\nand             oh.posted = 'True'\nand             oh.post_date is not null\nand             ol.invc_date is not null\nand             ol.rec_type in ('I', 'C')\nand             oh.invc_date >= '2023-01-01'\n)A",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": -1
+		},
+		"type": "SqlQuery"
+	}
+}

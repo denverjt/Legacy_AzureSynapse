@@ -1,0 +1,2269 @@
+{
+	"name": "SalsifyAPI_Pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "MIM50"
+					},
+					{
+						"name": "Destination",
+						"value": "tlclakefs/Salsify/SalsifyTest.json"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET"
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings",
+							"filePattern": "setOfObjects"
+						}
+					},
+					"enableStaging": false,
+					"validateDataConsistency": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['salsify:id']"
+								},
+								"sink": {
+									"path": "$['salsify:id']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['salsify:created_at']"
+								},
+								"sink": {
+									"path": "$['salsify:created_at']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['salsify:updated_at']"
+								},
+								"sink": {
+									"path": "$['salsify:updated_at']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['salsify:version']"
+								},
+								"sink": {
+									"path": "$['salsify:version']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['salsify:profile_asset_id']"
+								},
+								"sink": {
+									"path": "$['salsify:profile_asset_id']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['salsify:parent_id']"
+								},
+								"sink": {
+									"path": "$['salsify:parent_id']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['salsify:system_id']"
+								},
+								"sink": {
+									"path": "$['salsify:system_id']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['SKU']"
+								},
+								"sink": {
+									"path": "$['SKU']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['description']"
+								},
+								"sink": {
+									"path": "$['description']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ASIN']"
+								},
+								"sink": {
+									"path": "$['ASIN']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['UPC']"
+								},
+								"sink": {
+									"path": "$['UPC']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Color']"
+								},
+								"sink": {
+									"path": "$['Color']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Brand']"
+								},
+								"sink": {
+									"path": "$['Brand']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Short Description']"
+								},
+								"sink": {
+									"path": "$['Short Description']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Long Description']"
+								},
+								"sink": {
+									"path": "$['Long Description']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Country of Origin']"
+								},
+								"sink": {
+									"path": "$['Country of Origin']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Warranty']"
+								},
+								"sink": {
+									"path": "$['Warranty']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Batteries Required']"
+								},
+								"sink": {
+									"path": "$['Batteries Required']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Number of Items']"
+								},
+								"sink": {
+									"path": "$['Number of Items']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Bullet 1']"
+								},
+								"sink": {
+									"path": "$['Bullet 1']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Bullet 2']"
+								},
+								"sink": {
+									"path": "$['Bullet 2']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Bullet 3']"
+								},
+								"sink": {
+									"path": "$['Bullet 3']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Bullet 4']"
+								},
+								"sink": {
+									"path": "$['Bullet 4']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Bullet 5']"
+								},
+								"sink": {
+									"path": "$['Bullet 5']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Bullet 6']"
+								},
+								"sink": {
+									"path": "$['Bullet 6']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Manufacturer']"
+								},
+								"sink": {
+									"path": "$['Manufacturer']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Item Height']"
+								},
+								"sink": {
+									"path": "$['Item Height']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Item Depth']"
+								},
+								"sink": {
+									"path": "$['Item Depth']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Number of Boxes']"
+								},
+								"sink": {
+									"path": "$['Number of Boxes']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Assembly Required']"
+								},
+								"sink": {
+									"path": "$['Assembly Required']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Item Width']"
+								},
+								"sink": {
+									"path": "$['Item Width']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Size']"
+								},
+								"sink": {
+									"path": "$['Size']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Material']"
+								},
+								"sink": {
+									"path": "$['Material']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Case Quantity']"
+								},
+								"sink": {
+									"path": "$['Case Quantity']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Master Carton Quantity']"
+								},
+								"sink": {
+									"path": "$['Master Carton Quantity']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Case Pack Weight']"
+								},
+								"sink": {
+									"path": "$['Case Pack Weight']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Case Pack Length']"
+								},
+								"sink": {
+									"path": "$['Case Pack Length']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Case Pack Width']"
+								},
+								"sink": {
+									"path": "$['Case Pack Width']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Case Pack Height']"
+								},
+								"sink": {
+									"path": "$['Case Pack Height']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Capacity']"
+								},
+								"sink": {
+									"path": "$['Capacity']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Voltage']"
+								},
+								"sink": {
+									"path": "$['Voltage']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Defrost System Type']"
+								},
+								"sink": {
+									"path": "$['Defrost System Type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Installation Type']"
+								},
+								"sink": {
+									"path": "$['Installation Type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Instruction Manual']"
+								},
+								"sink": {
+									"path": "$['Instruction Manual']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Doors']"
+								},
+								"sink": {
+									"path": "$['Doors']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Item Weight']"
+								},
+								"sink": {
+									"path": "$['Item Weight']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Bullet 7']"
+								},
+								"sink": {
+									"path": "$['Bullet 7']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Bullet 8']"
+								},
+								"sink": {
+									"path": "$['Bullet 8']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Bullet 9']"
+								},
+								"sink": {
+									"path": "$['Bullet 9']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Bullet 10']"
+								},
+								"sink": {
+									"path": "$['Bullet 10']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Bullet 11']"
+								},
+								"sink": {
+									"path": "$['Bullet 11']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Shipped Assembled?']"
+								},
+								"sink": {
+									"path": "$['Shipped Assembled?']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Bullet 12']"
+								},
+								"sink": {
+									"path": "$['Bullet 12']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Bullet 13']"
+								},
+								"sink": {
+									"path": "$['Bullet 13']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Wattage']"
+								},
+								"sink": {
+									"path": "$['Wattage']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Plug Type']"
+								},
+								"sink": {
+									"path": "$['Plug Type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['MAP Price']"
+								},
+								"sink": {
+									"path": "$['MAP Price']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Bullet 14']"
+								},
+								"sink": {
+									"path": "$['Bullet 14']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Cord Length']"
+								},
+								"sink": {
+									"path": "$['Cord Length']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Model']"
+								},
+								"sink": {
+									"path": "$['Model']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Freight Class']"
+								},
+								"sink": {
+									"path": "$['Freight Class']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Refrigerant Type']"
+								},
+								"sink": {
+									"path": "$['Refrigerant Type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Energy Star']"
+								},
+								"sink": {
+									"path": "$['Energy Star']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Amperage']"
+								},
+								"sink": {
+									"path": "$['Amperage']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Certifications']"
+								},
+								"sink": {
+									"path": "$['Certifications']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Complies with Canadian Laws']"
+								},
+								"sink": {
+									"path": "$['Complies with Canadian Laws']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Complies with Mexican Laws']"
+								},
+								"sink": {
+									"path": "$['Complies with Mexican Laws']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Customization Availability']"
+								},
+								"sink": {
+									"path": "$['Customization Availability']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Control Type']"
+								},
+								"sink": {
+									"path": "$['Control Type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Dishwasher Safe Components']"
+								},
+								"sink": {
+									"path": "$['Dishwasher Safe Components']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['cETL Listed']"
+								},
+								"sink": {
+									"path": "$['cETL Listed']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['cUL Listed']"
+								},
+								"sink": {
+									"path": "$['cUL Listed']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Electric']"
+								},
+								"sink": {
+									"path": "$['Electric']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['CSA Certified']"
+								},
+								"sink": {
+									"path": "$['CSA Certified']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Ship Type']"
+								},
+								"sink": {
+									"path": "$['Ship Type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['UL Listed']"
+								},
+								"sink": {
+									"path": "$['UL Listed']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ETL Listed']"
+								},
+								"sink": {
+									"path": "$['ETL Listed']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['NSF Certified']"
+								},
+								"sink": {
+									"path": "$['NSF Certified']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['MET Listed']"
+								},
+								"sink": {
+									"path": "$['MET Listed']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Cooling System']"
+								},
+								"sink": {
+									"path": "$['Cooling System']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Undercounter']"
+								},
+								"sink": {
+									"path": "$['Undercounter']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Anti-Vibration Technology']"
+								},
+								"sink": {
+									"path": "$['Anti-Vibration Technology']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Integrated Lock']"
+								},
+								"sink": {
+									"path": "$['Integrated Lock']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Door Swing Orientation']"
+								},
+								"sink": {
+									"path": "$['Door Swing Orientation']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Door Material']"
+								},
+								"sink": {
+									"path": "$['Door Material']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Door Color/Finish']"
+								},
+								"sink": {
+									"path": "$['Door Color/Finish']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ADA Compliant']"
+								},
+								"sink": {
+									"path": "$['ADA Compliant']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TAA Compliant']"
+								},
+								"sink": {
+									"path": "$['TAA Compliant']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Product Name']"
+								},
+								"sink": {
+									"path": "$['Product Name']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Enhanced Content']"
+								},
+								"sink": {
+									"path": "$['Enhanced Content']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Product Name - Mobile']"
+								},
+								"sink": {
+									"path": "$['Product Name - Mobile']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Bullet 1 - Amazon']"
+								},
+								"sink": {
+									"path": "$['Bullet 1 - Amazon']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Bullet 2 - Amazon']"
+								},
+								"sink": {
+									"path": "$['Bullet 2 - Amazon']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Bullet 3 - Amazon']"
+								},
+								"sink": {
+									"path": "$['Bullet 3 - Amazon']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Bullet 4 - Amazon']"
+								},
+								"sink": {
+									"path": "$['Bullet 4 - Amazon']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Bullet 5 - Amazon']"
+								},
+								"sink": {
+									"path": "$['Bullet 5 - Amazon']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Image - Detail']"
+								},
+								"sink": {
+									"path": "$['Image - Detail']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Image - Accessories']"
+								},
+								"sink": {
+									"path": "$['Image - Accessories']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Image - Warranty']"
+								},
+								"sink": {
+									"path": "$['Image - Warranty']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['EH AZ Banner']"
+								},
+								"sink": {
+									"path": "$['EH AZ Banner']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['EH AZ Grid Image']"
+								},
+								"sink": {
+									"path": "$['EH AZ Grid Image']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['BPA Free']"
+								},
+								"sink": {
+									"path": "$['BPA Free']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Collection']"
+								},
+								"sink": {
+									"path": "$['Collection']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Commercial / Residential']"
+								},
+								"sink": {
+									"path": "$['Commercial / Residential']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Cordless']"
+								},
+								"sink": {
+									"path": "$['Cordless']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Image - Back']"
+								},
+								"sink": {
+									"path": "$['Image - Back']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Image - Front']"
+								},
+								"sink": {
+									"path": "$['Image - Front']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Image - Hero']"
+								},
+								"sink": {
+									"path": "$['Image - Hero']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Image - Infographic']"
+								},
+								"sink": {
+									"path": "$['Image - Infographic']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Image - Lifestyle']"
+								},
+								"sink": {
+									"path": "$['Image - Lifestyle']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Image - Open']"
+								},
+								"sink": {
+									"path": "$['Image - Open']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Packaging Type']"
+								},
+								"sink": {
+									"path": "$['Packaging Type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Prop 65 Compliant']"
+								},
+								"sink": {
+									"path": "$['Prop 65 Compliant']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Supplier Code']"
+								},
+								"sink": {
+									"path": "$['Supplier Code']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Supplier Name']"
+								},
+								"sink": {
+									"path": "$['Supplier Name']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Volume Capacity']"
+								},
+								"sink": {
+									"path": "$['Volume Capacity']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Wholesale Price']"
+								},
+								"sink": {
+									"path": "$['Wholesale Price']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Lead Time - Product']"
+								},
+								"sink": {
+									"path": "$['Lead Time - Product']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Spec Sheet']"
+								},
+								"sink": {
+									"path": "$['Spec Sheet']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Status']"
+								},
+								"sink": {
+									"path": "$['Status']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ISTA 1A Package Certification']"
+								},
+								"sink": {
+									"path": "$['ISTA 1A Package Certification']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Prop 65 Warning Type']"
+								},
+								"sink": {
+									"path": "$['Prop 65 Warning Type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Exclusivity']"
+								},
+								"sink": {
+									"path": "$['Exclusivity']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Product Name (Short)']"
+								},
+								"sink": {
+									"path": "$['Product Name (Short)']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Primary Video']"
+								},
+								"sink": {
+									"path": "$['Primary Video']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Logo']"
+								},
+								"sink": {
+									"path": "$['Logo']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Updated Cost - Effective Date']"
+								},
+								"sink": {
+									"path": "$['Updated Cost - Effective Date']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Image - Lifestyle 2']"
+								},
+								"sink": {
+									"path": "$['Image - Lifestyle 2']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Image - Detail 2']"
+								},
+								"sink": {
+									"path": "$['Image - Detail 2']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Image - Detail 3']"
+								},
+								"sink": {
+									"path": "$['Image - Detail 3']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Best Buy (CA) ID']"
+								},
+								"sink": {
+									"path": "$['Best Buy (CA) ID']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Costco (CA) ID']"
+								},
+								"sink": {
+									"path": "$['Costco (CA) ID']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['The Home Depot (CA) ID']"
+								},
+								"sink": {
+									"path": "$['The Home Depot (CA) ID']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Lowes (US) ID']"
+								},
+								"sink": {
+									"path": "$['Lowes (US) ID']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Lowes (CA) ID']"
+								},
+								"sink": {
+									"path": "$['Lowes (CA) ID']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Office Depot ID']"
+								},
+								"sink": {
+									"path": "$['Office Depot ID']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Bass Pro ID']"
+								},
+								"sink": {
+									"path": "$['Bass Pro ID']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['A+ Grid Feature 1']"
+								},
+								"sink": {
+									"path": "$['A+ Grid Feature 1']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['A+ Grid Feature 2']"
+								},
+								"sink": {
+									"path": "$['A+ Grid Feature 2']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['A+ Grid Feature 3']"
+								},
+								"sink": {
+									"path": "$['A+ Grid Feature 3']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['A+ Grid Feature 4']"
+								},
+								"sink": {
+									"path": "$['A+ Grid Feature 4']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['A+ Grid Feature 5']"
+								},
+								"sink": {
+									"path": "$['A+ Grid Feature 5']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['A+ Grid Feature 6']"
+								},
+								"sink": {
+									"path": "$['A+ Grid Feature 6']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Wayfair SKU']"
+								},
+								"sink": {
+									"path": "$['Wayfair SKU']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Features']"
+								},
+								"sink": {
+									"path": "$['Features']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Shape']"
+								},
+								"sink": {
+									"path": "$['Shape']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['EH AZ Bottom Banner']"
+								},
+								"sink": {
+									"path": "$['EH AZ Bottom Banner']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['EH AZ Grid Image 2']"
+								},
+								"sink": {
+									"path": "$['EH AZ Grid Image 2']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['EH AZ Grid Image 3']"
+								},
+								"sink": {
+									"path": "$['EH AZ Grid Image 3']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Portable']"
+								},
+								"sink": {
+									"path": "$['Portable']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Adjustable Temperature Control']"
+								},
+								"sink": {
+									"path": "$['Adjustable Temperature Control']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Ice Maker Included']"
+								},
+								"sink": {
+									"path": "$['Ice Maker Included']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Door Storage']"
+								},
+								"sink": {
+									"path": "$['Door Storage']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Outdoor Use']"
+								},
+								"sink": {
+									"path": "$['Outdoor Use']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Water Dispenser']"
+								},
+								"sink": {
+									"path": "$['Water Dispenser']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Flammable Gasses']"
+								},
+								"sink": {
+									"path": "$['Flammable Gasses']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Length of Ice Production Cycle']"
+								},
+								"sink": {
+									"path": "$['Length of Ice Production Cycle']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Filter Included']"
+								},
+								"sink": {
+									"path": "$['Filter Included']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Bullet 15']"
+								},
+								"sink": {
+									"path": "$['Bullet 15']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FOB Cost']"
+								},
+								"sink": {
+									"path": "$['FOB Cost']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Hazardous Material/Dangerous Goods']"
+								},
+								"sink": {
+									"path": "$['Hazardous Material/Dangerous Goods']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Depth - Excluding Handles']"
+								},
+								"sink": {
+									"path": "$['Depth - Excluding Handles']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Depth - Excluding Door']"
+								},
+								"sink": {
+									"path": "$['Depth - Excluding Door']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Depth - Door Open 90°']"
+								},
+								"sink": {
+									"path": "$['Depth - Door Open 90°']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Height - Excluding Top Hinge']"
+								},
+								"sink": {
+									"path": "$['Height - Excluding Top Hinge']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Spec Sheet Disclaimer']"
+								},
+								"sink": {
+									"path": "$['Spec Sheet Disclaimer']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Certifications/Compliancy - Prop 65 Badge']"
+								},
+								"sink": {
+									"path": "$['Certifications/Compliancy - Prop 65 Badge']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Certifications/Compliancy - Warranty Badge']"
+								},
+								"sink": {
+									"path": "$['Certifications/Compliancy - Warranty Badge']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Certifications/Compliancy - UL Listed Badge']"
+								},
+								"sink": {
+									"path": "$['Certifications/Compliancy - UL Listed Badge']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Certifications/Compliancy - Energy Star Badge']"
+								},
+								"sink": {
+									"path": "$['Certifications/Compliancy - Energy Star Badge']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Casters']"
+								},
+								"sink": {
+									"path": "$['Casters']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Walmart Item ID']"
+								},
+								"sink": {
+									"path": "$['Walmart Item ID']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Walmart # (CA) - DS']"
+								},
+								"sink": {
+									"path": "$['Walmart # (CA) - DS']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['AMAZON.COM.KYDC, INC - V# ZERC9 - Unit Cost']"
+								},
+								"sink": {
+									"path": "$['AMAZON.COM.KYDC, INC - V# ZERC9 - Unit Cost']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Bass Pro Shops - DS - Unit Cost']"
+								},
+								"sink": {
+									"path": "$['Bass Pro Shops - DS - Unit Cost']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['HOME DEPOT (US) - Unit Cost']"
+								},
+								"sink": {
+									"path": "$['HOME DEPOT (US) - Unit Cost']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['LOWES.COM/ COMMERCE HUB - Unit Cost']"
+								},
+								"sink": {
+									"path": "$['LOWES.COM/ COMMERCE HUB - Unit Cost']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['WAYFAIR,LLC - Unit Cost']"
+								},
+								"sink": {
+									"path": "$['WAYFAIR,LLC - Unit Cost']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['CE Listed']"
+								},
+								"sink": {
+									"path": "$['CE Listed']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Power Supply']"
+								},
+								"sink": {
+									"path": "$['Power Supply']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ETLS Listed']"
+								},
+								"sink": {
+									"path": "$['ETLS Listed']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Enhanced Content SF Link']"
+								},
+								"sink": {
+									"path": "$['Enhanced Content SF Link']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Enhanced Content (Y/N)']"
+								},
+								"sink": {
+									"path": "$['Enhanced Content (Y/N)']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Brand Brochure']"
+								},
+								"sink": {
+									"path": "$['Brand Brochure']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Zoro ID']"
+								},
+								"sink": {
+									"path": "$['Zoro ID']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Shopify Handle']"
+								},
+								"sink": {
+									"path": "$['Shopify Handle']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['COSTCO LTD. - PREPAID DS - Unit Cost']"
+								},
+								"sink": {
+									"path": "$['COSTCO LTD. - PREPAID DS - Unit Cost']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['EH AZ Middle Banner 1']"
+								},
+								"sink": {
+									"path": "$['EH AZ Middle Banner 1']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['AutoQuotes ID']"
+								},
+								"sink": {
+									"path": "$['AutoQuotes ID']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Item Type Name']"
+								},
+								"sink": {
+									"path": "$['Item Type Name']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Dealer Price']"
+								},
+								"sink": {
+									"path": "$['Dealer Price']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Dealer  Price TRUCKLOAD']"
+								},
+								"sink": {
+									"path": "$['Dealer  Price TRUCKLOAD']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Dealer  Price CONTAINER']"
+								},
+								"sink": {
+									"path": "$['Dealer  Price CONTAINER']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['CAD Standard Retail']"
+								},
+								"sink": {
+									"path": "$['CAD Standard Retail']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Ambient Temperature Range']"
+								},
+								"sink": {
+									"path": "$['Ambient Temperature Range']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Amazon A+ Hero']"
+								},
+								"sink": {
+									"path": "$['Amazon A+ Hero']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Walmart Vendor #']"
+								},
+								"sink": {
+									"path": "$['Walmart Vendor #']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['AMAZON.COM.KYDC, INC - V# ZESD9 - Unit Cost']"
+								},
+								"sink": {
+									"path": "$['AMAZON.COM.KYDC, INC - V# ZESD9 - Unit Cost']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['AB100 Compliant']"
+								},
+								"sink": {
+									"path": "$['AB100 Compliant']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ZORO - UNIT Cost']"
+								},
+								"sink": {
+									"path": "$['ZORO - UNIT Cost']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Primary Warehouse Location']"
+								},
+								"sink": {
+									"path": "$['Primary Warehouse Location']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Sub-Brand']"
+								},
+								"sink": {
+									"path": "$['Sub-Brand']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Color Swatch']"
+								},
+								"sink": {
+									"path": "$['Color Swatch']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Refrigerant Ounces']"
+								},
+								"sink": {
+									"path": "$['Refrigerant Ounces']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['US Duty Rate % (HTC)']"
+								},
+								"sink": {
+									"path": "$['US Duty Rate % (HTC)']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['M3 TLC Model']"
+								},
+								"sink": {
+									"path": "$['M3 TLC Model']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Certifications/Compliancy - CE Marked Badge']"
+								},
+								"sink": {
+									"path": "$['Certifications/Compliancy - CE Marked Badge']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Certifications/Compliancy - NSF Badge']"
+								},
+								"sink": {
+									"path": "$['Certifications/Compliancy - NSF Badge']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Line Drawing']"
+								},
+								"sink": {
+									"path": "$['Line Drawing']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Wayfair CA SKU']"
+								},
+								"sink": {
+									"path": "$['Wayfair CA SKU']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Bass Pro Vendor #']"
+								},
+								"sink": {
+									"path": "$['Bass Pro Vendor #']"
+								}
+							},
+							{
+								"source": {
+									"path": "$[' Costco (CA) Vendor # ']"
+								},
+								"sink": {
+									"path": "$[' Costco (CA) Vendor # ']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Home Depot (CA) Vendor #']"
+								},
+								"sink": {
+									"path": "$['Home Depot (CA) Vendor #']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Office Depot Vendor #']"
+								},
+								"sink": {
+									"path": "$['Office Depot Vendor #']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Wayfair Vendor #']"
+								},
+								"sink": {
+									"path": "$['Wayfair Vendor #']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Home Hardware CA Vendor #']"
+								},
+								"sink": {
+									"path": "$['Home Hardware CA Vendor #']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Amazon 3P Vendor #']"
+								},
+								"sink": {
+									"path": "$['Amazon 3P Vendor #']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Wayfair (CA) Vendor #\t']"
+								},
+								"sink": {
+									"path": "$['Wayfair (CA) Vendor #\t']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Zoro Vendor #']"
+								},
+								"sink": {
+									"path": "$['Zoro Vendor #']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Manufactured / Purchased']"
+								},
+								"sink": {
+									"path": "$['Manufactured / Purchased']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Overstock ID']"
+								},
+								"sink": {
+									"path": "$['Overstock ID']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Overstock Vendor #']"
+								},
+								"sink": {
+									"path": "$['Overstock Vendor #']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['OVERSTOCK (DS) - Unit Cost']"
+								},
+								"sink": {
+									"path": "$['OVERSTOCK (DS) - Unit Cost']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['SRP']"
+								},
+								"sink": {
+									"path": "$['SRP']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['AB1200 Compliant']"
+								},
+								"sink": {
+									"path": "$['AB1200 Compliant']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['AMAZON.COM - OMEB9 Unit Cost']"
+								},
+								"sink": {
+									"path": "$['AMAZON.COM - OMEB9 Unit Cost']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Unit Dimensions (mm)']"
+								},
+								"sink": {
+									"path": "$['Unit Dimensions (mm)']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Case Pack Dimensions (mm)']"
+								},
+								"sink": {
+									"path": "$['Case Pack Dimensions (mm)']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Unit of Measure']"
+								},
+								"sink": {
+									"path": "$['Unit of Measure']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Item Type']"
+								},
+								"sink": {
+									"path": "$['Item Type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Business Unit']"
+								},
+								"sink": {
+									"path": "$['Business Unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Division']"
+								},
+								"sink": {
+									"path": "$['Division']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Brand Control']"
+								},
+								"sink": {
+									"path": "$['Brand Control']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Walmart Parent Item ID (CA)']"
+								},
+								"sink": {
+									"path": "$['Walmart Parent Item ID (CA)']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Product Line']"
+								},
+								"sink": {
+									"path": "$['Product Line']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Category']"
+								},
+								"sink": {
+									"path": "$['Category']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Subcategory']"
+								},
+								"sink": {
+									"path": "$['Subcategory']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Bass Pro Shops Web ID']"
+								},
+								"sink": {
+									"path": "$['Bass Pro Shops Web ID']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['AB1200 Label Needed']"
+								},
+								"sink": {
+									"path": "$['AB1200 Label Needed']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['SOTFProd ID']"
+								},
+								"sink": {
+									"path": "$['SOTFProd ID']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['SOTFProduct ID']"
+								},
+								"sink": {
+									"path": "$['SOTFProduct ID']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['List Price']"
+								},
+								"sink": {
+									"path": "$['List Price']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Item Priority']"
+								},
+								"sink": {
+									"path": "$['Item Priority']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Supplier Short Name']"
+								},
+								"sink": {
+									"path": "$['Supplier Short Name']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Origin Port']"
+								},
+								"sink": {
+									"path": "$['Origin Port']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['AMZ - URL']"
+								},
+								"sink": {
+									"path": "$['AMZ - URL']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Best Buy CA URL']"
+								},
+								"sink": {
+									"path": "$['Best Buy CA URL']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Case Pack (cu. ft.)']"
+								},
+								"sink": {
+									"path": "$['Case Pack (cu. ft.)']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Case Pack Dimensions (in)']"
+								},
+								"sink": {
+									"path": "$['Case Pack Dimensions (in)']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Case Pack Height (cm)']"
+								},
+								"sink": {
+									"path": "$['Case Pack Height (cm)']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Case Pack Height (mm)']"
+								},
+								"sink": {
+									"path": "$['Case Pack Height (mm)']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Case Pack Length (cm)']"
+								},
+								"sink": {
+									"path": "$['Case Pack Length (cm)']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Case Pack Length (mm)']"
+								},
+								"sink": {
+									"path": "$['Case Pack Length (mm)']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Case Pack Weight (kg)']"
+								},
+								"sink": {
+									"path": "$['Case Pack Weight (kg)']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Case Pack Width (cm)']"
+								},
+								"sink": {
+									"path": "$['Case Pack Width (cm)']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Case Pack Width (mm)']"
+								},
+								"sink": {
+									"path": "$['Case Pack Width (mm)']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Catalog Product Weight']"
+								},
+								"sink": {
+									"path": "$['Catalog Product Weight']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Catalog Shipping Weight']"
+								},
+								"sink": {
+									"path": "$['Catalog Shipping Weight']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Catalog Site Index Title']"
+								},
+								"sink": {
+									"path": "$['Catalog Site Index Title']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Costco CA URL']"
+								},
+								"sink": {
+									"path": "$['Costco CA URL']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Electrical Specs']"
+								},
+								"sink": {
+									"path": "$['Electrical Specs']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Finance Brand']"
+								},
+								"sink": {
+									"path": "$['Finance Brand']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Item Depth (cm)']"
+								},
+								"sink": {
+									"path": "$['Item Depth (cm)']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Item Depth (mm)']"
+								},
+								"sink": {
+									"path": "$['Item Depth (mm)']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Item Height (cm)']"
+								},
+								"sink": {
+									"path": "$['Item Height (cm)']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Item Height (mm)']"
+								},
+								"sink": {
+									"path": "$['Item Height (mm)']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Item Weight (kg)']"
+								},
+								"sink": {
+									"path": "$['Item Weight (kg)']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Item Width (cm)']"
+								},
+								"sink": {
+									"path": "$['Item Width (cm)']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Item Width (mm)']"
+								},
+								"sink": {
+									"path": "$['Item Width (mm)']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Office Deport - URL']"
+								},
+								"sink": {
+									"path": "$['Office Deport - URL']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Origin Port to Warehouse Rate']"
+								},
+								"sink": {
+									"path": "$['Origin Port to Warehouse Rate']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Unit Dimensions (in)']"
+								},
+								"sink": {
+									"path": "$['Unit Dimensions (in)']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['WMT (CA) - URL']"
+								},
+								"sink": {
+									"path": "$['WMT (CA) - URL']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['WMT - URL']"
+								},
+								"sink": {
+									"path": "$['WMT - URL']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Zoro - URL']"
+								},
+								"sink": {
+									"path": "$['Zoro - URL']"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "IN_SalsifyAPI",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "OUT_SalsifyAPI",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2024-08-29T18:47:58Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

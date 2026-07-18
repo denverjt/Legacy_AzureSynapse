@@ -1,0 +1,195 @@
+{
+	"name": "IN_M3Precog",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Precog",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "CONO",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "SUNO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SUTY",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "SUNM",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ALSU",
+				"type": "nvarchar"
+			},
+			{
+				"name": "STAT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CORG",
+				"type": "nvarchar"
+			},
+			{
+				"name": "COR2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LNCD",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PHNO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PHN2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TLNO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TFNO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CSCD",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ECAR",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DTFM",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EDIT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VRNO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SUCO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SUAL",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SUCM",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MEPF",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PODA",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "CFI1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CFI2",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "CFI3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CFI4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CFI5",
+				"type": "nvarchar"
+			},
+			{
+				"name": "HAFE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DESV",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TIZO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FWSC",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TXID",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "RGDT",
+				"type": "date"
+			},
+			{
+				"name": "RGTM",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LMDT",
+				"type": "date"
+			},
+			{
+				"name": "CHNO",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "CHID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PPIN",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "LMTS",
+				"type": "datetimeoffset",
+				"scale": 7
+			},
+			{
+				"name": "GEOC",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "RASN",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "M3",
+			"table": "CIDMAS"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

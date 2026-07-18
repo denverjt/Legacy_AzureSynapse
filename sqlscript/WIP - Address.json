@@ -1,0 +1,17 @@
+{
+	"name": "WIP - Address",
+	"properties": {
+		"content": {
+			"query": "SELECT      DISTINCT OH.ORNO as [Order Number]\n,           OH.RLDT AS [Ship Date]\n,           oh.uca7 as [Carrier]\n,           OC.CUNO AS [Customer Number]\n,           COALESCE(OA.CUNM, OCD.CUNM) AS [Ship To Name]\n,           COALESCE(OA.CUA1, OCD.CUA1) AS [Ship To Address 1]\n,           COALESCE(OA.CUA2, OCD.CUA2) AS [Ship To Address 2]\nFROM        M3.OOHEAD OH\nJOIN        M3.OCUSMA OC ON OH.CUNO = OC.CUNO\n--JOIN        M3.MHDISH MH ON OH.ORNO = MH.RIDN\n--JOIN        M3.MPTRNS MP ON MH.DLIX = MP.DLIX\nLEFT JOIN   M3.OOADRE OA ON OH.ORNO = OA.ORNO\nLEFT JOIN   M3.OCUSAD OCD ON OH.CUNO = OCD.CUNO AND OH.ADID = OCD.ADID\nWHERE       OH.RLDT >= '2024-02-01'\nand         oh.uca7 like '%UPS%'\nAND         (OH.CUNO LIKE '7%' OR OH.CUNO LIKE '5%')\n--AND         DLRM LIKE '%UPS%'\nAND         (LEN(COALESCE(OA.CUNM, OCD.CUNM)) > 34 OR LEN(COALESCE(OA.CUA1, OCD.CUA1)) > 34 OR LEN(COALESCE(OA.CUA2, OCD.CUA2)) > 34)",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": -1
+		},
+		"type": "SqlQuery"
+	}
+}

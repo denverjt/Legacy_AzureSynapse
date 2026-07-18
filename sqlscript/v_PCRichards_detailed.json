@@ -1,0 +1,17 @@
+{
+	"name": "v_PCRichards_detailed",
+	"properties": {
+		"content": {
+			"query": "create view v_PCRichards_detailed\n-- drop view v_PCRichards_detailed\nas\nSELECT          DISTINCT OH.ORNO as [order-num]\n,               OH.RLDT as [required-date]\n,               CASE WHEN OL.ORST not like '%7%' then 'Open' else 'Partially Confirmed' end as [order-status]\n,               OH.CUOR as [cust-po-number]\n,               OC.CUNO as [cust-code]\n,                CASE WHEN OL.ORST like '%2%' AND OL.WHLO NOT IN ('DIW', 'DFF') then 'True' else 'False' end AS [backorder]\n,               OC.CUNM as [cust-name]\n,               OL.ITNO as [product-code]\n,               OL.ORQT - OL.IVQT as [Open Qty]\nFROM            M3.OOHEAD OH\nJOIN            M3.OOLINE OL ON OH.ORNO = OL.ORNO\nJOIN            M3.OCUSMA OC ON OH.CUNO = OC.CUNO\nJOIN            M3.MITMAS MM ON OL.ITNO = MM.ITNO\nLEFT JOIN       M3.OOADRE OA ON OH.ORNO = OA.ORNO and OH.ADID = OA.ADID\nWHERE           OL.ORST < '77'\nAND             OC.CUNO = '50333'",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

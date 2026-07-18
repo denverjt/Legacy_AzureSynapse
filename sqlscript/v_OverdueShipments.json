@@ -1,0 +1,17 @@
+{
+	"name": "v_OverdueShipments",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW     v_OverdueShipments\n-- drop view v_OverdueShipments\nas\nSELECT          *\nFROM            v_OpenOrdersByStatus\nWHERE           [Qty Status] = '4 - Waived/Pick'\nAND             [Expected Ship Date] < cast(dateadd(hh,-5,getdate()) as date)",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

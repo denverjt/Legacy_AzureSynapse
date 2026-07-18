@@ -1,0 +1,17 @@
+{
+	"name": "Company G Test - Open Orders",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW     v_GWT_Bridge_Test\nas\nSELECT\t\t\tDISTINCT 'Syspro G' as ERP\n,               NULL as [Line Status]\n,               0 as [Order Stop Code]\n,               'No Stop Code' as [Order Stop Code Description]\n,               '7 - Invoiced' as [Qty Status]\n,\t\t\t\tAC.Customer as [Customer Number]\n,\t\t\t\tAC.Name as [Customer Name]\n,               NULL as SalesRep\n,               NULL as Territory\n,               SM.ShipAddress1 as [Address 1]\n,               SM.ShipAddress2 as [Address 2]\n,               SM.ShipAddress3 as [City]\n,               SM.ShipAddress4 as [State]\n,               SM.ShipPostalCode as [Zip Code]\n,               AC.Telephone as [Phone Number]\n,               SM.ShipAddress5 as [Country]\n,               ATS.TermsCode as [Payment Terms]\n,               NULL as [Cash Terms]\n,               NULL as [Freight Terms]\n,               NULL as [Carrier]\n,\t\t\t\tATD.SalesOrder as [Sales Order]\n,               ATD.Invoice as [Invoice Number]\n,\t\t\t\tATD.CustomerPoNumber as [Customer PO]\n,               NULL as [Order Type]\n,               NULL as [Sales Admin Responsible]\n,               SM.EntrySystemDate as [Entry Date]\n,               SM.ReqShipDate as [Requested Date]\n,               NULL as [DI Date]\n,               ATD.InvoiceDate as [Inv Date]\n,               DF.Brand AS [Brand]\n,               ATD.DetailLine as [Line Number]\n,\t\t\t\tISNULL(GV.VisualPartID, ATD.StockCode) as [Item Number]\n,\t\t\t\tISNULL(P.Description, IM.Description) as [Item Description]\n,               ATD.Warehouse as [Warehouse]\n,               ATD.NetSalesValue/NULLIF(ATD.QtyInvoiced,0) as [Unit Price]\n,               ATD.QtyInvoiced as [Order Qty]\n,               ATD.QtyInvoiced as [Quantity]\nFROM\t\t\tSCG.ArTrnSummary ATS\nJOIN\t\t\tSCG.ArTrnDetail ATD on ATS.Invoice = ATD.Invoice\nJOIN\t\t\tSCG.ArCustomer AC on ATS.Customer = AC.Customer\nJOIN\t\t\tSCG.InvMaster IM on ATD.StockCode = IM.StockCode\nJOIN\t\t\tSCA.Division_Family DF on ATD.ProductClass = DF.ProductClass\nLEFT JOIN\t\tSCG.GWT_To_Visual GV on ATD.StockCode = GV.SysproStockCode\nLEFT JOIN\t\tECM.PART P on GV.VisualPartID = P.ID\nLEFT JOIN       SCG.SorMaster SM on ATS.SalesOrder = SM.SalesOrder\nWHERE\t\t\tATD.InvoiceDate >= '2023-01-01'\nand\t\t\t\tDF.Company = 'G'",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

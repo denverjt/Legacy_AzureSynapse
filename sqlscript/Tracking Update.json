@@ -1,0 +1,17 @@
+{
+	"name": "Tracking Update",
+	"properties": {
+		"content": {
+			"query": "SELECT \t\t'*EXE' [PRFL_Process Flag]\n,\t\t\t'100' [CONO_Company]\n,\t\t\tMT.WHLO [WHLO_Warehouse]\n,\t\t\t'WS' [E0PA_Partner]\n,\t\t\t'WMS' [E065_Message type]\n,\t\t\tOH.CUNO [CUNO_Customer number]\n,\t\t\tITNO [ITNO_Item number]\n,\t\t\tWHSL [WHSL_Location]\n,\t\t\t'1' [QTYP_Quantity Picked]\n,\t\t\tRIDL [RIDL_Order line]\n,\t\t\tRIDI [RIDI_Order index]\n,\t\t\t'1' [PLSX_Picking list suffix]\n,\t\t\tBREF [BREF_Lot Reference 1]\nFROM        M3.MITTRA MT \nJOIN       M3.OOHEAD OH ON MT.RIDN = OH.ORNO \nWHERE \t\tMT.RIDI IN('123879','126580','127333','130766','130768','127872','128727','128836','129104','129329','129342','129454','130009','130030','130132','130816')\nAND MT.TTYP ='93'\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

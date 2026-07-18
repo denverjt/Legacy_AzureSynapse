@@ -1,0 +1,17 @@
+{
+	"name": "v_M3_Quotations",
+	"properties": {
+		"content": {
+			"query": "create view         v_M3_Quotations\nas\nSELECT              OH.ORNO AS [Sales Order Number]\n,                   OH.CUNO AS [Customer ID]\n,                   OC.CUNM AS [Customer Name]\n,                   OH.RESP AS [Responsible]\n,                   OH.ORDT AS [Order Date]\n,                   OL.PONR AS [Line Number]\n,                   OL.ITNO AS [Item ID]\n,                   IM.ITDS AS [Item Name]\n,                   OL.ORQT AS [Order Qty]\n,                   OL.NEPR*OL.ORQT AS [Order Amt]\nFROM                DBO.M3_OOHEAD OH\nJOIN                DBO.M3_OOLINE OL ON OH.ORNO = OL.ORNO\nJOIN                DBO.M3_OCUSMA OC ON OH.CUNO = OC.CUNO\nJOIN                DBO.M3_MITMAS IM ON OL.ITNO = IM.ITNO\nWHERE               OL.ORQT > 0\nAND\t\t\t\t\tOH.ORNO LIKE '6%'\n--drop view v_M3_Quotations",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

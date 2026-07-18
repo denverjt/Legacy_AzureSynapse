@@ -1,0 +1,17 @@
+{
+	"name": "BI_InvoicedOrders",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW BI_InvoicedOrders\n-- Drop view BI_InvoicedOrders\n-- select top 100 * from BI_InvoicedOrders where Year = '2026' order by 'Invoice Date' DESC\n\nAS\n\nSELECT DISTINCT\n\n    TRY_CAST(\n            LEFT(CONVERT(VARCHAR(8), H.IVDT), 4) + '-' + \n            SUBSTRING(CONVERT(VARCHAR(8), H.IVDT), 5, 2) + '-' + \n            RIGHT(CONVERT(VARCHAR(8), H.IVDT), 2) AS DATE) AS [Invoice Date],\n    H.YEA4 AS [Year],\n    CONVERT(VARCHAR(20),H.EXIN) AS [Extended Invoice Number],\n    CONVERT(VARCHAR(20),H.IVNO) AS [Invoice Number],\n    H.ORNO AS [Order Number],\n    H.ORTP AS [Order Type],\n    H.CUNO AS [Customer Number],\n    H.PYNO AS [Payer],\n    H.ADID AS [Address ID],\n    L.ITNO AS [Item Number],\n    IM.ITGR AS [Product Line],\n    IM.ITCL AS [Brand],\n    L.PONR AS [Order Line],\n    L.POSX AS [Line Suffix],\n    L.LNCL AS [Line Classification],\n    L.IVQT AS [Qty],\n    L.SAPR AS [Unit Price],\n    L.UCOS AS [Unit Cost],\n    CASE WHEN LNCL = 2 THEN 0 ELSE (L.IVQT * L.SAPR * H.RAIN) END AS [Dollar Amount],\n    CASE WHEN LNCL = 2 THEN 0 ELSE L.DCOS END AS [Total Cost],\n    L.WHLO AS [Warehouse],\n    L.CUOR AS [Customer PO],\n    L.DLIX AS [Delivery Number],\n    COALESCE(OA.CUNM, OA2.CUNM, OC.CUNM) AS [Ship to Name],\n    COALESCE(OA.CUA1, OA2.CUA1, OC.CUA1) AS [Ship to Address 1],\n    COALESCE(OA.CUA2, OA2.CUA2, OC.CUA2) AS [Ship to Address 2],\n    COALESCE(OA.TOWN, OA2.TOWN, OC.TOWN) AS [Ship to City],\n    COALESCE(OA.ECAR, OA2.ECAR, OC.ECAR) AS [Ship to State],\n    COALESCE(OA.PONO, OA2.PONO, OC.PONO) AS [Ship to Zip Code],\n    COALESCE(OA.CSCD, OA2.CSCD, OC.CUA4) AS [Ship to Country],\n    OC.CUNM AS [Bill to Name],\n    OC.CUA1 AS [Bill to Address 1],\n    OC.CUA2 AS [Bill to Address 2],\n    OC.TOWN AS [Bill to City],\n    OC.ECAR AS [Bill to State],\n    OC.PONO AS [Bill to Zip Code],\n    OC.CUA4 AS [Bill to Country],\n    OO.RGDT AS [Order Entry Date]\n\nFROM M3.ODHEAD H\n\nLEFT JOIN M3.ODLINE L ON H.ORNO = L.ORNO AND H.EXIN = L.EXIN AND H.DLIX = L.DLIX\nLEFT JOIN M3.OOHEAD OO ON H.ORNO = OO.ORNO\nLEFT JOIN M3.MITMAS IM ON L.ITNO = IM.ITNO\nLEFT JOIN M3.OCUSMA OC ON H.CUNO = OC.CUNO \nLEFT JOIN M3.OOADRE OA ON H.ORNO = OA.ORNO AND OA.ADRT = '1' AND H.ADID = OA.ADID\nLEFT JOIN M3.OCUSAD OA2 ON H.CUNO = OA2.CUNO AND H.ADID = OA2.ADID AND H.ADID <> '' AND OA2.ADRT = '1'\n\nWHERE H.IVNO <> 0 AND H.YEA4 >= '2022'\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

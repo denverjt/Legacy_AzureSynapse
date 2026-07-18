@@ -1,0 +1,17 @@
+{
+	"name": "v_LandedCost_CFO",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW v_LandedCost_CFO\n--DROP VIEW v_LandedCost_CFO\nAS\nSELECT          DISTINCT CASE when ITM.ITCL IN ('AVA') THEN 'Compact' WHEN ITM.ITCL IN ('MXC', 'PMXC', 'GEN', 'PGEN', 'MXI', 'PMXI', 'BEV', 'BLA', 'DUUR', 'SAP') THEN 'Commercial' else 'Consumer' END AS Division\n,               POH.PUNO AS [PO no]\n,               POH.ORTY AS [PO Type]\n,               POL.PNLI AS [Ln]\n,               POL.PNLS AS [Ln Sub]\n,               POL.SUDO AS [Container Num]\n,               REPN AS [RecvgNum]\n,               CDSE AS [Sno]\n,               CEID AS [Elemnt]\n,               MAX(RCAC) AS [Rcvd cost amt]\n,               MAX(POL.PUPR) AS [Rcvd cost ppU/M]\n,               SUM(ORQA) as [Reported qty]\n,               MAX(ITM.GRWE)*SUM(ORQA) as [Total Weight]\n,               ITM.ITCL AS [Brand]\n,               ITM.ITNO AS [Item number]\n,               ITM.ITDS AS [Description]\n,               POL.RCDT AS [Trs dt]\n,               POL.DWDT as [Delivery Date]\n,               ITM.PRGP as [Item Type]\n,               CASE WHEN POL.RCDT <> '0' then LEFT(CAST(CAST(POL.RCDT as varchar(8)) as date), 10) else NULL end as [Trs dt ext]\n,               POL.CSNO AS [HTS Code]\n,               ITM.CFI4 AS [Trump]\n,               null AS Ls\n,               null AS Hs\n,               POL.ORCO AS [Country]\n,               ITGR AS [Item grp]\n,               CST.TX40 AS [Item Group]\n,               POL.WHLO AS [Whs]\n,               CASE WHEN CEID = 'PMI' THEN MAX(RCAC)*1.0/NULLIF((MAX(POL.PUPR)*SUM(ORQA)),0) ELSE NULL END as PMI\nFROM            M3.MPHEAD POH\nJOIN            M3.MPLINE POL ON POH.PUNO = POL.PUNO\nJOIN            M3.MITMAS ITM ON POL.ITNO = ITM.ITNO\nJOIN            M3.CSYTAB CST ON ITM.ITGR = CST.STKY\nLEFT JOIN       M3.FGRPCL PCL ON POH.PUNO = PCL.PUNO AND POL.PNLI = PCL.PNLI AND POL.PNLS = PCL.PNLS\nWHERE           1=1\nGROUP BY        CASE when ITM.ITCL IN ('AVA') THEN 'Compact' WHEN ITM.ITCL IN ('MXC', 'PMXC', 'GEN', 'PGEN', 'MXI', 'PMXI', 'BEV', 'BLA', 'DUUR', 'SAP') THEN 'Commercial' else 'Consumer' END , ITM.ITCL\n,               POH.PUNO, POL.PNLI, POL.ORCO, POL.WHLO, POL.SUDO, ITM.ITNO, ITM.ITDS, CST.TX40, POL.DWDT\n,               POL.CSNO, POL.PUSL, CEID, ITGR, REPN, CDSE, POL.RCDT, ITM.CFI4, POL.PNLS, POH.ORTY, ITM.PRGP\n\nselect * from m3.fgrpcl\n\n\n\n\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

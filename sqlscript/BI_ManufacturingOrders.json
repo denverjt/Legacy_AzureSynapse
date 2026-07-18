@@ -1,0 +1,17 @@
+{
+	"name": "BI_ManufacturingOrders",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW BI_ManufacturingOrders\n-- drop view BI_ManufacturingOrders\n\nAS\n\n    SELECT\n        MFNO AS [Manufacturing Number],\n        WHST AS [Order Status],\n        WHLO AS [Warehouse],\n        ITNO AS [Item Number],\n        PRNO AS [Product Number],\n        ORTY AS [Order Type],\n        CASE WHEN WHST < 80 THEN 'Open' ELSE 'Completed' END AS [Status Type],\n        WOSQ AS [Reporting Number],\n        RESP AS [Responsible],\n        STDT AS [Start Date],\n        TRY_CAST(\n            LEFT(CONVERT(VARCHAR(8), RPDT), 4) + '-' + \n            SUBSTRING(CONVERT(VARCHAR(8), RPDT), 5, 2) + '-' + \n            RIGHT(CONVERT(VARCHAR(8), RPDT), 2)\n            AS DATE\n        ) AS [Report Date],\n        RGDT AS [Entry Date],\n        ORQA AS [Order Quantity],\n        RVQA AS [Received Qty],\n        MAQA AS [Manufactured Quantity],\n        WCLN AS [Production Line],\n        RORN AS [Reference Order Number],\n        RORL AS [Reference Order Line]\n\n    FROM M3.MWOHED MW\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

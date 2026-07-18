@@ -1,0 +1,323 @@
+{
+	"name": "ZeroDownContainer_Pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "CopyXLtoPar",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "ExcelSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						}
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings",
+							"copyBehavior": "FlattenHierarchy"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Container Number(s)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Container",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Po Number",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "PO",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Invoice Number",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Invoice",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Invoice date",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "InvoiceDate",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Ship Date",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ShipDate",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Carrier Name",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CarrierName",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Payable Amount",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "PayableAmt",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Linehaul",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Linehaul",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Final Mile",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "FinalMile",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Other",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Other",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Payment Number",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "PaymentNumber",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Batch Date",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "BatchDate",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Status",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Status",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Division",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Division",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "BOL Number",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "BOLNumber",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "In Gate Date",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "InGateDate",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Shipper Name",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ShipperName",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Shipper Address",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ShipperAddress",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Shipper City",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ShipperCity",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Shipper State",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ShipperState",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Shipper Country",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ShipperCountry",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Shipper ZIP",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ShipperZIP",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Consignee Name",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ConsigneeName",
+									"physicalType": "UTF8"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "IN_ZDContainer",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "OUT_ZDContainer",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2024-08-23T21:46:23Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

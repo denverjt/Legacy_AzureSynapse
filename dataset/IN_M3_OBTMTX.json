@@ -1,0 +1,98 @@
+{
+	"name": "IN_M3_OBTMTX",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "tlcdw-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "OBTMTX_2023-01-18_00-31-22-272.json",
+				"folderPath": "M3/JSONProcess/OBTMTX",
+				"fileSystem": "tlclakefs"
+			},
+			"compression": {
+				"type": "deflate",
+				"level": "Optimal"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"CONO": {
+					"type": "integer"
+				},
+				"TATB": {
+					"type": "string"
+				},
+				"PREX": {
+					"type": "string"
+				},
+				"FVDT": {
+					"type": "integer"
+				},
+				"OBV1": {
+					"type": "string"
+				},
+				"OBV2": {
+					"type": "string"
+				},
+				"OBV3": {
+					"type": "string"
+				},
+				"OBV4": {
+					"type": "string"
+				},
+				"OBV5": {
+					"type": "string"
+				},
+				"TVDT": {
+					"type": "integer"
+				},
+				"TAGN": {
+					"type": "string"
+				},
+				"TREC": {
+					"type": "string"
+				},
+				"TXID": {
+					"type": "integer"
+				},
+				"RGDT": {
+					"type": "integer"
+				},
+				"RGTM": {
+					"type": "integer"
+				},
+				"LMDT": {
+					"type": "integer"
+				},
+				"CHNO": {
+					"type": "integer"
+				},
+				"CHID": {
+					"type": "string"
+				},
+				"LMTS": {
+					"type": "integer"
+				},
+				"accountingEntity": {
+					"type": "string"
+				},
+				"variationNumber": {
+					"type": "integer"
+				},
+				"timestamp": {
+					"type": "string"
+				},
+				"deleted": {
+					"type": "boolean"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

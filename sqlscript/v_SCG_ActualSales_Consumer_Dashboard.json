@@ -1,0 +1,17 @@
+{
+	"name": "v_SCG_ActualSales_Consumer_Dashboard",
+	"properties": {
+		"content": {
+			"query": "-- View for SCG_ActualSales_Consumer_Dashboard Report v20220802\n--\n-- DROP VIEW dbo.SCG_ActualSales_Consumer_Dashboard\n--\n\nCREATE VIEW dbo.SCG_ActualSales_Consumer_Dashboard AS \nSELECT \n  'Company G' as Company, \n  AC.Customer as [Customer ID], \n  AC.Name as [Customer Name], \n  'GWT' as [Budget Category], \n  COALESCE(MLineShipDate, ReqShipDate) as [Ship Date], \n  SM.SalesOrder as [Order ID], \n  CustomerPoNumber as [Customer PO], \n  MStockCode as [Part ID], \n  MPrice * MOrderQty as [Ship Amount] \nFROM \n  SCG.SorMaster SM \n  JOIN SCG.SorDetail SD ON SM.SalesOrder = SD.SalesOrder \n  JOIN SCG.ArCustomer AC on SM.Customer = AC.Customer \n  JOIN SCG.InvMaster IM on SD.MStockCode = IM.StockCode \nWHERE \n  COALESCE(MLineShipDate, ReqShipDate) BETWEEN DATEADD(\n    MM, \n    DATEDIFF(\n      MM, \n      0, \n      CAST(\n        GETDATE() AS Date\n      )\n    ), \n    0\n  ) \n  AND DATEADD(\n    DD, \n    -1, \n    DATEADD(\n      MM, \n      DATEDIFF(\n        MM, \n        0, \n        CAST(\n          GETDATE() AS Date\n        )\n      ) + 1, \n      0\n    )\n  ) \n  AND OrderStatus IN ('9') \n  AND IM.ProductClass IN (\n    'CHEF', 'EXCL', 'OMEG', 'VINT', 'WEST', \n    'ZERO', 'YONA', 'YONP'\n  ) \n  AND MPrice * MOrderQty >= 0\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

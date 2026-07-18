@@ -1,0 +1,17 @@
+{
+	"name": "item master data",
+	"properties": {
+		"content": {
+			"query": "select im.itno as item_number\n,       itds as item_desc\n, fuds as item_long_desc\n, itcl as brand\n, itgr as category\n, cs.tx40 as category_desc\n, prgp as item_type\n, mabu as'make[1]_or_buy[2]'\n, buar as business_area\n, ilen as length\n, iwid as width\n, ihei as height\n, grwe as gross_weight\n, cfi4 as trump_tariff\n, pupr as purchase_price\n, suno as supplier\n, sapr as sales_price\n, mf.csno as hts_code\nfrom m3.mitmas Im \njoin m3.mitfac mf on im.itno = mf.itno\nleft join m3.csytab cs on im.itgr = cs.stky and cs.stco = 'ITGR'",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": -1
+		},
+		"type": "SqlQuery"
+	}
+}

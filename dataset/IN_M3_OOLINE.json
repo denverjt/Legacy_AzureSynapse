@@ -1,0 +1,905 @@
+{
+	"name": "IN_M3_OOLINE",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "tlcdw-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "OOLINE_2022-10-12_22-04-49-496.json",
+				"folderPath": "M3/JSON/OOLINE",
+				"fileSystem": "tlclakefs"
+			},
+			"compression": {
+				"type": "deflate",
+				"level": "Optimal"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"CONO": {
+					"type": "integer"
+				},
+				"DIVI": {
+					"type": "string"
+				},
+				"ORNO": {
+					"type": "string"
+				},
+				"PONR": {
+					"type": "integer"
+				},
+				"POSX": {
+					"type": "integer"
+				},
+				"LTYP": {
+					"type": "string"
+				},
+				"ORST": {
+					"type": "string"
+				},
+				"FACI": {
+					"type": "string"
+				},
+				"WHLO": {
+					"type": "string"
+				},
+				"ITNO": {
+					"type": "string"
+				},
+				"REPI": {
+					"type": "string"
+				},
+				"ITDS": {
+					"type": "string"
+				},
+				"TEDS": {
+					"type": "string"
+				},
+				"ORQT": {
+					"type": "number"
+				},
+				"ORQA": {
+					"type": "number"
+				},
+				"RNQT": {
+					"type": "number"
+				},
+				"RNQA": {
+					"type": "number"
+				},
+				"ALQT": {
+					"type": "number"
+				},
+				"ALQA": {
+					"type": "number"
+				},
+				"PLQT": {
+					"type": "number"
+				},
+				"PLQA": {
+					"type": "number"
+				},
+				"DLQT": {
+					"type": "number"
+				},
+				"DLQA": {
+					"type": "number"
+				},
+				"IVQT": {
+					"type": "number"
+				},
+				"IVQA": {
+					"type": "number"
+				},
+				"DCCD": {
+					"type": "integer"
+				},
+				"ALUN": {
+					"type": "string"
+				},
+				"DCCA": {
+					"type": "integer"
+				},
+				"COFA": {
+					"type": "number"
+				},
+				"DMCF": {
+					"type": "integer"
+				},
+				"SPUN": {
+					"type": "string"
+				},
+				"PCOF": {
+					"type": "number"
+				},
+				"DCCS": {
+					"type": "integer"
+				},
+				"COFS": {
+					"type": "number"
+				},
+				"DMCS": {
+					"type": "integer"
+				},
+				"POPN": {
+					"type": "string"
+				},
+				"ALWT": {
+					"type": "integer"
+				},
+				"ALWQ": {
+					"type": "string"
+				},
+				"SAPR": {
+					"type": "number"
+				},
+				"NEPR": {
+					"type": "number"
+				},
+				"SACD": {
+					"type": "integer"
+				},
+				"PRMO": {
+					"type": "string"
+				},
+				"DIC1": {
+					"type": "integer"
+				},
+				"DIC2": {
+					"type": "integer"
+				},
+				"DIC3": {
+					"type": "integer"
+				},
+				"DIC4": {
+					"type": "integer"
+				},
+				"DIC5": {
+					"type": "integer"
+				},
+				"DIC6": {
+					"type": "integer"
+				},
+				"DIP1": {
+					"type": "number"
+				},
+				"DIP2": {
+					"type": "number"
+				},
+				"DIP3": {
+					"type": "number"
+				},
+				"DIP4": {
+					"type": "number"
+				},
+				"DIP5": {
+					"type": "number"
+				},
+				"DIP6": {
+					"type": "number"
+				},
+				"DIA1": {
+					"type": "integer"
+				},
+				"DIA2": {
+					"type": "integer"
+				},
+				"DIA3": {
+					"type": "integer"
+				},
+				"DIA4": {
+					"type": "integer"
+				},
+				"DIA5": {
+					"type": "integer"
+				},
+				"DIA6": {
+					"type": "integer"
+				},
+				"CMP1": {
+					"type": "string"
+				},
+				"CMP2": {
+					"type": "string"
+				},
+				"CMP3": {
+					"type": "string"
+				},
+				"CMP4": {
+					"type": "string"
+				},
+				"CMP5": {
+					"type": "string"
+				},
+				"CMP6": {
+					"type": "string"
+				},
+				"DIBE": {
+					"type": "string"
+				},
+				"DIRE": {
+					"type": "string"
+				},
+				"DCHA": {
+					"type": "integer"
+				},
+				"DPST": {
+					"type": "integer"
+				},
+				"DDSU": {
+					"type": "integer"
+				},
+				"IDSC": {
+					"type": "integer"
+				},
+				"ACRF": {
+					"type": "string"
+				},
+				"OTDI": {
+					"type": "integer"
+				},
+				"DWDT": {
+					"type": "integer"
+				},
+				"DWHM": {
+					"type": "integer"
+				},
+				"CODT": {
+					"type": "integer"
+				},
+				"COHM": {
+					"type": "integer"
+				},
+				"DWDZ": {
+					"type": "integer"
+				},
+				"DWHZ": {
+					"type": "integer"
+				},
+				"CODZ": {
+					"type": "integer"
+				},
+				"COHZ": {
+					"type": "integer"
+				},
+				"TIZO": {
+					"type": "string"
+				},
+				"DLTS": {
+					"type": "integer"
+				},
+				"STCD": {
+					"type": "integer"
+				},
+				"PRCH": {
+					"type": "integer"
+				},
+				"RORC": {
+					"type": "integer"
+				},
+				"RORN": {
+					"type": "string"
+				},
+				"RORL": {
+					"type": "integer"
+				},
+				"UCOS": {
+					"type": "integer"
+				},
+				"COCD": {
+					"type": "integer"
+				},
+				"UCCD": {
+					"type": "integer"
+				},
+				"CMNO": {
+					"type": "string"
+				},
+				"HDPR": {
+					"type": "string"
+				},
+				"CFIN": {
+					"type": "integer"
+				},
+				"ECVS": {
+					"type": "integer"
+				},
+				"VTCD": {
+					"type": "integer"
+				},
+				"JDCD": {
+					"type": "string"
+				},
+				"DLSP": {
+					"type": "string"
+				},
+				"LNAM": {
+					"type": "number"
+				},
+				"LNA2": {
+					"type": "number"
+				},
+				"DINR": {
+					"type": "integer"
+				},
+				"DISX": {
+					"type": "integer"
+				},
+				"AGNO": {
+					"type": "string"
+				},
+				"BAGC": {
+					"type": "string"
+				},
+				"BAGD": {
+					"type": "integer"
+				},
+				"AGLN": {
+					"type": "integer"
+				},
+				"PRRF": {
+					"type": "string"
+				},
+				"NTCD": {
+					"type": "integer"
+				},
+				"CNQT": {
+					"type": "number"
+				},
+				"EDFP": {
+					"type": "integer"
+				},
+				"SMCD": {
+					"type": "string"
+				},
+				"BNCD": {
+					"type": "integer"
+				},
+				"PRAC": {
+					"type": "integer"
+				},
+				"VRCD": {
+					"type": "string"
+				},
+				"ECLC": {
+					"type": "string"
+				},
+				"ORCO": {
+					"type": "string"
+				},
+				"PRTX": {
+					"type": "integer"
+				},
+				"POTX": {
+					"type": "integer"
+				},
+				"DTID": {
+					"type": "integer"
+				},
+				"DELS": {
+					"type": "integer"
+				},
+				"E0PA": {
+					"type": "string"
+				},
+				"DSGP": {
+					"type": "string"
+				},
+				"MOYE": {
+					"type": "string"
+				},
+				"PUSN": {
+					"type": "string"
+				},
+				"PUTP": {
+					"type": "integer"
+				},
+				"QTQL": {
+					"type": "integer"
+				},
+				"TEPA": {
+					"type": "string"
+				},
+				"PACT": {
+					"type": "string"
+				},
+				"CUPA": {
+					"type": "string"
+				},
+				"D1QT": {
+					"type": "number"
+				},
+				"CUNO": {
+					"type": "string"
+				},
+				"CUOR": {
+					"type": "string"
+				},
+				"CUPO": {
+					"type": "integer"
+				},
+				"CUSX": {
+					"type": "integer"
+				},
+				"SMCC": {
+					"type": "integer"
+				},
+				"RSCD": {
+					"type": "string"
+				},
+				"MUFT": {
+					"type": "integer"
+				},
+				"INPR": {
+					"type": "integer"
+				},
+				"CUCT": {
+					"type": "string"
+				},
+				"ABNO": {
+					"type": "integer"
+				},
+				"PROJ": {
+					"type": "string"
+				},
+				"ELNO": {
+					"type": "string"
+				},
+				"BPAT": {
+					"type": "string"
+				},
+				"BPST": {
+					"type": "integer"
+				},
+				"NOAA": {
+					"type": "integer"
+				},
+				"CPRE": {
+					"type": "string"
+				},
+				"HAFE": {
+					"type": "string"
+				},
+				"CAWE": {
+					"type": "number"
+				},
+				"WHSL": {
+					"type": "string"
+				},
+				"BANO": {
+					"type": "string"
+				},
+				"CAMU": {
+					"type": "string"
+				},
+				"ADID": {
+					"type": "string"
+				},
+				"ROUT": {
+					"type": "string"
+				},
+				"RODN": {
+					"type": "integer"
+				},
+				"DSDT": {
+					"type": "integer"
+				},
+				"DSHM": {
+					"type": "integer"
+				},
+				"DSTX": {
+					"type": "string"
+				},
+				"DEFC": {
+					"type": "integer"
+				},
+				"PLDT": {
+					"type": "integer"
+				},
+				"PLHM": {
+					"type": "integer"
+				},
+				"SRCD": {
+					"type": "integer"
+				},
+				"SPLC": {
+					"type": "string"
+				},
+				"DLBU": {
+					"type": "integer"
+				},
+				"SPOS": {
+					"type": "integer"
+				},
+				"FDED": {
+					"type": "integer"
+				},
+				"LDED": {
+					"type": "integer"
+				},
+				"AETY": {
+					"type": "integer"
+				},
+				"ATNR": {
+					"type": "integer"
+				},
+				"SCMO": {
+					"type": "string"
+				},
+				"PRPR": {
+					"type": "integer"
+				},
+				"CINA": {
+					"type": "integer"
+				},
+				"ATV1": {
+					"type": "number"
+				},
+				"ATV2": {
+					"type": "number"
+				},
+				"ATV3": {
+					"type": "number"
+				},
+				"ATV4": {
+					"type": "number"
+				},
+				"ATV5": {
+					"type": "number"
+				},
+				"ATV6": {
+					"type": "string"
+				},
+				"ATV7": {
+					"type": "string"
+				},
+				"ATV8": {
+					"type": "string"
+				},
+				"ATV9": {
+					"type": "string"
+				},
+				"ATV0": {
+					"type": "string"
+				},
+				"CNNR": {
+					"type": "integer"
+				},
+				"MNIN": {
+					"type": "string"
+				},
+				"REPN": {
+					"type": "integer"
+				},
+				"ATPR": {
+					"type": "string"
+				},
+				"ATMO": {
+					"type": "string"
+				},
+				"ORTY": {
+					"type": "string"
+				},
+				"SUNO": {
+					"type": "string"
+				},
+				"PUPR": {
+					"type": "integer"
+				},
+				"PUCD": {
+					"type": "integer"
+				},
+				"PPUN": {
+					"type": "string"
+				},
+				"CUCD": {
+					"type": "string"
+				},
+				"ODI1": {
+					"type": "number"
+				},
+				"ODI2": {
+					"type": "number"
+				},
+				"ODI3": {
+					"type": "number"
+				},
+				"OURR": {
+					"type": "string"
+				},
+				"OURT": {
+					"type": "string"
+				},
+				"BUYE": {
+					"type": "string"
+				},
+				"FWHL": {
+					"type": "string"
+				},
+				"PRNO": {
+					"type": "string"
+				},
+				"SCHN": {
+					"type": "integer"
+				},
+				"MODL": {
+					"type": "string"
+				},
+				"TEDL": {
+					"type": "string"
+				},
+				"TEL2": {
+					"type": "string"
+				},
+				"RGDT": {
+					"type": "integer"
+				},
+				"RGTM": {
+					"type": "integer"
+				},
+				"LMDT": {
+					"type": "integer"
+				},
+				"CHNO": {
+					"type": "integer"
+				},
+				"CHID": {
+					"type": "string"
+				},
+				"RORX": {
+					"type": "integer"
+				},
+				"LMTS": {
+					"type": "integer"
+				},
+				"RTQA": {
+					"type": "number"
+				},
+				"RTQT": {
+					"type": "number"
+				},
+				"PRHL": {
+					"type": "string"
+				},
+				"SERN": {
+					"type": "string"
+				},
+				"CTNO": {
+					"type": "string"
+				},
+				"APBA": {
+					"type": "integer"
+				},
+				"CFGL": {
+					"type": "string"
+				},
+				"WATP": {
+					"type": "string"
+				},
+				"GWTP": {
+					"type": "string"
+				},
+				"PRHW": {
+					"type": "string"
+				},
+				"SERW": {
+					"type": "string"
+				},
+				"PWNR": {
+					"type": "integer"
+				},
+				"PWSX": {
+					"type": "integer"
+				},
+				"EWST": {
+					"type": "integer"
+				},
+				"AGNB": {
+					"type": "string"
+				},
+				"CTNS": {
+					"type": "string"
+				},
+				"WATQ": {
+					"type": "integer"
+				},
+				"TECN": {
+					"type": "string"
+				},
+				"INAP": {
+					"type": "string"
+				},
+				"PCNR": {
+					"type": "integer"
+				},
+				"PCSU": {
+					"type": "integer"
+				},
+				"RELI": {
+					"type": "integer"
+				},
+				"PIDE": {
+					"type": "string"
+				},
+				"PCLA": {
+					"type": "integer"
+				},
+				"BOP1": {
+					"type": "integer"
+				},
+				"SCLB": {
+					"type": "number"
+				},
+				"OFNO": {
+					"type": "string"
+				},
+				"VERS": {
+					"type": "integer"
+				},
+				"OFNR": {
+					"type": "integer"
+				},
+				"OFSX": {
+					"type": "integer"
+				},
+				"DECU": {
+					"type": "string"
+				},
+				"TEPY": {
+					"type": "string"
+				},
+				"ARST": {
+					"type": "integer"
+				},
+				"RSC1": {
+					"type": "string"
+				},
+				"PMOR": {
+					"type": "integer"
+				},
+				"CBSM": {
+					"type": "integer"
+				},
+				"INIP": {
+					"type": "integer"
+				},
+				"UPAV": {
+					"type": "integer"
+				},
+				"QTBC": {
+					"type": "number"
+				},
+				"MPID": {
+					"type": "integer"
+				},
+				"TOMU": {
+					"type": "number"
+				},
+				"ENNO": {
+					"type": "string"
+				},
+				"LNCL": {
+					"type": "integer"
+				},
+				"PRIO": {
+					"type": "integer"
+				},
+				"CCSA": {
+					"type": "integer"
+				},
+				"RAGN": {
+					"type": "string"
+				},
+				"RASN": {
+					"type": "string"
+				},
+				"CLAT": {
+					"type": "string"
+				},
+				"OLSC": {
+					"type": "integer"
+				},
+				"MIGI": {
+					"type": "string"
+				},
+				"PIKD": {
+					"type": "integer"
+				},
+				"DPOL": {
+					"type": "string"
+				},
+				"RSC5": {
+					"type": "string"
+				},
+				"RSC6": {
+					"type": "string"
+				},
+				"RSC7": {
+					"type": "string"
+				},
+				"MPRD": {
+					"type": "integer"
+				},
+				"UCA1": {
+					"type": "string"
+				},
+				"UCA2": {
+					"type": "string"
+				},
+				"UCA3": {
+					"type": "string"
+				},
+				"UCA4": {
+					"type": "string"
+				},
+				"UCA5": {
+					"type": "string"
+				},
+				"UCA6": {
+					"type": "string"
+				},
+				"UCA7": {
+					"type": "string"
+				},
+				"UCA8": {
+					"type": "string"
+				},
+				"UCA9": {
+					"type": "string"
+				},
+				"UCA0": {
+					"type": "string"
+				},
+				"UDN1": {
+					"type": "integer"
+				},
+				"UDN2": {
+					"type": "integer"
+				},
+				"UDN3": {
+					"type": "integer"
+				},
+				"UDN4": {
+					"type": "integer"
+				},
+				"UDN5": {
+					"type": "integer"
+				},
+				"UDN6": {
+					"type": "integer"
+				},
+				"UID1": {
+					"type": "integer"
+				},
+				"UID2": {
+					"type": "integer"
+				},
+				"UID3": {
+					"type": "integer"
+				},
+				"UCT1": {
+					"type": "string"
+				},
+				"accountingEntity": {
+					"type": "string"
+				},
+				"variationNumber": {
+					"type": "integer"
+				},
+				"timestamp": {
+					"type": "string"
+				},
+				"deleted": {
+					"type": "boolean"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

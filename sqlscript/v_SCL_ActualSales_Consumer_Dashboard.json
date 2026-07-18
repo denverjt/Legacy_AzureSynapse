@@ -1,0 +1,17 @@
+{
+	"name": "v_SCL_ActualSales_Consumer_Dashboard",
+	"properties": {
+		"content": {
+			"query": "-- View for SCL_ActualSales_Consumer_Dashboard Report v20220802\n--\n-- DROP VIEW dbo.SCL_ActualSales_Consumer_Dashboard\n--\n\nCREATE VIEW dbo.SCL_ActualSales_Consumer_Dashboard AS \nSELECT \n  'Company L' as Company, \n  AC.Customer as [Customer ID], \n  AC2.Name as [Customer Name], \n  AC.Category as [Budget Category], \n  COALESCE(MLineShipDate, ReqShipDate) as [Ship Date], \n  SM.SalesOrder as [Order ID], \n  CustomerPoNumber as [Customer PO], \n  MStockCode as [Part ID], \n  MPrice * MOrderQty as [Ship Amount] \nFROM \n  SCL.SorMaster SM \n  JOIN SCL.SorDetail SD ON SM.SalesOrder = SD.SalesOrder \n  JOIN SCL.ArCustomerPlus AC on SM.Customer = AC.Customer \n  JOIN SCL.ArCustomer AC2 on AC.Customer = AC2.Customer \nWHERE \n  SD.MWarehouse in ('ZK', 'ZF', 'ZX') \n  AND COALESCE(MLineShipDate, ReqShipDate) BETWEEN DATEADD(\n    MM, \n    DATEDIFF(\n      MM, \n      0, \n      CAST(\n        GETDATE() AS Date\n      )\n    ), \n    0\n  ) \n  AND DATEADD(\n    DD, \n    -1, \n    DATEADD(\n      MM, \n      DATEDIFF(\n        MM, \n        0, \n        CAST(\n          GETDATE() AS Date\n        )\n      ) + 1, \n      0\n    )\n  ) \n  AND MPrice * MOrderQty >= 0 \n  AND AC.Category <> 'INTERCOMPANY' \n  AND AC.Category <> 'GWT' \n  AND OrderStatus = '9'\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

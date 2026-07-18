@@ -1,0 +1,16 @@
+{
+	"name": "ECVisualVMFG",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=ECS-VSQL3.westbend.local;initial catalog=VMFG;user id=sa",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIwOWRkMmZmNy00Y2M4LTQ3NGEtOGZmZC1jNzgxZjY3NDFiOTMiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "tlcdwintegration-par",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

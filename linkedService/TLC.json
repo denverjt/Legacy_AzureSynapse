@@ -1,0 +1,12 @@
+{
+	"name": "TLC",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "PowerBIWorkspace",
+		"typeProperties": {
+			"workspaceID": "3518a597-ac12-4a87-8a2e-70a28e6c09ef",
+			"tenantID": "1aab06a6-0da6-4739-8975-d582573bc0dd"
+		}
+	}
+}

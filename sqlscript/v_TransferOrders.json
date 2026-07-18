@@ -1,0 +1,17 @@
+{
+	"name": "v_TransferOrders",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW v_TransferOrders\n-- drop view v_TransferOrders\nas\nSELECT      A.*\n--,           B.[In Transit Date]\n--,           B.[In Transit Qty]\n,           C.[Receipt Date]\n,           C.[Received Qty]\n,           [Received Qty] - [Transfer Qty] as [Open Qty]\nFROM\n(\nSELECT      DISTINCT RIDN AS         [Transfer Order]\n,           TRDT AS         [Create Date]\n,           RIDL AS         [Order Line]\n,           MT.ITNO AS      [Item Number]\n,           MM.ITDS AS      [Description]\n,           ABS(MT.TRQT) AS   [Transfer Qty]\n,           MT.RESP AS         [User]\n,           LEFT(WHSL,3) as [Originating Warehouse]\n,           RIGHT(WHSL,3) as [Destination Warehouse]\nFROM        M3.MITTRA MT\nJOIN        M3.MITMAS MM on MT.ITNO = MM.ITNO\nWHERE       TTYP = '51'\n) A\n\n/*LEFT JOIN\n\n(\nSELECT      DISTINCT RIDN AS         [Transfer Order]\n,           TRDT AS         [In Transit Date]\n,           RIDL AS         [Order Line]\n,           MT.ITNO AS      [Item Number]\n,           ABS(MT.TRQT) AS   [In Transit Qty]\n,           LEFT(WHSL,3) as [Originating Warehouse]\n,           RIGHT(WHSL,3) as [Destination Warehouse]\nFROM        M3.MITTRA MT\nJOIN        M3.MITMAS MM on MT.ITNO = MM.ITNO\nWHERE       TTYP = '52'\n) B on A.[Transfer Order] = B.[Transfer Order] and A.[Originating Warehouse] = B.[Originating Warehouse] \n    and A.[Destination Warehouse] = B.[Destination Warehouse] and A.[Order Line] = B.[Order Line]\n*/\nLEFT JOIN\n\n(\nSELECT      DISTINCT RIDN AS         [Transfer Order]\n,           TRDT AS         [Receipt Date]\n,           RIDL AS         [Order Line]\n,           MT.ITNO AS      [Item Number]\n,           ABS(MT.TRQT) AS   [Received Qty]\n,           LEFT(RFTX,3) as [Originating Warehouse]\n,           RIGHT(RFTX,3) as [Destination Warehouse]\nFROM        M3.MITTRA MT\nJOIN        M3.MITMAS MM on MT.ITNO = MM.ITNO\nWHERE       TTYP = '50'\n) C on A.[Transfer Order] = C.[Transfer Order] and A.[Originating Warehouse] = C.[Originating Warehouse] \n    and A.[Destination Warehouse] = C.[Destination Warehouse] and A.[Order Line] = C.[Order Line]\n\nWHERE [Received Qty] - [Transfer Qty] < 0 or [Received Qty] - [Transfer Qty] is null",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

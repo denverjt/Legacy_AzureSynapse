@@ -1,0 +1,17 @@
+{
+	"name": "v_Warehouses_MasterData",
+	"properties": {
+		"content": {
+			"query": "create view v_Warehouses_MasterData\n-- drop view v_Warehouses_MasterData\nas\nSELECT      MW.WHLO AS      [Warehouse]\n,           MW.WHNM AS      [Warehouse Name]\n,           ADR1 AS         [Address 1]\n,           ADR2 AS         [Address 2]\n,           TOWN AS         [City]\n,           MW.ECAR AS      [State]\n,           CI.PONO AS      [Zip Code]\n,           MW.CSCD AS      [Country]\nFROM        M3.MITWHL MW\nLEFT JOIN   M3.CIADDR CI ON MW.WHLO = CI.ADK2\nWHERE       MW.DIVI = 'TLC'",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"name": "BI_POCharges",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW BI_POCharges\n-- drop view BI_POCharges\n\nAS\n\nSELECT \n    C.PUNO AS [PO Number],\n    C.PNLI AS [PO Line],\n    C.PNLS AS [PO Line Subnumber],\n    L.ITNO AS [Item Number],\n    H.ORTY AS [Order Type],\n    H.RGDT AS [Order Entry Date],\n    C.CDSE AS [Sequence Number],\n    C.EXTY AS [Charge Type],\n    C.CEID AS [Costing Element],\n    C.EXIC AS [Charge Invoicing],\n    C.WSOP AS [Costing Operator],\n    C.CEVA AS [Costing Element Amount],\n    C.CEVJ AS [Adjusted Costing Element Amount],\n    C.ACIN AS [Acc Invoiced],\n    C.IVCQ AS [Invoice Charge Quantity],\n    C.THPR AS [3rd Party Charges],\n    C.POOV AS [Markup],\n    C.OVHE AS [Costing Markup],\n    C.RGDT AS [Entry Date],\n    C.LMDT AS [Change Date],\n    C.CHID AS [Changed by]\nFROM M3.MPOEXP C\nLEFT JOIN M3.MPLINE L ON C.PUNO = L.PUNO AND C.PNLI = L.PNLI AND C.PNLS = L.PNLS\nLEFT JOIN M3.MPHEAD H ON C.PUNO = H.PUNO\nWHERE C.PNLI <> '0'\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

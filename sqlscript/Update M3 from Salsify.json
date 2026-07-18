@@ -1,0 +1,17 @@
+{
+	"name": "Update M3 from Salsify",
+	"properties": {
+		"content": {
+			"query": "SELECT      BAL.ITNO as [Item Number]\n,           COALESCE(SLS.[SKU], SLS2.[SKU]) as [SKU]\n,           COALESCE(SLS.[Status], SLS2.[Status]) as Status\n,           SUM(STQT) as [On Hand Qty]\nFROM        M3.MITBAL BAL\nLEFT JOIN   SLS.Products_BI SLS on BAL.ITNO = SLS.[M3 TLC Model]\nLEFT JOIN   SLS.Products_BI SLS2 on BAL.ITNO = SLS2.SKU\nWHERE       COALESCE(SLS.[Status], SLS2.[Status]) = 'Discontinued'\nGROUP BY    BAL.ITNO, COALESCE(SLS.[SKU], SLS2.[SKU]), COALESCE(SLS.[Status], SLS2.[Status])\nHAVING      SUM(STQT) > 10",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": -1
+		},
+		"type": "SqlQuery"
+	}
+}

@@ -1,0 +1,472 @@
+{
+	"name": "M3JSON_Process",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.tlcJ2PConsolidate",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy JSON Tables to Process Folder",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "BinarySource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": false,
+										"wildcardFolderPath": {
+											"value": "@concat('M3/JSON/',item().M3FileName)",
+											"type": "Expression"
+										},
+										"wildcardFileName": "*",
+										"deleteFilesAfterCompletion": false
+									},
+									"formatSettings": {
+										"type": "BinaryReadSettings"
+									}
+								},
+								"sink": {
+									"type": "BinarySink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "IN_M3_JSONSource",
+									"type": "DatasetReference",
+									"parameters": {
+										"M3FileName": {
+											"value": "@item().M3FileName",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "OUT_M3_JSONSource",
+									"type": "DatasetReference",
+									"parameters": {
+										"M3FileName": {
+											"value": "@item().M3FileName",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"name": "Delete Uploaded JSON",
+							"type": "Delete",
+							"dependsOn": [
+								{
+									"activity": "Copy JSON Tables to Process Folder",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataset": {
+									"referenceName": "IN_M3_JSONSource",
+									"type": "DatasetReference",
+									"parameters": {
+										"M3FileName": {
+											"value": "@item().M3FileName",
+											"type": "Expression"
+										}
+									}
+								},
+								"enableLogging": false,
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": false,
+									"wildcardFileName": {
+										"value": "@{concat(item().M3FileName,'*')}",
+										"type": "Expression"
+									},
+									"enablePartitionDiscovery": false
+								}
+							}
+						},
+						{
+							"name": "Copy JSON to Parquet",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Delete Uploaded JSON",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "JsonSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": false,
+										"wildcardFolderPath": {
+											"value": "@concat('M3/JSONProcess/',item().M3FileName)",
+											"type": "Expression"
+										},
+										"wildcardFileName": "*.json",
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "JsonReadSettings"
+									}
+								},
+								"sink": {
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings",
+										"copyBehavior": "MergeFiles"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "IN_M3_JSON",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "OUT_M3_PARQUET",
+									"type": "DatasetReference",
+									"parameters": {
+										"M3FileName": {
+											"value": "@item().M3FileName",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"tlcJ2PConsolidate": {
+				"type": "array",
+				"defaultValue": [
+					{
+						"M3FileName": "OCLINE"
+					},
+					{
+						"M3FileName": "OCHEAD"
+					},
+					{
+						"M3FileName": "FAPCHK"
+					},
+					{
+						"M3FileName": "OPROMH"
+					},
+					{
+						"M3FileName": "CPOCOS"
+					},
+					{
+						"M3FileName": "ACLTYP"
+					},
+					{
+						"M3FileName": "ACUAGH"
+					},
+					{
+						"M3FileName": "ACUOTY"
+					},
+					{
+						"M3FileName": "CCURRA"
+					},
+					{
+						"M3FileName": "CEAEMP"
+					},
+					{
+						"M3FileName": "CFACIL"
+					},
+					{
+						"M3FileName": "CIDADR"
+					},
+					{
+						"M3FileName": "CIDMAS"
+					},
+					{
+						"M3FileName": "CIDVEN"
+					},
+					{
+						"M3FileName": "CMNCMP"
+					},
+					{
+						"M3FileName": "CMNDIV"
+					},
+					{
+						"M3FileName": "CMNUSR"
+					},
+					{
+						"M3FileName": "CPOCOA"
+					},
+					{
+						"M3FileName": "CPOCOM"
+					},
+					{
+						"M3FileName": "CPOHED"
+					},
+					{
+						"M3FileName": "CPOPRO"
+					},
+					{
+						"M3FileName": "CSYCAL"
+					},
+					{
+						"M3FileName": "CSYPAR"
+					},
+					{
+						"M3FileName": "CSYPER"
+					},
+					{
+						"M3FileName": "CSYSTR"
+					},
+					{
+						"M3FileName": "CSYSTS"
+					},
+					{
+						"M3FileName": "CSYTAB"
+					},
+					{
+						"M3FileName": "CSYUSR"
+					},
+					{
+						"M3FileName": "CUGEX1"
+					},
+					{
+						"M3FileName": "FBAKEY"
+					},
+					{
+						"M3FileName": "FBAVAL"
+					},
+					{
+						"M3FileName": "FCHACC"
+					},
+					{
+						"M3FileName": "FGLEDG"
+					},
+					{
+						"M3FileName": "FGLEDX"
+					},
+					{
+						"M3FileName": "FPLEDG"
+					},
+					{
+						"M3FileName": "FPSUGS"
+					},
+					{
+						"M3FileName": "FSLBAL"
+					},
+					{
+						"M3FileName": "FSLEDG"
+					},
+					{
+						"M3FileName": "FSLEDX"
+					},
+					{
+						"M3FileName": "MAMOHE"
+					},
+					{
+						"M3FileName": "MATRMA"
+					},
+					{
+						"M3FileName": "MCCOMP"
+					},
+					{
+						"M3FileName": "MCCOTY"
+					},
+					{
+						"M3FileName": "MCONMA"
+					},
+					{
+						"M3FileName": "MCPAPD"
+					},
+					{
+						"M3FileName": "MIEQCL"
+					},
+					{
+						"M3FileName": "MIEQGR"
+					},
+					{
+						"M3FileName": "MIEQTP"
+					},
+					{
+						"M3FileName": "MILOMA"
+					},
+					{
+						"M3FileName": "MITARE"
+					},
+					{
+						"M3FileName": "MITAUN"
+					},
+					{
+						"M3FileName": "MITBAL"
+					},
+					{
+						"M3FileName": "MITHRY"
+					},
+					{
+						"M3FileName": "MITLOC"
+					},
+					{
+						"M3FileName": "MITPCE"
+					},
+					{
+						"M3FileName": "MITPTY"
+					},
+					{
+						"M3FileName": "MITSTA"
+					},
+					{
+						"M3FileName": "MITTEM"
+					},
+					{
+						"M3FileName": "MITWHL"
+					},
+					{
+						"M3FileName": "MMOHED"
+					},
+					{
+						"M3FileName": "MMORDT"
+					},
+					{
+						"M3FileName": "MOATTR"
+					},
+					{
+						"M3FileName": "MPAGRH"
+					},
+					{
+						"M3FileName": "MPAGRT"
+					},
+					{
+						"M3FileName": "MPDSCF"
+					},
+					{
+						"M3FileName": "MPDSHT"
+					},
+					{
+						"M3FileName": "MPDWCT"
+					},
+					{
+						"M3FileName": "MPORDT"
+					},
+					{
+						"M3FileName": "MPURST"
+					},
+					{
+						"M3FileName": "MWOHED"
+					},
+					{
+						"M3FileName": "MWOOPE"
+					},
+					{
+						"M3FileName": "MWOPTR"
+					},
+					{
+						"M3FileName": "MWORDT"
+					},
+					{
+						"M3FileName": "OAGRHE"
+					},
+					{
+						"M3FileName": "OAGRTP"
+					},
+					{
+						"M3FileName": "OBTRAG"
+					},
+					{
+						"M3FileName": "OBTREC"
+					},
+					{
+						"M3FileName": "OCUSAD"
+					},
+					{
+						"M3FileName": "OCUSIT"
+					},
+					{
+						"M3FileName": "OCUSMA"
+					},
+					{
+						"M3FileName": "ODHEAD"
+					},
+					{
+						"M3FileName": "ODLINE"
+					},
+					{
+						"M3FileName": "OGCMPN"
+					},
+					{
+						"M3FileName": "OGTAGY"
+					},
+					{
+						"M3FileName": "OOADRE"
+					},
+					{
+						"M3FileName": "OODOCU"
+					},
+					{
+						"M3FileName": "OOTYPE"
+					},
+					{
+						"M3FileName": "OSTORE"
+					},
+					{
+						"M3FileName": "SITCOM"
+					},
+					{
+						"M3FileName": "SSTYPE"
+					}
+				]
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-02-21T13:55:16Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

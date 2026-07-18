@@ -1,0 +1,17 @@
+{
+	"name": "v_ManufacturedQty",
+	"properties": {
+		"content": {
+			"query": "\nCREATE VIEW v_ManufacturedQty\n-- drop view v_ManufacturedQty\nAS\nSELECT        A.ItemNumber\n, A.ItemDescription\n, A.ProcurementGroup\n, A.Warehouse\n, A.ManufacturingNumber\n, CAST(CAST(A.ReportDate AS VARCHAR(10)) AS DATE) AS ReportDate\n, A.ManufacturedQty\n, A.AccCost AS StandardCost\n, A.AvgCost as AverageCost\n, B.ActualCost AS ActualCost\n, A.TotalCost AS TotalStandardCost\n, B.ActualCost*A.ManufacturedQty AS TotalActualCost\n, A.AvgCost*A.ManufacturedQty AS TotalAverageCost\nFROM    (\n    SELECT        MWH.ITNO AS ItemNumber\n    , MI.ITDS AS ItemDescription\n    , MI.PRGP AS ProcurementGroup\n    , MWH.WHLO AS Warehouse\n    , MWH.MFNO AS ManufacturingNumber\n    , IT.TRDT AS ReportDate\n    , SUM(IT.TRQT) AS ManufacturedQty\n    , AVG(IT.TRPR) AS AccCost\n    , AVG(MF.APPR) AS AvgCost\n    , SUM(IT.TRPR * IT.TRQT) AS TotalCost\n    FROM            M3.MWOHED AS MWH \n    INNER JOIN      M3.MITMAS AS MI ON MWH.ITNO = MI.ITNO \n    LEFT OUTER JOIN M3.MITTRA AS IT ON MWH.ITNO = IT.ITNO AND MWH.MFNO = IT.RIDN\n    LEFT OUTER JOIN M3.MITFAC MF on MWH.ITNO = MF.ITNO\n    WHERE        (MWH.WHHS >= 70) \n    AND (MWH.MAQA <> 0)\n    GROUP BY MWH.ITNO, MI.ITDS, MI.PRGP, MWH.WHLO, MWH.MFNO, IT.TRDT\n        ) AS A \n        \n        LEFT OUTER JOIN\n        \n        (\n            SELECT        RIDN AS ManufacturingNumber\n            , SUM(TOAF/NULLIF(AIQT,0)) AS ActualCost\n            FROM            M3.CPOMAT\n            GROUP BY RIDN\n        ) AS B ON A.ManufacturingNumber = B.ManufacturingNumber",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": -1
+		},
+		"type": "SqlQuery"
+	}
+}

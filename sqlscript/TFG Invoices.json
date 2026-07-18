@@ -1,0 +1,17 @@
+{
+	"name": "TFG Invoices",
+	"properties": {
+		"content": {
+			"query": "SELECT \t\tDISTINCT OC.CUNM AS CUSTOMER_NAME\n,           OH.CUOR AS CUSTOMER_PO_NUMBER\n,\t\t\tODH.ORNO AS SALES_ORDER_NUMBER\n,\t\t\tODL.IVNO AS INVOICE_NUMBER\n,\t\t\tIVDT AS INVOICE_DATE\n,\t\t\tIM.ITNO AS ITEM\n,\t\t\tIM.ITDS AS ITEM_NAME\n,\t\t\tODL.IVQT AS INVOICED_QTY\n,\t\t\tODL.NEPR*ODL.IVQT AS INVOICED_AMT\nFROM\t\tM3_ODHEAD ODH\nJOIN\t\tM3_ODLINE ODL ON ODH.ORNO = ODL.ORNO AND ODH.DLIX = ODL.DLIX\nJOIN        M3_OOLINE OL ON ODL.ORNO = OL.ORNO AND ODL.PONR = OL.PONR\nJOIN        M3_OOHEAD OH ON OL.ORNO = OH.ORNO\nJOIN \t\tM3_OCUSMA OC ON ODH.CUNO = OC.CUNO\nJOIN        M3_OOADRE OA on ODH.ORNO = OA.ORNO\nJOIN \t\tM3_MITMAS IM ON ODL.ITNO = IM.ITNO\nWHERE       odl.ivno <> '0'\nAND         OC.CUNO IN\n(\n'COM00055',\n'COM00138',\n'COM00259',\n'COM00486',\n'COM00884',\n'COM00618',\n'COM00628',\n'COM01013',\n'COM00252',\n'COM00585',\n'COM00623'\n)",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

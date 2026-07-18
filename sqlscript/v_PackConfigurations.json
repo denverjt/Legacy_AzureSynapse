@@ -1,0 +1,17 @@
+{
+	"name": "v_PackConfigurations",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW     v_PackConfigurations\nas\nSELECT          A.*, [Package Number], [Package Name], [Package Length], [Package Width], [Package Height], [Package Weight]\n,               [Standard Qty], [Min Qty], [Max Qty], [Qty]\nFROM\n(\nSELECT          MM.ITNO AS [Item Number]\n,               MM.ITDS AS [Item Description]\n,               MM.BUAR AS [Business Unit]\nFROM            M3.MITMAS MM\n) A\n\nLEFT JOIN\n\n(\nSELECT          IC.ITNO AS [Item Number]\n,               IC.PACT AS [Package Number]\n,               MP.PANM AS [Package Name]\n,               MP.PACL AS [Package Length]\n,               MP.PACW AS [Package Width]\n,               MP.PACH AS [Package Height]\n,               MP.VOMT AS [Package Weight]\n,               IC.D1QT AS [Standard Qty]\n,               IC.D2QT as [Min Qty]\n,               IC.D3QT as [Max Qty]\n,               IC.TRQT as [Qty]\nFROM            M3.MPACIT IC\nJOIN            M3.MITPAC MP on IC.PACT = MP.PACT\n) B             on A.[Item Number] = B.[Item Number]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": -1
+		},
+		"type": "SqlQuery"
+	}
+}

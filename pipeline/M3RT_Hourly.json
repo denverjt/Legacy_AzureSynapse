@@ -1,0 +1,336 @@
+{
+	"name": "M3RT_Hourly",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach_P1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.cw_items_P1",
+						"type": "Expression"
+					},
+					"batchCount": 8,
+					"activities": [
+						{
+							"name": "Copy_P1",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [
+								{
+									"name": "Source",
+									"value": "m3.@{item().source.table}"
+								},
+								{
+									"name": "Destination",
+									"value": "tlclakefs/M3RT/@{item().destination.fileName}"
+								}
+							],
+							"typeProperties": {
+								"source": {
+									"type": "AzurePostgreSqlSource"
+								},
+								"sink": {
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
+									}
+								},
+								"enableStaging": false,
+								"validateDataConsistency": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "SourceDataset_okw",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_table": "@item().source.table"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DestinationDataset_okw",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_fileName": "@item().destination.fileName"
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"cw_items_P1": {
+				"type": "array",
+				"defaultValue": [
+					{
+						"source": {
+							"table": "cpohed"
+						},
+						"destination": {
+							"fileName": "cpohed.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "cpomat"
+						},
+						"destination": {
+							"fileName": "cpomat.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "fapchk"
+						},
+						"destination": {
+							"fileName": "fapchk.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "fgledg"
+						},
+						"destination": {
+							"fileName": "fgledg.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "fpledg"
+						},
+						"destination": {
+							"fileName": "fpledg.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "fpsugd"
+						},
+						"destination": {
+							"fileName": "fpsugd.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "fpsugs"
+						},
+						"destination": {
+							"fileName": "fpsugs.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "fsledg"
+						},
+						"destination": {
+							"fileName": "fsledg.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "mghead"
+						},
+						"destination": {
+							"fileName": "mghead.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "mgline"
+						},
+						"destination": {
+							"fileName": "mgline.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "mhdish"
+						},
+						"destination": {
+							"fileName": "mhdish.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "mhdisl"
+						},
+						"destination": {
+							"fileName": "mhdisl.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "mhpich"
+						},
+						"destination": {
+							"fileName": "mhpich.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "mitalo"
+						},
+						"destination": {
+							"fileName": "mitalo.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "mitbal"
+						},
+						"destination": {
+							"fileName": "mitbal.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "mittra"
+						},
+						"destination": {
+							"fileName": "mittra.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "mmoplp"
+						},
+						"destination": {
+							"fileName": "mmoplp.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "mphead"
+						},
+						"destination": {
+							"fileName": "mphead.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "mpline"
+						},
+						"destination": {
+							"fileName": "mpline.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "mplire"
+						},
+						"destination": {
+							"fileName": "mplire.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "mpoexp"
+						},
+						"destination": {
+							"fileName": "mpoexp.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "mwohed"
+						},
+						"destination": {
+							"fileName": "mwohed.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "mwomat"
+						},
+						"destination": {
+							"fileName": "mwomat.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "odhead"
+						},
+						"destination": {
+							"fileName": "odhead.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "odline"
+						},
+						"destination": {
+							"fileName": "odline.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "oinvoh"
+						},
+						"destination": {
+							"fileName": "oinvoh.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "oinvol"
+						},
+						"destination": {
+							"fileName": "oinvol.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "oochrg"
+						},
+						"destination": {
+							"fileName": "oochrg.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "oohead"
+						},
+						"destination": {
+							"fileName": "oohead.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "ooline"
+						},
+						"destination": {
+							"fileName": "ooline.parquet"
+						}
+					}
+				]
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-06-04T13:18:26Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

@@ -1,0 +1,17 @@
+{
+	"name": "OOADRE Fix 20230920",
+	"properties": {
+		"content": {
+			"query": "--DROP EXTERNAL TABLE M3.OOADRE\nCREATE VIEW M3.OOADRE AS \nSELECT * FROM M3.OOADRE_PAR\nUNION ALL\nSELECT * FROM M3.OOADRE_ARC\n\n-- DROP VIEW M3.OOADRE_ARC AS\nCREATE VIEW M3.OOADRE_ARC AS \nSELECT \n\tCONVERT(bigint,[CONO]) [CONO],\n\tCONVERT(nvarchar(4000),[DIVI]) [DIVI],\n\tCONVERT(nvarchar(4000),[ORNO]) [ORNO],\n\tCONVERT(bigint,[ADRT]) [ADRT],\n\tCONVERT(nvarchar(4000),[ADID]) [ADID],\n\tCONVERT(nvarchar(4000),[CUNM]) [CUNM],\n\tCONVERT(nvarchar(4000),[CUA1]) [CUA1],\n\tCONVERT(nvarchar(4000),[CUA2]) [CUA2],\n\tCONVERT(nvarchar(4000),[CUA3]) [CUA3],\n\tCONVERT(nvarchar(4000),[CUA4]) [CUA4],\n\tCONVERT(nvarchar(4000),[PONO]) [PONO],\n\tCONVERT(nvarchar(4000),[PHNO]) [PHNO],\n\tCONVERT(nvarchar(4000),[TFNO]) [TFNO],\n\tCONVERT(nvarchar(4000),[YREF]) [YREF],\n\tCONVERT(nvarchar(4000),[MEAL]) [MEAL],\n\tCONVERT(nvarchar(4000),[CSCD]) [CSCD],\n\tCONVERT(nvarchar(4000),[VRNO]) [VRNO],\n\tCONVERT(nvarchar(4000),[EDES]) [EDES],\n\tCONVERT(nvarchar(4000),[ROUT]) [ROUT],\n\tCONVERT(bigint,[RODN]) [RODN],\n\tCONVERT(nvarchar(4000),[ULZO]) [ULZO],\n\tCONVERT(nvarchar(4000),[ECF1]) [ECF1],\n\tCONVERT(nvarchar(4000),[ECF2]) [ECF2],\n\tCONVERT(nvarchar(4000),[ECF3]) [ECF3],\n\tCONVERT(nvarchar(4000),[ECF4]) [ECF4],\n\tCONVERT(nvarchar(4000),[ECF5]) [ECF5],\n\tCONVERT(bigint,[GEOC]) [GEOC],\n\tCONVERT(nvarchar(4000),[TAXC]) [TAXC],\n\tCONVERT(nvarchar(4000),[ECAR]) [ECAR],\n\tCONVERT(nvarchar(4000),[HAFE]) [HAFE],\n\tCONVERT(bigint,[TXID]) [TXID],\n\tCONVERT(nvarchar(4000),[DLSP]) [DLSP],\n\tCONVERT(nvarchar(4000),[DSTX]) [DSTX],\n\tCONVERT(nvarchar(4000),[MODL]) [MODL],\n\tCONVERT(nvarchar(4000),[TEDL]) [TEDL],\n\tCONVERT(nvarchar(4000),[TEL2]) [TEL2],\n\tCONVERT(nvarchar(4000),[TOWN]) [TOWN],\n\tCONVERT(date,[RGDT]) [RGDT],\n\tCONVERT(bigint,[RGTM]) [RGTM],\n\tCONVERT(date,[LMDT]) [LMDT],\n\tCONVERT(bigint,[CHNO]) [CHNO],\n\tCONVERT(nvarchar(4000),[CHID]) [CHID],\n\tCONVERT(nvarchar(4000),[ADVI]) [ADVI],\n\tCONVERT(bigint,[BOP1]) [BOP1],\n\tCONVERT(nvarchar(4000),[FRCO]) [FRCO],\n\tCONVERT(nvarchar(4000),[SPLE]) [SPLE],\n\tCONVERT(nvarchar(4000),[RASN]) [RASN]\nFROM\n    OPENROWSET(\n        BULK 'https://tlclake.dfs.core.windows.net/tlclakefs/M3P/OOADRE_ARC.parquet',\n        FORMAT = 'PARQUET'\n    ) AS [result]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"name": "v_ShipDays_Consumer_Dashboard",
+	"properties": {
+		"content": {
+			"query": "/*******************************************************************************************************\n  Author:       Rene Villarreal\n  Create Date:  August 3, 2022\n  Description:  Create view v_ShipDays_ConsumerDashboard\n********************************************************************************************************\nSUMMARY OF CHANGES\n\nDate                    Author                    Comments\n-------------------------------------------------------------------------------\nAugust 3, 2022          Rene Villarreal           Create original view\n********************************************************************************************************/\n\n\nCREATE VIEW\t\tv_ShipDays_ConsumerDashboard\nAS\n\nSELECT \t\t\tCOUNT(DISTINCT Date) as Month_Ship_Days\n, \t\t\t\tCOUNT(CASE WHEN Date < CAST( GETDATE() AS Date ) THEN 1 END) as Elapsed_Ship_Days\n, \t\t\t\tCOUNT(CASE WHEN Date >= CAST( GETDATE() AS Date ) THEN 1 END) as Remaining_Ship_Days\nFROM \t\t\tECM.HOLIDAYS\nWHERE \t\t\tDate BETWEEN DATEADD(MM, DATEDIFF(MM, 0, CAST( GETDATE() AS Date )), 0 )\nAND \t\t\tDATEADD(DD, -1, DATEADD(MM, DATEDIFF(MM, 0, CAST( GETDATE() AS Date )) + 1, 0))\nAND \t\t\tWeekday NOT IN ('1', '7')\nAND \t\t\tHoliday = '0'\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

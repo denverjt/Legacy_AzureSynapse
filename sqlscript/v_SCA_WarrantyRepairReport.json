@@ -1,0 +1,17 @@
+{
+	"name": "v_SCA_WarrantyRepairReport",
+	"properties": {
+		"content": {
+			"query": "-- View for CommercialWarranty Repair Report v20220707\n-- v20220801 Updated for Schema Change to System ID in Schema\n-- \n-- DROP VIEW [dbo].[SCA_WarrantyRepairReport]\n--\n\nCREATE VIEW [dbo].[SCA_WarrantyRepairReport]\n\n\tAS \n\nSELECT TransactionDate [Date], SCA.GenTransaction.Reference [Warranty Order Number], ItemNumber, SerialNumber, \n         SCA.InvMaster.Supplier, SubModSupplier [Service Company], EntryValue, ProblemDescription\nFROM SCA.GenTransaction LEFT JOIN \n     SCA.ApInvoice ON SubModApInvoice = Invoice LEFT JOIN \n\t SCR.set_Service_Ticket ON CONVERT(NUMERIC,SCA.GenTransaction.Reference)=ServiceTicketNumber LEFT JOIN\n\t SCA.InvMaster ON ItemNumber=StockCode\nWHERE GlCode LIKE '2375%' AND Source='AP' AND ISNUMERIC(SCA.GenTransaction.Reference)=1 AND TransactionDate >= datefromparts(2021,3,1)\n\nUNION ALL\n\nSELECT TransactionDate [Date], SCA.GenTransaction.Reference [Warranty Order Number], '' ItemNumber, '' SerialNumber, \n       '' Supplier, SubModSupplier [Service Company], EntryValue, '' ProblemDescription\nFROM SCA.GenTransaction LEFT JOIN \n     SCA.ApInvoice ON SubModApInvoice = Invoice \nWHERE GlCode LIKE '2375%' AND Source='AP' AND ISNUMERIC(SCA.GenTransaction.Reference)=0 AND TransactionDate >= datefromparts(2021,3,1)",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

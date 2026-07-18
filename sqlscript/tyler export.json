@@ -1,0 +1,17 @@
+{
+	"name": "tyler export",
+	"properties": {
+		"content": {
+			"query": "SELECT       I.ITNO                  [ItemNumber]\n            , ITNE                  [OriginalItemNumber]\n            , ITDS                  [Description]\n            , FUDS                  [LongDescription]\n            , ITCL                  [Brand Code]\n            , BR.TX15               [Brand]\n            , CA.TX15               [Category]\n            , ISNULL(I.PDLN,'')\n              + CASE WHEN ISNULL(I.PDLN,'')=SC.TX40 THEN '' \n                     WHEN ISNULL(I.PDLN,'')<>''     THEN '|'+SC.TX40 \n                     ELSE '' \n                END                 [Sub-Category]\n            , 0.00                  [Cost]\n            , PUPR                  [Price]\n            , CASE MABU WHEN '1' THEN '1|MAKE'\n                        WHEN '2' THEN '2|BUY'\n              END                  [Make or Buy]\n            , CASE WHEN PRGP='' THEN 'UP' \n                   ELSE PRGP \n              END\n              +'|'+CP.TX15          [ItemType]\n            , I.STAT                [Status]\n            , I.SUNO                [SupplierNumber]\n            , V.SUNM                [SupplierName]\n            , F.ORCO                [OriginCountry]\n            , U.POPN                [UPC]\nFROM            M3.MITMAS I\n     LEFT JOIN  M3.CSYTAB BR ON I.ITCL=BR.STKY AND BR.STCO='ITCL'   --Brand Lookup\n     LEFT JOIN  M3.CSYTAB CA ON I.ITGR=CA.STKY AND CA.STCO='ITGR'   --Category Lookup\n     LEFT JOIN  M3.CRPDLN SC ON I.PDLN=SC.PDLN                      --Sub-Category Lookup\n     LEFT JOIN  M3.CSYTAB CP ON I.PRGP=CP.STKY AND CP.STCO='PRGP'   --Comp or FG\n     LEFT JOIN M3.CIDMAS V ON I.SUNO = V.SUNO\n     LEFT JOIN M3.MITFAC F ON I.ITNO = F.ITNO AND F.FACI = 'TLC'\n     LEFT JOIN M3.MITPOP U ON I.ITNO = U.ITNO AND U.ALWQ = 'UPC' AND U.ALWT = '2'\nWHERE I.CONO='100'",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": -1
+		},
+		"type": "SqlQuery"
+	}
+}

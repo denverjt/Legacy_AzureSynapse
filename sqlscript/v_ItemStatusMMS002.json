@@ -1,0 +1,17 @@
+{
+	"name": "v_ItemStatusMMS002",
+	"properties": {
+		"content": {
+			"query": "--DROP VIEW v_ItemWarehouseMMS002\n\nCREATE VIEW v_ItemWarehouseMMS002\nAS\n\nSELECT WHLO, ITNO, STAT, SUNO FROM M3_MITBAL",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

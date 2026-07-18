@@ -1,0 +1,16 @@
+{
+	"name": "SysproCompanyG",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=syspro61.greenfieldworld.com;initial catalog=SysproCompanyG;user id=sa",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIwMmE1YWVkMC03ZjFiLTRhY2MtOTVhNS05NWUyYjI3MTAwYjIiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "tlcdwintegration-adc",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

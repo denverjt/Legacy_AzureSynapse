@@ -1,0 +1,60 @@
+{
+	"name": "PWP_Trigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "PWPROD_Pipeline",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"cw_items": [
+						{
+							"source": {
+								"table": "LC_SHIPMENT_PACKAGES"
+							},
+							"destination": {
+								"fileName": "LC_SHIPMENT_PACKAGES.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "LC_SHIPMENTS"
+							},
+							"destination": {
+								"fileName": "LC_SHIPMENTS.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "XCARRIER_SHIPMENT_DOCUMENT_URLS"
+							},
+							"destination": {
+								"fileName": "XCARRIER_SHIPMENT_DOCUMENT_URLS.parquet"
+							}
+						},
+						{
+							"source": {
+								"table": "AssignedRoles"
+							},
+							"destination": {
+								"fileName": "AssignedRoles.parquet"
+							}
+						}
+					]
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2024-03-09T02:00:00",
+				"timeZone": "Eastern Standard Time"
+			}
+		}
+	}
+}

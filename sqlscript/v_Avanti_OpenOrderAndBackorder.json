@@ -1,0 +1,17 @@
+{
+	"name": "v_Avanti_OpenOrderAndBackorder",
+	"properties": {
+		"content": {
+			"query": "create view     v_Avanti_OpenOrderAndBackorder\n-- drop view v_Avanti_OpenOrderAndBackorder\nas\nSELECT          A.*, B.NextPO\nFROM\n(\nSELECT          DISTINCT OH.ORNO as OrderNumber\n,               OH.CUNO as CustomerCode\n,               OC.CUNM as CustomerName\n,               OH.ORDT as OrderDate\n,               OH.RLDT as RequestedDate\n,               OH.CUOR as CustomerPO\n,               OH.OBLC as StopCode\n,               OL.ORQT*OL.NEPR as OriginalAmt\n,               OL.ORQT*OL.NEPR - OL.IVQT*OL.NEPR as OpenAmt\n,               OL.ORST as OrderStatus\n,               OC.SMCD as SalesRep\n,               OC.RESP as Territory\n,               OL.PONR as LineNumber\n,               OL.ITNO as ItemNumber\n,               MM.ITDS as ItemName\n,               OL.ORQT as OrderQty\n,               OL.RNQT as OpenQty\n,               OL.ALQT as AllocatedQty\n,               OL.PLQT as PickQty\n,               OL.RNQT as BoQty\n,               OL.NEPR as UnitPrice\n,               (OL.RNQT-OL.PLQT)*OL.NEPR as ExtendedOpenAmt\n,               OL.WHLO as Warehouse\n,               MM.ITCL as Brand\nFROM            M3.OOHEAD OH\nJOIN            M3.OOLINE OL ON OH.ORNO = OL.ORNO\nJOIN            M3.OCUSMA OC ON OH.CUNO = OC.CUNO\nJOIN            M3.MITMAS MM ON OL.ITNO = MM.ITNO\nWHERE           OL.ORST BETWEEN '22' and '44'\nand             MM.ITCL = 'AVA'\n) A\nLEFT JOIN\n\n(\nSELECT          DISTINCT ITNO as ItemNumber\n,               SUM(ORQA) as OrderedQty\n,               MIN(DWDT) as NextPO\nFROM            M3.MPLINE\nWHERE           RCDT = 0\nGROUP BY        ITNO\n) B             on A.ItemNumber = B.ItemNumber\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

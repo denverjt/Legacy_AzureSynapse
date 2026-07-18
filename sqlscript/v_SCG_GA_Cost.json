@@ -1,0 +1,17 @@
+{
+	"name": "v_SCG_GA_Cost",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW     v_SCG_GA_Cost\nAS\n\n-- drop view v_SCG_GA_Cost\n\nSELECT\t\t\tX.*, Y.CostValue as [Cost AFS]\nFROM\n(\nSELECT\t\t\tdistinct A.Division, A.Company, [Customer ID], [Customer Name], [Customer PO], [Order ID]\n,\t\t\t\tA.Brand, [Product Category], A.[Part ID], [Part Description], [Supplier ID], MAX([Sales Amt]) as [Sales Amt]\n,\t\t\t\tMAX([Sales Qty]) as [Sales Qty], MAX(CostValue) as [Cost], MAX(B.Date) as IntercoDate_WBM\nFROM\n(\nSELECT\t\t\tDF.Division as Division\n,\t\t\t\tDF.Company as Company\n,\t\t\t\tAC.Customer as [Customer ID]\n,\t\t\t\tAC.Name as [Customer Name]\n,\t\t\t\tATD.CustomerPoNumber as [Customer PO]\n,\t\t\t\tATD.SalesOrder as [Order ID]\n,\t\t\t\tATD.InvoiceDate as [Date]\n,               DF.Brand AS [Brand]\n,\t\t\t\tDF.Category as [Product Category]\n,\t\t\t\tISNULL(GV.VisualPartID, ATD.StockCode) as [Part ID]\n,\t\t\t\tIM.Description as [Part Description]\n,\t\t\t\tSupplier as [Supplier ID]\n,\t\t\t\tNetSalesValue as [Sales Amt]\n,\t\t\t\tQtyInvoiced as [Sales Qty]\n,\t\t\t\tCostValue/NULLIF(QtyInvoiced,0) as [Cost G]\nFROM\t\t\tSCG.ArTrnSummary ATS\nJOIN\t\t\tSCG.ArTrnDetail ATD on ATS.Invoice = ATD.Invoice\nJOIN\t\t\tSCG.ArCustomer AC on ATS.Customer = AC.Customer\nJOIN\t\t\tSCG.InvMaster IM on ATD.StockCode = IM.StockCode\nJOIN\t\t\tSCA.Division_Family DF on ATD.ProductClass = DF.ProductClass\nLEFT JOIN\t\tSCG.GWT_To_Visual GV on ATD.StockCode = GV.SysproStockCode\nWHERE\t\t\tATD.InvoiceDate >= '2019-01-01'\nAND\t\t\t\tDF.Division <> 'Countertop'\nand\t\t\t\tDF.Company = 'G'\nAND             NetSalesValue > 0\nAND             DF.Brand IN ('MAXX ICE', 'MAXX COLD', 'GENERAL')\n) A\n\nLEFT JOIN\n\n(\nSELECT\t\t\t'G' as Company\n,\t\t\t\t'Commercial' as Division\n,\t\t\t\tATD.StockCode as [Part ID]\n,\t\t\t\tMAX(ATS.InvoiceDate) as [Date]\n,\t\t\t\tAVG(CostValue/NULLIF(QtyInvoiced,0)) as CostValue\nFROM\t\t\tSCA.ArTrnSummary ATS\nJOIN\t\t\tSCA.ArTrnDetail ATD on ATS.Invoice = ATD.Invoice\nJOIN\t\t\tSCA.Division_Family DF on ATD.ProductClass = DF.ProductClass\nWHERE\t\t\tDF.Brand IN ('MAXX ICE', 'MAXX COLD', 'GENERAL')\nAND\t\t\t\tATS.Customer IN ('GREEWOR')\nAND\t\t\t\tQtyInvoiced > 0\nGROUP BY\t\tFORMAT(ATS.InvoiceDate, 'yyyy-MM'), ATD.StockCode\n) B\t\t\t\ton A.Company = B.Company and A.Division = B.Division and A.[Part ID] = B.[Part ID]\nWHERE\t\t\tBrand IN ('MAXX ICE', 'MAXX COLD', 'GENERAL')\nAND\t\t\t\tB.Date <= A.Date\nGROUP BY\t\tA.Division, A.Company, [Customer ID], [Customer Name], [Customer PO], [Order ID]\n,\t\t\t\tA.Brand, [Product Category], A.[Part ID], [Part Description], [Supplier ID]\n) X\n\nJOIN\n\n(\nSELECT\t\t\t'G' as Company\n,\t\t\t\t'Commercial' as Division\n,\t\t\t\tATD.StockCode as [Part ID]\n,\t\t\t\tMAX(ATS.InvoiceDate) as [Date]\n,\t\t\t\tAVG(CostValue/NULLIF(QtyInvoiced,0)) as CostValue\nFROM\t\t\tSCA.ArTrnSummary ATS\nJOIN\t\t\tSCA.ArTrnDetail ATD on ATS.Invoice = ATD.Invoice\nJOIN\t\t\tSCA.Division_Family DF on ATD.ProductClass = DF.ProductClass\nWHERE\t\t\tDF.Brand IN ('MAXX ICE', 'MAXX COLD', 'GENERAL')\nAND\t\t\t\tATS.Customer IN ('GREEWOR')\nAND\t\t\t\tQtyInvoiced > 0\nGROUP BY\t\tFORMAT(ATS.InvoiceDate, 'yyyy-MM'), ATD.StockCode\n) Y\t\t\t\ton X.Company = Y.Company and X.Division = Y.Division and X.[Part ID] = Y.[Part ID] and X.IntercoDate_WBM = Y.Date",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"name": "v_ServiceTickets",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW     v_ServiceTickets\n-- drop view v_ServiceTickets\nas\nSELECT      distinct AC.ORNO AS [Ticket Number]\n,           AC.RESP as [Responsible]\n,           AL.AOST as [Status]\n,           AL.RSCD as [Trans Reason Code]\n,           CASE WHEN AL.RSCD IN ('T10', 'TST', 'ZZZ', '') THEN 'NA' ELSE CS.TX40 end as [Trans Reason]\n,           AL.BANO as [Serial Number]\n,           COALESCE(OC.CUNO, ARC.Customer, OC2.CUNO) as [Customer ID]\n,           COALESCE(OC.CUNM, ARC.Name, OC2.CUNM) as [Customer Name]\n,           AC.ORDT as [Ticket Date]\n,           AC.RLDT as [Requested Date]\n,           AL.AORQ as [Service Qty]\n,           ML.FLNO as [Item Number]\n,           BIM.[Description]\n,           BIM.[Sub-Brand]\n,           BIM.Brand\n,           BIM.[Finance Brand]\n,           BIM.Division\n,           BIM.[Business Unit]\n,           BIM.[Item Type]\n,           BIM.[Manufactured or Purchased]\n,           COALESCE(NULLIF(LEFT(MO.BRE2, 10),''), SM.[SalesOrder]) as [Sales Order Number]\n,           COALESCE(NULLIF(OH.ORDT,''), SM.OrderDate)  as [Sales Order Date]\n,           BIM.[Supplier Code] as [Supplier ID]\n,           BIM.[Supplier Short Name] as [Supplier Name]\n,           MP.PUPR as [Service Amount]\nFROM        M3.ACUORH AC\nJOIN        M3.ACUORL AL on AC.ORNO = AL.ORNO\nLEFT JOIN   M3.MILOIN ML on AL.BANO = ML.SERN\nLEFT JOIN   M3.MILOMA MO on AL.BANO = MO.BANO\nLEFT JOIN   M3.OOHEAD OH on LEFT(MO.BRE2, 10) = OH.ORNO\nLEFT JOIN   M3.OCUSMA OC ON OH.CUNO = OC.CUNO\nLEFT JOIN   M3.OCUSMA OC2 ON AC.CUNO = OC2.CUNO\nLEFT JOIN   M3.CSYTAB CS ON AL.RSCD = CS.STKY and STCO = 'RSCD'\n\nLEFT JOIN   SCA.SorDetailSerRep SDS on AL.BANO = SDS.Serial\nLEFT JOIN   SCA.SorMaster SM on SDS.SalesOrder = SM.SalesOrder\nLEFT JOIN   SCA.ArCustomer ARC on SM.Customer = ARC.Customer\n/*\nLEFT JOIN   SCA.InvMaster IM ON ML.FLNO = IM.StockCode\nLEFT JOIN   SCA.ApSupplier SU on IM.Supplier = SU.Supplier\n*/\nLEFT JOIN   M3.MITMAS MM on ML.FLNO = MM.ITNO\nLEFT JOIN   BI_ItemMaster BIM on ML.FLNO = BIM.[Item Number]\nLEFT JOIN   M3.CIDMAS CM on MM.SUNO = CM.SUNO\nLEFT JOIN   M3.MPLIRE MPL ON AL.BANO = MPL.BANO and MPL.BANO <> 'NO SERIAL NUMBER'\nLEFT JOIN   M3.MPLINE MP ON MP.PUNO = MPL.PUNO AND MP.PNLI = MPL.PNLI AND MP.PNLS = MPL.PNLS",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": -1
+		},
+		"type": "SqlQuery"
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"name": "10 - M3 Ledger Query",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW [M3_GLAnalytics] AS\nSELECT   M3_FGLEDG.CONO\n        ,M3_FGLEDG.DIVI\n        ,M3_FGLEDG.YEA4\n        ,M3_FGLEDG.JRNO\n        ,M3_FGLEDG.JSNO\n        ,M3_FGLEDG.TRCD\n        ,M3_FGLEDG.VSER\n        ,M3_FGLEDG.VONO\n        ,M3_FGLEDG.FEID\n        ,M3_FGLEDG.FNCN\n        ,M3_FGLEDG.TDSC\n        ,M3_FGLEDG.VDSC\n        ,M3_FGLEDG.EICD\n        ,M3_FGLEDG.ACDT\n        ,M3_FGLEDG.OCDT\n        ,M3_FGLEDG.REDE\n        ,M3_FGLEDG.RECO\n        ,M3_FGLEDG.ERDT\n        ,M3_FGLEDG.VATD\n        ,M3_FGLEDG.TOCD\n        ,L1.AICL AccountGroup\n        ,M3_FGLEDG.AIT1\n        ,AIT1+' - '+L1.TX40 Dimension1\n        ,M3_FGLEDG.AIT2\n        ,AIT2+' - '+L2.TX40 Dimension2\n        ,M3_FGLEDG.AIT3\n        ,AIT3+' - '+L3.TX40 Dimension3\n        ,M3_FGLEDG.AIT4\n        ,AIT4+' - '+L4.TX40 Dimension4\n        ,M3_FGLEDG.AIT5\n        ,AIT5+' - '+L5.TX40 Dimension5\n        ,M3_FGLEDG.AIT6\n        ,M3_FGLEDG.AIT7\n        ,M3_FGLEDG.VTXT\n        ,M3_FGLEDG.ACQT\n        ,M3_FGLEDG.DCQT\n        ,M3_FGLEDG.UNIT\n        ,M3_FGLEDG.ACAM\n        ,M3_FGLEDG.DCAM\n        ,M3_FGLEDG.DBCR\n        ,M3_FGLEDG.CUCD\n        ,M3_FGLEDG.CRTP\n        ,M3_FGLEDG.ARAT\n        ,M3_FGLEDG.CUAM\n        ,M3_FGLEDG.TGCD\n        ,M3_FGLEDG.THCC\n        ,M3_FGLEDG.TCRT\n        ,M3_FGLEDG.TCAR\n        ,M3_FGLEDG.TCAM\n        ,M3_FGLEDG.AT04\n        ,M3_FGLEDG.VTCD\n        ,M3_FGLEDG.VTP1\n        ,M3_FGLEDG.CVT1\n        ,M3_FGLEDG.VTP2\n        ,M3_FGLEDG.CVT2\n        ,M3_FGLEDG.CVT3\n        ,M3_FGLEDG.CVT4\n        ,M3_FGLEDG.BSCD\n        ,M3_FGLEDG.FTCO\n        ,M3_FGLEDG.VATR\n        ,M3_FGLEDG.VRNE\n        ,M3_FGLEDG.SERS\n        ,M3_FGLEDG.ARCD\n        ,M3_FGLEDG.GFL1\n        ,M3_FGLEDG.GFL2\n        ,M3_FGLEDG.GFL3\n        ,M3_FGLEDG.GFL4\n        ,M3_FGLEDG.GFL5\n        ,M3_FGLEDG.TXID\n        ,M3_FGLEDG.RGDT\n        ,M3_FGLEDG.RGTM\n        ,M3_FGLEDG.LMDT\n        ,M3_FGLEDG.CHNO\n        ,M3_FGLEDG.CHID\n        ,M3_FGLEDG.APCD\n        ,M3_FGLEDG.APRV\n        ,M3_FGLEDG.ECAR\n        ,M3_FGLEDG.VRNO\n        ,M3_FGLEDG.LMTS\n        ,M3_FGLEDG.VSNO\n        ,M3_FGLEDG.VTPQ\n        ,M3_FGLEDG.VTD1\n        ,M3_FGLEDG.CRAU\n        ,M3_FGLEDG.CRAY\n        ,M3_FGLEDG.MIGI\n        ,M3_FGLEDG.VOTP\n        ,M3_FGLEDG.RERF\n        ,M3_FGLEDG.RRCB\n\nFROM M3_FGLEDG LEFT JOIN M3_FCHACC L1 on M3_FGLEDG.AIT1=L1.AITM and L1.AITP=1\n               LEFT JOIN M3_FCHACC L2 on M3_FGLEDG.AIT2=L2.AITM and L2.AITP=2\n               LEFT JOIN M3_FCHACC L3 on M3_FGLEDG.AIT3=L3.AITM and L3.AITP=3\n               LEFT JOIN M3_FCHACC L4 on M3_FGLEDG.AIT4=L4.AITM and L4.AITP=4\n               LEFT JOIN M3_FCHACC L5 on M3_FGLEDG.AIT5=L5.AITM and L5.AITP=5",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "tlcdw",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
