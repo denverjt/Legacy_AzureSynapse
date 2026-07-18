@@ -12,6 +12,7 @@
 						"value": "@pipeline().parameters.cw_items",
 						"type": "Expression"
 					},
+					"batchCount": 29,
 					"activities": [
 						{
 							"name": "Copy",
@@ -37,7 +38,12 @@
 							"typeProperties": {
 								"source": {
 									"type": "AzureSqlSource",
-									"partitionOption": "None"
+									"partitionOption": "DynamicRange",
+									"partitionSettings": {
+										"partitionColumnName": "LMTS",
+										"partitionUpperBound": "",
+										"partitionLowerBound": ""
+									}
 								},
 								"sink": {
 									"type": "ParquetSink",
@@ -49,6 +55,7 @@
 									}
 								},
 								"enableStaging": false,
+								"parallelCopies": 8,
 								"validateDataConsistency": false,
 								"translator": {
 									"type": "TabularTranslator",
@@ -223,14 +230,6 @@
 					},
 					{
 						"source": {
-							"table": "FPSUGS"
-						},
-						"destination": {
-							"filename": "FPSUGS.parquet"
-						}
-					},
-					{
-						"source": {
 							"table": "FSLEDG"
 						},
 						"destination": {
@@ -287,14 +286,6 @@
 					},
 					{
 						"source": {
-							"table": "MPOEXP"
-						},
-						"destination": {
-							"filename": "MPOEXP.parquet"
-						}
-					},
-					{
-						"source": {
 							"table": "ODHEAD"
 						},
 						"destination": {
@@ -323,14 +314,6 @@
 						},
 						"destination": {
 							"filename": "OINVOL.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OOCHRG"
-						},
-						"destination": {
-							"filename": "OOCHRG.parquet"
 						}
 					},
 					{
@@ -375,22 +358,6 @@
 					},
 					{
 						"source": {
-							"table": "MHPICH"
-						},
-						"destination": {
-							"filename": "MHPICH.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MPLIRE"
-						},
-						"destination": {
-							"filename": "MPLIRE.parquet"
-						}
-					},
-					{
-						"source": {
 							"table": "MWOHED"
 						},
 						"destination": {
@@ -431,18 +398,63 @@
 					},
 					{
 						"source": {
-							"table": "MITSCH"
-						},
-						"destination": {
-							"filename": "MITSCH.parquet"
-						}
-					},
-					{
-						"source": {
 							"table": "MITMAS"
 						},
 						"destination": {
 							"filename": "MITMAS.parquet"
+						}
+					}
+				]
+			},
+			"cw_items_no_lmts": {
+				"type": "array",
+				"defaultValue": [
+					{
+						"source": {
+							"table": "FPSUGS"
+						},
+						"destination": {
+							"filename": "FPSUGS.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "MPOEXP"
+						},
+						"destination": {
+							"filename": "MPOEXP.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "OOCHRG"
+						},
+						"destination": {
+							"filename": "OOCHRG.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "MHPICH"
+						},
+						"destination": {
+							"filename": "MHPICH.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "MPLIRE"
+						},
+						"destination": {
+							"filename": "MPLIRE.parquet"
+						}
+					},
+					{
+						"source": {
+							"table": "MITSCH"
+						},
+						"destination": {
+							"filename": "MITSCH.parquet"
 						}
 					},
 					{
@@ -462,10 +474,6 @@
 						}
 					}
 				]
-			},
-			"cw_items_no_lmts": {
-				"type": "array",
-				"defaultValue": []
 			}
 		},
 		"annotations": [],
