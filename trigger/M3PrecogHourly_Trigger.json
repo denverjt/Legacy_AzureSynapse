@@ -324,30 +324,21 @@
 			"recurrence": {
 				"frequency": "Day",
 				"interval": 1,
-				"startTime": "2023-06-25T06:30:00",
+				"startTime": "2023-06-25T20:00:00",
 				"timeZone": "Eastern Standard Time",
 				"schedule": {
-					"minutes": [
-						30
-					],
 					"hours": [
 						6,
-						7,
 						8,
-						9,
 						10,
-						11,
 						12,
-						13,
 						14,
-						15,
 						16,
-						17,
 						18,
-						19,
 						20,
-						5,
-						4
+						4,
+						22,
+						0
 					]
 				}
 			}
