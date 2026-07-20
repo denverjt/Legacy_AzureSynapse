@@ -1,0 +1,414 @@
+{
+	"name": "PrecogM3Dataset_TEST",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Precog",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "CONO",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "WHLO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ITNO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RGDT",
+				"type": "date"
+			},
+			{
+				"name": "RGTM",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "TMSX",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "TRDT",
+				"type": "date"
+			},
+			{
+				"name": "TRTM",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "RESP",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TTID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TRTP",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TTYP",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "SLTP",
+				"type": "nvarchar"
+			},
+			{
+				"name": "WHSL",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BANO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CAMU",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BREF",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BRE2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RIDN",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RIDO",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "RIDL",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "RIDI",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "PLSX",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "RFTX",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RORC",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "RORN",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RORL",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "PRMF",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RPRT",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "ECVE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "STAS",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "TRQT",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "NSTQ",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "NSTT",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "REPN",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "INER",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "TUPC",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "TRPR",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "ACRF",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ANBR",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "MFCO",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "STNO",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "PROJ",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ELNO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RSCD",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CAWE",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "CNDA",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "ADCU",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "NHAI",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NHSN",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BIRT",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "INDI",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "CFGL",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LOCH",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "DEID",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "ATNR",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ATNB",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "CDTP",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "TRQA",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "STCD",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "SUDO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "UPIS",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "PANR",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RIDX",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "RORX",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "LMTS",
+				"type": "datetimeoffset",
+				"scale": 7
+			},
+			{
+				"name": "SCNB",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CANB",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "OPAN",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FIAS",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "HACP",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "HACS",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "CWTQ",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "CWTT",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "CSQT",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "BFCI",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "CADT",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "REIT",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "PANB",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "OHAC",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "ENNO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MIGI",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CNST",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "CCWT",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "CSOT",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "CSOW",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "M3",
+			"table": "MITTRA_TEST_OPT"
+		}
+	}
+}
