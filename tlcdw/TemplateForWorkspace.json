@@ -92036,7 +92036,7 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "Copy_MITTRA_TEST_OPT",
+						"name": "Copy_OOLINE_TEST_OPT",
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
@@ -92077,13 +92077,13 @@
 								"referenceName": "IN_M3P",
 								"type": "DatasetReference",
 								"parameters": {
-									"cw_table": "MITTRA_TEST_OPT"
+									"cw_table": "OOLINE_TEST_OPT"
 								}
 							}
 						],
 						"outputs": [
 							{
-								"referenceName": "MITTRA_TEST_OPT_Parquet",
+								"referenceName": "OOLINE_TEST_OPT_Parquet",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -92097,7 +92097,7 @@
 			},
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/datasets/IN_M3P')]",
-				"[concat(variables('workspaceId'), '/datasets/MITTRA_TEST_OPT_Parquet')]"
+				"[concat(variables('workspaceId'), '/datasets/OOLINE_TEST_OPT_Parquet')]"
 			]
 		},
 		{
@@ -110717,6 +110717,32 @@
 					"location": {
 						"type": "AzureBlobFSLocation",
 						"fileName": "MITTRA_TEST_OPT.parquet",
+						"folderPath": "M3P_TEST",
+						"fileSystem": "tlclakefs"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/linkedServices/tlcdw-WorkspaceDefaultStorage')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/OOLINE_TEST_OPT_Parquet')]",
+			"type": "Microsoft.Synapse/workspaces/datasets",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "tlcdw-WorkspaceDefaultStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "OOLINE_TEST_OPT.parquet",
 						"folderPath": "M3P_TEST",
 						"fileSystem": "tlclakefs"
 					},
