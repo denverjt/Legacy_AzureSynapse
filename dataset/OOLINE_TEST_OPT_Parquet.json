@@ -1,0 +1,21 @@
+{
+	"name": "OOLINE_TEST_OPT_Parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "tlcdw-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "OOLINE_TEST_OPT.parquet",
+				"folderPath": "M3P_TEST",
+				"fileSystem": "tlclakefs"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}

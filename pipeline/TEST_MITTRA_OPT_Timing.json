@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy_MITTRA_TEST_OPT",
+				"name": "Copy_OOLINE_TEST_OPT",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -44,13 +44,13 @@
 						"referenceName": "IN_M3P",
 						"type": "DatasetReference",
 						"parameters": {
-							"cw_table": "MITTRA_TEST_OPT"
+							"cw_table": "OOLINE_TEST_OPT"
 						}
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "MITTRA_TEST_OPT_Parquet",
+						"referenceName": "OOLINE_TEST_OPT_Parquet",
 						"type": "DatasetReference"
 					}
 				]
