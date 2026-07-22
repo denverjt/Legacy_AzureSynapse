@@ -1,11 +1,10 @@
 {
-	"name": "TLCDWKV",
-	"type": "Microsoft.Synapse/workspaces/linkedservices",
-	"properties": {
-		"annotations": [],
-		"type": "AzureKeyVault",
-		"typeProperties": {
-			"baseUrl": "https://tlcdwkv.vault.azure.net/"
-		}
-	}
+  "name": "TLCDWKV",
+  "properties": {
+    "annotations": [],
+    "type": "AzureKeyVault",
+    "typeProperties": {
+      "baseUrl": "https://tlcdwkv.vault.azure.net/"
+    }
+  }
 }

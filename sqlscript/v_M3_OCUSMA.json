@@ -1,17 +1,17 @@
 {
-	"name": "v_M3_OCUSMA",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW     v_M3_OCUSMA as\n-- DROP VIEW    v_M3_OCUSMA\nSELECT          distinct OC.*\n,               CASE WHEN STAT = '10' THEN 'Preliminary'\n                WHEN STAT = '11' THEN 'Temporary Customer Number'\n                WHEN STAT = '12' THEN 'Incorrect Values'\n                WHEN STAT = '20' THEN 'Definite'\n                WHEN STAT = '90' THEN 'Blocked/Expired' end AS 'STAT_DESCRIPTION'\n,               CASE WHEN CUTP = '0' THEN 'Normal'\n                WHEN CUTP = '1' THEN 'Bonus/Commission'\n                WHEN CUTP = '2' THEN 'Payer'\n                WHEN CUTP = '4' THEN 'Ship-Via'\n                WHEN CUTP = '7' THEN 'Internal'\n                WHEN CUTP = '8' THEN 'Temporary Customer'\n                WHEN CUTP = '9' THEN 'Temporary Customer Group' end AS 'CUTP_DESCRIPTION'\n,               CS.TX40 AS 'SDST_DESCRIPTION'\n,               CS2.TX40 AS 'SMCD_DESCRIPTION'\n,               CS3.TX40 AS 'FRE1_DESCRIPTION'\n,               CS4.TX15 AS 'TEPY_DESCRIPTION'\n,               OO.TX40 AS 'ORTP_DESCRIPTION'\n,               CS5.TX40 AS 'CUCL_DESCRIPTION'\n,               CG.A330 AS SALES_ADMIN\n,               OG.DISP*1.00/100 as Discount\nFROM            M3.OCUSMA OC\nLEFT JOIN       M3.CSYTAB CS ON OC.SDST = CS.STKY AND CS.STCO = 'SDST'\nLEFT JOIN       M3.CSYTAB CS2 ON OC.SMCD = CS2.STKY AND CS2.STCO = 'SMCD'\nLEFT JOIN       M3.CSYTAB CS3 ON OC.FRE1 = CS3.STKY AND CS3.STCO = 'FRE1'\nLEFT JOIN       M3.CSYTAB CS4 ON OC.TEPY = CS4.STKY AND CS4.STCO = 'TEPY' AND CS4.LNCD = 'GB'\nLEFT JOIN       M3.CSYTAB CS5 ON OC.CUCL = CS5.STKY AND CS5.STCO = 'CUCL'\nLEFT JOIN       M3.OOTYPE OO ON OC.ORTP = OO.ORTP\nLEFT JOIN       M3.CUGEX1 CG ON OC.CUNO = CG.PK01 AND CG.[FILE] = 'OCUSMA' AND CG.A330 <> ''\nLEFT JOIN       M3.OGDMTX OG on OC.CUNO = OG.OBV1 and OC.DISY = OG.DISY",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_M3_OCUSMA",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW     v_M3_OCUSMA as\n-- DROP VIEW    v_M3_OCUSMA\nSELECT          distinct OC.*\n,               CASE WHEN STAT = '10' THEN 'Preliminary'\n                WHEN STAT = '11' THEN 'Temporary Customer Number'\n                WHEN STAT = '12' THEN 'Incorrect Values'\n                WHEN STAT = '20' THEN 'Definite'\n                WHEN STAT = '90' THEN 'Blocked/Expired' end AS 'STAT_DESCRIPTION'\n,               CASE WHEN CUTP = '0' THEN 'Normal'\n                WHEN CUTP = '1' THEN 'Bonus/Commission'\n                WHEN CUTP = '2' THEN 'Payer'\n                WHEN CUTP = '4' THEN 'Ship-Via'\n                WHEN CUTP = '7' THEN 'Internal'\n                WHEN CUTP = '8' THEN 'Temporary Customer'\n                WHEN CUTP = '9' THEN 'Temporary Customer Group' end AS 'CUTP_DESCRIPTION'\n,               CS.TX40 AS 'SDST_DESCRIPTION'\n,               CS2.TX40 AS 'SMCD_DESCRIPTION'\n,               CS3.TX40 AS 'FRE1_DESCRIPTION'\n,               CS4.TX15 AS 'TEPY_DESCRIPTION'\n,               OO.TX40 AS 'ORTP_DESCRIPTION'\n,               CS5.TX40 AS 'CUCL_DESCRIPTION'\n,               CG.A330 AS SALES_ADMIN\n,               OG.DISP*1.00/100 as Discount\nFROM            M3.OCUSMA OC\nLEFT JOIN       M3.CSYTAB CS ON OC.SDST = CS.STKY AND CS.STCO = 'SDST'\nLEFT JOIN       M3.CSYTAB CS2 ON OC.SMCD = CS2.STKY AND CS2.STCO = 'SMCD'\nLEFT JOIN       M3.CSYTAB CS3 ON OC.FRE1 = CS3.STKY AND CS3.STCO = 'FRE1'\nLEFT JOIN       M3.CSYTAB CS4 ON OC.TEPY = CS4.STKY AND CS4.STCO = 'TEPY' AND CS4.LNCD = 'GB'\nLEFT JOIN       M3.CSYTAB CS5 ON OC.CUCL = CS5.STKY AND CS5.STCO = 'CUCL'\nLEFT JOIN       M3.OOTYPE OO ON OC.ORTP = OO.ORTP\nLEFT JOIN       M3.CUGEX1 CG ON OC.CUNO = CG.PK01 AND CG.[FILE] = 'OCUSMA' AND CG.A330 <> ''\nLEFT JOIN       M3.OGDMTX OG on OC.CUNO = OG.OBV1 and OC.DISY = OG.DISY",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

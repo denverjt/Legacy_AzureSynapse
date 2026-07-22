@@ -1,161 +1,160 @@
 {
-	"name": "IN_v_SalesData",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "TLCDW",
-			"type": "LinkedServiceReference"
-		},
-		"annotations": [],
-		"type": "AzureSqlTable",
-		"schema": [
-			{
-				"name": "Division",
-				"type": "nvarchar"
-			},
-			{
-				"name": "Company",
-				"type": "nvarchar"
-			},
-			{
-				"name": "Customer ID",
-				"type": "nvarchar"
-			},
-			{
-				"name": "Customer Name",
-				"type": "nvarchar"
-			},
-			{
-				"name": "Customer PO",
-				"type": "nvarchar"
-			},
-			{
-				"name": "Warehouse",
-				"type": "nvarchar"
-			},
-			{
-				"name": "Order Entry User",
-				"type": "int",
-				"precision": 10
-			},
-			{
-				"name": "Order ID",
-				"type": "nvarchar"
-			},
-			{
-				"name": "Invoice ID",
-				"type": "nvarchar"
-			},
-			{
-				"name": "Date",
-				"type": "datetime2",
-				"scale": 7
-			},
-			{
-				"name": "Brand",
-				"type": "varchar"
-			},
-			{
-				"name": "Product Category",
-				"type": "varchar"
-			},
-			{
-				"name": "Part ID - Actual",
-				"type": "nvarchar"
-			},
-			{
-				"name": "Part ID - Go Forward",
-				"type": "nvarchar"
-			},
-			{
-				"name": "Part Description",
-				"type": "nvarchar"
-			},
-			{
-				"name": "Supplier ID",
-				"type": "nvarchar"
-			},
-			{
-				"name": "Sales Amt",
-				"type": "float",
-				"precision": 15
-			},
-			{
-				"name": "Net Sales Amt",
-				"type": "float",
-				"precision": 15
-			},
-			{
-				"name": "Sales Qty",
-				"type": "float",
-				"precision": 15
-			},
-			{
-				"name": "Sales Type",
-				"type": "varchar"
-			},
-			{
-				"name": "Cost",
-				"type": "float",
-				"precision": 15
-			},
-			{
-				"name": "Ship to Name",
-				"type": "nvarchar"
-			},
-			{
-				"name": "Ship to Address 1",
-				"type": "nvarchar"
-			},
-			{
-				"name": "Ship to Address 2",
-				"type": "nvarchar"
-			},
-			{
-				"name": "Ship to City",
-				"type": "nvarchar"
-			},
-			{
-				"name": "Ship to State",
-				"type": "nvarchar"
-			},
-			{
-				"name": "Ship to Zip Code",
-				"type": "nvarchar"
-			},
-			{
-				"name": "Bill to Name",
-				"type": "nvarchar"
-			},
-			{
-				"name": "Bill to Address 1",
-				"type": "nvarchar"
-			},
-			{
-				"name": "Bill to Address 2",
-				"type": "nvarchar"
-			},
-			{
-				"name": "Bill to City",
-				"type": "nvarchar"
-			},
-			{
-				"name": "Bill to State",
-				"type": "nvarchar"
-			},
-			{
-				"name": "Bill to Zip Code",
-				"type": "nvarchar"
-			},
-			{
-				"name": "Line Number",
-				"type": "bigint",
-				"precision": 19
-			}
-		],
-		"typeProperties": {
-			"schema": "dbo",
-			"table": "v_SalesData"
-		}
-	},
-	"type": "Microsoft.Synapse/workspaces/datasets"
+  "name": "IN_v_SalesData",
+  "properties": {
+    "annotations": [],
+    "linkedServiceName": {
+      "referenceName": "TLCDW",
+      "type": "LinkedServiceReference"
+    },
+    "schema": [
+      {
+        "name": "Division",
+        "type": "nvarchar"
+      },
+      {
+        "name": "Company",
+        "type": "nvarchar"
+      },
+      {
+        "name": "Customer ID",
+        "type": "nvarchar"
+      },
+      {
+        "name": "Customer Name",
+        "type": "nvarchar"
+      },
+      {
+        "name": "Customer PO",
+        "type": "nvarchar"
+      },
+      {
+        "name": "Warehouse",
+        "type": "nvarchar"
+      },
+      {
+        "name": "Order Entry User",
+        "precision": 10,
+        "type": "int"
+      },
+      {
+        "name": "Order ID",
+        "type": "nvarchar"
+      },
+      {
+        "name": "Invoice ID",
+        "type": "nvarchar"
+      },
+      {
+        "name": "Date",
+        "scale": 7,
+        "type": "datetime2"
+      },
+      {
+        "name": "Brand",
+        "type": "varchar"
+      },
+      {
+        "name": "Product Category",
+        "type": "varchar"
+      },
+      {
+        "name": "Part ID - Actual",
+        "type": "nvarchar"
+      },
+      {
+        "name": "Part ID - Go Forward",
+        "type": "nvarchar"
+      },
+      {
+        "name": "Part Description",
+        "type": "nvarchar"
+      },
+      {
+        "name": "Supplier ID",
+        "type": "nvarchar"
+      },
+      {
+        "name": "Sales Amt",
+        "precision": 15,
+        "type": "float"
+      },
+      {
+        "name": "Net Sales Amt",
+        "precision": 15,
+        "type": "float"
+      },
+      {
+        "name": "Sales Qty",
+        "precision": 15,
+        "type": "float"
+      },
+      {
+        "name": "Sales Type",
+        "type": "varchar"
+      },
+      {
+        "name": "Cost",
+        "precision": 15,
+        "type": "float"
+      },
+      {
+        "name": "Ship to Name",
+        "type": "nvarchar"
+      },
+      {
+        "name": "Ship to Address 1",
+        "type": "nvarchar"
+      },
+      {
+        "name": "Ship to Address 2",
+        "type": "nvarchar"
+      },
+      {
+        "name": "Ship to City",
+        "type": "nvarchar"
+      },
+      {
+        "name": "Ship to State",
+        "type": "nvarchar"
+      },
+      {
+        "name": "Ship to Zip Code",
+        "type": "nvarchar"
+      },
+      {
+        "name": "Bill to Name",
+        "type": "nvarchar"
+      },
+      {
+        "name": "Bill to Address 1",
+        "type": "nvarchar"
+      },
+      {
+        "name": "Bill to Address 2",
+        "type": "nvarchar"
+      },
+      {
+        "name": "Bill to City",
+        "type": "nvarchar"
+      },
+      {
+        "name": "Bill to State",
+        "type": "nvarchar"
+      },
+      {
+        "name": "Bill to Zip Code",
+        "type": "nvarchar"
+      },
+      {
+        "name": "Line Number",
+        "precision": 19,
+        "type": "bigint"
+      }
+    ],
+    "type": "AzureSqlTable",
+    "typeProperties": {
+      "schema": "dbo",
+      "table": "v_SalesData"
+    }
+  }
 }

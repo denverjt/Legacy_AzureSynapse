@@ -1,7 +1,7 @@
 {
-	"name": "tlcdwintegration-wsw",
-	"properties": {
-		"type": "SelfHosted",
-		"description": "TLCDW Integration Runtime for Weston West (Weston HQ WS1)"
-	}
+  "name": "tlcdwintegration-wsw",
+  "properties": {
+    "description": "TLCDW Integration Runtime for Weston West (Weston HQ WS1)",
+    "type": "SelfHosted"
+  }
 }

@@ -1,17 +1,17 @@
 {
-	"name": "Items with HTS",
-	"properties": {
-		"content": {
-			"query": "SELECT          MM.ITNO AS  [Item Number]\n,               ITDS AS     [Item Description]\n,               ITCL AS     [Brand]\n,               PRGP AS     [Product Group]\n,               CS1.TX40 AS [Product Group Description]\n,               ITTY AS     [Item Type]\n,               CS2.TX40 AS [Item Type Description]\n,               ITGR AS     [Item Category]\n,               CS3.TX40 AS [Item Category Description]\n,               BUAR AS     [Business Area]\n,               MF.CSNO AS  [HTS Code]\n,               MM.CFI4 AS  [Trump Tariff]\nFROM            M3.MITMAS MM\nJOIN            M3.MITFAC MF on MM.ITNO = MF.ITNO\nJOIN            M3.CSYTAB CS1 ON CS1.STCO = 'PRGP' AND CS1.STKY = MM.PRGP\nJOIN            M3.CSYTAB CS2 ON CS2.STCO = 'ITTY' AND CS2.STKY = MM.ITTY\nJOIN            M3.CSYTAB CS3 ON CS3.STCO = 'ITGR' AND CS3.STKY = MM.ITGR",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": -1
-		},
-		"type": "SqlQuery"
-	}
+  "name": "Items with HTS",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "SELECT          MM.ITNO AS  [Item Number]\n,               ITDS AS     [Item Description]\n,               ITCL AS     [Brand]\n,               PRGP AS     [Product Group]\n,               CS1.TX40 AS [Product Group Description]\n,               ITTY AS     [Item Type]\n,               CS2.TX40 AS [Item Type Description]\n,               ITGR AS     [Item Category]\n,               CS3.TX40 AS [Item Category Description]\n,               BUAR AS     [Business Area]\n,               MF.CSNO AS  [HTS Code]\n,               MM.CFI4 AS  [Trump Tariff]\nFROM            M3.MITMAS MM\nJOIN            M3.MITFAC MF on MM.ITNO = MF.ITNO\nJOIN            M3.CSYTAB CS1 ON CS1.STCO = 'PRGP' AND CS1.STKY = MM.PRGP\nJOIN            M3.CSYTAB CS2 ON CS2.STCO = 'ITTY' AND CS2.STKY = MM.ITTY\nJOIN            M3.CSYTAB CS3 ON CS3.STCO = 'ITGR' AND CS3.STKY = MM.ITGR",
+      "resultLimit": -1
+    },
+    "type": "SqlQuery"
+  }
 }

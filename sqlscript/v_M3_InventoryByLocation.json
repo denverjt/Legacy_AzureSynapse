@@ -1,17 +1,17 @@
 {
-	"name": "v_M3_InventoryByLocation",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW         v_M3_InventoryByLocation\nas\n--drop view v_M3_InventoryByLocation\nSELECT              A.*\n,                   [Incoming Qty]\n,                   [Expected Receipt Date]\nFROM\n(\nSELECT              IB.ITNO AS [Item Number]\n,                   IM.ITDS as [Item Name]\n,                   IB.WHLO as [Warehouse]\n,                   STQT AS [On Hand Qty]\n,                   ALQT AS [Allocated Qty]\n,                   STQT - ALQT AS [Available Qty]\nFROM                DBO.M3_MITBAL IB\nJOIN                DBO.M3_MITMAS IM ON IB.ITNO = IM.ITNO\n) A\n\nLEFT JOIN\n\n(\nSELECT              X.[Item Number], X.[Warehouse], [Incoming Qty], [Expected Receipt Date]\nFROM\n(\nSELECT              ITNO AS [Item Number]\n,                   WHLO AS [Warehouse]\n,                   SUM(ORQA) AS [Incoming Qty]\nFROM                DBO.M3_MPLINE\nWHERE               LEFT(CAST(CAST(DWDT AS VARCHAR(8)) AS DATE), 10) >= GETDATE()\nGROUP BY            ITNO, WHLO\n) X\n\nLEFT JOIN\n\n(\nSELECT              ITNO AS [Item Number]\n,                   WHLO AS [Warehouse]\n,                   MIN(DWDT) AS [Expected Receipt Date]\nFROM                DBO.M3_MPLINE\nWHERE               LEFT(CAST(CAST(DWDT AS VARCHAR(8)) AS DATE), 10) >= GETDATE()\nGROUP BY            ITNO, WHLO\n) Y                 on X.[Item Number] = Y.[Item Number] AND X.[Warehouse] = Y.[Warehouse]\n) B                 on A.[Item Number] = B.[Item Number] AND A.[Warehouse] = B.[Warehouse]",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_M3_InventoryByLocation",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW         v_M3_InventoryByLocation\nas\n--drop view v_M3_InventoryByLocation\nSELECT              A.*\n,                   [Incoming Qty]\n,                   [Expected Receipt Date]\nFROM\n(\nSELECT              IB.ITNO AS [Item Number]\n,                   IM.ITDS as [Item Name]\n,                   IB.WHLO as [Warehouse]\n,                   STQT AS [On Hand Qty]\n,                   ALQT AS [Allocated Qty]\n,                   STQT - ALQT AS [Available Qty]\nFROM                DBO.M3_MITBAL IB\nJOIN                DBO.M3_MITMAS IM ON IB.ITNO = IM.ITNO\n) A\n\nLEFT JOIN\n\n(\nSELECT              X.[Item Number], X.[Warehouse], [Incoming Qty], [Expected Receipt Date]\nFROM\n(\nSELECT              ITNO AS [Item Number]\n,                   WHLO AS [Warehouse]\n,                   SUM(ORQA) AS [Incoming Qty]\nFROM                DBO.M3_MPLINE\nWHERE               LEFT(CAST(CAST(DWDT AS VARCHAR(8)) AS DATE), 10) >= GETDATE()\nGROUP BY            ITNO, WHLO\n) X\n\nLEFT JOIN\n\n(\nSELECT              ITNO AS [Item Number]\n,                   WHLO AS [Warehouse]\n,                   MIN(DWDT) AS [Expected Receipt Date]\nFROM                DBO.M3_MPLINE\nWHERE               LEFT(CAST(CAST(DWDT AS VARCHAR(8)) AS DATE), 10) >= GETDATE()\nGROUP BY            ITNO, WHLO\n) Y                 on X.[Item Number] = Y.[Item Number] AND X.[Warehouse] = Y.[Warehouse]\n) B                 on A.[Item Number] = B.[Item Number] AND A.[Warehouse] = B.[Warehouse]",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

@@ -1,16 +1,15 @@
 {
-	"name": "SysproCRMLive",
-	"type": "Microsoft.Synapse/workspaces/linkedservices",
-	"properties": {
-		"annotations": [],
-		"type": "SqlServer",
-		"typeProperties": {
-			"connectionString": "integrated security=False;data source=Syspro61.greenfieldworld.com;initial catalog=Crm_Live_4;user id=sa",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJkMmNlMzQ5Yi0wNTdjLTQ2NzYtOTllYS05YzY1OGM0OGQ4ZTUiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
-		},
-		"connectVia": {
-			"referenceName": "tlcdwintegration",
-			"type": "IntegrationRuntimeReference"
-		}
-	}
+  "name": "SysproCRMLive",
+  "properties": {
+    "annotations": [],
+    "connectVia": {
+      "referenceName": "tlcdwintegration",
+      "type": "IntegrationRuntimeReference"
+    },
+    "type": "SqlServer",
+    "typeProperties": {
+      "connectionString": "integrated security=False;data source=Syspro61.greenfieldworld.com;initial catalog=Crm_Live_4;user id=sa",
+      "encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJkMmNlMzQ5Yi0wNTdjLTQ2NzYtOTllYS05YzY1OGM0OGQ4ZTUiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+    }
+  }
 }

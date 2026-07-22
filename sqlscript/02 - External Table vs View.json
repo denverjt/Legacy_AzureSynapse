@@ -1,17 +1,17 @@
 {
-	"name": "02 - External Table vs View",
-	"properties": {
-		"content": {
-			"query": "--Creating an external table for a parquet file in the data lake\n\nCREATE EXTERNAL TABLE [ECM].[aaedicustomer] (\n\t[row_id] int,\n\t[TradingPartnerID] nvarchar(4000),\n\t[CUSTOMER_ID] nvarchar(4000),\n\t[EDI_850] nvarchar(4000),\n\t[EDI_860] nvarchar(4000),\n\t[EDI_810] nvarchar(4000),\n\t[EDI_856] nvarchar(4000),\n\t[EDI_856_NEEDS_INVOICE] nvarchar(4000),\n\t[Name] nvarchar(4000),\n\t[EDI_UPC] nvarchar(4000),\n\t[EDI_GTIN] nvarchar(4000),\n\t[EDI_BUYER_SKU] nvarchar(4000),\n\t[EDI_VENDOR_ITEM_NO] nvarchar(4000),\n\t[EDI_BUYER_CAT_NO] nvarchar(4000),\n\t[VALUE_ADD_CUST] nvarchar(4000),\n\t[VA_PRICE] nvarchar(4000),\n\t[VA_SKU] nvarchar(4000),\n\t[VA_UCC] nvarchar(4000),\n\t[VA_SCC_14] nvarchar(4000),\n\t[VA_SHIP_LABEL] nvarchar(4000),\n\t[VA_MP_LABEL] nvarchar(4000),\n\t[VA_STORE_ID] nvarchar(4000),\n\t[VA_WHSE] nvarchar(4000),\n\t[VA_OTHER] nvarchar(4000),\n\t[EDI_856_CONSOL_SHIPTO] nvarchar(4000),\n\t[EDI_810_CONSOL] nvarchar(4000),\n\t[EDI_810_CONSOL_JIT] nvarchar(4000),\n\t[EDI_856_CONSOL_JIT] nvarchar(4000),\n\t[EDI_812] nvarchar(4000),\n\t[VISUAL_EDI] nvarchar(4000)\n\t)\n\tWITH (\n\tLOCATION = 'ECVisualVMFG/aa_edi_customer.parquet',\n\tDATA_SOURCE = [tlclakefs_tlclake_dfs_core_windows_net],\n\tFILE_FORMAT = [SynapseParquetFormat]\n\t)\n\n-- Creating a view over a file in the data lake.\n\nCREATE OR ALTER VIEW [ECM_aa_edi_customer] AS\n    SELECT *\n    FROM\n    OPENROWSET(\n        BULK 'https://tlclake.dfs.core.windows.net/tlclakefs/ECVisualVMFG/aa_edi_customer.parquet',\n        FORMAT = 'PARQUET'\n    ) AS [result]\n",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "02 - External Table vs View",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "--Creating an external table for a parquet file in the data lake\n\nCREATE EXTERNAL TABLE [ECM].[aaedicustomer] (\n\t[row_id] int,\n\t[TradingPartnerID] nvarchar(4000),\n\t[CUSTOMER_ID] nvarchar(4000),\n\t[EDI_850] nvarchar(4000),\n\t[EDI_860] nvarchar(4000),\n\t[EDI_810] nvarchar(4000),\n\t[EDI_856] nvarchar(4000),\n\t[EDI_856_NEEDS_INVOICE] nvarchar(4000),\n\t[Name] nvarchar(4000),\n\t[EDI_UPC] nvarchar(4000),\n\t[EDI_GTIN] nvarchar(4000),\n\t[EDI_BUYER_SKU] nvarchar(4000),\n\t[EDI_VENDOR_ITEM_NO] nvarchar(4000),\n\t[EDI_BUYER_CAT_NO] nvarchar(4000),\n\t[VALUE_ADD_CUST] nvarchar(4000),\n\t[VA_PRICE] nvarchar(4000),\n\t[VA_SKU] nvarchar(4000),\n\t[VA_UCC] nvarchar(4000),\n\t[VA_SCC_14] nvarchar(4000),\n\t[VA_SHIP_LABEL] nvarchar(4000),\n\t[VA_MP_LABEL] nvarchar(4000),\n\t[VA_STORE_ID] nvarchar(4000),\n\t[VA_WHSE] nvarchar(4000),\n\t[VA_OTHER] nvarchar(4000),\n\t[EDI_856_CONSOL_SHIPTO] nvarchar(4000),\n\t[EDI_810_CONSOL] nvarchar(4000),\n\t[EDI_810_CONSOL_JIT] nvarchar(4000),\n\t[EDI_856_CONSOL_JIT] nvarchar(4000),\n\t[EDI_812] nvarchar(4000),\n\t[VISUAL_EDI] nvarchar(4000)\n\t)\n\tWITH (\n\tLOCATION = 'ECVisualVMFG/aa_edi_customer.parquet',\n\tDATA_SOURCE = [tlclakefs_tlclake_dfs_core_windows_net],\n\tFILE_FORMAT = [SynapseParquetFormat]\n\t)\n\n-- Creating a view over a file in the data lake.\n\nCREATE OR ALTER VIEW [ECM_aa_edi_customer] AS\n    SELECT *\n    FROM\n    OPENROWSET(\n        BULK 'https://tlclake.dfs.core.windows.net/tlclakefs/ECVisualVMFG/aa_edi_customer.parquet',\n        FORMAT = 'PARQUET'\n    ) AS [result]\n",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

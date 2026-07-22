@@ -1,17 +1,17 @@
 {
-	"name": "v_BOM_Consumption",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW    v_BOM_Consumption\nas\nSELECT      MW.ITNO\n,           MM.MTNO\n,           SUM(MW.RVQT*MM.CNQT) as Consumption\n,           CAST(NULLIF(CAST(MW.RPDT as VARCHAR(10)),0) as DATE) as [Report Date]\nFROM        M3.MWOHED MW\nJOIN        M3.MWOMAT MM on MW.MFNO = MM.MFNO\nGROUP BY    MW.ITNO, MM.MTNO, MW.RPDT\nHAVING      SUM(MW.RVQT*MM.CNQT) > 0",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_BOM_Consumption",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW    v_BOM_Consumption\nas\nSELECT      MW.ITNO\n,           MM.MTNO\n,           SUM(MW.RVQT*MM.CNQT) as Consumption\n,           CAST(NULLIF(CAST(MW.RPDT as VARCHAR(10)),0) as DATE) as [Report Date]\nFROM        M3.MWOHED MW\nJOIN        M3.MWOMAT MM on MW.MFNO = MM.MFNO\nGROUP BY    MW.ITNO, MM.MTNO, MW.RPDT\nHAVING      SUM(MW.RVQT*MM.CNQT) > 0",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

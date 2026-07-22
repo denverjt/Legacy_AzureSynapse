@@ -1,16 +1,15 @@
 {
-	"name": "ECVisualVFIN",
-	"type": "Microsoft.Synapse/workspaces/linkedservices",
-	"properties": {
-		"annotations": [],
-		"type": "SqlServer",
-		"typeProperties": {
-			"connectionString": "integrated security=False;data source=ECS-VSQL3.westbend.local;initial catalog=VFIN;user id=sa",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJjMmM5MjdlZS03OGU1LTQwZjQtODMxOC00MTQxYTQ5N2UzZjMiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
-		},
-		"connectVia": {
-			"referenceName": "tlcdwintegration-par",
-			"type": "IntegrationRuntimeReference"
-		}
-	}
+  "name": "ECVisualVFIN",
+  "properties": {
+    "annotations": [],
+    "connectVia": {
+      "referenceName": "tlcdwintegration-par",
+      "type": "IntegrationRuntimeReference"
+    },
+    "type": "SqlServer",
+    "typeProperties": {
+      "connectionString": "integrated security=False;data source=ECS-VSQL3.westbend.local;initial catalog=VFIN;user id=sa",
+      "encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJjMmM5MjdlZS03OGU1LTQwZjQtODMxOC00MTQxYTQ5N2UzZjMiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+    }
+  }
 }

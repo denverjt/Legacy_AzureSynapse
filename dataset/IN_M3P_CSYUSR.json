@@ -1,192 +1,191 @@
 {
-	"name": "IN_M3P_CSYUSR",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "Precog",
-			"type": "LinkedServiceReference"
-		},
-		"annotations": [],
-		"type": "AzureSqlTable",
-		"schema": [
-			{
-				"name": "accounting_entity_csyusr",
-				"type": "nvarchar"
-			},
-			{
-				"name": "aupf_csyusr",
-				"type": "nvarchar"
-			},
-			{
-				"name": "chid_csyusr",
-				"type": "nvarchar"
-			},
-			{
-				"name": "chno_csyusr",
-				"type": "bigint",
-				"precision": 19
-			},
-			{
-				"name": "cono_csyusr",
-				"type": "bigint",
-				"precision": 19
-			},
-			{
-				"name": "csyusr_precog_key",
-				"type": "nvarchar"
-			},
-			{
-				"name": "deleted_csyusr",
-				"type": "nvarchar"
-			},
-			{
-				"name": "dfmn_csyusr",
-				"type": "nvarchar"
-			},
-			{
-				"name": "divi_csyusr",
-				"type": "nvarchar"
-			},
-			{
-				"name": "dtfm_csyusr",
-				"type": "nvarchar"
-			},
-			{
-				"name": "eqal_csyusr",
-				"type": "nvarchar"
-			},
-			{
-				"name": "faci_csyusr",
-				"type": "nvarchar"
-			},
-			{
-				"name": "infor_client_csyusr",
-				"type": "nvarchar"
-			},
-			{
-				"name": "infor_compass_timestamp_csyusr",
-				"type": "datetimeoffset",
-				"scale": 7
-			},
-			{
-				"name": "infor_data_object_id_csyusr",
-				"type": "nvarchar"
-			},
-			{
-				"name": "infor_data_object_seq_id_csyusr",
-				"type": "bigint",
-				"precision": 19
-			},
-			{
-				"name": "infor_last_modified_csyusr",
-				"type": "datetimeoffset",
-				"scale": 7
-			},
-			{
-				"name": "infor_partition_csyusr",
-				"type": "date"
-			},
-			{
-				"name": "lanc_csyusr",
-				"type": "nvarchar"
-			},
-			{
-				"name": "llid_csyusr",
-				"type": "nvarchar"
-			},
-			{
-				"name": "lmdt_csyusr",
-				"type": "date"
-			},
-			{
-				"name": "mnmn_csyusr",
-				"type": "bigint",
-				"precision": 19
-			},
-			{
-				"name": "mnvr_csyusr",
-				"type": "nvarchar"
-			},
-			{
-				"name": "patc_csyusr",
-				"type": "nvarchar"
-			},
-			{
-				"name": "precog_delta_key_csyusr",
-				"type": "nvarchar"
-			},
-			{
-				"name": "precog_delta_version_csyusr",
-				"type": "datetimeoffset",
-				"scale": 7
-			},
-			{
-				"name": "pyad_csyusr",
-				"type": "nvarchar"
-			},
-			{
-				"name": "renm_csyusr",
-				"type": "nvarchar"
-			},
-			{
-				"name": "repf_csyusr",
-				"type": "bigint",
-				"precision": 19
-			},
-			{
-				"name": "resp_csyusr",
-				"type": "nvarchar"
-			},
-			{
-				"name": "rgdt_csyusr",
-				"type": "date"
-			},
-			{
-				"name": "rgtm_csyusr",
-				"type": "nvarchar"
-			},
-			{
-				"name": "sfid_csyusr",
-				"type": "nvarchar"
-			},
-			{
-				"name": "stmn_csyusr",
-				"type": "nvarchar"
-			},
-			{
-				"name": "timestamp_csyusr",
-				"type": "datetimeoffset",
-				"scale": 7
-			},
-			{
-				"name": "tizo_csyusr",
-				"type": "nvarchar"
-			},
-			{
-				"name": "txid_csyusr",
-				"type": "bigint",
-				"precision": 19
-			},
-			{
-				"name": "uoid_csyusr",
-				"type": "nvarchar"
-			},
-			{
-				"name": "usig_csyusr",
-				"type": "nvarchar"
-			},
-			{
-				"name": "variation_number_csyusr",
-				"type": "nvarchar"
-			},
-			{
-				"name": "whlo_csyusr",
-				"type": "nvarchar"
-			}
-		],
-		"typeProperties": {
-			"schema": "M3_Infor Data Lake_TLC",
-			"table": "csyusr"
-		}
-	},
-	"type": "Microsoft.Synapse/workspaces/datasets"
+  "name": "IN_M3P_CSYUSR",
+  "properties": {
+    "annotations": [],
+    "linkedServiceName": {
+      "referenceName": "Precog",
+      "type": "LinkedServiceReference"
+    },
+    "schema": [
+      {
+        "name": "accounting_entity_csyusr",
+        "type": "nvarchar"
+      },
+      {
+        "name": "aupf_csyusr",
+        "type": "nvarchar"
+      },
+      {
+        "name": "chid_csyusr",
+        "type": "nvarchar"
+      },
+      {
+        "name": "chno_csyusr",
+        "precision": 19,
+        "type": "bigint"
+      },
+      {
+        "name": "cono_csyusr",
+        "precision": 19,
+        "type": "bigint"
+      },
+      {
+        "name": "csyusr_precog_key",
+        "type": "nvarchar"
+      },
+      {
+        "name": "deleted_csyusr",
+        "type": "nvarchar"
+      },
+      {
+        "name": "dfmn_csyusr",
+        "type": "nvarchar"
+      },
+      {
+        "name": "divi_csyusr",
+        "type": "nvarchar"
+      },
+      {
+        "name": "dtfm_csyusr",
+        "type": "nvarchar"
+      },
+      {
+        "name": "eqal_csyusr",
+        "type": "nvarchar"
+      },
+      {
+        "name": "faci_csyusr",
+        "type": "nvarchar"
+      },
+      {
+        "name": "infor_client_csyusr",
+        "type": "nvarchar"
+      },
+      {
+        "name": "infor_compass_timestamp_csyusr",
+        "scale": 7,
+        "type": "datetimeoffset"
+      },
+      {
+        "name": "infor_data_object_id_csyusr",
+        "type": "nvarchar"
+      },
+      {
+        "name": "infor_data_object_seq_id_csyusr",
+        "precision": 19,
+        "type": "bigint"
+      },
+      {
+        "name": "infor_last_modified_csyusr",
+        "scale": 7,
+        "type": "datetimeoffset"
+      },
+      {
+        "name": "infor_partition_csyusr",
+        "type": "date"
+      },
+      {
+        "name": "lanc_csyusr",
+        "type": "nvarchar"
+      },
+      {
+        "name": "llid_csyusr",
+        "type": "nvarchar"
+      },
+      {
+        "name": "lmdt_csyusr",
+        "type": "date"
+      },
+      {
+        "name": "mnmn_csyusr",
+        "precision": 19,
+        "type": "bigint"
+      },
+      {
+        "name": "mnvr_csyusr",
+        "type": "nvarchar"
+      },
+      {
+        "name": "patc_csyusr",
+        "type": "nvarchar"
+      },
+      {
+        "name": "precog_delta_key_csyusr",
+        "type": "nvarchar"
+      },
+      {
+        "name": "precog_delta_version_csyusr",
+        "scale": 7,
+        "type": "datetimeoffset"
+      },
+      {
+        "name": "pyad_csyusr",
+        "type": "nvarchar"
+      },
+      {
+        "name": "renm_csyusr",
+        "type": "nvarchar"
+      },
+      {
+        "name": "repf_csyusr",
+        "precision": 19,
+        "type": "bigint"
+      },
+      {
+        "name": "resp_csyusr",
+        "type": "nvarchar"
+      },
+      {
+        "name": "rgdt_csyusr",
+        "type": "date"
+      },
+      {
+        "name": "rgtm_csyusr",
+        "type": "nvarchar"
+      },
+      {
+        "name": "sfid_csyusr",
+        "type": "nvarchar"
+      },
+      {
+        "name": "stmn_csyusr",
+        "type": "nvarchar"
+      },
+      {
+        "name": "timestamp_csyusr",
+        "scale": 7,
+        "type": "datetimeoffset"
+      },
+      {
+        "name": "tizo_csyusr",
+        "type": "nvarchar"
+      },
+      {
+        "name": "txid_csyusr",
+        "precision": 19,
+        "type": "bigint"
+      },
+      {
+        "name": "uoid_csyusr",
+        "type": "nvarchar"
+      },
+      {
+        "name": "usig_csyusr",
+        "type": "nvarchar"
+      },
+      {
+        "name": "variation_number_csyusr",
+        "type": "nvarchar"
+      },
+      {
+        "name": "whlo_csyusr",
+        "type": "nvarchar"
+      }
+    ],
+    "type": "AzureSqlTable",
+    "typeProperties": {
+      "schema": "M3_Infor Data Lake_TLC",
+      "table": "csyusr"
+    }
+  }
 }

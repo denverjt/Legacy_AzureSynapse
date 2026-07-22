@@ -1,17 +1,17 @@
 {
-	"name": "v_OpenTransferOrders",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW v_OpenTransferOrders\n-- drop view v_TransferOrders\nas\nSELECT          MGH.TRNR AS     [Transfer Order]\n,               MGH.TRDT as     [Create Date]\n,               MGH.WHLO AS     [From Warehouse]\n,               MGH.TWLO AS     [To Warehouse]\n,               MGL.RESP as     [Responsible]\n,               MGL.PONR AS     [Order Line]\n,               MGL.TRSH AS     [Line Status]\n,               MGL.ITNO AS     [Item Number]\n,               MM.ITDS AS      [Item Description]\n,               MGL.TRQT as     [Transfer Qty]\n,               MGL.RPQT AS     [Reported Qty]\n,               MGL.TRQT - MGL.RPQT as [Open Qty]\nFROM            M3.MGHEAD MGH\nJOIN            M3.MGLINE MGL on MGH.TRNR = MGL.TRNR\nJOIN            M3.MITMAS MM ON MGL.ITNO = MM.ITNO\nWHERE           TRTP IN ('D02', 'D10', 'D11', 'D40', 'D60', 'D65', 'D82', 'OPR', 'PPN')\nAND             MGL.TRQT - MGL.RPQT <> 0 AND MGL.TRSH <> 99",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_OpenTransferOrders",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW v_OpenTransferOrders\n-- drop view v_TransferOrders\nas\nSELECT          MGH.TRNR AS     [Transfer Order]\n,               MGH.TRDT as     [Create Date]\n,               MGH.WHLO AS     [From Warehouse]\n,               MGH.TWLO AS     [To Warehouse]\n,               MGL.RESP as     [Responsible]\n,               MGL.PONR AS     [Order Line]\n,               MGL.TRSH AS     [Line Status]\n,               MGL.ITNO AS     [Item Number]\n,               MM.ITDS AS      [Item Description]\n,               MGL.TRQT as     [Transfer Qty]\n,               MGL.RPQT AS     [Reported Qty]\n,               MGL.TRQT - MGL.RPQT as [Open Qty]\nFROM            M3.MGHEAD MGH\nJOIN            M3.MGLINE MGL on MGH.TRNR = MGL.TRNR\nJOIN            M3.MITMAS MM ON MGL.ITNO = MM.ITNO\nWHERE           TRTP IN ('D02', 'D10', 'D11', 'D40', 'D60', 'D65', 'D82', 'OPR', 'PPN')\nAND             MGL.TRQT - MGL.RPQT <> 0 AND MGL.TRSH <> 99",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

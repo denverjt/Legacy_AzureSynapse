@@ -1,475 +1,473 @@
 {
-	"name": "M3PrecogHourly",
-	"properties": {
-		"activities": [
-			{
-				"name": "ForEach_M3Table_WithLMTS",
-				"type": "ForEach",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"items": {
-						"value": "@pipeline().parameters.cw_items",
-						"type": "Expression"
-					},
-					"activities": [
-						{
-							"name": "Copy",
-							"type": "Copy",
-							"dependsOn": [],
-							"policy": {
-								"timeout": "0.12:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [
-								{
-									"name": "Source",
-									"value": "M3.@{item().source.table}"
-								},
-								{
-									"name": "Destination",
-									"value": "tlclakefs/M3P/@{item().destination.fileName}"
-								}
-							],
-							"typeProperties": {
-								"source": {
-									"type": "AzureSqlSource",
-									"partitionOption": "None"
-								},
-								"sink": {
-									"type": "ParquetSink",
-									"storeSettings": {
-										"type": "AzureBlobFSWriteSettings"
-									},
-									"formatSettings": {
-										"type": "ParquetWriteSettings"
-									}
-								},
-								"enableStaging": false,
-								"validateDataConsistency": false,
-								"translator": {
-									"type": "TabularTranslator",
-									"typeConversion": true,
-									"typeConversionSettings": {
-										"allowDataTruncation": true,
-										"treatBooleanAsNumber": false
-									}
-								}
-							},
-							"inputs": [
-								{
-									"referenceName": "IN_M3P",
-									"type": "DatasetReference",
-									"parameters": {
-										"cw_table": "@item().source.table"
-									}
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "OUT_M3P",
-									"type": "DatasetReference",
-									"parameters": {
-										"cw_fileName": "@item().destination.fileName"
-									}
-								}
-							]
-						}
-					]
-				}
-			},
-			{
-				"name": "ForEach_M3Table_NoLMTS",
-				"type": "ForEach",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"items": {
-						"value": "@pipeline().parameters.cw_items_no_lmts",
-						"type": "Expression"
-					},
-					"activities": [
-						{
-							"name": "Copy_copy1",
-							"type": "Copy",
-							"dependsOn": [],
-							"policy": {
-								"timeout": "0.12:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [
-								{
-									"name": "Source",
-									"value": "M3.@{item().source.table}"
-								},
-								{
-									"name": "Destination",
-									"value": "tlclakefs/M3P/@{item().destination.fileName}"
-								}
-							],
-							"typeProperties": {
-								"source": {
-									"type": "AzureSqlSource",
-									"partitionOption": "None"
-								},
-								"sink": {
-									"type": "ParquetSink",
-									"storeSettings": {
-										"type": "AzureBlobFSWriteSettings"
-									},
-									"formatSettings": {
-										"type": "ParquetWriteSettings"
-									}
-								},
-								"enableStaging": false,
-								"validateDataConsistency": false,
-								"translator": {
-									"type": "TabularTranslator",
-									"typeConversion": true,
-									"typeConversionSettings": {
-										"allowDataTruncation": true,
-										"treatBooleanAsNumber": false
-									}
-								}
-							},
-							"inputs": [
-								{
-									"referenceName": "IN_M3P",
-									"type": "DatasetReference",
-									"parameters": {
-										"cw_table": "@item().source.table"
-									}
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "OUT_M3P",
-									"type": "DatasetReference",
-									"parameters": {
-										"cw_fileName": "@item().destination.fileName"
-									}
-								}
-							]
-						}
-					]
-				}
-			}
-		],
-		"parameters": {
-			"cw_items": {
-				"type": "Array",
-				"defaultValue": [
-					{
-						"source": {
-							"table": "CPOHED"
-						},
-						"destination": {
-							"filename": "CPOHED.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CPOMAT"
-						},
-						"destination": {
-							"filename": "CPOMAT.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "FAPCHK"
-						},
-						"destination": {
-							"filename": "FAPCHK.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "FGLEDG"
-						},
-						"destination": {
-							"filename": "FGLEDG.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "FGRPCL"
-						},
-						"destination": {
-							"filename": "FGRPCL.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "FPLEDG"
-						},
-						"destination": {
-							"filename": "FPLEDG.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "FPSUGD"
-						},
-						"destination": {
-							"filename": "FPSUGD.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "FPSUGS"
-						},
-						"destination": {
-							"filename": "FPSUGS.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "FSLEDG"
-						},
-						"destination": {
-							"filename": "FSLEDG.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MGHEAD"
-						},
-						"destination": {
-							"filename": "MGHEAD.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MGLINE"
-						},
-						"destination": {
-							"filename": "MGLINE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MITBAL"
-						},
-						"destination": {
-							"filename": "MITBAL.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MITTRA"
-						},
-						"destination": {
-							"filename": "MITTRA.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MPHEAD"
-						},
-						"destination": {
-							"filename": "MPHEAD.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MPLINE"
-						},
-						"destination": {
-							"filename": "MPLINE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MPOEXP"
-						},
-						"destination": {
-							"filename": "MPOEXP.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ODHEAD"
-						},
-						"destination": {
-							"filename": "ODHEAD.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ODLINE"
-						},
-						"destination": {
-							"filename": "ODLINE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OINVOH"
-						},
-						"destination": {
-							"filename": "OINVOH.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OINVOL"
-						},
-						"destination": {
-							"filename": "OINVOL.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OOCHRG"
-						},
-						"destination": {
-							"filename": "OOCHRG.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OOHEAD"
-						},
-						"destination": {
-							"filename": "OOHEAD.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OOLINE"
-						},
-						"destination": {
-							"filename": "OOLINE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MHDISH"
-						},
-						"destination": {
-							"filename": "MHDISH.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MHDISL"
-						},
-						"destination": {
-							"filename": "MHDISL.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MITALO"
-						},
-						"destination": {
-							"filename": "MITALO.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MHPICH"
-						},
-						"destination": {
-							"filename": "MHPICH.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MPLIRE"
-						},
-						"destination": {
-							"filename": "MPLIRE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MWOHED"
-						},
-						"destination": {
-							"filename": "MWOHED.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MWOMAT"
-						},
-						"destination": {
-							"filename": "MWOMAT.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MMOPLP"
-						},
-						"destination": {
-							"filename": "MMOPLP.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OCHEAD"
-						},
-						"destination": {
-							"filename": "OCHEAD.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OCLINE"
-						},
-						"destination": {
-							"filename": "OCLINE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MITSCH"
-						},
-						"destination": {
-							"filename": "MITSCH.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MITMAS"
-						},
-						"destination": {
-							"filename": "MITMAS.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MPCOVE"
-						},
-						"destination": {
-							"filename": "MPCOVE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MITPLO"
-						},
-						"destination": {
-							"filename": "MITPLO.parquet"
-						}
-					}
-				]
-			},
-			"cw_items_no_lmts": {
-				"type": "array",
-				"defaultValue": []
-			}
-		},
-		"annotations": [],
-		"lastPublishTime": "2026-07-18T02:38:09Z"
-	},
-	"type": "Microsoft.Synapse/workspaces/pipelines"
+  "name": "M3PrecogHourly",
+  "properties": {
+    "activities": [
+      {
+        "dependsOn": [],
+        "name": "ForEach_M3Table_WithLMTS",
+        "type": "ForEach",
+        "typeProperties": {
+          "activities": [
+            {
+              "dependsOn": [],
+              "inputs": [
+                {
+                  "parameters": {
+                    "cw_table": "@item().source.table"
+                  },
+                  "referenceName": "IN_M3P",
+                  "type": "DatasetReference"
+                }
+              ],
+              "name": "Copy",
+              "outputs": [
+                {
+                  "parameters": {
+                    "cw_fileName": "@item().destination.fileName"
+                  },
+                  "referenceName": "OUT_M3P",
+                  "type": "DatasetReference"
+                }
+              ],
+              "policy": {
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false,
+                "timeout": "0.12:00:00"
+              },
+              "type": "Copy",
+              "typeProperties": {
+                "enableStaging": false,
+                "sink": {
+                  "formatSettings": {
+                    "type": "ParquetWriteSettings"
+                  },
+                  "storeSettings": {
+                    "type": "AzureBlobFSWriteSettings"
+                  },
+                  "type": "ParquetSink"
+                },
+                "source": {
+                  "partitionOption": "None",
+                  "type": "AzureSqlSource"
+                },
+                "translator": {
+                  "type": "TabularTranslator",
+                  "typeConversion": true,
+                  "typeConversionSettings": {
+                    "allowDataTruncation": true,
+                    "treatBooleanAsNumber": false
+                  }
+                },
+                "validateDataConsistency": false
+              },
+              "userProperties": [
+                {
+                  "name": "Source",
+                  "value": "M3.@{item().source.table}"
+                },
+                {
+                  "name": "Destination",
+                  "value": "tlclakefs/M3P/@{item().destination.fileName}"
+                }
+              ]
+            }
+          ],
+          "items": {
+            "type": "Expression",
+            "value": "@pipeline().parameters.cw_items"
+          }
+        },
+        "userProperties": []
+      },
+      {
+        "dependsOn": [],
+        "name": "ForEach_M3Table_NoLMTS",
+        "type": "ForEach",
+        "typeProperties": {
+          "activities": [
+            {
+              "dependsOn": [],
+              "inputs": [
+                {
+                  "parameters": {
+                    "cw_table": "@item().source.table"
+                  },
+                  "referenceName": "IN_M3P",
+                  "type": "DatasetReference"
+                }
+              ],
+              "name": "Copy_copy1",
+              "outputs": [
+                {
+                  "parameters": {
+                    "cw_fileName": "@item().destination.fileName"
+                  },
+                  "referenceName": "OUT_M3P",
+                  "type": "DatasetReference"
+                }
+              ],
+              "policy": {
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false,
+                "timeout": "0.12:00:00"
+              },
+              "type": "Copy",
+              "typeProperties": {
+                "enableStaging": false,
+                "sink": {
+                  "formatSettings": {
+                    "type": "ParquetWriteSettings"
+                  },
+                  "storeSettings": {
+                    "type": "AzureBlobFSWriteSettings"
+                  },
+                  "type": "ParquetSink"
+                },
+                "source": {
+                  "partitionOption": "None",
+                  "type": "AzureSqlSource"
+                },
+                "translator": {
+                  "type": "TabularTranslator",
+                  "typeConversion": true,
+                  "typeConversionSettings": {
+                    "allowDataTruncation": true,
+                    "treatBooleanAsNumber": false
+                  }
+                },
+                "validateDataConsistency": false
+              },
+              "userProperties": [
+                {
+                  "name": "Source",
+                  "value": "M3.@{item().source.table}"
+                },
+                {
+                  "name": "Destination",
+                  "value": "tlclakefs/M3P/@{item().destination.fileName}"
+                }
+              ]
+            }
+          ],
+          "items": {
+            "type": "Expression",
+            "value": "@pipeline().parameters.cw_items_no_lmts"
+          }
+        },
+        "userProperties": []
+      }
+    ],
+    "annotations": [],
+    "parameters": {
+      "cw_items": {
+        "defaultValue": [
+          {
+            "destination": {
+              "filename": "CPOHED.parquet"
+            },
+            "source": {
+              "table": "CPOHED"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CPOMAT.parquet"
+            },
+            "source": {
+              "table": "CPOMAT"
+            }
+          },
+          {
+            "destination": {
+              "filename": "FAPCHK.parquet"
+            },
+            "source": {
+              "table": "FAPCHK"
+            }
+          },
+          {
+            "destination": {
+              "filename": "FGLEDG.parquet"
+            },
+            "source": {
+              "table": "FGLEDG"
+            }
+          },
+          {
+            "destination": {
+              "filename": "FGRPCL.parquet"
+            },
+            "source": {
+              "table": "FGRPCL"
+            }
+          },
+          {
+            "destination": {
+              "filename": "FPLEDG.parquet"
+            },
+            "source": {
+              "table": "FPLEDG"
+            }
+          },
+          {
+            "destination": {
+              "filename": "FPSUGD.parquet"
+            },
+            "source": {
+              "table": "FPSUGD"
+            }
+          },
+          {
+            "destination": {
+              "filename": "FPSUGS.parquet"
+            },
+            "source": {
+              "table": "FPSUGS"
+            }
+          },
+          {
+            "destination": {
+              "filename": "FSLEDG.parquet"
+            },
+            "source": {
+              "table": "FSLEDG"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MGHEAD.parquet"
+            },
+            "source": {
+              "table": "MGHEAD"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MGLINE.parquet"
+            },
+            "source": {
+              "table": "MGLINE"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MITBAL.parquet"
+            },
+            "source": {
+              "table": "MITBAL"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MITTRA.parquet"
+            },
+            "source": {
+              "table": "MITTRA"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MPHEAD.parquet"
+            },
+            "source": {
+              "table": "MPHEAD"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MPLINE.parquet"
+            },
+            "source": {
+              "table": "MPLINE"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MPOEXP.parquet"
+            },
+            "source": {
+              "table": "MPOEXP"
+            }
+          },
+          {
+            "destination": {
+              "filename": "ODHEAD.parquet"
+            },
+            "source": {
+              "table": "ODHEAD"
+            }
+          },
+          {
+            "destination": {
+              "filename": "ODLINE.parquet"
+            },
+            "source": {
+              "table": "ODLINE"
+            }
+          },
+          {
+            "destination": {
+              "filename": "OINVOH.parquet"
+            },
+            "source": {
+              "table": "OINVOH"
+            }
+          },
+          {
+            "destination": {
+              "filename": "OINVOL.parquet"
+            },
+            "source": {
+              "table": "OINVOL"
+            }
+          },
+          {
+            "destination": {
+              "filename": "OOCHRG.parquet"
+            },
+            "source": {
+              "table": "OOCHRG"
+            }
+          },
+          {
+            "destination": {
+              "filename": "OOHEAD.parquet"
+            },
+            "source": {
+              "table": "OOHEAD"
+            }
+          },
+          {
+            "destination": {
+              "filename": "OOLINE.parquet"
+            },
+            "source": {
+              "table": "OOLINE"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MHDISH.parquet"
+            },
+            "source": {
+              "table": "MHDISH"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MHDISL.parquet"
+            },
+            "source": {
+              "table": "MHDISL"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MITALO.parquet"
+            },
+            "source": {
+              "table": "MITALO"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MHPICH.parquet"
+            },
+            "source": {
+              "table": "MHPICH"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MPLIRE.parquet"
+            },
+            "source": {
+              "table": "MPLIRE"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MWOHED.parquet"
+            },
+            "source": {
+              "table": "MWOHED"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MWOMAT.parquet"
+            },
+            "source": {
+              "table": "MWOMAT"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MMOPLP.parquet"
+            },
+            "source": {
+              "table": "MMOPLP"
+            }
+          },
+          {
+            "destination": {
+              "filename": "OCHEAD.parquet"
+            },
+            "source": {
+              "table": "OCHEAD"
+            }
+          },
+          {
+            "destination": {
+              "filename": "OCLINE.parquet"
+            },
+            "source": {
+              "table": "OCLINE"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MITSCH.parquet"
+            },
+            "source": {
+              "table": "MITSCH"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MITMAS.parquet"
+            },
+            "source": {
+              "table": "MITMAS"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MPCOVE.parquet"
+            },
+            "source": {
+              "table": "MPCOVE"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MITPLO.parquet"
+            },
+            "source": {
+              "table": "MITPLO"
+            }
+          }
+        ],
+        "type": "Array"
+      },
+      "cw_items_no_lmts": {
+        "defaultValue": [],
+        "type": "array"
+      }
+    }
+  }
 }

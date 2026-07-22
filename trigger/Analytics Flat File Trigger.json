@@ -1,24 +1,26 @@
 {
-	"name": "Analytics Flat File Trigger",
-	"properties": {
-		"annotations": [],
-		"runtimeState": "Started",
-		"pipelines": [
-			{
-				"pipelineReference": {
-					"referenceName": "Analytics Flat File Create",
-					"type": "PipelineReference"
-				}
-			}
-		],
-		"type": "ScheduleTrigger",
-		"typeProperties": {
-			"recurrence": {
-				"frequency": "Day",
-				"interval": 1,
-				"startTime": "2024-03-02T04:20:00",
-				"timeZone": "Eastern Standard Time"
-			}
-		}
-	}
+  "name": "Analytics Flat File Trigger",
+  "properties": {
+    "annotations": [],
+    "pipelines": [
+      {
+        "parameters": {},
+        "pipelineReference": {
+          "referenceName": "Analytics Flat File Create",
+          "type": "PipelineReference"
+        }
+      }
+    ],
+    "runtimeState": "Started",
+    "type": "ScheduleTrigger",
+    "typeProperties": {
+      "recurrence": {
+        "frequency": "Day",
+        "interval": 1,
+        "schedule": {},
+        "startTime": "2024-03-02T04:20:00.000Z",
+        "timeZone": "Eastern Standard Time"
+      }
+    }
+  }
 }

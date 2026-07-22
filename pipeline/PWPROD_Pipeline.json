@@ -1,128 +1,126 @@
 {
-	"name": "PWPROD_Pipeline",
-	"properties": {
-		"activities": [
-			{
-				"name": "ForEach",
-				"type": "ForEach",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"items": {
-						"value": "@pipeline().parameters.cw_items",
-						"type": "Expression"
-					},
-					"activities": [
-						{
-							"name": "Copy_PWPROD",
-							"type": "Copy",
-							"dependsOn": [],
-							"policy": {
-								"timeout": "0.12:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [
-								{
-									"name": "Source",
-									"value": "dbo.@{item().source.table}"
-								},
-								{
-									"name": "Destination",
-									"value": "tlclakefs/PWPROD/@{item().destination.fileName}"
-								}
-							],
-							"typeProperties": {
-								"source": {
-									"type": "SqlServerSource",
-									"partitionOption": "None"
-								},
-								"sink": {
-									"type": "ParquetSink",
-									"storeSettings": {
-										"type": "AzureBlobFSWriteSettings"
-									},
-									"formatSettings": {
-										"type": "ParquetWriteSettings"
-									}
-								},
-								"enableStaging": false,
-								"validateDataConsistency": false,
-								"translator": {
-									"type": "TabularTranslator",
-									"typeConversion": true,
-									"typeConversionSettings": {
-										"allowDataTruncation": true,
-										"treatBooleanAsNumber": false
-									}
-								}
-							},
-							"inputs": [
-								{
-									"referenceName": "IN_PWPROD",
-									"type": "DatasetReference",
-									"parameters": {
-										"cw_table": "@item().source.table"
-									}
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "OUT_PWPROD",
-									"type": "DatasetReference",
-									"parameters": {
-										"cw_fileName": "@item().destination.fileName"
-									}
-								}
-							]
-						}
-					]
-				}
-			}
-		],
-		"parameters": {
-			"cw_items": {
-				"type": "Array",
-				"defaultValue": [
-					{
-						"source": {
-							"table": "LC_SHIPMENT_PACKAGES"
-						},
-						"destination": {
-							"fileName": "LC_SHIPMENT_PACKAGES.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "LC_SHIPMENTS"
-						},
-						"destination": {
-							"fileName": "LC_SHIPMENTS.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "XCARRIER_SHIPMENT_DOCUMENT_URLS"
-						},
-						"destination": {
-							"fileName": "XCARRIER_SHIPMENT_DOCUMENT_URLS.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "AssignedRoles"
-						},
-						"destination": {
-							"fileName": "AssignedRoles.parquet"
-						}
-					}
-				]
-			}
-		},
-		"annotations": [],
-		"lastPublishTime": "2025-05-02T21:49:36Z"
-	},
-	"type": "Microsoft.Synapse/workspaces/pipelines"
+  "name": "PWPROD_Pipeline",
+  "properties": {
+    "activities": [
+      {
+        "dependsOn": [],
+        "name": "ForEach",
+        "type": "ForEach",
+        "typeProperties": {
+          "activities": [
+            {
+              "dependsOn": [],
+              "inputs": [
+                {
+                  "parameters": {
+                    "cw_table": "@item().source.table"
+                  },
+                  "referenceName": "IN_PWPROD",
+                  "type": "DatasetReference"
+                }
+              ],
+              "name": "Copy_PWPROD",
+              "outputs": [
+                {
+                  "parameters": {
+                    "cw_fileName": "@item().destination.fileName"
+                  },
+                  "referenceName": "OUT_PWPROD",
+                  "type": "DatasetReference"
+                }
+              ],
+              "policy": {
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false,
+                "timeout": "0.12:00:00"
+              },
+              "type": "Copy",
+              "typeProperties": {
+                "enableStaging": false,
+                "sink": {
+                  "formatSettings": {
+                    "type": "ParquetWriteSettings"
+                  },
+                  "storeSettings": {
+                    "type": "AzureBlobFSWriteSettings"
+                  },
+                  "type": "ParquetSink"
+                },
+                "source": {
+                  "partitionOption": "None",
+                  "type": "SqlServerSource"
+                },
+                "translator": {
+                  "type": "TabularTranslator",
+                  "typeConversion": true,
+                  "typeConversionSettings": {
+                    "allowDataTruncation": true,
+                    "treatBooleanAsNumber": false
+                  }
+                },
+                "validateDataConsistency": false
+              },
+              "userProperties": [
+                {
+                  "name": "Source",
+                  "value": "dbo.@{item().source.table}"
+                },
+                {
+                  "name": "Destination",
+                  "value": "tlclakefs/PWPROD/@{item().destination.fileName}"
+                }
+              ]
+            }
+          ],
+          "items": {
+            "type": "Expression",
+            "value": "@pipeline().parameters.cw_items"
+          }
+        },
+        "userProperties": []
+      }
+    ],
+    "annotations": [],
+    "parameters": {
+      "cw_items": {
+        "defaultValue": [
+          {
+            "destination": {
+              "fileName": "LC_SHIPMENT_PACKAGES.parquet"
+            },
+            "source": {
+              "table": "LC_SHIPMENT_PACKAGES"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "LC_SHIPMENTS.parquet"
+            },
+            "source": {
+              "table": "LC_SHIPMENTS"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "XCARRIER_SHIPMENT_DOCUMENT_URLS.parquet"
+            },
+            "source": {
+              "table": "XCARRIER_SHIPMENT_DOCUMENT_URLS"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "AssignedRoles.parquet"
+            },
+            "source": {
+              "table": "AssignedRoles"
+            }
+          }
+        ],
+        "type": "Array"
+      }
+    }
+  }
 }

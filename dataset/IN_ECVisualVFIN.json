@@ -1,25 +1,24 @@
 {
-	"name": "IN_ECVisualVFIN",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "ECVisualVFIN",
-			"type": "LinkedServiceReference"
-		},
-		"parameters": {
-			"cw_table": {
-				"type": "String"
-			}
-		},
-		"annotations": [],
-		"type": "SqlServerTable",
-		"schema": [],
-		"typeProperties": {
-			"schema": "dbo",
-			"table": {
-				"value": "@dataset().cw_table",
-				"type": "Expression"
-			}
-		}
-	},
-	"type": "Microsoft.Synapse/workspaces/datasets"
+  "name": "IN_ECVisualVFIN",
+  "properties": {
+    "annotations": [],
+    "linkedServiceName": {
+      "referenceName": "ECVisualVFIN",
+      "type": "LinkedServiceReference"
+    },
+    "parameters": {
+      "cw_table": {
+        "type": "String"
+      }
+    },
+    "schema": [],
+    "type": "SqlServerTable",
+    "typeProperties": {
+      "schema": "dbo",
+      "table": {
+        "type": "Expression",
+        "value": "@dataset().cw_table"
+      }
+    }
+  }
 }

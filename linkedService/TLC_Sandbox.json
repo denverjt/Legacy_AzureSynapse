@@ -1,12 +1,7 @@
 {
-	"name": "TLC_Sandbox",
-	"type": "Microsoft.Synapse/workspaces/linkedservices",
-	"properties": {
-		"annotations": [],
-		"type": "PowerBIWorkspace",
-		"typeProperties": {
-			"workspaceID": "ca867196-e84f-43a2-9777-6749c1cc6388",
-			"tenantID": "1aab06a6-0da6-4739-8975-d582573bc0dd"
-		}
-	}
+  "name": "TLC_Sandbox",
+  "properties": {
+    "annotations": [],
+    "type": "PowerBIWorkspace"
+  }
 }

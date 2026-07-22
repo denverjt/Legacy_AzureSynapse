@@ -1,216 +1,212 @@
 {
-	"name": "M3JSON_Exceptions_Process",
-	"properties": {
-		"activities": [
-			{
-				"name": "ForEach",
-				"type": "ForEach",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"items": {
-						"value": "@pipeline().parameters.tlcJ2PConsolidate",
-						"type": "Expression"
-					},
-					"isSequential": false,
-					"activities": [
-						{
-							"name": "Copy JSON Tables to Process Folder",
-							"type": "Copy",
-							"dependsOn": [],
-							"policy": {
-								"timeout": "0.12:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"source": {
-									"type": "BinarySource",
-									"storeSettings": {
-										"type": "AzureBlobFSReadSettings",
-										"recursive": false,
-										"wildcardFolderPath": {
-											"value": "@concat('M3/JSON/',item().M3FileName)",
-											"type": "Expression"
-										},
-										"wildcardFileName": "*",
-										"deleteFilesAfterCompletion": false
-									},
-									"formatSettings": {
-										"type": "BinaryReadSettings"
-									}
-								},
-								"sink": {
-									"type": "BinarySink",
-									"storeSettings": {
-										"type": "AzureBlobFSWriteSettings"
-									}
-								},
-								"enableStaging": false
-							},
-							"inputs": [
-								{
-									"referenceName": "IN_M3_JSONSource",
-									"type": "DatasetReference",
-									"parameters": {
-										"M3FileName": {
-											"value": "@item().M3FileName",
-											"type": "Expression"
-										}
-									}
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "OUT_M3_JSONSource",
-									"type": "DatasetReference",
-									"parameters": {
-										"M3FileName": {
-											"value": "@item().M3FileName",
-											"type": "Expression"
-										}
-									}
-								}
-							]
-						},
-						{
-							"name": "Delete Uploaded JSON",
-							"type": "Delete",
-							"dependsOn": [
-								{
-									"activity": "Copy JSON Tables to Process Folder",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"policy": {
-								"timeout": "0.12:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"dataset": {
-									"referenceName": "IN_M3_JSONSource",
-									"type": "DatasetReference",
-									"parameters": {
-										"M3FileName": {
-											"value": "@item().M3FileName",
-											"type": "Expression"
-										}
-									}
-								},
-								"enableLogging": false,
-								"storeSettings": {
-									"type": "AzureBlobFSReadSettings",
-									"recursive": false,
-									"wildcardFileName": {
-										"value": "@{concat(item().M3FileName,'*')}",
-										"type": "Expression"
-									},
-									"enablePartitionDiscovery": false
-								}
-							}
-						}
-					]
-				}
-			},
-			{
-				"name": "Execute JSON_Exceptions",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "ForEach",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "M3JSON_Exceptions",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
-				}
-			}
-		],
-		"parameters": {
-			"tlcJ2PConsolidate": {
-				"type": "array",
-				"defaultValue": [
-					{
-						"M3FileName": "FGRPCL"
-					},
-					{
-						"M3FileName": "MITMAS"
-					},
-					{
-						"M3FileName": "MCCOMA"
-					},
-					{
-						"M3FileName": "MITFAC"
-					},
-					{
-						"M3FileName": "MCCOML"
-					},
-					{
-						"M3FileName": "MCHEAD"
-					},
-					{
-						"M3FileName": "MITTRA"
-					},
-					{
-						"M3FileName": "MPHEAD"
-					},
-					{
-						"M3FileName": "MPOPLP"
-					},
-					{
-						"M3FileName": "OOHEAD"
-					},
-					{
-						"M3FileName": "OOLINE"
-					},
-					{
-						"M3FileName": "OSASTD"
-					},
-					{
-						"M3FileName": "OSBSTD"
-					},
-					{
-						"M3FileName": "MPLINE"
-					},
-					{
-						"M3FileName": "FFRPCL"
-					},
-					{
-						"M3FileName": "FGRECL"
-					},
-					{
-						"M3FileName": "ACUOLS"
-					},
-					{
-						"M3FileName": "OBTMTX"
-					},
-					{
-						"M3FileName": "MILOIN"
-					}
-				]
-			}
-		},
-		"annotations": [],
-		"lastPublishTime": "2023-02-13T22:21:52Z"
-	},
-	"type": "Microsoft.Synapse/workspaces/pipelines"
+  "name": "M3JSON_Exceptions_Process",
+  "properties": {
+    "activities": [
+      {
+        "dependsOn": [],
+        "name": "ForEach",
+        "type": "ForEach",
+        "typeProperties": {
+          "activities": [
+            {
+              "dependsOn": [],
+              "inputs": [
+                {
+                  "parameters": {
+                    "M3FileName": {
+                      "type": "Expression",
+                      "value": "@item().M3FileName"
+                    }
+                  },
+                  "referenceName": "IN_M3_JSONSource",
+                  "type": "DatasetReference"
+                }
+              ],
+              "name": "Copy JSON Tables to Process Folder",
+              "outputs": [
+                {
+                  "parameters": {
+                    "M3FileName": {
+                      "type": "Expression",
+                      "value": "@item().M3FileName"
+                    }
+                  },
+                  "referenceName": "OUT_M3_JSONSource",
+                  "type": "DatasetReference"
+                }
+              ],
+              "policy": {
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false,
+                "timeout": "0.12:00:00"
+              },
+              "type": "Copy",
+              "typeProperties": {
+                "enableStaging": false,
+                "sink": {
+                  "storeSettings": {
+                    "type": "AzureBlobFSWriteSettings"
+                  },
+                  "type": "BinarySink"
+                },
+                "source": {
+                  "formatSettings": {
+                    "type": "BinaryReadSettings"
+                  },
+                  "storeSettings": {
+                    "deleteFilesAfterCompletion": false,
+                    "recursive": false,
+                    "type": "AzureBlobFSReadSettings",
+                    "wildcardFileName": "*",
+                    "wildcardFolderPath": {
+                      "type": "Expression",
+                      "value": "@concat('M3/JSON/',item().M3FileName)"
+                    }
+                  },
+                  "type": "BinarySource"
+                }
+              },
+              "userProperties": []
+            },
+            {
+              "dependsOn": [
+                {
+                  "activity": "Copy JSON Tables to Process Folder",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ],
+              "name": "Delete Uploaded JSON",
+              "policy": {
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false,
+                "timeout": "0.12:00:00"
+              },
+              "type": "Delete",
+              "typeProperties": {
+                "dataset": {
+                  "parameters": {
+                    "M3FileName": {
+                      "type": "Expression",
+                      "value": "@item().M3FileName"
+                    }
+                  },
+                  "referenceName": "IN_M3_JSONSource",
+                  "type": "DatasetReference"
+                },
+                "enableLogging": false,
+                "storeSettings": {
+                  "enablePartitionDiscovery": false,
+                  "recursive": false,
+                  "type": "AzureBlobFSReadSettings",
+                  "wildcardFileName": {
+                    "type": "Expression",
+                    "value": "@{concat(item().M3FileName,'*')}"
+                  }
+                }
+              },
+              "userProperties": []
+            }
+          ],
+          "isSequential": false,
+          "items": {
+            "type": "Expression",
+            "value": "@pipeline().parameters.tlcJ2PConsolidate"
+          }
+        },
+        "userProperties": []
+      },
+      {
+        "dependsOn": [
+          {
+            "activity": "ForEach",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "name": "Execute JSON_Exceptions",
+        "type": "ExecutePipeline",
+        "typeProperties": {
+          "parameters": {},
+          "pipeline": {
+            "referenceName": "M3JSON_Exceptions",
+            "type": "PipelineReference"
+          },
+          "waitOnCompletion": true
+        },
+        "userProperties": []
+      }
+    ],
+    "annotations": [],
+    "parameters": {
+      "tlcJ2PConsolidate": {
+        "defaultValue": [
+          {
+            "M3FileName": "FGRPCL"
+          },
+          {
+            "M3FileName": "MITMAS"
+          },
+          {
+            "M3FileName": "MCCOMA"
+          },
+          {
+            "M3FileName": "MITFAC"
+          },
+          {
+            "M3FileName": "MCCOML"
+          },
+          {
+            "M3FileName": "MCHEAD"
+          },
+          {
+            "M3FileName": "MITTRA"
+          },
+          {
+            "M3FileName": "MPHEAD"
+          },
+          {
+            "M3FileName": "MPOPLP"
+          },
+          {
+            "M3FileName": "OOHEAD"
+          },
+          {
+            "M3FileName": "OOLINE"
+          },
+          {
+            "M3FileName": "OSASTD"
+          },
+          {
+            "M3FileName": "OSBSTD"
+          },
+          {
+            "M3FileName": "MPLINE"
+          },
+          {
+            "M3FileName": "FFRPCL"
+          },
+          {
+            "M3FileName": "FGRECL"
+          },
+          {
+            "M3FileName": "ACUOLS"
+          },
+          {
+            "M3FileName": "OBTMTX"
+          },
+          {
+            "M3FileName": "MILOIN"
+          }
+        ],
+        "type": "array"
+      }
+    }
+  }
 }

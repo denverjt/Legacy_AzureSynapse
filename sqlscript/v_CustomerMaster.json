@@ -1,17 +1,17 @@
 {
-	"name": "v_CustomerMaster",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW v_CustomerMaster\nAS\nSELECT      CUNO AS     [Customer Number]\n,           CUNM AS     [Customer Name]\n,           CUA1 AS     [Address 1]\n,           CUA2 AS     [Address 2]\n,           CUA3 AS     [Address 3]\n,           TOWN AS     [City]\n,           PONO AS     [Zip Code]\n,           ECAR AS     [State]\n,           CSCD AS     [Country]\n,           RESP AS     [Manager]\n,           SMCD AS     [Sales Rep ID]\n,           CS.TX40 AS  [Sals Rep Name]\nFROM        M3.OCUSMA OC\nLEFT JOIN   M3.CSYTAB CS ON CS.STKY = OC.SMCD AND CS.STCO = 'SMCD'\nWHERE       CUNO LIKE 'COM%'\n",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_CustomerMaster",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW v_CustomerMaster\nAS\nSELECT      CUNO AS     [Customer Number]\n,           CUNM AS     [Customer Name]\n,           CUA1 AS     [Address 1]\n,           CUA2 AS     [Address 2]\n,           CUA3 AS     [Address 3]\n,           TOWN AS     [City]\n,           PONO AS     [Zip Code]\n,           ECAR AS     [State]\n,           CSCD AS     [Country]\n,           RESP AS     [Manager]\n,           SMCD AS     [Sales Rep ID]\n,           CS.TX40 AS  [Sals Rep Name]\nFROM        M3.OCUSMA OC\nLEFT JOIN   M3.CSYTAB CS ON CS.STKY = OC.SMCD AND CS.STCO = 'SMCD'\nWHERE       CUNO LIKE 'COM%'\n",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

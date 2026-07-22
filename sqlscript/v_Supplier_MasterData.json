@@ -1,17 +1,17 @@
 {
-	"name": "v_Supplier_MasterData",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW v_Supplier_MasterData\n-- drop view v_Supplier_MasterData\nas\nSELECT          CI.SUNO AS              [Supplier ID]\n,               CI.SUNM AS              [Supplier Name]\n,               CI.STAT AS              [Status]\n,               CA.ADR1 AS              [Address 1]\n,               CA.ADR2 AS              [Address 2]\n,               CA.TOWN as              [City]\n,               CA.ECAR as              [State]\n,               CA.CSCD as              [Country]\n,               CS.TX15 as              [Payment Terms]\n,               CS2.TX15 as             [Payment Method]\n,               CS3.TX40 AS             [Category]\n, CASE WHEN CI.CFI3 = 'COM' then 'Commercial'\n            WHEN CI.CFI3 = 'INT' then 'International'\n            WHEN CI.CFI3 = 'SHS' then 'Shared Services'\n            WHEN CI.CFI3 in ('CMP', 'CNR') then 'Consumer'\n            else 'Pending' end as       Division\n,           CASE WHEN CI.CFI4 = 'CMP' then 'Compact'\n            WHEN CI.CFI4 = 'CNT' then 'Countertop'\n            WHEN CI.CFI4 = 'COM' then 'Commercial' \n            WHEN CI.CFI4 = 'INT' then 'International'\n            WHEN CI.CFI4 = 'SHS' then 'Shared Services'\n            else 'Pending' end as       [Business Unit]\n,           CV.RESP AS                  [Responsible]\nFROM            M3.CIDMAS CI\nLEFT JOIN       M3.CIDVEN CV ON CI.SUNO = CV.SUNO\nLEFT JOIN\t\tM3.CIDADR CA on CI.SUNO = CA.SUNO AND CA.ADTE = '1' and CA.ADID = '1'\nLEFT JOIN       M3.CSYTAB CS ON CV.TEPY = CS.STKY AND CS.STCO = 'TEPY'\nLEFT JOIN       M3.CSYTAB CS2 ON CV.PYME = CS2.STKY AND CS2.STCO = 'PYME'\nLEFT JOIN       M3.CSYTAB CS3 ON CV.SUCL = CS3.STKY AND CS3.STCO = 'SUCL'",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_Supplier_MasterData",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW v_Supplier_MasterData\n-- drop view v_Supplier_MasterData\nas\nSELECT          CI.SUNO AS              [Supplier ID]\n,               CI.SUNM AS              [Supplier Name]\n,               CI.STAT AS              [Status]\n,               CA.ADR1 AS              [Address 1]\n,               CA.ADR2 AS              [Address 2]\n,               CA.TOWN as              [City]\n,               CA.ECAR as              [State]\n,               CA.CSCD as              [Country]\n,               CS.TX15 as              [Payment Terms]\n,               CS2.TX15 as             [Payment Method]\n,               CS3.TX40 AS             [Category]\n, CASE WHEN CI.CFI3 = 'COM' then 'Commercial'\n            WHEN CI.CFI3 = 'INT' then 'International'\n            WHEN CI.CFI3 = 'SHS' then 'Shared Services'\n            WHEN CI.CFI3 in ('CMP', 'CNR') then 'Consumer'\n            else 'Pending' end as       Division\n,           CASE WHEN CI.CFI4 = 'CMP' then 'Compact'\n            WHEN CI.CFI4 = 'CNT' then 'Countertop'\n            WHEN CI.CFI4 = 'COM' then 'Commercial' \n            WHEN CI.CFI4 = 'INT' then 'International'\n            WHEN CI.CFI4 = 'SHS' then 'Shared Services'\n            else 'Pending' end as       [Business Unit]\n,           CV.RESP AS                  [Responsible]\nFROM            M3.CIDMAS CI\nLEFT JOIN       M3.CIDVEN CV ON CI.SUNO = CV.SUNO\nLEFT JOIN\t\tM3.CIDADR CA on CI.SUNO = CA.SUNO AND CA.ADTE = '1' and CA.ADID = '1'\nLEFT JOIN       M3.CSYTAB CS ON CV.TEPY = CS.STKY AND CS.STCO = 'TEPY'\nLEFT JOIN       M3.CSYTAB CS2 ON CV.PYME = CS2.STKY AND CS2.STCO = 'PYME'\nLEFT JOIN       M3.CSYTAB CS3 ON CV.SUCL = CS3.STKY AND CS3.STCO = 'SUCL'",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

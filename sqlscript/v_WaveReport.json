@@ -1,17 +1,17 @@
 {
-	"name": "v_WaveReport",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW         v_WaveReport\n-- drop view v_WaveReport\nas\nSELECT      *\nFROM\n(\nSELECT      PH.PLRI AS      [Wave]\n--,           PH.WHLO AS      [Warehouse]\n,           PH.DLIX AS      [Delivery Number]\n--,           PH.PLSX AS      [Picking List Suffix]\n--,           PH.PISS AS      [Picking Status]\n--,           OC.CUNO AS      [Customer Number]\n,           OC.CUNM AS      [Customer Name]\n,           OC.CFC6 AS      [Document Format]\n,           MI.ITNO AS      [Item Number]\n,           MM.ITDS AS      [Item Description]\n,           MI.WHSL AS      [Location]\n,           MI.RIDN AS      [Order Number]\n--,           MI.RIDL AS      [Order Line]\n,           MI.ALQT AS      [Picking Qty]\n--,           MI.PAQT AS      [Packed Qty]\nFROM        M3.MHPICH PH\nJOIN        M3.MITALO MI on PH.DLIX = MI.RIDI\nJOIN        M3.MHDISH MD ON PH.DLIX = MD.DLIX\nJOIN        M3.MITMAS MM ON MI.ITNO = MM.ITNO\nJOIN        M3.OCUSMA OC ON MD.CONA = OC.CUNO\nWHERE       PH.PISS = '40'\n) A\n\nselect distinct inou, count(*) from M3.MHDISH group by inou",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_WaveReport",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW         v_WaveReport\n-- drop view v_WaveReport\nas\nSELECT      *\nFROM\n(\nSELECT      PH.PLRI AS      [Wave]\n--,           PH.WHLO AS      [Warehouse]\n,           PH.DLIX AS      [Delivery Number]\n--,           PH.PLSX AS      [Picking List Suffix]\n--,           PH.PISS AS      [Picking Status]\n--,           OC.CUNO AS      [Customer Number]\n,           OC.CUNM AS      [Customer Name]\n,           OC.CFC6 AS      [Document Format]\n,           MI.ITNO AS      [Item Number]\n,           MM.ITDS AS      [Item Description]\n,           MI.WHSL AS      [Location]\n,           MI.RIDN AS      [Order Number]\n--,           MI.RIDL AS      [Order Line]\n,           MI.ALQT AS      [Picking Qty]\n--,           MI.PAQT AS      [Packed Qty]\nFROM        M3.MHPICH PH\nJOIN        M3.MITALO MI on PH.DLIX = MI.RIDI\nJOIN        M3.MHDISH MD ON PH.DLIX = MD.DLIX\nJOIN        M3.MITMAS MM ON MI.ITNO = MM.ITNO\nJOIN        M3.OCUSMA OC ON MD.CONA = OC.CUNO\nWHERE       PH.PISS = '40'\n) A\n\nselect distinct inou, count(*) from M3.MHDISH group by inou",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

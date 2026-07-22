@@ -1,17 +1,17 @@
 {
-	"name": "v_InventoryFeed",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW     v_InventoryFeed\n-- drop view v_InventoryFeed\nAS\nSELECT          CT.CUNO AS      [Customer Number]\n,               OC.CUNM AS      [Customer Name]\n,               CT.ITNO AS      [Item Number]\n,               B.[Translated Item Number] AS [Item Number on Portal]\n,               CT.POPN AS      [Alias Number]\n,               OC.WHLO AS      [Warehouse]\n,               OC.ORTP AS      [Order Type]\n,               CG.A030 AS      [Default Delivery Term]\n,               CG.A130 AS      [LiftGate Item]\n,               CT.ITDS AS      [Alt Inventory ID]\n,               MP.POPN AS      [UPC]\n,               MP.ALWT AS      [UPC Category]\n,               OB.SPNR AS      [Price]\nFROM            M3.OCUSIT CT\nJOIN            M3.OCUSMA OC ON CT.CUNO = OC.CUNO\nLEFT JOIN       M3.MITPOP MP ON CT.ITNO = MP.ITNO AND MP.ALWQ = 'UPC' AND MP.ALWT = '2'\nLEFT JOIN       M3.CUGEX1 CG ON CG.[FILE] = 'OCUSIT' AND CT.CUNO = CG.PK01 AND CT.ITNO = CG.PK02\nLEFT JOIN       M3.OPRBAS OB ON CT.CUNO = OB.PRRF AND CT.ITNO = OB.ITNO\nLEFT JOIN\n\n(\nSELECT      EXTP       AS [Customer Number]\n,           MVXD       AS [Item Number]\n,           MBMD       AS [Translated Item Number]\nFROM        M3.MBMTRD\nWHERE       IDTR = 215\n) B ON      CT.ITNO = B.[Item Number] AND CT.CUNO = B.[Customer Number]",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_InventoryFeed",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW     v_InventoryFeed\n-- drop view v_InventoryFeed\nAS\nSELECT          CT.CUNO AS      [Customer Number]\n,               OC.CUNM AS      [Customer Name]\n,               CT.ITNO AS      [Item Number]\n,               B.[Translated Item Number] AS [Item Number on Portal]\n,               CT.POPN AS      [Alias Number]\n,               OC.WHLO AS      [Warehouse]\n,               OC.ORTP AS      [Order Type]\n,               CG.A030 AS      [Default Delivery Term]\n,               CG.A130 AS      [LiftGate Item]\n,               CT.ITDS AS      [Alt Inventory ID]\n,               MP.POPN AS      [UPC]\n,               MP.ALWT AS      [UPC Category]\n,               OB.SPNR AS      [Price]\nFROM            M3.OCUSIT CT\nJOIN            M3.OCUSMA OC ON CT.CUNO = OC.CUNO\nLEFT JOIN       M3.MITPOP MP ON CT.ITNO = MP.ITNO AND MP.ALWQ = 'UPC' AND MP.ALWT = '2'\nLEFT JOIN       M3.CUGEX1 CG ON CG.[FILE] = 'OCUSIT' AND CT.CUNO = CG.PK01 AND CT.ITNO = CG.PK02\nLEFT JOIN       M3.OPRBAS OB ON CT.CUNO = OB.PRRF AND CT.ITNO = OB.ITNO\nLEFT JOIN\n\n(\nSELECT      EXTP       AS [Customer Number]\n,           MVXD       AS [Item Number]\n,           MBMD       AS [Translated Item Number]\nFROM        M3.MBMTRD\nWHERE       IDTR = 215\n) B ON      CT.ITNO = B.[Item Number] AND CT.CUNO = B.[Customer Number]",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

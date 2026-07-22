@@ -1,22 +1,21 @@
 {
-	"name": "OUT_a_SalesData",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "tlcdw-WorkspaceDefaultStorage",
-			"type": "LinkedServiceReference"
-		},
-		"annotations": [],
-		"type": "Parquet",
-		"typeProperties": {
-			"location": {
-				"type": "AzureBlobFSLocation",
-				"fileName": "a_SalesData.parquet",
-				"folderPath": "Analytics",
-				"fileSystem": "tlclakefs"
-			},
-			"compressionCodec": "snappy"
-		},
-		"schema": []
-	},
-	"type": "Microsoft.Synapse/workspaces/datasets"
+  "name": "OUT_a_SalesData",
+  "properties": {
+    "annotations": [],
+    "linkedServiceName": {
+      "referenceName": "tlcdw-WorkspaceDefaultStorage",
+      "type": "LinkedServiceReference"
+    },
+    "schema": [],
+    "type": "Parquet",
+    "typeProperties": {
+      "compressionCodec": "snappy",
+      "location": {
+        "fileName": "a_SalesData.parquet",
+        "fileSystem": "tlclakefs",
+        "folderPath": "Analytics",
+        "type": "AzureBlobFSLocation"
+      }
+    }
+  }
 }

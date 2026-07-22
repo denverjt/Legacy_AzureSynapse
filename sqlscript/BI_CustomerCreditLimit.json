@@ -1,17 +1,17 @@
 {
-	"name": "BI_CustomerCreditLimit",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW BI_CustomerCreditLimit\n --drop view BI_CustomerCreditLimit\n\nAS\n\n    SELECT \n        CL.PYNO AS [Customer Number],\n        CL.ODIN AS [Overdue Invoice Amount],\n        CL.OINA AS [Outstanding Invoice Amount],\n        CL.OVNI AS [Order Value not Invoiced],\n        CL.NOOD AS [Number of Overdue Days],\n        CL.OWOR AS [Outstanding without Risk],\n        CL.OVWR AS [Order value without Risk],\n        TRY_CAST(\n            LEFT(CONVERT(VARCHAR(8), CL.LIND), 4) + '-' + \n            SUBSTRING(CONVERT(VARCHAR(8), CL.LIND), 5, 2) + '-' + \n            RIGHT(CONVERT(VARCHAR(8), CL.LIND), 2)\n            AS DATE\n        ) AS [Last Invoice Date],\n        TRY_CAST(\n            LEFT(CONVERT(VARCHAR(8), CL.RGDT), 4) + '-' + \n            SUBSTRING(CONVERT(VARCHAR(8), CL.RGDT), 5, 2) + '-' + \n            RIGHT(CONVERT(VARCHAR(8), CL.RGDT), 2)\n            AS DATE\n        ) AS [Entry Date],\n        TRY_CAST(\n            LEFT(CONVERT(VARCHAR(8), CL.LMDT), 4) + '-' + \n            SUBSTRING(CONVERT(VARCHAR(8), CL.LMDT), 5, 2) + '-' + \n            RIGHT(CONVERT(VARCHAR(8), CL.LMDT), 2)\n            AS DATE\n        ) AS [Change Date],\n        CL.CHID AS [Changed by],\n        CL.PTRA AS [Pending Transfer Amount],\n        CL.PYGR AS [Credit Group]\n    FROM M3.CCUCRL CL\n\n",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": -1
-		},
-		"type": "SqlQuery"
-	}
+  "name": "BI_CustomerCreditLimit",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW BI_CustomerCreditLimit\n --drop view BI_CustomerCreditLimit\n\nAS\n\n    SELECT \n        CL.PYNO AS [Customer Number],\n        CL.ODIN AS [Overdue Invoice Amount],\n        CL.OINA AS [Outstanding Invoice Amount],\n        CL.OVNI AS [Order Value not Invoiced],\n        CL.NOOD AS [Number of Overdue Days],\n        CL.OWOR AS [Outstanding without Risk],\n        CL.OVWR AS [Order value without Risk],\n        TRY_CAST(\n            LEFT(CONVERT(VARCHAR(8), CL.LIND), 4) + '-' + \n            SUBSTRING(CONVERT(VARCHAR(8), CL.LIND), 5, 2) + '-' + \n            RIGHT(CONVERT(VARCHAR(8), CL.LIND), 2)\n            AS DATE\n        ) AS [Last Invoice Date],\n        TRY_CAST(\n            LEFT(CONVERT(VARCHAR(8), CL.RGDT), 4) + '-' + \n            SUBSTRING(CONVERT(VARCHAR(8), CL.RGDT), 5, 2) + '-' + \n            RIGHT(CONVERT(VARCHAR(8), CL.RGDT), 2)\n            AS DATE\n        ) AS [Entry Date],\n        TRY_CAST(\n            LEFT(CONVERT(VARCHAR(8), CL.LMDT), 4) + '-' + \n            SUBSTRING(CONVERT(VARCHAR(8), CL.LMDT), 5, 2) + '-' + \n            RIGHT(CONVERT(VARCHAR(8), CL.LMDT), 2)\n            AS DATE\n        ) AS [Change Date],\n        CL.CHID AS [Changed by],\n        CL.PTRA AS [Pending Transfer Amount],\n        CL.PYGR AS [Credit Group]\n    FROM M3.CCUCRL CL\n\n",
+      "resultLimit": -1
+    },
+    "type": "SqlQuery"
+  }
 }

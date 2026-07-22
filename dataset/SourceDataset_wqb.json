@@ -1,13 +1,11 @@
 {
-	"name": "SourceDataset_wqb",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "AppriseLIVE",
-			"type": "LinkedServiceReference"
-		},
-		"annotations": [],
-		"type": "OdbcTable",
-		"schema": []
-	},
-	"type": "Microsoft.Synapse/workspaces/datasets"
+  "name": "SourceDataset_wqb",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "AppriseLIVE",
+      "type": "LinkedServiceReference"
+    },
+    "schema": [],
+    "type": "OdbcTable"
+  }
 }

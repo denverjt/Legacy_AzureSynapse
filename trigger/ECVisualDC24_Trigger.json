@@ -1,1428 +1,1429 @@
 {
-	"name": "ECVisualDC24_Trigger",
-	"properties": {
-		"annotations": [],
-		"runtimeState": "Stopped",
-		"pipelines": [
-			{
-				"pipelineReference": {
-					"referenceName": "ECVisualDC24_Pipeline",
-					"type": "PipelineReference"
-				},
-				"parameters": {
-					"cw_items": [
-						{
-							"source": {
-								"table": "INV_TRANS_SEQUENCE"
-							},
-							"destination": {
-								"fileName": "INV_TRANS_SEQUENCE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "ADJUSTMENT_SYNC_SEQ"
-							},
-							"destination": {
-								"fileName": "ADJUSTMENT_SYNC_SEQ.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "WIP_ISSUE_SYNC_SEQ"
-							},
-							"destination": {
-								"fileName": "WIP_ISSUE_SYNC_SEQ.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "OCN_SYNC_SEQ"
-							},
-							"destination": {
-								"fileName": "OCN_SYNC_SEQ.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "SHIPPER_SYNC_SEQ"
-							},
-							"destination": {
-								"fileName": "SHIPPER_SYNC_SEQ.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "INV_TRANS_BATCH"
-							},
-							"destination": {
-								"fileName": "INV_TRANS_BATCH.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "aa_logtable"
-							},
-							"destination": {
-								"fileName": "aa_logtable.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "CUST_ADDRESS"
-							},
-							"destination": {
-								"fileName": "CUST_ADDRESS.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "EDGE_PRINT_SEQUENCE"
-							},
-							"destination": {
-								"fileName": "EDGE_PRINT_SEQUENCE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "INVENTORY_TRANS"
-							},
-							"destination": {
-								"fileName": "INVENTORY_TRANS.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "LOCATION_PREF"
-							},
-							"destination": {
-								"fileName": "LOCATION_PREF.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "WIP_RECEIPT_SYNC_SEQ"
-							},
-							"destination": {
-								"fileName": "WIP_RECEIPT_SYNC_SEQ.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "REQUIREMENT"
-							},
-							"destination": {
-								"fileName": "REQUIREMENT.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "WORK_ORDER_SYNC_SEQ"
-							},
-							"destination": {
-								"fileName": "WORK_ORDER_SYNC_SEQ.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "TEST_LOCATION_PREF"
-							},
-							"destination": {
-								"fileName": "TEST_LOCATION_PREF.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "ICN_SYNC_SEQ"
-							},
-							"destination": {
-								"fileName": "ICN_SYNC_SEQ.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "FEDEX_DOM_ZONE$"
-							},
-							"destination": {
-								"fileName": "FEDEX_DOM_ZONE$.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "RECEIVER_SYNC_SEQ"
-							},
-							"destination": {
-								"fileName": "RECEIVER_SYNC_SEQ.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "SKU_PACK"
-							},
-							"destination": {
-								"fileName": "SKU_PACK.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "EMPLOYEE_QUEUE"
-							},
-							"destination": {
-								"fileName": "EMPLOYEE_QUEUE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "WAVE_OVERRIDE"
-							},
-							"destination": {
-								"fileName": "WAVE_OVERRIDE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "LABEL"
-							},
-							"destination": {
-								"fileName": "LABEL.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "PICK_ORDER"
-							},
-							"destination": {
-								"fileName": "PICK_ORDER.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "SKU"
-							},
-							"destination": {
-								"fileName": "SKU.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "PACKLIST_SKU"
-							},
-							"destination": {
-								"fileName": "PACKLIST_SKU.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "PACKLIST_LINE"
-							},
-							"destination": {
-								"fileName": "PACKLIST_LINE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "OCN_LINE"
-							},
-							"destination": {
-								"fileName": "OCN_LINE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "POSITION"
-							},
-							"destination": {
-								"fileName": "POSITION.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "EVENT_LOG"
-							},
-							"destination": {
-								"fileName": "EVENT_LOG.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "PACKLIST_MU"
-							},
-							"destination": {
-								"fileName": "PACKLIST_MU.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "EOY_2014_INV"
-							},
-							"destination": {
-								"fileName": "EOY_2014_INV.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "PACKLIST"
-							},
-							"destination": {
-								"fileName": "PACKLIST.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "USER_PGM_AUTHORITY"
-							},
-							"destination": {
-								"fileName": "USER_PGM_AUTHORITY.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "MANIFEST"
-							},
-							"destination": {
-								"fileName": "MANIFEST.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "LEVELS"
-							},
-							"destination": {
-								"fileName": "LEVELS.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "EDGE_DCMS_MANIFEST"
-							},
-							"destination": {
-								"fileName": "EDGE_DCMS_MANIFEST.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "OCN"
-							},
-							"destination": {
-								"fileName": "OCN.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "SCHEDULE_WAVE_OCN"
-							},
-							"destination": {
-								"fileName": "SCHEDULE_WAVE_OCN.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "VENDOR_CONTACT"
-							},
-							"destination": {
-								"fileName": "VENDOR_CONTACT.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "CUSTOMER"
-							},
-							"destination": {
-								"fileName": "CUSTOMER.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "VENDOR"
-							},
-							"destination": {
-								"fileName": "VENDOR.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "TRACKING_NO"
-							},
-							"destination": {
-								"fileName": "TRACKING_NO.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "OPERATION"
-							},
-							"destination": {
-								"fileName": "OPERATION.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "WAVE"
-							},
-							"destination": {
-								"fileName": "WAVE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "EDGE_DOCUMENT_OVERRIDE"
-							},
-							"destination": {
-								"fileName": "EDGE_DOCUMENT_OVERRIDE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "vPART"
-							},
-							"destination": {
-								"fileName": "vPART.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "BAY"
-							},
-							"destination": {
-								"fileName": "BAY.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "EDGE_LOCATION_SKU_PI"
-							},
-							"destination": {
-								"fileName": "EDGE_LOCATION_SKU_PI.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "ICN_LINE"
-							},
-							"destination": {
-								"fileName": "ICN_LINE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "SKU_ALIAS"
-							},
-							"destination": {
-								"fileName": "SKU_ALIAS.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "VIC_BOL_LINE"
-							},
-							"destination": {
-								"fileName": "VIC_BOL_LINE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "WORK_ORDER"
-							},
-							"destination": {
-								"fileName": "WORK_ORDER.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "LOCATION_SKU"
-							},
-							"destination": {
-								"fileName": "LOCATION_SKU.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "Qmastersku"
-							},
-							"destination": {
-								"fileName": "Qmastersku.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "SCHEDULE_WAVE_WO"
-							},
-							"destination": {
-								"fileName": "SCHEDULE_WAVE_WO.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "SCHEDULE"
-							},
-							"destination": {
-								"fileName": "SCHEDULE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "SCHEDULE_WAVE"
-							},
-							"destination": {
-								"fileName": "SCHEDULE_WAVE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "ICN"
-							},
-							"destination": {
-								"fileName": "ICN.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "FEDEX_DOM_MULTI_RATES$"
-							},
-							"destination": {
-								"fileName": "FEDEX_DOM_MULTI_RATES$.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "EDGE_DCMS_SHIP"
-							},
-							"destination": {
-								"fileName": "EDGE_DCMS_SHIP.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "EDGE_PRINT_PARAM"
-							},
-							"destination": {
-								"fileName": "EDGE_PRINT_PARAM.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "WORKORDER_BINARY"
-							},
-							"destination": {
-								"fileName": "WORKORDER_BINARY.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "FEDEX_CAN_MULTI_RATES$"
-							},
-							"destination": {
-								"fileName": "FEDEX_CAN_MULTI_RATES$.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "REQUIREMENT_BINARY"
-							},
-							"destination": {
-								"fileName": "REQUIREMENT_BINARY.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "CYCLE_COUNT"
-							},
-							"destination": {
-								"fileName": "CYCLE_COUNT.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "PROCESS_RESPONSE"
-							},
-							"destination": {
-								"fileName": "PROCESS_RESPONSE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "SKU_BINARY"
-							},
-							"destination": {
-								"fileName": "SKU_BINARY.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "ALERT_MESSAGE"
-							},
-							"destination": {
-								"fileName": "ALERT_MESSAGE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "VIC_BOL_ORDER_INFO"
-							},
-							"destination": {
-								"fileName": "VIC_BOL_ORDER_INFO.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "SKU_SHIP_ATTRIBUTES"
-							},
-							"destination": {
-								"fileName": "SKU_SHIP_ATTRIBUTES.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "QUEUE_TRANS_TYPE"
-							},
-							"destination": {
-								"fileName": "QUEUE_TRANS_TYPE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "aa_skus_to_update"
-							},
-							"destination": {
-								"fileName": "aa_skus_to_update.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "LABEL_FIELD_MAP"
-							},
-							"destination": {
-								"fileName": "LABEL_FIELD_MAP.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "QUEUE_ZONE"
-							},
-							"destination": {
-								"fileName": "QUEUE_ZONE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "VIC_BOL"
-							},
-							"destination": {
-								"fileName": "VIC_BOL.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "SCC14"
-							},
-							"destination": {
-								"fileName": "SCC14.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "SCC14_USER_5"
-							},
-							"destination": {
-								"fileName": "SCC14_USER_5.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "SHIP_VIA"
-							},
-							"destination": {
-								"fileName": "SHIP_VIA.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "TRAILER"
-							},
-							"destination": {
-								"fileName": "TRAILER.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "ZONE_RESOURCE_TYPE"
-							},
-							"destination": {
-								"fileName": "ZONE_RESOURCE_TYPE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "AISLE"
-							},
-							"destination": {
-								"fileName": "AISLE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "EDGE_PRINT"
-							},
-							"destination": {
-								"fileName": "EDGE_PRINT.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "DOCUMENT_FORMAT"
-							},
-							"destination": {
-								"fileName": "DOCUMENT_FORMAT.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "CARRIER"
-							},
-							"destination": {
-								"fileName": "CARRIER.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "CommodityExportOld"
-							},
-							"destination": {
-								"fileName": "CommodityExportOld.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "Fedex_order_id"
-							},
-							"destination": {
-								"fileName": "Fedex_order_id.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "ZONE"
-							},
-							"destination": {
-								"fileName": "ZONE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "CommodityExport"
-							},
-							"destination": {
-								"fileName": "CommodityExport.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "CommodityExportNew"
-							},
-							"destination": {
-								"fileName": "CommodityExportNew.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "COMMODITY"
-							},
-							"destination": {
-								"fileName": "COMMODITY.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "EMPLOYEE"
-							},
-							"destination": {
-								"fileName": "EMPLOYEE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "CARRIER1"
-							},
-							"destination": {
-								"fileName": "CARRIER1.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "QUEUE"
-							},
-							"destination": {
-								"fileName": "QUEUE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "LABEL_QUERY_DATA"
-							},
-							"destination": {
-								"fileName": "LABEL_QUERY_DATA.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "ICN_BINARY"
-							},
-							"destination": {
-								"fileName": "ICN_BINARY.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "MOVEABLE_UNIT_SKU"
-							},
-							"destination": {
-								"fileName": "MOVEABLE_UNIT_SKU.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "OCN_EMAIL"
-							},
-							"destination": {
-								"fileName": "OCN_EMAIL.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "FEDEX_DOM_RATES$"
-							},
-							"destination": {
-								"fileName": "FEDEX_DOM_RATES$.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "RESOURCE_TYPE"
-							},
-							"destination": {
-								"fileName": "RESOURCE_TYPE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "LABEL_QUERY_BINARY"
-							},
-							"destination": {
-								"fileName": "LABEL_QUERY_BINARY.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "RESOURCES"
-							},
-							"destination": {
-								"fileName": "RESOURCES.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "MOVEABLE_UNIT"
-							},
-							"destination": {
-								"fileName": "MOVEABLE_UNIT.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "FILTER_BINARY"
-							},
-							"destination": {
-								"fileName": "FILTER_BINARY.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "CARTON_TYPE"
-							},
-							"destination": {
-								"fileName": "CARTON_TYPE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "aa_zone_102_zone_template"
-							},
-							"destination": {
-								"fileName": "aa_zone_102_zone_template.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "STATE_PROVINCE"
-							},
-							"destination": {
-								"fileName": "STATE_PROVINCE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "SKU_PROCESS"
-							},
-							"destination": {
-								"fileName": "SKU_PROCESS.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "OCN_BINARY"
-							},
-							"destination": {
-								"fileName": "OCN_BINARY.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "UPS3RDPARTY"
-							},
-							"destination": {
-								"fileName": "UPS3RDPARTY.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "REASON"
-							},
-							"destination": {
-								"fileName": "REASON.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "APPLICATION_LINK"
-							},
-							"destination": {
-								"fileName": "APPLICATION_LINK.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "DOOR"
-							},
-							"destination": {
-								"fileName": "DOOR.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "FILTER"
-							},
-							"destination": {
-								"fileName": "FILTER.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "DOOR_ZONE"
-							},
-							"destination": {
-								"fileName": "DOOR_ZONE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "APPLICATION"
-							},
-							"destination": {
-								"fileName": "APPLICATION.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "NMFC_CODE"
-							},
-							"destination": {
-								"fileName": "NMFC_CODE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "REPORT"
-							},
-							"destination": {
-								"fileName": "REPORT.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "REPORT_LINK"
-							},
-							"destination": {
-								"fileName": "REPORT_LINK.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "PRODUCT"
-							},
-							"destination": {
-								"fileName": "PRODUCT.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "MOVEABLE_UNIT_ROUTE"
-							},
-							"destination": {
-								"fileName": "MOVEABLE_UNIT_ROUTE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "TERRITORY"
-							},
-							"destination": {
-								"fileName": "TERRITORY.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "EDGE_PRINTER"
-							},
-							"destination": {
-								"fileName": "EDGE_PRINTER.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "OPERATION_TYPE"
-							},
-							"destination": {
-								"fileName": "OPERATION_TYPE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "EDGE_PRINTER_TRAY"
-							},
-							"destination": {
-								"fileName": "EDGE_PRINTER_TRAY.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "NEXT_NUMBER_GEN"
-							},
-							"destination": {
-								"fileName": "NEXT_NUMBER_GEN.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "FOB_POINT"
-							},
-							"destination": {
-								"fileName": "FOB_POINT.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "UNITS"
-							},
-							"destination": {
-								"fileName": "UNITS.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "DMSI"
-							},
-							"destination": {
-								"fileName": "DMSI.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "OCN_TYPE"
-							},
-							"destination": {
-								"fileName": "OCN_TYPE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "SEMAPHORE"
-							},
-							"destination": {
-								"fileName": "SEMAPHORE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "PHYSICAL_INVENTORY"
-							},
-							"destination": {
-								"fileName": "PHYSICAL_INVENTORY.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "LOGINS"
-							},
-							"destination": {
-								"fileName": "LOGINS.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "LOCATION_PREF_CLASS"
-							},
-							"destination": {
-								"fileName": "LOCATION_PREF_CLASS.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "QUEUE_TYPE"
-							},
-							"destination": {
-								"fileName": "QUEUE_TYPE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "TRAILER_TYPE"
-							},
-							"destination": {
-								"fileName": "TRAILER_TYPE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "SKU_ALIAS_TYPE"
-							},
-							"destination": {
-								"fileName": "SKU_ALIAS_TYPE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "CLASS_RANK"
-							},
-							"destination": {
-								"fileName": "CLASS_RANK.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "MACRO_BINARY"
-							},
-							"destination": {
-								"fileName": "MACRO_BINARY.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "PACKAGE_TYPE"
-							},
-							"destination": {
-								"fileName": "PACKAGE_TYPE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "MACRO"
-							},
-							"destination": {
-								"fileName": "MACRO.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "STORAGE_TYPE"
-							},
-							"destination": {
-								"fileName": "STORAGE_TYPE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "HONORIFIC"
-							},
-							"destination": {
-								"fileName": "HONORIFIC.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "APPLICATION_GROUP"
-							},
-							"destination": {
-								"fileName": "APPLICATION_GROUP.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "REPORT_GROUP"
-							},
-							"destination": {
-								"fileName": "REPORT_GROUP.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "ICN_TYPE"
-							},
-							"destination": {
-								"fileName": "ICN_TYPE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "TOPOLOGY"
-							},
-							"destination": {
-								"fileName": "TOPOLOGY.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "UNITS_CONVERSION"
-							},
-							"destination": {
-								"fileName": "UNITS_CONVERSION.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "TEAM"
-							},
-							"destination": {
-								"fileName": "TEAM.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "UDF_LAYOUT"
-							},
-							"destination": {
-								"fileName": "UDF_LAYOUT.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "FAMILY"
-							},
-							"destination": {
-								"fileName": "FAMILY.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "BATCH_PICK_SETUP"
-							},
-							"destination": {
-								"fileName": "BATCH_PICK_SETUP.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "EARNING_CODE"
-							},
-							"destination": {
-								"fileName": "EARNING_CODE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "CUSTOMER_CONTACT"
-							},
-							"destination": {
-								"fileName": "CUSTOMER_CONTACT.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "SETTINGS"
-							},
-							"destination": {
-								"fileName": "SETTINGS.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "SIC"
-							},
-							"destination": {
-								"fileName": "SIC.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "LANE_TYPE"
-							},
-							"destination": {
-								"fileName": "LANE_TYPE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "OPERATION_BINARY"
-							},
-							"destination": {
-								"fileName": "OPERATION_BINARY.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "OCN_TYPE_PFR_ZONE"
-							},
-							"destination": {
-								"fileName": "OCN_TYPE_PFR_ZONE.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "OCN_LINE_BINARY"
-							},
-							"destination": {
-								"fileName": "OCN_LINE_BINARY.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "OCN_SYNC"
-							},
-							"destination": {
-								"fileName": "OCN_SYNC.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "ICN_LINE_BINARY"
-							},
-							"destination": {
-								"fileName": "ICN_LINE_BINARY.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "ICN_SYNC"
-							},
-							"destination": {
-								"fileName": "ICN_SYNC.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "SHIPPER_SYNC"
-							},
-							"destination": {
-								"fileName": "SHIPPER_SYNC.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "RECEIVER_SYNC"
-							},
-							"destination": {
-								"fileName": "RECEIVER_SYNC.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "SKU_UNITS_CONV"
-							},
-							"destination": {
-								"fileName": "SKU_UNITS_CONV.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "SKU_VERSION_MAP"
-							},
-							"destination": {
-								"fileName": "SKU_VERSION_MAP.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "CUSTOMER_BINARY"
-							},
-							"destination": {
-								"fileName": "CUSTOMER_BINARY.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "CUSTOMER_SYNC"
-							},
-							"destination": {
-								"fileName": "CUSTOMER_SYNC.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "DEMAND_SUPPLY_LINK"
-							},
-							"destination": {
-								"fileName": "DEMAND_SUPPLY_LINK.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "APPLICATION_GLOBAL"
-							},
-							"destination": {
-								"fileName": "APPLICATION_GLOBAL.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "AIC"
-							},
-							"destination": {
-								"fileName": "AIC.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "ADJUSTMENT_SYNC"
-							},
-							"destination": {
-								"fileName": "ADJUSTMENT_SYNC.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "WORK_ORDER_SYNC"
-							},
-							"destination": {
-								"fileName": "WORK_ORDER_SYNC.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "WIP_ISSUE_SYNC"
-							},
-							"destination": {
-								"fileName": "WIP_ISSUE_SYNC.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "WIP_RECEIPT_SYNC"
-							},
-							"destination": {
-								"fileName": "WIP_RECEIPT_SYNC.parquet"
-							}
-						}
-					]
-				}
-			}
-		],
-		"type": "ScheduleTrigger",
-		"typeProperties": {
-			"recurrence": {
-				"frequency": "Day",
-				"interval": 1,
-				"startTime": "2022-06-23T02:00:00",
-				"timeZone": "Eastern Standard Time"
-			}
-		}
-	}
+  "name": "ECVisualDC24_Trigger",
+  "properties": {
+    "annotations": [],
+    "pipelines": [
+      {
+        "parameters": {
+          "cw_items": [
+            {
+              "destination": {
+                "fileName": "INV_TRANS_SEQUENCE.parquet"
+              },
+              "source": {
+                "table": "INV_TRANS_SEQUENCE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "ADJUSTMENT_SYNC_SEQ.parquet"
+              },
+              "source": {
+                "table": "ADJUSTMENT_SYNC_SEQ"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "WIP_ISSUE_SYNC_SEQ.parquet"
+              },
+              "source": {
+                "table": "WIP_ISSUE_SYNC_SEQ"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "OCN_SYNC_SEQ.parquet"
+              },
+              "source": {
+                "table": "OCN_SYNC_SEQ"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "SHIPPER_SYNC_SEQ.parquet"
+              },
+              "source": {
+                "table": "SHIPPER_SYNC_SEQ"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "INV_TRANS_BATCH.parquet"
+              },
+              "source": {
+                "table": "INV_TRANS_BATCH"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "aa_logtable.parquet"
+              },
+              "source": {
+                "table": "aa_logtable"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "CUST_ADDRESS.parquet"
+              },
+              "source": {
+                "table": "CUST_ADDRESS"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "EDGE_PRINT_SEQUENCE.parquet"
+              },
+              "source": {
+                "table": "EDGE_PRINT_SEQUENCE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "INVENTORY_TRANS.parquet"
+              },
+              "source": {
+                "table": "INVENTORY_TRANS"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "LOCATION_PREF.parquet"
+              },
+              "source": {
+                "table": "LOCATION_PREF"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "WIP_RECEIPT_SYNC_SEQ.parquet"
+              },
+              "source": {
+                "table": "WIP_RECEIPT_SYNC_SEQ"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "REQUIREMENT.parquet"
+              },
+              "source": {
+                "table": "REQUIREMENT"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "WORK_ORDER_SYNC_SEQ.parquet"
+              },
+              "source": {
+                "table": "WORK_ORDER_SYNC_SEQ"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "TEST_LOCATION_PREF.parquet"
+              },
+              "source": {
+                "table": "TEST_LOCATION_PREF"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "ICN_SYNC_SEQ.parquet"
+              },
+              "source": {
+                "table": "ICN_SYNC_SEQ"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "FEDEX_DOM_ZONE$.parquet"
+              },
+              "source": {
+                "table": "FEDEX_DOM_ZONE$"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "RECEIVER_SYNC_SEQ.parquet"
+              },
+              "source": {
+                "table": "RECEIVER_SYNC_SEQ"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "SKU_PACK.parquet"
+              },
+              "source": {
+                "table": "SKU_PACK"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "EMPLOYEE_QUEUE.parquet"
+              },
+              "source": {
+                "table": "EMPLOYEE_QUEUE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "WAVE_OVERRIDE.parquet"
+              },
+              "source": {
+                "table": "WAVE_OVERRIDE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "LABEL.parquet"
+              },
+              "source": {
+                "table": "LABEL"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "PICK_ORDER.parquet"
+              },
+              "source": {
+                "table": "PICK_ORDER"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "SKU.parquet"
+              },
+              "source": {
+                "table": "SKU"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "PACKLIST_SKU.parquet"
+              },
+              "source": {
+                "table": "PACKLIST_SKU"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "PACKLIST_LINE.parquet"
+              },
+              "source": {
+                "table": "PACKLIST_LINE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "OCN_LINE.parquet"
+              },
+              "source": {
+                "table": "OCN_LINE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "POSITION.parquet"
+              },
+              "source": {
+                "table": "POSITION"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "EVENT_LOG.parquet"
+              },
+              "source": {
+                "table": "EVENT_LOG"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "PACKLIST_MU.parquet"
+              },
+              "source": {
+                "table": "PACKLIST_MU"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "EOY_2014_INV.parquet"
+              },
+              "source": {
+                "table": "EOY_2014_INV"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "PACKLIST.parquet"
+              },
+              "source": {
+                "table": "PACKLIST"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "USER_PGM_AUTHORITY.parquet"
+              },
+              "source": {
+                "table": "USER_PGM_AUTHORITY"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "MANIFEST.parquet"
+              },
+              "source": {
+                "table": "MANIFEST"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "LEVELS.parquet"
+              },
+              "source": {
+                "table": "LEVELS"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "EDGE_DCMS_MANIFEST.parquet"
+              },
+              "source": {
+                "table": "EDGE_DCMS_MANIFEST"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "OCN.parquet"
+              },
+              "source": {
+                "table": "OCN"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "SCHEDULE_WAVE_OCN.parquet"
+              },
+              "source": {
+                "table": "SCHEDULE_WAVE_OCN"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "VENDOR_CONTACT.parquet"
+              },
+              "source": {
+                "table": "VENDOR_CONTACT"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "CUSTOMER.parquet"
+              },
+              "source": {
+                "table": "CUSTOMER"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "VENDOR.parquet"
+              },
+              "source": {
+                "table": "VENDOR"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "TRACKING_NO.parquet"
+              },
+              "source": {
+                "table": "TRACKING_NO"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "OPERATION.parquet"
+              },
+              "source": {
+                "table": "OPERATION"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "WAVE.parquet"
+              },
+              "source": {
+                "table": "WAVE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "EDGE_DOCUMENT_OVERRIDE.parquet"
+              },
+              "source": {
+                "table": "EDGE_DOCUMENT_OVERRIDE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "vPART.parquet"
+              },
+              "source": {
+                "table": "vPART"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "BAY.parquet"
+              },
+              "source": {
+                "table": "BAY"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "EDGE_LOCATION_SKU_PI.parquet"
+              },
+              "source": {
+                "table": "EDGE_LOCATION_SKU_PI"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "ICN_LINE.parquet"
+              },
+              "source": {
+                "table": "ICN_LINE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "SKU_ALIAS.parquet"
+              },
+              "source": {
+                "table": "SKU_ALIAS"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "VIC_BOL_LINE.parquet"
+              },
+              "source": {
+                "table": "VIC_BOL_LINE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "WORK_ORDER.parquet"
+              },
+              "source": {
+                "table": "WORK_ORDER"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "LOCATION_SKU.parquet"
+              },
+              "source": {
+                "table": "LOCATION_SKU"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "Qmastersku.parquet"
+              },
+              "source": {
+                "table": "Qmastersku"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "SCHEDULE_WAVE_WO.parquet"
+              },
+              "source": {
+                "table": "SCHEDULE_WAVE_WO"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "SCHEDULE.parquet"
+              },
+              "source": {
+                "table": "SCHEDULE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "SCHEDULE_WAVE.parquet"
+              },
+              "source": {
+                "table": "SCHEDULE_WAVE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "ICN.parquet"
+              },
+              "source": {
+                "table": "ICN"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "FEDEX_DOM_MULTI_RATES$.parquet"
+              },
+              "source": {
+                "table": "FEDEX_DOM_MULTI_RATES$"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "EDGE_DCMS_SHIP.parquet"
+              },
+              "source": {
+                "table": "EDGE_DCMS_SHIP"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "EDGE_PRINT_PARAM.parquet"
+              },
+              "source": {
+                "table": "EDGE_PRINT_PARAM"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "WORKORDER_BINARY.parquet"
+              },
+              "source": {
+                "table": "WORKORDER_BINARY"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "FEDEX_CAN_MULTI_RATES$.parquet"
+              },
+              "source": {
+                "table": "FEDEX_CAN_MULTI_RATES$"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "REQUIREMENT_BINARY.parquet"
+              },
+              "source": {
+                "table": "REQUIREMENT_BINARY"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "CYCLE_COUNT.parquet"
+              },
+              "source": {
+                "table": "CYCLE_COUNT"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "PROCESS_RESPONSE.parquet"
+              },
+              "source": {
+                "table": "PROCESS_RESPONSE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "SKU_BINARY.parquet"
+              },
+              "source": {
+                "table": "SKU_BINARY"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "ALERT_MESSAGE.parquet"
+              },
+              "source": {
+                "table": "ALERT_MESSAGE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "VIC_BOL_ORDER_INFO.parquet"
+              },
+              "source": {
+                "table": "VIC_BOL_ORDER_INFO"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "SKU_SHIP_ATTRIBUTES.parquet"
+              },
+              "source": {
+                "table": "SKU_SHIP_ATTRIBUTES"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "QUEUE_TRANS_TYPE.parquet"
+              },
+              "source": {
+                "table": "QUEUE_TRANS_TYPE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "aa_skus_to_update.parquet"
+              },
+              "source": {
+                "table": "aa_skus_to_update"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "LABEL_FIELD_MAP.parquet"
+              },
+              "source": {
+                "table": "LABEL_FIELD_MAP"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "QUEUE_ZONE.parquet"
+              },
+              "source": {
+                "table": "QUEUE_ZONE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "VIC_BOL.parquet"
+              },
+              "source": {
+                "table": "VIC_BOL"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "SCC14.parquet"
+              },
+              "source": {
+                "table": "SCC14"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "SCC14_USER_5.parquet"
+              },
+              "source": {
+                "table": "SCC14_USER_5"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "SHIP_VIA.parquet"
+              },
+              "source": {
+                "table": "SHIP_VIA"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "TRAILER.parquet"
+              },
+              "source": {
+                "table": "TRAILER"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "ZONE_RESOURCE_TYPE.parquet"
+              },
+              "source": {
+                "table": "ZONE_RESOURCE_TYPE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "AISLE.parquet"
+              },
+              "source": {
+                "table": "AISLE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "EDGE_PRINT.parquet"
+              },
+              "source": {
+                "table": "EDGE_PRINT"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "DOCUMENT_FORMAT.parquet"
+              },
+              "source": {
+                "table": "DOCUMENT_FORMAT"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "CARRIER.parquet"
+              },
+              "source": {
+                "table": "CARRIER"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "CommodityExportOld.parquet"
+              },
+              "source": {
+                "table": "CommodityExportOld"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "Fedex_order_id.parquet"
+              },
+              "source": {
+                "table": "Fedex_order_id"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "ZONE.parquet"
+              },
+              "source": {
+                "table": "ZONE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "CommodityExport.parquet"
+              },
+              "source": {
+                "table": "CommodityExport"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "CommodityExportNew.parquet"
+              },
+              "source": {
+                "table": "CommodityExportNew"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "COMMODITY.parquet"
+              },
+              "source": {
+                "table": "COMMODITY"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "EMPLOYEE.parquet"
+              },
+              "source": {
+                "table": "EMPLOYEE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "CARRIER1.parquet"
+              },
+              "source": {
+                "table": "CARRIER1"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "QUEUE.parquet"
+              },
+              "source": {
+                "table": "QUEUE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "LABEL_QUERY_DATA.parquet"
+              },
+              "source": {
+                "table": "LABEL_QUERY_DATA"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "ICN_BINARY.parquet"
+              },
+              "source": {
+                "table": "ICN_BINARY"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "MOVEABLE_UNIT_SKU.parquet"
+              },
+              "source": {
+                "table": "MOVEABLE_UNIT_SKU"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "OCN_EMAIL.parquet"
+              },
+              "source": {
+                "table": "OCN_EMAIL"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "FEDEX_DOM_RATES$.parquet"
+              },
+              "source": {
+                "table": "FEDEX_DOM_RATES$"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "RESOURCE_TYPE.parquet"
+              },
+              "source": {
+                "table": "RESOURCE_TYPE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "LABEL_QUERY_BINARY.parquet"
+              },
+              "source": {
+                "table": "LABEL_QUERY_BINARY"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "RESOURCES.parquet"
+              },
+              "source": {
+                "table": "RESOURCES"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "MOVEABLE_UNIT.parquet"
+              },
+              "source": {
+                "table": "MOVEABLE_UNIT"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "FILTER_BINARY.parquet"
+              },
+              "source": {
+                "table": "FILTER_BINARY"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "CARTON_TYPE.parquet"
+              },
+              "source": {
+                "table": "CARTON_TYPE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "aa_zone_102_zone_template.parquet"
+              },
+              "source": {
+                "table": "aa_zone_102_zone_template"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "STATE_PROVINCE.parquet"
+              },
+              "source": {
+                "table": "STATE_PROVINCE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "SKU_PROCESS.parquet"
+              },
+              "source": {
+                "table": "SKU_PROCESS"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "OCN_BINARY.parquet"
+              },
+              "source": {
+                "table": "OCN_BINARY"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "UPS3RDPARTY.parquet"
+              },
+              "source": {
+                "table": "UPS3RDPARTY"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "REASON.parquet"
+              },
+              "source": {
+                "table": "REASON"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "APPLICATION_LINK.parquet"
+              },
+              "source": {
+                "table": "APPLICATION_LINK"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "DOOR.parquet"
+              },
+              "source": {
+                "table": "DOOR"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "FILTER.parquet"
+              },
+              "source": {
+                "table": "FILTER"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "DOOR_ZONE.parquet"
+              },
+              "source": {
+                "table": "DOOR_ZONE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "APPLICATION.parquet"
+              },
+              "source": {
+                "table": "APPLICATION"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "NMFC_CODE.parquet"
+              },
+              "source": {
+                "table": "NMFC_CODE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "REPORT.parquet"
+              },
+              "source": {
+                "table": "REPORT"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "REPORT_LINK.parquet"
+              },
+              "source": {
+                "table": "REPORT_LINK"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "PRODUCT.parquet"
+              },
+              "source": {
+                "table": "PRODUCT"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "MOVEABLE_UNIT_ROUTE.parquet"
+              },
+              "source": {
+                "table": "MOVEABLE_UNIT_ROUTE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "TERRITORY.parquet"
+              },
+              "source": {
+                "table": "TERRITORY"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "EDGE_PRINTER.parquet"
+              },
+              "source": {
+                "table": "EDGE_PRINTER"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "OPERATION_TYPE.parquet"
+              },
+              "source": {
+                "table": "OPERATION_TYPE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "EDGE_PRINTER_TRAY.parquet"
+              },
+              "source": {
+                "table": "EDGE_PRINTER_TRAY"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "NEXT_NUMBER_GEN.parquet"
+              },
+              "source": {
+                "table": "NEXT_NUMBER_GEN"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "FOB_POINT.parquet"
+              },
+              "source": {
+                "table": "FOB_POINT"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "UNITS.parquet"
+              },
+              "source": {
+                "table": "UNITS"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "DMSI.parquet"
+              },
+              "source": {
+                "table": "DMSI"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "OCN_TYPE.parquet"
+              },
+              "source": {
+                "table": "OCN_TYPE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "SEMAPHORE.parquet"
+              },
+              "source": {
+                "table": "SEMAPHORE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "PHYSICAL_INVENTORY.parquet"
+              },
+              "source": {
+                "table": "PHYSICAL_INVENTORY"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "LOGINS.parquet"
+              },
+              "source": {
+                "table": "LOGINS"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "LOCATION_PREF_CLASS.parquet"
+              },
+              "source": {
+                "table": "LOCATION_PREF_CLASS"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "QUEUE_TYPE.parquet"
+              },
+              "source": {
+                "table": "QUEUE_TYPE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "TRAILER_TYPE.parquet"
+              },
+              "source": {
+                "table": "TRAILER_TYPE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "SKU_ALIAS_TYPE.parquet"
+              },
+              "source": {
+                "table": "SKU_ALIAS_TYPE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "CLASS_RANK.parquet"
+              },
+              "source": {
+                "table": "CLASS_RANK"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "MACRO_BINARY.parquet"
+              },
+              "source": {
+                "table": "MACRO_BINARY"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "PACKAGE_TYPE.parquet"
+              },
+              "source": {
+                "table": "PACKAGE_TYPE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "MACRO.parquet"
+              },
+              "source": {
+                "table": "MACRO"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "STORAGE_TYPE.parquet"
+              },
+              "source": {
+                "table": "STORAGE_TYPE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "HONORIFIC.parquet"
+              },
+              "source": {
+                "table": "HONORIFIC"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "APPLICATION_GROUP.parquet"
+              },
+              "source": {
+                "table": "APPLICATION_GROUP"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "REPORT_GROUP.parquet"
+              },
+              "source": {
+                "table": "REPORT_GROUP"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "ICN_TYPE.parquet"
+              },
+              "source": {
+                "table": "ICN_TYPE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "TOPOLOGY.parquet"
+              },
+              "source": {
+                "table": "TOPOLOGY"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "UNITS_CONVERSION.parquet"
+              },
+              "source": {
+                "table": "UNITS_CONVERSION"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "TEAM.parquet"
+              },
+              "source": {
+                "table": "TEAM"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "UDF_LAYOUT.parquet"
+              },
+              "source": {
+                "table": "UDF_LAYOUT"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "FAMILY.parquet"
+              },
+              "source": {
+                "table": "FAMILY"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "BATCH_PICK_SETUP.parquet"
+              },
+              "source": {
+                "table": "BATCH_PICK_SETUP"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "EARNING_CODE.parquet"
+              },
+              "source": {
+                "table": "EARNING_CODE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "CUSTOMER_CONTACT.parquet"
+              },
+              "source": {
+                "table": "CUSTOMER_CONTACT"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "SETTINGS.parquet"
+              },
+              "source": {
+                "table": "SETTINGS"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "SIC.parquet"
+              },
+              "source": {
+                "table": "SIC"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "LANE_TYPE.parquet"
+              },
+              "source": {
+                "table": "LANE_TYPE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "OPERATION_BINARY.parquet"
+              },
+              "source": {
+                "table": "OPERATION_BINARY"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "OCN_TYPE_PFR_ZONE.parquet"
+              },
+              "source": {
+                "table": "OCN_TYPE_PFR_ZONE"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "OCN_LINE_BINARY.parquet"
+              },
+              "source": {
+                "table": "OCN_LINE_BINARY"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "OCN_SYNC.parquet"
+              },
+              "source": {
+                "table": "OCN_SYNC"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "ICN_LINE_BINARY.parquet"
+              },
+              "source": {
+                "table": "ICN_LINE_BINARY"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "ICN_SYNC.parquet"
+              },
+              "source": {
+                "table": "ICN_SYNC"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "SHIPPER_SYNC.parquet"
+              },
+              "source": {
+                "table": "SHIPPER_SYNC"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "RECEIVER_SYNC.parquet"
+              },
+              "source": {
+                "table": "RECEIVER_SYNC"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "SKU_UNITS_CONV.parquet"
+              },
+              "source": {
+                "table": "SKU_UNITS_CONV"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "SKU_VERSION_MAP.parquet"
+              },
+              "source": {
+                "table": "SKU_VERSION_MAP"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "CUSTOMER_BINARY.parquet"
+              },
+              "source": {
+                "table": "CUSTOMER_BINARY"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "CUSTOMER_SYNC.parquet"
+              },
+              "source": {
+                "table": "CUSTOMER_SYNC"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "DEMAND_SUPPLY_LINK.parquet"
+              },
+              "source": {
+                "table": "DEMAND_SUPPLY_LINK"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "APPLICATION_GLOBAL.parquet"
+              },
+              "source": {
+                "table": "APPLICATION_GLOBAL"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "AIC.parquet"
+              },
+              "source": {
+                "table": "AIC"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "ADJUSTMENT_SYNC.parquet"
+              },
+              "source": {
+                "table": "ADJUSTMENT_SYNC"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "WORK_ORDER_SYNC.parquet"
+              },
+              "source": {
+                "table": "WORK_ORDER_SYNC"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "WIP_ISSUE_SYNC.parquet"
+              },
+              "source": {
+                "table": "WIP_ISSUE_SYNC"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "WIP_RECEIPT_SYNC.parquet"
+              },
+              "source": {
+                "table": "WIP_RECEIPT_SYNC"
+              }
+            }
+          ]
+        },
+        "pipelineReference": {
+          "referenceName": "ECVisualDC24_Pipeline",
+          "type": "PipelineReference"
+        }
+      }
+    ],
+    "runtimeState": "Stopped",
+    "type": "ScheduleTrigger",
+    "typeProperties": {
+      "recurrence": {
+        "frequency": "Day",
+        "interval": 1,
+        "schedule": {},
+        "startTime": "2022-06-23T02:00:00.000Z",
+        "timeZone": "Eastern Standard Time"
+      }
+    }
+  }
 }

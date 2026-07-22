@@ -1,57 +1,57 @@
 {
-	"name": "CopyPipeline_AppriseQuery",
-	"properties": {
-		"activities": [
-			{
-				"name": "Copy_wqb",
-				"type": "Copy",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [
-					{
-						"name": "Destination",
-						"value": "tlclakefs/AppriseLIVE/arinvitm.parquet"
-					}
-				],
-				"typeProperties": {
-					"source": {
-						"type": "OdbcSource",
-						"query": "select * from \"PUB\".\"arinvitm\""
-					},
-					"sink": {
-						"type": "ParquetSink",
-						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
-						},
-						"formatSettings": {
-							"type": "ParquetWriteSettings"
-						}
-					},
-					"enableStaging": false,
-					"validateDataConsistency": false
-				},
-				"inputs": [
-					{
-						"referenceName": "SourceDataset_wqb",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "DestinationDataset_wqb",
-						"type": "DatasetReference"
-					}
-				]
-			}
-		],
-		"annotations": [],
-		"lastPublishTime": "2022-10-06T20:58:05Z"
-	},
-	"type": "Microsoft.Synapse/workspaces/pipelines"
+  "name": "CopyPipeline_AppriseQuery",
+  "properties": {
+    "activities": [
+      {
+        "dependsOn": [],
+        "inputs": [
+          {
+            "parameters": {},
+            "referenceName": "SourceDataset_wqb",
+            "type": "DatasetReference"
+          }
+        ],
+        "name": "Copy_wqb",
+        "outputs": [
+          {
+            "parameters": {},
+            "referenceName": "DestinationDataset_wqb",
+            "type": "DatasetReference"
+          }
+        ],
+        "policy": {
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false,
+          "timeout": "0.12:00:00"
+        },
+        "type": "Copy",
+        "typeProperties": {
+          "enableStaging": false,
+          "sink": {
+            "formatSettings": {
+              "type": "ParquetWriteSettings"
+            },
+            "storeSettings": {
+              "type": "AzureBlobFSWriteSettings"
+            },
+            "type": "ParquetSink"
+          },
+          "source": {
+            "query": "select * from \"PUB\".\"arinvitm\"",
+            "type": "OdbcSource"
+          },
+          "validateDataConsistency": false
+        },
+        "userProperties": [
+          {
+            "name": "Destination",
+            "value": "tlclakefs/AppriseLIVE/arinvitm.parquet"
+          }
+        ]
+      }
+    ],
+    "annotations": []
+  }
 }

@@ -1,13 +1,11 @@
 {
-	"name": "SourceDataset_rin",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "AvantiWH",
-			"type": "LinkedServiceReference"
-		},
-		"annotations": [],
-		"type": "SqlServerTable",
-		"schema": []
-	},
-	"type": "Microsoft.Synapse/workspaces/datasets"
+  "name": "SourceDataset_rin",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "AvantiWH",
+      "type": "LinkedServiceReference"
+    },
+    "schema": [],
+    "type": "SqlServerTable"
+  }
 }

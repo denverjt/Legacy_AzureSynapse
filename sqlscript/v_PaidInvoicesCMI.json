@@ -1,17 +1,17 @@
 {
-	"name": "v_PaidInvoicesCMI",
-	"properties": {
-		"content": {
-			"query": "create view v_PaidInvoicesCMI\n-- drop view v_PaidInvoicesCMI\nas\nSELECT      A.CINO, A.CUNO, A.ACDT, ROUND(InvAmt2/NULLIF(count(PONR) OVER (PARTITION BY ORNO),0),2) as InvAmt\n,           B.*\nFROM\n(\nSELECT      CINO, CUNO, MAX(ACDT) as ACDT, SUM(CUAM) as InvAmt2\nFROM        M3.FSLEDG\nWHERE       TRCD = '20'\nAND         CUNO IN\n(\n '50011', '50177'\n)\nAND         ACDT >= '2023-01-01'\nGROUP BY    CINO, CUNO\n) A\n\nLEFT JOIN\n\n(\nselect      DISTINCT EXIN, DLIX, ORNO, PONR, POSX\nFROM        M3.ODLINE\n\n) B        ON A.CINO = B.EXIN",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": -1
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_PaidInvoicesCMI",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "create view v_PaidInvoicesCMI\n-- drop view v_PaidInvoicesCMI\nas\nSELECT      A.CINO, A.CUNO, A.ACDT, ROUND(InvAmt2/NULLIF(count(PONR) OVER (PARTITION BY ORNO),0),2) as InvAmt\n,           B.*\nFROM\n(\nSELECT      CINO, CUNO, MAX(ACDT) as ACDT, SUM(CUAM) as InvAmt2\nFROM        M3.FSLEDG\nWHERE       TRCD = '20'\nAND         CUNO IN\n(\n '50011', '50177'\n)\nAND         ACDT >= '2023-01-01'\nGROUP BY    CINO, CUNO\n) A\n\nLEFT JOIN\n\n(\nselect      DISTINCT EXIN, DLIX, ORNO, PONR, POSX\nFROM        M3.ODLINE\n\n) B        ON A.CINO = B.EXIN",
+      "resultLimit": -1
+    },
+    "type": "SqlQuery"
+  }
 }

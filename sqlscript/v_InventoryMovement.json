@@ -1,17 +1,17 @@
 {
-	"name": "v_InventoryMovement",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW     v_InventoryMovement\n-- drop view v_InventoryMovement\nas\n\n\nSELECT   distinct OC.CUNO AS [Customer ID]\n,          OC.CUNM AS [Customer Name]\n,          OL.CUOR AS [Customer PO]\n,          ODH.ORNO AS [Order ID]\n,          cast(cast(ODH.ACDT as varchar(10)) as date)  as [Date]\n,          IM.ITCL as Brand\n,           IM.GRP3 as [Finance Brand]\n,          CS.TX15 as [Product Category]\n,           IM.ITNO as [Part ID]\n,           IM.ITDS as [Part Description]\n,           IM.SUNO as [Supplier ID]\n,           OL.NEPR*ODL.IVQT as [Sales Amt]\n,           ODL.IVQT as [Sales Qty]\n,           OL.NEPR as [Unit Price]\n,           OL.WHLO as Warehouse\n,           IM.BUAR as Division\n,           OC.RESP as [Sales Manager]\n,           CS2.TX40 as [Sales Rep]\n,           DLRM as [Carrier SCAC]\n,           ETRN as [Tracking/Pro Number]\nFROM\t\t\tM3.FSLEDG LE --26749\nJOIN\t\t\tM3.OINVOH IV ON LE.CINO = IV.EXIN --15784\nJOIN\t\t\tM3.ODHEAD ODH ON ODH.IVNO = IV.IVNO AND LE.PYNO = ODH.PYNO and LE.ACDT = cast(cast(ODH.ACDT as varchar(10)) as date)\nJOIN\t\t\tM3.ODLINE ODL ON ODH.ORNO = ODL.ORNO AND ODH.DLIX = ODL.DLIX\nJOIN\t\t\tM3.OOLINE AS OL ON ODL.ORNO = OL.ORNO AND ODL.PONR = OL.PONR AND ODL.POSX = OL.POSX\nJOIN\t\t\tM3.OCUSMA AS OC ON ODH.CUNO = OC.CUNO \nJOIN\t\t\tM3.MITMAS AS IM ON ODL.ITNO = IM.ITNO\nLEFT JOIN\t\tM3.CSYTAB CS on IM.ITGR = CS.STKY and CS.STCO = 'ITGR'\nLEFT JOIN\t\tM3.CSYTAB CS2 on OC.SMCD = CS2.STKY and CS2.STCO = 'SMCD'\nLEFT JOIN       M3.MPTRNS MT ON ODH.DLIX = MT.DLIX\nWHERE\t\t\tLE.TRCD = 10\nAND\t\t\t\tLE.IVTP <> 'CN'\nand             ODH.ACDT <> 0\n",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": -1
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_InventoryMovement",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW     v_InventoryMovement\n-- drop view v_InventoryMovement\nas\n\n\nSELECT   distinct OC.CUNO AS [Customer ID]\n,          OC.CUNM AS [Customer Name]\n,          OL.CUOR AS [Customer PO]\n,          ODH.ORNO AS [Order ID]\n,          cast(cast(ODH.ACDT as varchar(10)) as date)  as [Date]\n,          IM.ITCL as Brand\n,           IM.GRP3 as [Finance Brand]\n,          CS.TX15 as [Product Category]\n,           IM.ITNO as [Part ID]\n,           IM.ITDS as [Part Description]\n,           IM.SUNO as [Supplier ID]\n,           OL.NEPR*ODL.IVQT as [Sales Amt]\n,           ODL.IVQT as [Sales Qty]\n,           OL.NEPR as [Unit Price]\n,           OL.WHLO as Warehouse\n,           IM.BUAR as Division\n,           OC.RESP as [Sales Manager]\n,           CS2.TX40 as [Sales Rep]\n,           DLRM as [Carrier SCAC]\n,           ETRN as [Tracking/Pro Number]\nFROM\t\t\tM3.FSLEDG LE --26749\nJOIN\t\t\tM3.OINVOH IV ON LE.CINO = IV.EXIN --15784\nJOIN\t\t\tM3.ODHEAD ODH ON ODH.IVNO = IV.IVNO AND LE.PYNO = ODH.PYNO and LE.ACDT = cast(cast(ODH.ACDT as varchar(10)) as date)\nJOIN\t\t\tM3.ODLINE ODL ON ODH.ORNO = ODL.ORNO AND ODH.DLIX = ODL.DLIX\nJOIN\t\t\tM3.OOLINE AS OL ON ODL.ORNO = OL.ORNO AND ODL.PONR = OL.PONR AND ODL.POSX = OL.POSX\nJOIN\t\t\tM3.OCUSMA AS OC ON ODH.CUNO = OC.CUNO \nJOIN\t\t\tM3.MITMAS AS IM ON ODL.ITNO = IM.ITNO\nLEFT JOIN\t\tM3.CSYTAB CS on IM.ITGR = CS.STKY and CS.STCO = 'ITGR'\nLEFT JOIN\t\tM3.CSYTAB CS2 on OC.SMCD = CS2.STKY and CS2.STCO = 'SMCD'\nLEFT JOIN       M3.MPTRNS MT ON ODH.DLIX = MT.DLIX\nWHERE\t\t\tLE.TRCD = 10\nAND\t\t\t\tLE.IVTP <> 'CN'\nand             ODH.ACDT <> 0\n",
+      "resultLimit": -1
+    },
+    "type": "SqlQuery"
+  }
 }

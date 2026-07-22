@@ -1,17 +1,17 @@
 {
-	"name": "v_Discontinued",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW v_Discontinued\n-- drop view v_Discontinued\n-- drop external table SLS.Discontinued\nAS\nSELECT  SKU\n,       Description\n,       [Aligned Item Number]\n,       Model as [Base Model SKU]\n,       'Discontinued' as Status\n,       [Manufactured or Purchased]\n,       CASE WHEN SKU LIKE 'VT-REPAIR%' THEN 'Miscellaneous Charge' else [Item Type] end as [Item Type]\n,       CASE WHEN SKU LIKE 'VT-REPAIR%' THEN 'Consumer' else [Business Unit] end as [Business Unit]\n,       CASE WHEN SKU LIKE 'VT-REPAIR%' THEN 'Compact' else [Division] end as [Division]\n,       CASE WHEN SKU LIKE 'VT-REPAIR%' THEN 'Vinotemp' else [Finance Brand] end as [Finance Brand]\n,       CASE WHEN SKU LIKE 'VT-REPAIR%' THEN 'Vinotemp' WHEN SKU IN ('V1016', 'V9042') then 'Vinturi' else [Brand] end as [Brand]\n,       CASE WHEN SKU LIKE 'VT-REPAIR%' THEN 'Vinotemp' else [Sub-Brand] end as [Sub-Brand]\n,       [Product Line]\n,       CASE WHEN SKU LIKE 'VT-REPAIR%' THEN 'Others' else [Category] end as [Category]\n,       CASE WHEN SKU LIKE 'VT-REPAIR%' THEN 'Others' else [Subcategory] end as [Subcategory]\nFROM SLS.Discontinued\n",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_Discontinued",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW v_Discontinued\n-- drop view v_Discontinued\n-- drop external table SLS.Discontinued\nAS\nSELECT  SKU\n,       Description\n,       [Aligned Item Number]\n,       Model as [Base Model SKU]\n,       'Discontinued' as Status\n,       [Manufactured or Purchased]\n,       CASE WHEN SKU LIKE 'VT-REPAIR%' THEN 'Miscellaneous Charge' else [Item Type] end as [Item Type]\n,       CASE WHEN SKU LIKE 'VT-REPAIR%' THEN 'Consumer' else [Business Unit] end as [Business Unit]\n,       CASE WHEN SKU LIKE 'VT-REPAIR%' THEN 'Compact' else [Division] end as [Division]\n,       CASE WHEN SKU LIKE 'VT-REPAIR%' THEN 'Vinotemp' else [Finance Brand] end as [Finance Brand]\n,       CASE WHEN SKU LIKE 'VT-REPAIR%' THEN 'Vinotemp' WHEN SKU IN ('V1016', 'V9042') then 'Vinturi' else [Brand] end as [Brand]\n,       CASE WHEN SKU LIKE 'VT-REPAIR%' THEN 'Vinotemp' else [Sub-Brand] end as [Sub-Brand]\n,       [Product Line]\n,       CASE WHEN SKU LIKE 'VT-REPAIR%' THEN 'Others' else [Category] end as [Category]\n,       CASE WHEN SKU LIKE 'VT-REPAIR%' THEN 'Others' else [Subcategory] end as [Subcategory]\nFROM SLS.Discontinued\n",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

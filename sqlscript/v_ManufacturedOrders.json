@@ -1,17 +1,17 @@
 {
-	"name": "v_ManufacturedOrders",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW                                                     v_ManufacturedOrders\n-- drop view v_ManufacturedOrders\nas\nSELECT 'Manufacturing Order' as\t\t\t\t\t\t\t\t\t[Order Type]\n,\t\tMWH.MFNO as\t\t\t\t\t\t\t\t\t\t\t\t[Manufacturing Order Number]\n,\t\tMWH.WHHS as\t\t\t\t\t\t\t\t\t\t\t\t[Manufacturing Order Status]\n,      \tMWH.ITNO AS \t\t\t\t\t\t\t\t\t\t\t[Item Number]\n,\t\tMWH.STDT AS\t\t\t\t\t\t\t\t\t\t\t\t[Estimated Start Date]\n,       cast(cast(NULLIF(MWH.RSDT,0) as varchar(10)) as date) AS                                             [Actual Start Date]\n,       MWH.FIDT AS                                             [Estimated Finish Date]\n,       cast(cast(NULLIF(MWH.REFD,0) as varchar(10)) as date) AS                                             [Actual Finish Date]\n,\t\tMWH.ORQA AS\t\t\t\t\t\t\t\t\t\t\t\t[Order Qty]\n,\t\tMWH.RVQA AS\t\t\t\t\t\t\t\t\t\t\t\t[Received Qty]\n,       MWH.ORQA - MWH.RVQA AS                                  [Open Qty]\n,\t\tcast(CAST(NULLIF(MWH.RPDT, 0) as varchar(max)) as date) as [Last Received Date]\n,\t\tMF.APPR  AS\t\t\t\t\t\t\t\t\t\t\t\t[Price]\n,\t\tMWH.ORQA*MF.APPR AS\t\t\t\t\t\t\t\t\t\t[Total Amount]\n,\t\tMWH.RESP as\t\t\t\t\t\t\t\t\t\t\t\t[Responsible]\n,\t\tMWH.WHLO as\t\t\t\t\t\t\t\t\t\t\t\t[Warehouse]\nFROM            M3.MWOHED AS MWH\nLEFT JOIN \t\tM3.MITFAC MF on MWH.ITNO = MF.ITNO\nWHERE\tMWH.WHHS > 10",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_ManufacturedOrders",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW                                                     v_ManufacturedOrders\n-- drop view v_ManufacturedOrders\nas\nSELECT 'Manufacturing Order' as\t\t\t\t\t\t\t\t\t[Order Type]\n,\t\tMWH.MFNO as\t\t\t\t\t\t\t\t\t\t\t\t[Manufacturing Order Number]\n,\t\tMWH.WHHS as\t\t\t\t\t\t\t\t\t\t\t\t[Manufacturing Order Status]\n,      \tMWH.ITNO AS \t\t\t\t\t\t\t\t\t\t\t[Item Number]\n,\t\tMWH.STDT AS\t\t\t\t\t\t\t\t\t\t\t\t[Estimated Start Date]\n,       cast(cast(NULLIF(MWH.RSDT,0) as varchar(10)) as date) AS                                             [Actual Start Date]\n,       MWH.FIDT AS                                             [Estimated Finish Date]\n,       cast(cast(NULLIF(MWH.REFD,0) as varchar(10)) as date) AS                                             [Actual Finish Date]\n,\t\tMWH.ORQA AS\t\t\t\t\t\t\t\t\t\t\t\t[Order Qty]\n,\t\tMWH.RVQA AS\t\t\t\t\t\t\t\t\t\t\t\t[Received Qty]\n,       MWH.ORQA - MWH.RVQA AS                                  [Open Qty]\n,\t\tcast(CAST(NULLIF(MWH.RPDT, 0) as varchar(max)) as date) as [Last Received Date]\n,\t\tMF.APPR  AS\t\t\t\t\t\t\t\t\t\t\t\t[Price]\n,\t\tMWH.ORQA*MF.APPR AS\t\t\t\t\t\t\t\t\t\t[Total Amount]\n,\t\tMWH.RESP as\t\t\t\t\t\t\t\t\t\t\t\t[Responsible]\n,\t\tMWH.WHLO as\t\t\t\t\t\t\t\t\t\t\t\t[Warehouse]\nFROM            M3.MWOHED AS MWH\nLEFT JOIN \t\tM3.MITFAC MF on MWH.ITNO = MF.ITNO\nWHERE\tMWH.WHHS > 10",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

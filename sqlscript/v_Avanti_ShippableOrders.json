@@ -1,17 +1,17 @@
 {
-	"name": "v_Avanti_ShippableOrders",
-	"properties": {
-		"content": {
-			"query": "create view     v_Avanti_ShippableOrders\n--drop view v_Avanti_ShippableOrders\nas\nSELECT          DISTINCT OH.ORNO as OrderNumber\n,               OH.RLDT as RequestedDate\n,               OL.ORST as LineStatus\n,               OH.OBLC as OnHold\n,               OH.CUNO as CustomerCode\n,               OC.CUNM as CustomerName\n,               OL.PONR as LineNumber\n,               OL.ITNO as ItemNumber\n,               MM.ITDS as ItemName\n,               OL.RNQT as OpenQty\n,               OL.ALQT as AllocatedQty\n,               OL.PLQT as PickQty\n,               OH.TEDL as FreightType\n,               OL.WHLO as Warehouse\n,               OL.RNQT * OL.NEPR as ShippableAmt\n,               OH.ADID as AddressID\n,               OA.CUNM as ShipToName\n,               OA.CUA1 as ShipToAddr1\n,               OA.CUA2 as ShipToAddr2\n,               OA.TOWN as ShipToCity\n,               OA.ECAR as ShipToState\n,               OA.PONO as ShipToZipCode\n,               MM.ITCL as Brand\nFROM            M3.OOHEAD OH\nJOIN            M3.OOLINE OL ON OH.ORNO = OL.ORNO\nJOIN            M3.OCUSMA OC ON OH.CUNO = OC.CUNO\nJOIN            M3.MITMAS MM ON OL.ITNO = MM.ITNO\nLEFT JOIN       M3.OOADRE OA ON OH.ORNO = OA.ORNO and OH.ADID = OA.ADID\nWHERE           OL.ORST <= '44'",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_Avanti_ShippableOrders",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "create view     v_Avanti_ShippableOrders\n--drop view v_Avanti_ShippableOrders\nas\nSELECT          DISTINCT OH.ORNO as OrderNumber\n,               OH.RLDT as RequestedDate\n,               OL.ORST as LineStatus\n,               OH.OBLC as OnHold\n,               OH.CUNO as CustomerCode\n,               OC.CUNM as CustomerName\n,               OL.PONR as LineNumber\n,               OL.ITNO as ItemNumber\n,               MM.ITDS as ItemName\n,               OL.RNQT as OpenQty\n,               OL.ALQT as AllocatedQty\n,               OL.PLQT as PickQty\n,               OH.TEDL as FreightType\n,               OL.WHLO as Warehouse\n,               OL.RNQT * OL.NEPR as ShippableAmt\n,               OH.ADID as AddressID\n,               OA.CUNM as ShipToName\n,               OA.CUA1 as ShipToAddr1\n,               OA.CUA2 as ShipToAddr2\n,               OA.TOWN as ShipToCity\n,               OA.ECAR as ShipToState\n,               OA.PONO as ShipToZipCode\n,               MM.ITCL as Brand\nFROM            M3.OOHEAD OH\nJOIN            M3.OOLINE OL ON OH.ORNO = OL.ORNO\nJOIN            M3.OCUSMA OC ON OH.CUNO = OC.CUNO\nJOIN            M3.MITMAS MM ON OL.ITNO = MM.ITNO\nLEFT JOIN       M3.OOADRE OA ON OH.ORNO = OA.ORNO and OH.ADID = OA.ADID\nWHERE           OL.ORST <= '44'",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

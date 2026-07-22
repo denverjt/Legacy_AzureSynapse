@@ -1,162 +1,164 @@
 {
-	"name": "AdCraft_Trigger",
-	"properties": {
-		"annotations": [],
-		"runtimeState": "Stopped",
-		"pipelines": [
-			{
-				"pipelineReference": {
-					"referenceName": "AdCraft_Pipeline",
-					"type": "PipelineReference"
-				},
-				"parameters": {
-					"cw_items": [
-						{
-							"source": {
-								"tableName": "\"PUB\".\"wa_item\""
-							},
-							"destination": {
-								"fileName": "wa_item.parquet"
-							}
-						},
-						{
-							"source": {
-								"tableName": "\"PUB\".\"ap_line\""
-							},
-							"destination": {
-								"fileName": "ap_line.parquet"
-							}
-						},
-						{
-							"source": {
-								"tableName": "\"PUB\".\"ar_main\""
-							},
-							"destination": {
-								"fileName": "ar_main.parquet"
-							}
-						},
-						{
-							"source": {
-								"tableName": "\"PUB\".\"oe_line\""
-							},
-							"destination": {
-								"fileName": "oe_line.parquet"
-							}
-						},
-						{
-							"source": {
-								"tableName": "\"PUB\".\"customer\""
-							},
-							"destination": {
-								"fileName": "customer.parquet"
-							}
-						},
-						{
-							"source": {
-								"tableName": "\"PUB\".\"cu_shipto\""
-							},
-							"destination": {
-								"fileName": "cu_shipto.parquet"
-							}
-						},
-						{
-							"source": {
-								"tableName": "\"PUB\".\"cu_contact\""
-							},
-							"destination": {
-								"fileName": "cu_contact.parquet"
-							}
-						},
-						{
-							"source": {
-								"tableName": "\"PUB\".\"item\""
-							},
-							"destination": {
-								"fileName": "item.parquet"
-							}
-						},
-						{
-							"source": {
-								"tableName": "\"PUB\".\"po_head\""
-							},
-							"destination": {
-								"fileName": "po_head.parquet"
-							}
-						},
-						{
-							"source": {
-								"tableName": "\"PUB\".\"po_line\""
-							},
-							"destination": {
-								"fileName": "po_line.parquet"
-							}
-						},
-						{
-							"source": {
-								"tableName": "\"PUB\".\"price\""
-							},
-							"destination": {
-								"fileName": "price.parquet"
-							}
-						},
-						{
-							"source": {
-								"tableName": "\"PUB\".\"salesman\""
-							},
-							"destination": {
-								"fileName": "salesman.parquet"
-							}
-						},
-						{
-							"source": {
-								"tableName": "\"PUB\".\"vendor\""
-							},
-							"destination": {
-								"fileName": "vendor.parquet"
-							}
-						},
-						{
-							"source": {
-								"tableName": "\"PUB\".\"warehouse\""
-							},
-							"destination": {
-								"fileName": "warehouse.parquet"
-							}
-						},
-						{
-							"source": {
-								"tableName": "\"PUB\".\"wa_it_loc\""
-							},
-							"destination": {
-								"fileName": "wa_it_loc.parquet"
-							}
-						},
-						{
-							"source": {
-								"tableName": "\"PUB\".\"cu_prcitem\""
-							},
-							"destination": {
-								"fileName": "cu_prcitem.parquet"
-							}
-						}
-					]
-				}
-			},
-			{
-				"pipelineReference": {
-					"referenceName": "AdCraft_Query_Pipeline",
-					"type": "PipelineReference"
-				}
-			}
-		],
-		"type": "ScheduleTrigger",
-		"typeProperties": {
-			"recurrence": {
-				"frequency": "Day",
-				"interval": 1,
-				"startTime": "2022-08-27T04:00:00",
-				"timeZone": "Eastern Standard Time"
-			}
-		}
-	}
+  "name": "AdCraft_Trigger",
+  "properties": {
+    "annotations": [],
+    "pipelines": [
+      {
+        "parameters": {
+          "cw_items": [
+            {
+              "destination": {
+                "fileName": "wa_item.parquet"
+              },
+              "source": {
+                "tableName": "\"PUB\".\"wa_item\""
+              }
+            },
+            {
+              "destination": {
+                "fileName": "ap_line.parquet"
+              },
+              "source": {
+                "tableName": "\"PUB\".\"ap_line\""
+              }
+            },
+            {
+              "destination": {
+                "fileName": "ar_main.parquet"
+              },
+              "source": {
+                "tableName": "\"PUB\".\"ar_main\""
+              }
+            },
+            {
+              "destination": {
+                "fileName": "oe_line.parquet"
+              },
+              "source": {
+                "tableName": "\"PUB\".\"oe_line\""
+              }
+            },
+            {
+              "destination": {
+                "fileName": "customer.parquet"
+              },
+              "source": {
+                "tableName": "\"PUB\".\"customer\""
+              }
+            },
+            {
+              "destination": {
+                "fileName": "cu_shipto.parquet"
+              },
+              "source": {
+                "tableName": "\"PUB\".\"cu_shipto\""
+              }
+            },
+            {
+              "destination": {
+                "fileName": "cu_contact.parquet"
+              },
+              "source": {
+                "tableName": "\"PUB\".\"cu_contact\""
+              }
+            },
+            {
+              "destination": {
+                "fileName": "item.parquet"
+              },
+              "source": {
+                "tableName": "\"PUB\".\"item\""
+              }
+            },
+            {
+              "destination": {
+                "fileName": "po_head.parquet"
+              },
+              "source": {
+                "tableName": "\"PUB\".\"po_head\""
+              }
+            },
+            {
+              "destination": {
+                "fileName": "po_line.parquet"
+              },
+              "source": {
+                "tableName": "\"PUB\".\"po_line\""
+              }
+            },
+            {
+              "destination": {
+                "fileName": "price.parquet"
+              },
+              "source": {
+                "tableName": "\"PUB\".\"price\""
+              }
+            },
+            {
+              "destination": {
+                "fileName": "salesman.parquet"
+              },
+              "source": {
+                "tableName": "\"PUB\".\"salesman\""
+              }
+            },
+            {
+              "destination": {
+                "fileName": "vendor.parquet"
+              },
+              "source": {
+                "tableName": "\"PUB\".\"vendor\""
+              }
+            },
+            {
+              "destination": {
+                "fileName": "warehouse.parquet"
+              },
+              "source": {
+                "tableName": "\"PUB\".\"warehouse\""
+              }
+            },
+            {
+              "destination": {
+                "fileName": "wa_it_loc.parquet"
+              },
+              "source": {
+                "tableName": "\"PUB\".\"wa_it_loc\""
+              }
+            },
+            {
+              "destination": {
+                "fileName": "cu_prcitem.parquet"
+              },
+              "source": {
+                "tableName": "\"PUB\".\"cu_prcitem\""
+              }
+            }
+          ]
+        },
+        "pipelineReference": {
+          "referenceName": "AdCraft_Pipeline",
+          "type": "PipelineReference"
+        }
+      },
+      {
+        "parameters": {},
+        "pipelineReference": {
+          "referenceName": "AdCraft_Query_Pipeline",
+          "type": "PipelineReference"
+        }
+      }
+    ],
+    "runtimeState": "Stopped",
+    "type": "ScheduleTrigger",
+    "typeProperties": {
+      "recurrence": {
+        "frequency": "Day",
+        "interval": 1,
+        "schedule": {},
+        "startTime": "2022-08-27T04:00:00.000Z",
+        "timeZone": "Eastern Standard Time"
+      }
+    }
+  }
 }

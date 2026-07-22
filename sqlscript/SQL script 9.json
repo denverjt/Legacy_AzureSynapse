@@ -1,17 +1,17 @@
 {
-	"name": "SQL script 9",
-	"properties": {
-		"content": {
-			"query": "SELECT TOP 100 *\nFROM ZDI.ContainerAuto\nWHERE [Container Number(s)] IS NOT NULL AND [Carrier Name]='EUSU' AND TRY_CONVERT(date, [Invoice Date])>'6/30/2024'  -- AND [Container Number(s)] IS NOT NULL\n\nSELECT TOP 100 [Carrier Name], Division, [Status], COUNT(*)\nFROM ZDI.ContainerAuto\nWHERE [Carrier Name]='EUSU'\nGROUP BY [Carrier Name], Division, []\nORDER BY [Carrier Name]\n\nSELECT TOP 100 Division, COUNT(*)\nFROM ZDI.ContainerAuto\nGROUP BY Division",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "SQL script 9",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "SELECT TOP 100 *\nFROM ZDI.ContainerAuto\nWHERE [Container Number(s)] IS NOT NULL AND [Carrier Name]='EUSU' AND TRY_CONVERT(date, [Invoice Date])>'6/30/2024'  -- AND [Container Number(s)] IS NOT NULL\n\nSELECT TOP 100 [Carrier Name], Division, [Status], COUNT(*)\nFROM ZDI.ContainerAuto\nWHERE [Carrier Name]='EUSU'\nGROUP BY [Carrier Name], Division, []\nORDER BY [Carrier Name]\n\nSELECT TOP 100 Division, COUNT(*)\nFROM ZDI.ContainerAuto\nGROUP BY Division",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

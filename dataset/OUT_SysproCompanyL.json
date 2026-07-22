@@ -1,30 +1,29 @@
 {
-	"name": "OUT_SysproCompanyL",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "tlcdw-WorkspaceDefaultStorage",
-			"type": "LinkedServiceReference"
-		},
-		"parameters": {
-			"cw_fileName": {
-				"type": "String"
-			}
-		},
-		"annotations": [],
-		"type": "Parquet",
-		"typeProperties": {
-			"location": {
-				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "@dataset().cw_fileName",
-					"type": "Expression"
-				},
-				"folderPath": "SysproCompanyL",
-				"fileSystem": "tlclakefs"
-			},
-			"compressionCodec": "snappy"
-		},
-		"schema": []
-	},
-	"type": "Microsoft.Synapse/workspaces/datasets"
+  "name": "OUT_SysproCompanyL",
+  "properties": {
+    "annotations": [],
+    "linkedServiceName": {
+      "referenceName": "tlcdw-WorkspaceDefaultStorage",
+      "type": "LinkedServiceReference"
+    },
+    "parameters": {
+      "cw_fileName": {
+        "type": "String"
+      }
+    },
+    "schema": [],
+    "type": "Parquet",
+    "typeProperties": {
+      "compressionCodec": "snappy",
+      "location": {
+        "fileName": {
+          "type": "Expression",
+          "value": "@dataset().cw_fileName"
+        },
+        "fileSystem": "tlclakefs",
+        "folderPath": "SysproCompanyL",
+        "type": "AzureBlobFSLocation"
+      }
+    }
+  }
 }

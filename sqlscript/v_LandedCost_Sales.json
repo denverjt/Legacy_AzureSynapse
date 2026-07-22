@@ -1,17 +1,17 @@
 {
-	"name": "v_LandedCost_Sales",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW v_LandedCost_Sales\n-- drop view v_LandedCost_Sales\nas\n\nSELECT      A.Date\n,           A.[Part ID - Actual] as [Item Number]\n,           SUM([Sales Amt]) as Sales\n,           SUM([Sales Qty]) as SalesQty\n,               IM.[Aligned Item Number]\n,               IM.[Description]\n,               IM.[Aligned Item Description]\n,               IM.Subcategory\n,               IM.Category\n,               IM.[Product Line]\n,               IM.[Sub-Brand]\n,               IM.Brand\n,               IM.[Finance Brand] as [Finance Brand]\n,               IM.[Business Unit]\n,               IM.Division\n,               IM.[Item Type]\n,               IM.[Manufactured or Purchased] as [Procurement Type]\n,               IM.Status\n,               [Invoice ID]\n,               [Order ID]\nFROM        a_SalesData A\nLEFT JOIN   BI_ItemMaster IM on A.[Part ID - Actual] = IM.[Item Number]\nWHERE       A.Company = 'M3'\nAND         A.[Date] >= '2022-10-01'\nAND         A.[Sales Type] = 'Sales'\nGROUP BY    A.Date, A.[Part ID - Actual],               IM.[Aligned Item Number]\n,               IM.[Description]\n,               IM.[Aligned Item Description]\n,               IM.Subcategory\n,               IM.Category\n,               IM.[Product Line]\n,               IM.[Sub-Brand]\n,               IM.Brand\n,               IM.[Finance Brand]\n,               IM.[Business Unit]\n,               IM.Division\n,               IM.[Item Type]\n,               IM.[Manufactured or Purchased]\n,               IM.Status, [Invoice ID], [Order ID]",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_LandedCost_Sales",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW v_LandedCost_Sales\n-- drop view v_LandedCost_Sales\nas\n\nSELECT      A.Date\n,           A.[Part ID - Actual] as [Item Number]\n,           SUM([Sales Amt]) as Sales\n,           SUM([Sales Qty]) as SalesQty\n,               IM.[Aligned Item Number]\n,               IM.[Description]\n,               IM.[Aligned Item Description]\n,               IM.Subcategory\n,               IM.Category\n,               IM.[Product Line]\n,               IM.[Sub-Brand]\n,               IM.Brand\n,               IM.[Finance Brand] as [Finance Brand]\n,               IM.[Business Unit]\n,               IM.Division\n,               IM.[Item Type]\n,               IM.[Manufactured or Purchased] as [Procurement Type]\n,               IM.Status\n,               [Invoice ID]\n,               [Order ID]\nFROM        a_SalesData A\nLEFT JOIN   BI_ItemMaster IM on A.[Part ID - Actual] = IM.[Item Number]\nWHERE       A.Company = 'M3'\nAND         A.[Date] >= '2022-10-01'\nAND         A.[Sales Type] = 'Sales'\nGROUP BY    A.Date, A.[Part ID - Actual],               IM.[Aligned Item Number]\n,               IM.[Description]\n,               IM.[Aligned Item Description]\n,               IM.Subcategory\n,               IM.Category\n,               IM.[Product Line]\n,               IM.[Sub-Brand]\n,               IM.Brand\n,               IM.[Finance Brand]\n,               IM.[Business Unit]\n,               IM.Division\n,               IM.[Item Type]\n,               IM.[Manufactured or Purchased]\n,               IM.Status, [Invoice ID], [Order ID]",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

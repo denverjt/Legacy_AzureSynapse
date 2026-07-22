@@ -1,17 +1,17 @@
 {
-	"name": "Syspro Paid Invoices in M3",
-	"properties": {
-		"content": {
-			"query": "SELECT inv.cuno, oc.cunm, inv.cino, inv.acdt, inv.cuam FROM M3.FSLEDG inv\njoin M3.ocusma oc on inv.cuno = oc.cuno\nWHERE TRCD = '20'\nand (CINO LIKE 'L%' OR CINO LIKE 'AA%')\nAND ACDT >= '2024-06-01'\nand ACDT <= '2024-06-30'",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "Syspro Paid Invoices in M3",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "SELECT inv.cuno, oc.cunm, inv.cino, inv.acdt, inv.cuam FROM M3.FSLEDG inv\njoin M3.ocusma oc on inv.cuno = oc.cuno\nWHERE TRCD = '20'\nand (CINO LIKE 'L%' OR CINO LIKE 'AA%')\nAND ACDT >= '2024-06-01'\nand ACDT <= '2024-06-30'",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

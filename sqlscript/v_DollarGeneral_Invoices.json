@@ -1,17 +1,17 @@
 {
-	"name": "v_DollarGeneral_Invoices",
-	"properties": {
-		"content": {
-			"query": "SELECT          '350939' AS VendorNumber\n,               'LEGACY ASBURY' as Vendor\n,               IVNO as InvoiceNumber\n,               left(CAST(CAST(IVDT AS VARCHAR(8)) AS DATE), 10) as InvoiceDate\n,               left(dateadd(day, 30, CAST(CAST(IVDT AS VARCHAR(8)) AS DATE)), 10) as DueDate\n,               RIGHT(CUNM,5) AS StoreNumber\n,               OCS.ECAR as State\nFROM            M3_ODHEAD ODH\nJOIN            M3_OCUSAD OCS ON ODH.CUNO = OCS.CUNO AND ODH.ADID = OCS.ADID\nWHERE           IVDT <> '0'\nAND             ODH.CUNO = 'COM00317'\n\nselect * from M3_ODHEAD where CUNO = 'COM00317'\n\nselect * from M3_OCUSAD WHERE CUNO = 'COM00317'",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_DollarGeneral_Invoices",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "SELECT          '350939' AS VendorNumber\n,               'LEGACY ASBURY' as Vendor\n,               IVNO as InvoiceNumber\n,               left(CAST(CAST(IVDT\u00a0AS\u00a0VARCHAR(8))\u00a0AS\u00a0DATE), 10) as InvoiceDate\n,               left(dateadd(day, 30, CAST(CAST(IVDT\u00a0AS\u00a0VARCHAR(8))\u00a0AS\u00a0DATE)), 10) as DueDate\n,               RIGHT(CUNM,5) AS StoreNumber\n,               OCS.ECAR as State\nFROM            M3_ODHEAD ODH\nJOIN            M3_OCUSAD OCS ON ODH.CUNO = OCS.CUNO AND ODH.ADID = OCS.ADID\nWHERE           IVDT <> '0'\nAND             ODH.CUNO = 'COM00317'\n\nselect * from M3_ODHEAD where CUNO = 'COM00317'\n\nselect * from M3_OCUSAD WHERE CUNO = 'COM00317'",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

@@ -1,86 +1,85 @@
 {
-	"name": "IN_AIOrderSummary",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "TLCDW",
-			"type": "LinkedServiceReference"
-		},
-		"annotations": [],
-		"type": "AzureSqlTable",
-		"schema": [
-			{
-				"name": "amount",
-				"type": "decimal",
-				"precision": 38,
-				"scale": 18
-			},
-			{
-				"name": "cd_register",
-				"type": "int",
-				"precision": 10
-			},
-			{
-				"name": "company_ap",
-				"type": "nvarchar"
-			},
-			{
-				"name": "dsc_amount",
-				"type": "decimal",
-				"precision": 38,
-				"scale": 18
-			},
-			{
-				"name": "opn",
-				"type": "bit"
-			},
-			{
-				"name": "remit",
-				"type": "nvarchar"
-			},
-			{
-				"name": "vendor",
-				"type": "nvarchar"
-			},
-			{
-				"name": "voucher",
-				"type": "int",
-				"precision": 10
-			},
-			{
-				"name": "company_ve",
-				"type": "nvarchar"
-			},
-			{
-				"name": "check_no",
-				"type": "int",
-				"precision": 10
-			},
-			{
-				"name": "curx_amount",
-				"type": "decimal",
-				"precision": 38,
-				"scale": 18
-			},
-			{
-				"name": "curx_dsc_amount",
-				"type": "decimal",
-				"precision": 38,
-				"scale": 18
-			},
-			{
-				"name": "ref_date",
-				"type": "datetime2",
-				"scale": 7
-			},
-			{
-				"name": "invoice",
-				"type": "nvarchar"
-			}
-		],
-		"typeProperties": {
-			"schema": "M3",
-			"table": "OOHEAD"
-		}
-	},
-	"type": "Microsoft.Synapse/workspaces/datasets"
+  "name": "IN_AIOrderSummary",
+  "properties": {
+    "annotations": [],
+    "linkedServiceName": {
+      "referenceName": "TLCDW",
+      "type": "LinkedServiceReference"
+    },
+    "schema": [
+      {
+        "name": "amount",
+        "precision": 38,
+        "scale": 18,
+        "type": "decimal"
+      },
+      {
+        "name": "cd_register",
+        "precision": 10,
+        "type": "int"
+      },
+      {
+        "name": "company_ap",
+        "type": "nvarchar"
+      },
+      {
+        "name": "dsc_amount",
+        "precision": 38,
+        "scale": 18,
+        "type": "decimal"
+      },
+      {
+        "name": "opn",
+        "type": "bit"
+      },
+      {
+        "name": "remit",
+        "type": "nvarchar"
+      },
+      {
+        "name": "vendor",
+        "type": "nvarchar"
+      },
+      {
+        "name": "voucher",
+        "precision": 10,
+        "type": "int"
+      },
+      {
+        "name": "company_ve",
+        "type": "nvarchar"
+      },
+      {
+        "name": "check_no",
+        "precision": 10,
+        "type": "int"
+      },
+      {
+        "name": "curx_amount",
+        "precision": 38,
+        "scale": 18,
+        "type": "decimal"
+      },
+      {
+        "name": "curx_dsc_amount",
+        "precision": 38,
+        "scale": 18,
+        "type": "decimal"
+      },
+      {
+        "name": "ref_date",
+        "scale": 7,
+        "type": "datetime2"
+      },
+      {
+        "name": "invoice",
+        "type": "nvarchar"
+      }
+    ],
+    "type": "AzureSqlTable",
+    "typeProperties": {
+      "schema": "M3",
+      "table": "OOHEAD"
+    }
+  }
 }

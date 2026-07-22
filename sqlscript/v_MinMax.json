@@ -1,17 +1,17 @@
 {
-	"name": "v_MinMax",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW     v_MinMax\n-- drop view v_MinMax\n-- select * from v_MinMax\nas\nSELECT\t\t\tA.*, B.YtdSoldQty, C.PrevYearSoldQty, COALESCE(NULLIF(A.Price, ''), NULLIF(A.Price2, ''), LastPurchasePrice) as UnitCost\nFROM\n(\nSELECT\t\t\tMM.ITNO as M3ItemNumber\n,\t\t\t\tMM.ITNE as SysproItemNumber\n,\t\t\t\tMM.ITDS as ItemDescription\n,\t\t\t\tMB.WHLO as Warehouse\n,\t\t\t\tMM.ITCL as Brand\n,               MM.PRGP as ItemType\n,\t\t\t\tMM.SUNO as Supplier\n,               CD.SUNM as SupplierName\n,\t\t\t\tSTQT as QtyOnHand\n,\t\t\t\tORQT as QtyOnPO\n,\t\t\t\tREQT as QtyOnSO\n,               MF.APPR as [Price]\n,               MM.PUPR as [Price2]\n,               MB.REOP as [Min Avanti]\n,               MB.MXST as [Max Avanti]\nFROM\t\t\tM3.MITMAS MM\nLEFT JOIN\t\tM3.MITBAL MB on MM.ITNO = MB.ITNO\nLEFT JOIN       M3.CIDMAS CD on MM.SUNO = CD.SUNO\nLEFT JOIN       M3.MITFAC MF on MM.ITNO = MF.ITNO\nWHERE           MM.ITNO NOT LIKE '69K%'\nAND             MM.ITNO NOT LIKE '68K%'\n) A\n\nLEFT JOIN\n\n(\nSELECT\t\t\tITNO, SUM(DLQT) AS YtdSoldQty\nFROM\t\t\tM3.ODLINE \nWHERE\t\t\tleft(RGDT, 4) = year(getdate())\nGROUP BY\t\tITNO\n) B\ton\t\t\tA.M3ItemNumber = B.ITNO\n\nLEFT JOIN\n\n(\nSELECT\t\t\tITNO, SUM(DLQT) AS PrevYearSoldQty\nFROM\t\t\tM3.ODLINE\nWHERE\t\t\tleft(RGDT, 4) = (year(getdate()) - 1)\nGROUP BY\t\tITNO\n) C\ton\t\tA.M3ItemNumber = C.ITNO\n\nLEFT JOIN\n\n(\nSELECT          DISTINCT ITNO, PUPR as LastPurchasePrice\nFROM            M3.MPLINE\nWHERE           ITNO+CAST(RGDT AS VARCHAR(MAX)) IN\n(\nSELECT          ITNO+CAST(MAX(RGDT) AS VARCHAR(MAX)) as last_date\nFROM            M3.MPLINE\nGROUP BY        ITNO\n)\n) D             ON A.M3ItemNumber = D.ITNO",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_MinMax",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW     v_MinMax\n-- drop view v_MinMax\n-- select * from v_MinMax\nas\nSELECT\t\t\tA.*, B.YtdSoldQty, C.PrevYearSoldQty, COALESCE(NULLIF(A.Price, ''), NULLIF(A.Price2, ''), LastPurchasePrice) as UnitCost\nFROM\n(\nSELECT\t\t\tMM.ITNO as M3ItemNumber\n,\t\t\t\tMM.ITNE as SysproItemNumber\n,\t\t\t\tMM.ITDS as ItemDescription\n,\t\t\t\tMB.WHLO as Warehouse\n,\t\t\t\tMM.ITCL as Brand\n,               MM.PRGP as ItemType\n,\t\t\t\tMM.SUNO as Supplier\n,               CD.SUNM as SupplierName\n,\t\t\t\tSTQT as QtyOnHand\n,\t\t\t\tORQT as QtyOnPO\n,\t\t\t\tREQT as QtyOnSO\n,               MF.APPR as [Price]\n,               MM.PUPR as [Price2]\n,               MB.REOP as [Min Avanti]\n,               MB.MXST as [Max Avanti]\nFROM\t\t\tM3.MITMAS MM\nLEFT JOIN\t\tM3.MITBAL MB on MM.ITNO = MB.ITNO\nLEFT JOIN       M3.CIDMAS CD on MM.SUNO = CD.SUNO\nLEFT JOIN       M3.MITFAC MF on MM.ITNO = MF.ITNO\nWHERE           MM.ITNO NOT LIKE '69K%'\nAND             MM.ITNO NOT LIKE '68K%'\n) A\n\nLEFT JOIN\n\n(\nSELECT\t\t\tITNO, SUM(DLQT) AS YtdSoldQty\nFROM\t\t\tM3.ODLINE \nWHERE\t\t\tleft(RGDT, 4) = year(getdate())\nGROUP BY\t\tITNO\n) B\ton\t\t\tA.M3ItemNumber = B.ITNO\n\nLEFT JOIN\n\n(\nSELECT\t\t\tITNO, SUM(DLQT) AS PrevYearSoldQty\nFROM\t\t\tM3.ODLINE\nWHERE\t\t\tleft(RGDT, 4) = (year(getdate()) - 1)\nGROUP BY\t\tITNO\n) C\ton\t\tA.M3ItemNumber = C.ITNO\n\nLEFT JOIN\n\n(\nSELECT          DISTINCT ITNO, PUPR as LastPurchasePrice\nFROM            M3.MPLINE\nWHERE           ITNO+CAST(RGDT AS VARCHAR(MAX)) IN\n(\nSELECT          ITNO+CAST(MAX(RGDT) AS VARCHAR(MAX)) as last_date\nFROM            M3.MPLINE\nGROUP BY        ITNO\n)\n) D             ON A.M3ItemNumber = D.ITNO",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

@@ -1,17 +1,17 @@
 {
-	"name": "M3 All Warehouses Physical Inventory",
-	"properties": {
-		"content": {
-			"query": "SELECT      *\nFROM\n(\nSELECT      DISTINCT CASE WHEN W.WHLO IN ('PPN', 'EPV', 'EPA') THEN 'Zwigart'\n            WHEN W.WHLO IN ('PKY', 'PKX') THEN 'Searcy'\n            WHEN W.WHLO IN ('ARC', 'DIW') THEN 'Liavva'\n            WHEN W.WHLO = 'WFL' THEN 'Ossa'\n            WHEN W.WHLO = 'HNJ' THEN 'McLaughlin'\n            WHEN W.WHLO IN ('PGL', 'SNV') THEN 'Banks'\n            ELSE 'Unknown' end AS Responsible\n,           W.WHLO AS WarehouseCode\n,           W.WHNM AS WarehouseName\n,           I.ITNO AS PartId\n,           I.ITDS AS PartDescription\n,           B.STQT AS Qty\n,           B.STQT*F.APPR as InventoryValue\nFROM        M3_MITWHL W\nJOIN        M3_MITBAL B ON W.WHLO = B.WHLO\nJOIN        M3_MITMAS I ON B.ITNO = I.ITNO\nJOIN        M3_MITFAC F ON I.ITNO = F.ITNO\nWHERE       1=1\nAND         W.DIVI = 'TLC'\nAND         F.FACI = 'TLC'\nAND         B.STQT > 0\n) a\nWHERE       WarehouseCode = 'EPA'",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": -1
-		},
-		"type": "SqlQuery"
-	}
+  "name": "M3 All Warehouses Physical Inventory",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "SELECT      *\nFROM\n(\nSELECT      DISTINCT CASE WHEN W.WHLO IN ('PPN', 'EPV', 'EPA') THEN 'Zwigart'\n            WHEN W.WHLO IN ('PKY', 'PKX') THEN 'Searcy'\n            WHEN W.WHLO IN ('ARC', 'DIW') THEN 'Liavva'\n            WHEN W.WHLO = 'WFL' THEN 'Ossa'\n            WHEN W.WHLO = 'HNJ' THEN 'McLaughlin'\n            WHEN W.WHLO IN ('PGL', 'SNV') THEN 'Banks'\n            ELSE 'Unknown' end AS Responsible\n,           W.WHLO AS WarehouseCode\n,           W.WHNM AS WarehouseName\n,           I.ITNO AS PartId\n,           I.ITDS AS PartDescription\n,           B.STQT AS Qty\n,           B.STQT*F.APPR as InventoryValue\nFROM        M3_MITWHL W\nJOIN        M3_MITBAL B ON W.WHLO = B.WHLO\nJOIN        M3_MITMAS I ON B.ITNO = I.ITNO\nJOIN        M3_MITFAC F ON I.ITNO = F.ITNO\nWHERE       1=1\nAND         W.DIVI = 'TLC'\nAND         F.FACI = 'TLC'\nAND         B.STQT > 0\n) a\nWHERE       WarehouseCode = 'EPA'",
+      "resultLimit": -1
+    },
+    "type": "SqlQuery"
+  }
 }

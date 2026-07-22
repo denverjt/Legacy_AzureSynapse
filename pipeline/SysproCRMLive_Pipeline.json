@@ -1,2519 +1,2517 @@
 {
-	"name": "SysproCRMLive_Pipeline",
-	"properties": {
-		"activities": [
-			{
-				"name": "ForEach_Table",
-				"type": "ForEach",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"items": {
-						"value": "@pipeline().parameters.cw_items",
-						"type": "Expression"
-					},
-					"activities": [
-						{
-							"name": "Copy_Tables",
-							"type": "Copy",
-							"dependsOn": [],
-							"policy": {
-								"timeout": "7.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"source": {
-									"type": "SqlServerSource",
-									"partitionOption": "None"
-								},
-								"sink": {
-									"type": "ParquetSink",
-									"storeSettings": {
-										"type": "AzureBlobFSWriteSettings"
-									},
-									"formatSettings": {
-										"type": "ParquetWriteSettings"
-									}
-								},
-								"enableStaging": false,
-								"validateDataConsistency": false
-							},
-							"inputs": [
-								{
-									"referenceName": "IN_SysproCRMLive",
-									"type": "DatasetReference",
-									"parameters": {
-										"cw_table": "@item().source.tableName"
-									}
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "OUT_SysproCRMLive",
-									"type": "DatasetReference",
-									"parameters": {
-										"cw_fileName": "@item().destination.fileName"
-									}
-								}
-							]
-						}
-					]
-				}
-			}
-		],
-		"parameters": {
-			"cw_items": {
-				"type": "Array",
-				"defaultValue": [
-					{
-						"source": {
-							"tableName": "utl_Audit_Trail_Field"
-						},
-						"destination": {
-							"fileName": "utl_Audit_Trail_Field.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "opp_Opportunity_Item"
-						},
-						"destination": {
-							"fileName": "opp_Opportunity_Item.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Audit_Trail"
-						},
-						"destination": {
-							"fileName": "utl_Audit_Trail.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "acc_Account_Item_Owned"
-						},
-						"destination": {
-							"fileName": "acc_Account_Item_Owned.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "opp_Opportunity"
-						},
-						"destination": {
-							"fileName": "opp_Opportunity.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "wof_Milestone_Status"
-						},
-						"destination": {
-							"fileName": "wof_Milestone_Status.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "out_Outlook_Sync_History"
-						},
-						"destination": {
-							"fileName": "out_Outlook_Sync_History.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "itm_Warehouse"
-						},
-						"destination": {
-							"fileName": "itm_Warehouse.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "frm_Recent_Visited"
-						},
-						"destination": {
-							"fileName": "frm_Recent_Visited.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "wof_Process_Instance_History"
-						},
-						"destination": {
-							"fileName": "wof_Process_Instance_History.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "act_Activity_EmailSend"
-						},
-						"destination": {
-							"fileName": "act_Activity_EmailSend.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "fld_Multi_FieldValue"
-						},
-						"destination": {
-							"fileName": "fld_Multi_FieldValue.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "btp_Zipcode"
-						},
-						"destination": {
-							"fileName": "btp_Zipcode.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_PostalCode"
-						},
-						"destination": {
-							"fileName": "utl_PostalCode.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "acc_Account_Item_Owned_History"
-						},
-						"destination": {
-							"fileName": "acc_Account_Item_Owned_History.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Service_Ticket_History"
-						},
-						"destination": {
-							"fileName": "set_Service_Ticket_History.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "act_Activity"
-						},
-						"destination": {
-							"fileName": "act_Activity.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "wof_Process_Instance"
-						},
-						"destination": {
-							"fileName": "wof_Process_Instance.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Function_User_Update"
-						},
-						"destination": {
-							"fileName": "utl_Function_User_Update.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Address"
-						},
-						"destination": {
-							"fileName": "utl_Address.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Address_Label"
-						},
-						"destination": {
-							"fileName": "utl_Address_Label.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Phone"
-						},
-						"destination": {
-							"fileName": "utl_Phone.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "acc_Account"
-						},
-						"destination": {
-							"fileName": "acc_Account.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "out_Outlook_Email_Queue"
-						},
-						"destination": {
-							"fileName": "out_Outlook_Email_Queue.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "doc_Documents"
-						},
-						"destination": {
-							"fileName": "doc_Documents.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "sec_Role_Field"
-						},
-						"destination": {
-							"fileName": "sec_Role_Field.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Service_Ticket"
-						},
-						"destination": {
-							"fileName": "set_Service_Ticket.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_ServiceTicketBAK"
-						},
-						"destination": {
-							"fileName": "set_ServiceTicketBAK.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "cam_Campaign_Contact"
-						},
-						"destination": {
-							"fileName": "cam_Campaign_Contact.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "cam_Campaign_Account"
-						},
-						"destination": {
-							"fileName": "cam_Campaign_Account.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "eve_Event_Contacts"
-						},
-						"destination": {
-							"fileName": "eve_Event_Contacts.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "eve_Event_Accounts"
-						},
-						"destination": {
-							"fileName": "eve_Event_Accounts.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "itm_Item"
-						},
-						"destination": {
-							"fileName": "itm_Item.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "con_Contact"
-						},
-						"destination": {
-							"fileName": "con_Contact.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Resources"
-						},
-						"destination": {
-							"fileName": "utl_Resources.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Error_Log"
-						},
-						"destination": {
-							"fileName": "utl_Error_Log.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "new_TLCServiceProviders"
-						},
-						"destination": {
-							"fileName": "new_TLCServiceProviders.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Notification"
-						},
-						"destination": {
-							"fileName": "utl_Notification.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "itm_Item_Field_Value"
-						},
-						"destination": {
-							"fileName": "itm_Item_Field_Value.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "btp_AccountZip"
-						},
-						"destination": {
-							"fileName": "btp_AccountZip.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_County"
-						},
-						"destination": {
-							"fileName": "utl_County.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "btp_TempAcctType"
-						},
-						"destination": {
-							"fileName": "btp_TempAcctType.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "tas_Task"
-						},
-						"destination": {
-							"fileName": "tas_Task.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "act_Activity_Attachment"
-						},
-						"destination": {
-							"fileName": "act_Activity_Attachment.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "btp_TempLimitedWarranty"
-						},
-						"destination": {
-							"fileName": "btp_TempLimitedWarranty.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "acc_Business_Type"
-						},
-						"destination": {
-							"fileName": "acc_Business_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "fld_Field"
-						},
-						"destination": {
-							"fileName": "fld_Field.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "frm_Object"
-						},
-						"destination": {
-							"fileName": "frm_Object.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "das_Chart_Xaxis"
-						},
-						"destination": {
-							"fileName": "das_Chart_Xaxis.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "ser_View_Module_Action"
-						},
-						"destination": {
-							"fileName": "ser_View_Module_Action.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "ser_View_Module_State"
-						},
-						"destination": {
-							"fileName": "ser_View_Module_State.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "wof_Process_Intance_Step_Log"
-						},
-						"destination": {
-							"fileName": "wof_Process_Intance_Step_Log.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "red_Reminder"
-						},
-						"destination": {
-							"fileName": "red_Reminder.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "ser_View_Grid_Field"
-						},
-						"destination": {
-							"fileName": "ser_View_Grid_Field.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "das_Chart_Axis_Xref"
-						},
-						"destination": {
-							"fileName": "das_Chart_Axis_Xref.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "new_CentralSerial"
-						},
-						"destination": {
-							"fileName": "new_CentralSerial.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Problem_Type"
-						},
-						"destination": {
-							"fileName": "set_Problem_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "frm_Grid_Field"
-						},
-						"destination": {
-							"fileName": "frm_Grid_Field.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Phone_Mask"
-						},
-						"destination": {
-							"fileName": "utl_Phone_Mask.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "wof_Process_Step_History"
-						},
-						"destination": {
-							"fileName": "wof_Process_Step_History.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Country"
-						},
-						"destination": {
-							"fileName": "utl_Country.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Table_List"
-						},
-						"destination": {
-							"fileName": "utl_Table_List.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "sec_Role_Module_Xref"
-						},
-						"destination": {
-							"fileName": "sec_Role_Module_Xref.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Currency_Codes"
-						},
-						"destination": {
-							"fileName": "utl_Currency_Codes.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Table_Setup_System"
-						},
-						"destination": {
-							"fileName": "utl_Table_Setup_System.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "wof_Process_Send_Email_History"
-						},
-						"destination": {
-							"fileName": "wof_Process_Send_Email_History.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "acc_SalespersonCodes"
-						},
-						"destination": {
-							"fileName": "acc_SalespersonCodes.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "doc_Template_Fields"
-						},
-						"destination": {
-							"fileName": "doc_Template_Fields.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "ser_Module_Action_Xref"
-						},
-						"destination": {
-							"fileName": "ser_Module_Action_Xref.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "frm_Component"
-						},
-						"destination": {
-							"fileName": "frm_Component.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "frm_Section"
-						},
-						"destination": {
-							"fileName": "frm_Section.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "das_Chart_Yaxis_Detail"
-						},
-						"destination": {
-							"fileName": "das_Chart_Yaxis_Detail.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_State"
-						},
-						"destination": {
-							"fileName": "utl_State.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "ser_View_Query"
-						},
-						"destination": {
-							"fileName": "ser_View_Query.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "sec_Role_Form"
-						},
-						"destination": {
-							"fileName": "sec_Role_Form.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Module_PreferRequired_Field"
-						},
-						"destination": {
-							"fileName": "utl_Module_PreferRequired_Field.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "ser_View_Module"
-						},
-						"destination": {
-							"fileName": "ser_View_Module.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "frm_Tab"
-						},
-						"destination": {
-							"fileName": "frm_Tab.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "tbl_Lookup"
-						},
-						"destination": {
-							"fileName": "tbl_Lookup.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Quick_Search_Field"
-						},
-						"destination": {
-							"fileName": "utl_Quick_Search_Field.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "fld_Field_Link"
-						},
-						"destination": {
-							"fileName": "fld_Field_Link.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "ser_Module_Table_Xref"
-						},
-						"destination": {
-							"fileName": "ser_Module_Table_Xref.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "sec_User_Preference"
-						},
-						"destination": {
-							"fileName": "sec_User_Preference.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "acc_Territories"
-						},
-						"destination": {
-							"fileName": "acc_Territories.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "out_Outlook_Token"
-						},
-						"destination": {
-							"fileName": "out_Outlook_Token.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "wof_Process_History"
-						},
-						"destination": {
-							"fileName": "wof_Process_History.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Problem_Class"
-						},
-						"destination": {
-							"fileName": "set_Problem_Class.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "ser_View_Grid"
-						},
-						"destination": {
-							"fileName": "ser_View_Grid.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "mdl_Module_Table_Xref"
-						},
-						"destination": {
-							"fileName": "mdl_Module_Table_Xref.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "itm_Item_Class"
-						},
-						"destination": {
-							"fileName": "itm_Item_Class.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "das_Chart_Yaxis"
-						},
-						"destination": {
-							"fileName": "das_Chart_Yaxis.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "new_SalesReps"
-						},
-						"destination": {
-							"fileName": "new_SalesReps.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "frm_Form"
-						},
-						"destination": {
-							"fileName": "frm_Form.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Except_Word"
-						},
-						"destination": {
-							"fileName": "utl_Except_Word.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "acc_Account_Type"
-						},
-						"destination": {
-							"fileName": "acc_Account_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "ser_View_Query_Field"
-						},
-						"destination": {
-							"fileName": "ser_View_Query_Field.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Service_Ticket_Type"
-						},
-						"destination": {
-							"fileName": "set_Service_Ticket_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "ser_View_Query_Group"
-						},
-						"destination": {
-							"fileName": "ser_View_Query_Group.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "wof_Milestone_Action"
-						},
-						"destination": {
-							"fileName": "wof_Milestone_Action.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Language"
-						},
-						"destination": {
-							"fileName": "utl_Language.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "wof_Trigger_Type"
-						},
-						"destination": {
-							"fileName": "wof_Trigger_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "wof_Process_Step"
-						},
-						"destination": {
-							"fileName": "wof_Process_Step.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Label_Template"
-						},
-						"destination": {
-							"fileName": "utl_Label_Template.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "acc_Relationship_Account"
-						},
-						"destination": {
-							"fileName": "acc_Relationship_Account.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Module_PreferDefault_Field"
-						},
-						"destination": {
-							"fileName": "utl_Module_PreferDefault_Field.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "itm_Item_Class_Attribute"
-						},
-						"destination": {
-							"fileName": "itm_Item_Class_Attribute.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "rpt_Report_Excel"
-						},
-						"destination": {
-							"fileName": "rpt_Report_Excel.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "rpt_Excel_Report_Layout_Column"
-						},
-						"destination": {
-							"fileName": "rpt_Excel_Report_Layout_Column.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "mdl_Module"
-						},
-						"destination": {
-							"fileName": "mdl_Module.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "act_Activity_Type"
-						},
-						"destination": {
-							"fileName": "act_Activity_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "sec_Module_Owner"
-						},
-						"destination": {
-							"fileName": "sec_Module_Owner.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "frm_Form_HeaderField"
-						},
-						"destination": {
-							"fileName": "frm_Form_HeaderField.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "das_Widget"
-						},
-						"destination": {
-							"fileName": "das_Widget.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "das_Dashboard_Widget"
-						},
-						"destination": {
-							"fileName": "das_Dashboard_Widget.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "out_Outlook_Sync"
-						},
-						"destination": {
-							"fileName": "out_Outlook_Sync.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Purge_Type"
-						},
-						"destination": {
-							"fileName": "utl_Purge_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Accounting_Management_Function"
-						},
-						"destination": {
-							"fileName": "utl_Accounting_Management_Function.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Word_Index"
-						},
-						"destination": {
-							"fileName": "utl_Word_Index.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Word_List"
-						},
-						"destination": {
-							"fileName": "utl_Word_List.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "mdl_Table"
-						},
-						"destination": {
-							"fileName": "mdl_Table.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "con_Name_Prefix"
-						},
-						"destination": {
-							"fileName": "con_Name_Prefix.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "frm_Form_Action_Parameter"
-						},
-						"destination": {
-							"fileName": "frm_Form_Action_Parameter.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "fld_Field_Relationship_Group"
-						},
-						"destination": {
-							"fileName": "fld_Field_Relationship_Group.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "app_Appointment_Calendar"
-						},
-						"destination": {
-							"fileName": "app_Appointment_Calendar.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "app_Appointment"
-						},
-						"destination": {
-							"fileName": "app_Appointment.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "app_Recurrence_Series"
-						},
-						"destination": {
-							"fileName": "app_Recurrence_Series.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "wof_Milestone"
-						},
-						"destination": {
-							"fileName": "wof_Milestone.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "wof_Milestone_Record"
-						},
-						"destination": {
-							"fileName": "wof_Milestone_Record.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Accounting_Xref"
-						},
-						"destination": {
-							"fileName": "utl_Accounting_Xref.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "acc_Account_PreferRequired_Field"
-						},
-						"destination": {
-							"fileName": "acc_Account_PreferRequired_Field.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "con_Contact_PreferRequired_Field"
-						},
-						"destination": {
-							"fileName": "con_Contact_PreferRequired_Field.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "opp_Payment_Terms"
-						},
-						"destination": {
-							"fileName": "opp_Payment_Terms.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "out_Activity_EditInOutlook"
-						},
-						"destination": {
-							"fileName": "out_Activity_EditInOutlook.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "act_Activity_Type_Result_Xref"
-						},
-						"destination": {
-							"fileName": "act_Activity_Type_Result_Xref.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Service_Ticket_Action"
-						},
-						"destination": {
-							"fileName": "set_Service_Ticket_Action.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Branch"
-						},
-						"destination": {
-							"fileName": "utl_Branch.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Address_Type"
-						},
-						"destination": {
-							"fileName": "utl_Address_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "frm_Grid"
-						},
-						"destination": {
-							"fileName": "frm_Grid.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "rpt_Child_Record_Type"
-						},
-						"destination": {
-							"fileName": "rpt_Child_Record_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "ser_Tree_Field"
-						},
-						"destination": {
-							"fileName": "ser_Tree_Field.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "acc_Account_PreferDefault_Field"
-						},
-						"destination": {
-							"fileName": "acc_Account_PreferDefault_Field.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "act_Result"
-						},
-						"destination": {
-							"fileName": "act_Result.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "wof_Process_Send_Email"
-						},
-						"destination": {
-							"fileName": "wof_Process_Send_Email.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Module_Filter_Field"
-						},
-						"destination": {
-							"fileName": "utl_Module_Filter_Field.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Regarding"
-						},
-						"destination": {
-							"fileName": "utl_Regarding.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "ser_View_Module_Default"
-						},
-						"destination": {
-							"fileName": "ser_View_Module_Default.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "rpt_Report_View"
-						},
-						"destination": {
-							"fileName": "rpt_Report_View.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "rpt_Report_Column"
-						},
-						"destination": {
-							"fileName": "rpt_Report_Column.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Routing_Criterion_Type"
-						},
-						"destination": {
-							"fileName": "set_Routing_Criterion_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "acc_Account_PreferDuplicate_Type"
-						},
-						"destination": {
-							"fileName": "acc_Account_PreferDuplicate_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "acc_RollUp_Type"
-						},
-						"destination": {
-							"fileName": "acc_RollUp_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "frm_Form_Action"
-						},
-						"destination": {
-							"fileName": "frm_Form_Action.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "con_Name_Suffix"
-						},
-						"destination": {
-							"fileName": "con_Name_Suffix.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "con_Job_Title"
-						},
-						"destination": {
-							"fileName": "con_Job_Title.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "InstallShield"
-						},
-						"destination": {
-							"fileName": "InstallShield.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "act_Calendar_Alternate_Day"
-						},
-						"destination": {
-							"fileName": "act_Calendar_Alternate_Day.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "wof_Process"
-						},
-						"destination": {
-							"fileName": "wof_Process.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "con_Contact_PreferDuplicate_Type"
-						},
-						"destination": {
-							"fileName": "con_Contact_PreferDuplicate_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "itm_Criteria_Type"
-						},
-						"destination": {
-							"fileName": "itm_Criteria_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "itm_Price_Check_Rule"
-						},
-						"destination": {
-							"fileName": "itm_Price_Check_Rule.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Start_Date_Type"
-						},
-						"destination": {
-							"fileName": "utl_Start_Date_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Ticket_Status_Type"
-						},
-						"destination": {
-							"fileName": "set_Ticket_Status_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Ticket_Part_Status_Type"
-						},
-						"destination": {
-							"fileName": "set_Ticket_Part_Status_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Day_Of_Week"
-						},
-						"destination": {
-							"fileName": "utl_Day_Of_Week.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Pattern_Field"
-						},
-						"destination": {
-							"fileName": "utl_Pattern_Field.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "crm_Variable"
-						},
-						"destination": {
-							"fileName": "crm_Variable.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "rpt_Report_Layout_Column"
-						},
-						"destination": {
-							"fileName": "rpt_Report_Layout_Column.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "opp_Win_Loss_Reason"
-						},
-						"destination": {
-							"fileName": "opp_Win_Loss_Reason.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "acc_Relationship_Choice"
-						},
-						"destination": {
-							"fileName": "acc_Relationship_Choice.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Shipping_Method"
-						},
-						"destination": {
-							"fileName": "utl_Shipping_Method.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Ticket_Feedback_Type"
-						},
-						"destination": {
-							"fileName": "set_Ticket_Feedback_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Ticket_Labor_Fee_Basis_Type"
-						},
-						"destination": {
-							"fileName": "set_Ticket_Labor_Fee_Basis_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "tas_Task_Status"
-						},
-						"destination": {
-							"fileName": "tas_Task_Status.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "tbl_Lookup_Value"
-						},
-						"destination": {
-							"fileName": "tbl_Lookup_Value.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "acc_Regions"
-						},
-						"destination": {
-							"fileName": "acc_Regions.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "acc_Customer_Class"
-						},
-						"destination": {
-							"fileName": "acc_Customer_Class.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "cam_Event_SubType"
-						},
-						"destination": {
-							"fileName": "cam_Event_SubType.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "itm_Price_Basis_Type"
-						},
-						"destination": {
-							"fileName": "itm_Price_Basis_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "frm_Object_Type"
-						},
-						"destination": {
-							"fileName": "frm_Object_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "rpt_Report"
-						},
-						"destination": {
-							"fileName": "rpt_Report.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "opp_Opportunity_Status_Type"
-						},
-						"destination": {
-							"fileName": "opp_Opportunity_Status_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "mdl_Module_Type"
-						},
-						"destination": {
-							"fileName": "mdl_Module_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "opp_Importance_ToCustomer_Type"
-						},
-						"destination": {
-							"fileName": "opp_Importance_ToCustomer_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "opp_Competing_Competitiveness_Rating_Type"
-						},
-						"destination": {
-							"fileName": "opp_Competing_Competitiveness_Rating_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "sec_User_Interface_PropertyKey_Type_Attribute"
-						},
-						"destination": {
-							"fileName": "sec_User_Interface_PropertyKey_Type_Attribute.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Approval_Type"
-						},
-						"destination": {
-							"fileName": "set_Approval_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Fixed_Labor_Rate_Type"
-						},
-						"destination": {
-							"fileName": "set_Fixed_Labor_Rate_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Contract_Status_Type"
-						},
-						"destination": {
-							"fileName": "set_Contract_Status_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Contract_Start_Type"
-						},
-						"destination": {
-							"fileName": "set_Contract_Start_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_ContractAdmin_Level_Type"
-						},
-						"destination": {
-							"fileName": "set_ContractAdmin_Level_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Coverage_Item_Type"
-						},
-						"destination": {
-							"fileName": "set_Coverage_Item_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Contract_End_Type"
-						},
-						"destination": {
-							"fileName": "set_Contract_End_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "opp_Closing_Chance_Bracket"
-						},
-						"destination": {
-							"fileName": "opp_Closing_Chance_Bracket.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "opp_Opportunity_Type"
-						},
-						"destination": {
-							"fileName": "opp_Opportunity_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "opp_Tax_Levels"
-						},
-						"destination": {
-							"fileName": "opp_Tax_Levels.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "opp_Line_Item_Type"
-						},
-						"destination": {
-							"fileName": "opp_Line_Item_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "out_Outlook_Client"
-						},
-						"destination": {
-							"fileName": "out_Outlook_Client.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "das_DashBoard"
-						},
-						"destination": {
-							"fileName": "das_DashBoard.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "doc_Template"
-						},
-						"destination": {
-							"fileName": "doc_Template.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "frm_Component_Type"
-						},
-						"destination": {
-							"fileName": "frm_Component_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "con_Contact_PreferDefault_Field"
-						},
-						"destination": {
-							"fileName": "con_Contact_PreferDefault_Field.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "cam_Campaign_Status_Type"
-						},
-						"destination": {
-							"fileName": "cam_Campaign_Status_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "cam_Campaign_Type"
-						},
-						"destination": {
-							"fileName": "cam_Campaign_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "con_Contact_Type"
-						},
-						"destination": {
-							"fileName": "con_Contact_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Waiting_Type"
-						},
-						"destination": {
-							"fileName": "set_Waiting_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Ticket_Support_Status_Type"
-						},
-						"destination": {
-							"fileName": "set_Ticket_Support_Status_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Service_Fee_Type"
-						},
-						"destination": {
-							"fileName": "set_Service_Fee_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Time_Unit_Type"
-						},
-						"destination": {
-							"fileName": "set_Time_Unit_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Ticket_Part_Effect_Component_Type"
-						},
-						"destination": {
-							"fileName": "set_Ticket_Part_Effect_Component_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Approval_Type"
-						},
-						"destination": {
-							"fileName": "utl_Approval_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Severity_Type"
-						},
-						"destination": {
-							"fileName": "utl_Severity_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Search_Type"
-						},
-						"destination": {
-							"fileName": "utl_Search_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_PreferRequired_Type"
-						},
-						"destination": {
-							"fileName": "utl_PreferRequired_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Priority_Type"
-						},
-						"destination": {
-							"fileName": "utl_Priority_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_KnowledgeBase_Approval_Status"
-						},
-						"destination": {
-							"fileName": "utl_KnowledgeBase_Approval_Status.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Notification_Config"
-						},
-						"destination": {
-							"fileName": "utl_Notification_Config.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "wof_Process_Action_Type"
-						},
-						"destination": {
-							"fileName": "wof_Process_Action_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "con_Decision_Authority_Type"
-						},
-						"destination": {
-							"fileName": "con_Decision_Authority_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "con_Department"
-						},
-						"destination": {
-							"fileName": "con_Department.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "con_Contact_PreferWarning_Field"
-						},
-						"destination": {
-							"fileName": "con_Contact_PreferWarning_Field.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "con_Contact_PreferPrevent_Field"
-						},
-						"destination": {
-							"fileName": "con_Contact_PreferPrevent_Field.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "act_Location"
-						},
-						"destination": {
-							"fileName": "act_Location.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "acc_Relationship"
-						},
-						"destination": {
-							"fileName": "acc_Relationship.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "acc_Account_PreferWarning_Field"
-						},
-						"destination": {
-							"fileName": "acc_Account_PreferWarning_Field.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "acc_Account_PreferPrevent_Field"
-						},
-						"destination": {
-							"fileName": "acc_Account_PreferPrevent_Field.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "acc_Source"
-						},
-						"destination": {
-							"fileName": "acc_Source.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "act_Activity_EmailSend_Type"
-						},
-						"destination": {
-							"fileName": "act_Activity_EmailSend_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "frm_Form_Type"
-						},
-						"destination": {
-							"fileName": "frm_Form_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "frm_Grid_Type"
-						},
-						"destination": {
-							"fileName": "frm_Grid_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "frm_IFrame"
-						},
-						"destination": {
-							"fileName": "frm_IFrame.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "frm_IFrame_Parameter"
-						},
-						"destination": {
-							"fileName": "frm_IFrame_Parameter.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "itm_Which_Price_Type"
-						},
-						"destination": {
-							"fileName": "itm_Which_Price_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "LeadStatus"
-						},
-						"destination": {
-							"fileName": "LeadStatus.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "rpt_Excel_Report_Layout"
-						},
-						"destination": {
-							"fileName": "rpt_Excel_Report_Layout.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "opp_Sale_Goal_Which_Account_Type"
-						},
-						"destination": {
-							"fileName": "opp_Sale_Goal_Which_Account_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "opp_Sale_Goal_Which_Item_Type"
-						},
-						"destination": {
-							"fileName": "opp_Sale_Goal_Which_Item_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "opp_Sale_Goal_Which_Location_Type"
-						},
-						"destination": {
-							"fileName": "opp_Sale_Goal_Which_Location_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "opp_Opportunity_Contact"
-						},
-						"destination": {
-							"fileName": "opp_Opportunity_Contact.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "opp_Association_Type"
-						},
-						"destination": {
-							"fileName": "opp_Association_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "mail_Item_Type"
-						},
-						"destination": {
-							"fileName": "mail_Item_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "led_Lead_PreferPrevent_Field"
-						},
-						"destination": {
-							"fileName": "led_Lead_PreferPrevent_Field.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "led_Lead_PreferWarning_Field"
-						},
-						"destination": {
-							"fileName": "led_Lead_PreferWarning_Field.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Calculation_Option"
-						},
-						"destination": {
-							"fileName": "set_Calculation_Option.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_AssignTo_Type"
-						},
-						"destination": {
-							"fileName": "set_AssignTo_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Coverage_Scope_Level_Type"
-						},
-						"destination": {
-							"fileName": "set_Coverage_Scope_Level_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Problem_SubType"
-						},
-						"destination": {
-							"fileName": "set_Problem_SubType.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Labor_Fee_Basis_Type"
-						},
-						"destination": {
-							"fileName": "set_Labor_Fee_Basis_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Manual_Posting_Type"
-						},
-						"destination": {
-							"fileName": "set_Manual_Posting_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Posting_Method_Type"
-						},
-						"destination": {
-							"fileName": "set_Posting_Method_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Resolution_Type"
-						},
-						"destination": {
-							"fileName": "set_Resolution_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Coverage_Type"
-						},
-						"destination": {
-							"fileName": "set_Coverage_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Contract_Display_Type"
-						},
-						"destination": {
-							"fileName": "set_Contract_Display_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Contract_Fee_Basis_Type"
-						},
-						"destination": {
-							"fileName": "set_Contract_Fee_Basis_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Contract_Type"
-						},
-						"destination": {
-							"fileName": "set_Contract_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Distribution_Method_Type"
-						},
-						"destination": {
-							"fileName": "set_Distribution_Method_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Itemization_Type"
-						},
-						"destination": {
-							"fileName": "set_Itemization_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Queue_Type"
-						},
-						"destination": {
-							"fileName": "set_Queue_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Coverage_Scope_Type"
-						},
-						"destination": {
-							"fileName": "set_Coverage_Scope_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Auto_Posting_Type"
-						},
-						"destination": {
-							"fileName": "set_Auto_Posting_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "sec_User_Interface_PropertyKey_Type"
-						},
-						"destination": {
-							"fileName": "sec_User_Interface_PropertyKey_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "sec_Right"
-						},
-						"destination": {
-							"fileName": "sec_Right.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "sec_Role_Dashboard"
-						},
-						"destination": {
-							"fileName": "sec_Role_Dashboard.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "opp_Issue"
-						},
-						"destination": {
-							"fileName": "opp_Issue.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "opp_Opportunity_Discount_Type"
-						},
-						"destination": {
-							"fileName": "opp_Opportunity_Discount_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "opp_Win_Loss_Reason_Type"
-						},
-						"destination": {
-							"fileName": "opp_Win_Loss_Reason_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "itm_Item_Discount_Method_Type"
-						},
-						"destination": {
-							"fileName": "itm_Item_Discount_Method_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "fld_Field_Relationship_Group_Type"
-						},
-						"destination": {
-							"fileName": "fld_Field_Relationship_Group_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "act_Activity_Attachment_Type"
-						},
-						"destination": {
-							"fileName": "act_Activity_Attachment_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "acc_Direction_Type"
-						},
-						"destination": {
-							"fileName": "acc_Direction_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "app_Appointment_Status"
-						},
-						"destination": {
-							"fileName": "app_Appointment_Status.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "cam_Target_Market_Type"
-						},
-						"destination": {
-							"fileName": "cam_Target_Market_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "wof_Process_Trigger_Xref"
-						},
-						"destination": {
-							"fileName": "wof_Process_Trigger_Xref.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "wof_Process_Type"
-						},
-						"destination": {
-							"fileName": "wof_Process_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Module_PreferRequired_ModeType"
-						},
-						"destination": {
-							"fileName": "utl_Module_PreferRequired_ModeType.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Job_Type"
-						},
-						"destination": {
-							"fileName": "utl_Job_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Knowledge_Base"
-						},
-						"destination": {
-							"fileName": "utl_Knowledge_Base.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Audit_Trail_Action_Type"
-						},
-						"destination": {
-							"fileName": "utl_Audit_Trail_Action_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Usage_Limit_Unit_Type"
-						},
-						"destination": {
-							"fileName": "set_Usage_Limit_Unit_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Ticket_Part_Type"
-						},
-						"destination": {
-							"fileName": "set_Ticket_Part_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Ticket_Job_Type"
-						},
-						"destination": {
-							"fileName": "set_Ticket_Job_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Ticket_Job_Class"
-						},
-						"destination": {
-							"fileName": "set_Ticket_Job_Class.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Service_Location"
-						},
-						"destination": {
-							"fileName": "set_Service_Location.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Service_Contract_Preferences"
-						},
-						"destination": {
-							"fileName": "set_Service_Contract_Preferences.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "set_Service_Ticket_Preferences"
-						},
-						"destination": {
-							"fileName": "set_Service_Ticket_Preferences.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Company"
-						},
-						"destination": {
-							"fileName": "utl_Company.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Accounting_Setting"
-						},
-						"destination": {
-							"fileName": "utl_Accounting_Setting.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Data_Transfer_Jobs"
-						},
-						"destination": {
-							"fileName": "utl_Data_Transfer_Jobs.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Knowledge_Base_Approve"
-						},
-						"destination": {
-							"fileName": "utl_Knowledge_Base_Approve.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Knowledge_Base_Category"
-						},
-						"destination": {
-							"fileName": "utl_Knowledge_Base_Category.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Knowledge_Base_Doc"
-						},
-						"destination": {
-							"fileName": "utl_Knowledge_Base_Doc.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Knowledge_Base_Preferences"
-						},
-						"destination": {
-							"fileName": "utl_Knowledge_Base_Preferences.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_Server_Preference"
-						},
-						"destination": {
-							"fileName": "utl_Server_Preference.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "utl_System_Preference"
-						},
-						"destination": {
-							"fileName": "utl_System_Preference.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "con_Contact_Preferences"
-						},
-						"destination": {
-							"fileName": "con_Contact_Preferences.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "cam_Campaign_Preferences"
-						},
-						"destination": {
-							"fileName": "cam_Campaign_Preferences.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "app_Appointment_Attendee"
-						},
-						"destination": {
-							"fileName": "app_Appointment_Attendee.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "acc_Account_Preferences"
-						},
-						"destination": {
-							"fileName": "acc_Account_Preferences.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "act_Calendar"
-						},
-						"destination": {
-							"fileName": "act_Calendar.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "led_Lead_PreferDuplicate_Type"
-						},
-						"destination": {
-							"fileName": "led_Lead_PreferDuplicate_Type.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "led_Lead_Preferences"
-						},
-						"destination": {
-							"fileName": "led_Lead_Preferences.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "LeadQualification"
-						},
-						"destination": {
-							"fileName": "LeadQualification.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "frm_Widget"
-						},
-						"destination": {
-							"fileName": "frm_Widget.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "opp_Opportunity_Preferences"
-						},
-						"destination": {
-							"fileName": "opp_Opportunity_Preferences.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "new_Warranty"
-						},
-						"destination": {
-							"fileName": "new_Warranty.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "rpt_Report_Layout"
-						},
-						"destination": {
-							"fileName": "rpt_Report_Layout.parquet"
-						}
-					}
-				]
-			}
-		},
-		"annotations": [],
-		"lastPublishTime": "2022-06-05T01:15:47Z"
-	},
-	"type": "Microsoft.Synapse/workspaces/pipelines"
+  "name": "SysproCRMLive_Pipeline",
+  "properties": {
+    "activities": [
+      {
+        "dependsOn": [],
+        "name": "ForEach_Table",
+        "type": "ForEach",
+        "typeProperties": {
+          "activities": [
+            {
+              "dependsOn": [],
+              "inputs": [
+                {
+                  "parameters": {
+                    "cw_table": "@item().source.tableName"
+                  },
+                  "referenceName": "IN_SysproCRMLive",
+                  "type": "DatasetReference"
+                }
+              ],
+              "name": "Copy_Tables",
+              "outputs": [
+                {
+                  "parameters": {
+                    "cw_fileName": "@item().destination.fileName"
+                  },
+                  "referenceName": "OUT_SysproCRMLive",
+                  "type": "DatasetReference"
+                }
+              ],
+              "policy": {
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false,
+                "timeout": "7.00:00:00"
+              },
+              "type": "Copy",
+              "typeProperties": {
+                "enableStaging": false,
+                "sink": {
+                  "formatSettings": {
+                    "type": "ParquetWriteSettings"
+                  },
+                  "storeSettings": {
+                    "type": "AzureBlobFSWriteSettings"
+                  },
+                  "type": "ParquetSink"
+                },
+                "source": {
+                  "partitionOption": "None",
+                  "type": "SqlServerSource"
+                },
+                "validateDataConsistency": false
+              },
+              "userProperties": []
+            }
+          ],
+          "items": {
+            "type": "Expression",
+            "value": "@pipeline().parameters.cw_items"
+          }
+        },
+        "userProperties": []
+      }
+    ],
+    "annotations": [],
+    "parameters": {
+      "cw_items": {
+        "defaultValue": [
+          {
+            "destination": {
+              "fileName": "utl_Audit_Trail_Field.parquet"
+            },
+            "source": {
+              "tableName": "utl_Audit_Trail_Field"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "opp_Opportunity_Item.parquet"
+            },
+            "source": {
+              "tableName": "opp_Opportunity_Item"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Audit_Trail.parquet"
+            },
+            "source": {
+              "tableName": "utl_Audit_Trail"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "acc_Account_Item_Owned.parquet"
+            },
+            "source": {
+              "tableName": "acc_Account_Item_Owned"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "opp_Opportunity.parquet"
+            },
+            "source": {
+              "tableName": "opp_Opportunity"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "wof_Milestone_Status.parquet"
+            },
+            "source": {
+              "tableName": "wof_Milestone_Status"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "out_Outlook_Sync_History.parquet"
+            },
+            "source": {
+              "tableName": "out_Outlook_Sync_History"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "itm_Warehouse.parquet"
+            },
+            "source": {
+              "tableName": "itm_Warehouse"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "frm_Recent_Visited.parquet"
+            },
+            "source": {
+              "tableName": "frm_Recent_Visited"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "wof_Process_Instance_History.parquet"
+            },
+            "source": {
+              "tableName": "wof_Process_Instance_History"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "act_Activity_EmailSend.parquet"
+            },
+            "source": {
+              "tableName": "act_Activity_EmailSend"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "fld_Multi_FieldValue.parquet"
+            },
+            "source": {
+              "tableName": "fld_Multi_FieldValue"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "btp_Zipcode.parquet"
+            },
+            "source": {
+              "tableName": "btp_Zipcode"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_PostalCode.parquet"
+            },
+            "source": {
+              "tableName": "utl_PostalCode"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "acc_Account_Item_Owned_History.parquet"
+            },
+            "source": {
+              "tableName": "acc_Account_Item_Owned_History"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Service_Ticket_History.parquet"
+            },
+            "source": {
+              "tableName": "set_Service_Ticket_History"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "act_Activity.parquet"
+            },
+            "source": {
+              "tableName": "act_Activity"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "wof_Process_Instance.parquet"
+            },
+            "source": {
+              "tableName": "wof_Process_Instance"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Function_User_Update.parquet"
+            },
+            "source": {
+              "tableName": "utl_Function_User_Update"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Address.parquet"
+            },
+            "source": {
+              "tableName": "utl_Address"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Address_Label.parquet"
+            },
+            "source": {
+              "tableName": "utl_Address_Label"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Phone.parquet"
+            },
+            "source": {
+              "tableName": "utl_Phone"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "acc_Account.parquet"
+            },
+            "source": {
+              "tableName": "acc_Account"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "out_Outlook_Email_Queue.parquet"
+            },
+            "source": {
+              "tableName": "out_Outlook_Email_Queue"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "doc_Documents.parquet"
+            },
+            "source": {
+              "tableName": "doc_Documents"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "sec_Role_Field.parquet"
+            },
+            "source": {
+              "tableName": "sec_Role_Field"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Service_Ticket.parquet"
+            },
+            "source": {
+              "tableName": "set_Service_Ticket"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_ServiceTicketBAK.parquet"
+            },
+            "source": {
+              "tableName": "set_ServiceTicketBAK"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "cam_Campaign_Contact.parquet"
+            },
+            "source": {
+              "tableName": "cam_Campaign_Contact"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "cam_Campaign_Account.parquet"
+            },
+            "source": {
+              "tableName": "cam_Campaign_Account"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "eve_Event_Contacts.parquet"
+            },
+            "source": {
+              "tableName": "eve_Event_Contacts"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "eve_Event_Accounts.parquet"
+            },
+            "source": {
+              "tableName": "eve_Event_Accounts"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "itm_Item.parquet"
+            },
+            "source": {
+              "tableName": "itm_Item"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "con_Contact.parquet"
+            },
+            "source": {
+              "tableName": "con_Contact"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Resources.parquet"
+            },
+            "source": {
+              "tableName": "utl_Resources"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Error_Log.parquet"
+            },
+            "source": {
+              "tableName": "utl_Error_Log"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "new_TLCServiceProviders.parquet"
+            },
+            "source": {
+              "tableName": "new_TLCServiceProviders"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Notification.parquet"
+            },
+            "source": {
+              "tableName": "utl_Notification"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "itm_Item_Field_Value.parquet"
+            },
+            "source": {
+              "tableName": "itm_Item_Field_Value"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "btp_AccountZip.parquet"
+            },
+            "source": {
+              "tableName": "btp_AccountZip"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_County.parquet"
+            },
+            "source": {
+              "tableName": "utl_County"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "btp_TempAcctType.parquet"
+            },
+            "source": {
+              "tableName": "btp_TempAcctType"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "tas_Task.parquet"
+            },
+            "source": {
+              "tableName": "tas_Task"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "act_Activity_Attachment.parquet"
+            },
+            "source": {
+              "tableName": "act_Activity_Attachment"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "btp_TempLimitedWarranty.parquet"
+            },
+            "source": {
+              "tableName": "btp_TempLimitedWarranty"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "acc_Business_Type.parquet"
+            },
+            "source": {
+              "tableName": "acc_Business_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "fld_Field.parquet"
+            },
+            "source": {
+              "tableName": "fld_Field"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "frm_Object.parquet"
+            },
+            "source": {
+              "tableName": "frm_Object"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "das_Chart_Xaxis.parquet"
+            },
+            "source": {
+              "tableName": "das_Chart_Xaxis"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ser_View_Module_Action.parquet"
+            },
+            "source": {
+              "tableName": "ser_View_Module_Action"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ser_View_Module_State.parquet"
+            },
+            "source": {
+              "tableName": "ser_View_Module_State"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "wof_Process_Intance_Step_Log.parquet"
+            },
+            "source": {
+              "tableName": "wof_Process_Intance_Step_Log"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "red_Reminder.parquet"
+            },
+            "source": {
+              "tableName": "red_Reminder"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ser_View_Grid_Field.parquet"
+            },
+            "source": {
+              "tableName": "ser_View_Grid_Field"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "das_Chart_Axis_Xref.parquet"
+            },
+            "source": {
+              "tableName": "das_Chart_Axis_Xref"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "new_CentralSerial.parquet"
+            },
+            "source": {
+              "tableName": "new_CentralSerial"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Problem_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Problem_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "frm_Grid_Field.parquet"
+            },
+            "source": {
+              "tableName": "frm_Grid_Field"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Phone_Mask.parquet"
+            },
+            "source": {
+              "tableName": "utl_Phone_Mask"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "wof_Process_Step_History.parquet"
+            },
+            "source": {
+              "tableName": "wof_Process_Step_History"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Country.parquet"
+            },
+            "source": {
+              "tableName": "utl_Country"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Table_List.parquet"
+            },
+            "source": {
+              "tableName": "utl_Table_List"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "sec_Role_Module_Xref.parquet"
+            },
+            "source": {
+              "tableName": "sec_Role_Module_Xref"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Currency_Codes.parquet"
+            },
+            "source": {
+              "tableName": "utl_Currency_Codes"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Table_Setup_System.parquet"
+            },
+            "source": {
+              "tableName": "utl_Table_Setup_System"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "wof_Process_Send_Email_History.parquet"
+            },
+            "source": {
+              "tableName": "wof_Process_Send_Email_History"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "acc_SalespersonCodes.parquet"
+            },
+            "source": {
+              "tableName": "acc_SalespersonCodes"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "doc_Template_Fields.parquet"
+            },
+            "source": {
+              "tableName": "doc_Template_Fields"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ser_Module_Action_Xref.parquet"
+            },
+            "source": {
+              "tableName": "ser_Module_Action_Xref"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "frm_Component.parquet"
+            },
+            "source": {
+              "tableName": "frm_Component"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "frm_Section.parquet"
+            },
+            "source": {
+              "tableName": "frm_Section"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "das_Chart_Yaxis_Detail.parquet"
+            },
+            "source": {
+              "tableName": "das_Chart_Yaxis_Detail"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_State.parquet"
+            },
+            "source": {
+              "tableName": "utl_State"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ser_View_Query.parquet"
+            },
+            "source": {
+              "tableName": "ser_View_Query"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "sec_Role_Form.parquet"
+            },
+            "source": {
+              "tableName": "sec_Role_Form"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Module_PreferRequired_Field.parquet"
+            },
+            "source": {
+              "tableName": "utl_Module_PreferRequired_Field"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ser_View_Module.parquet"
+            },
+            "source": {
+              "tableName": "ser_View_Module"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "frm_Tab.parquet"
+            },
+            "source": {
+              "tableName": "frm_Tab"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "tbl_Lookup.parquet"
+            },
+            "source": {
+              "tableName": "tbl_Lookup"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Quick_Search_Field.parquet"
+            },
+            "source": {
+              "tableName": "utl_Quick_Search_Field"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "fld_Field_Link.parquet"
+            },
+            "source": {
+              "tableName": "fld_Field_Link"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ser_Module_Table_Xref.parquet"
+            },
+            "source": {
+              "tableName": "ser_Module_Table_Xref"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "sec_User_Preference.parquet"
+            },
+            "source": {
+              "tableName": "sec_User_Preference"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "acc_Territories.parquet"
+            },
+            "source": {
+              "tableName": "acc_Territories"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "out_Outlook_Token.parquet"
+            },
+            "source": {
+              "tableName": "out_Outlook_Token"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "wof_Process_History.parquet"
+            },
+            "source": {
+              "tableName": "wof_Process_History"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Problem_Class.parquet"
+            },
+            "source": {
+              "tableName": "set_Problem_Class"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ser_View_Grid.parquet"
+            },
+            "source": {
+              "tableName": "ser_View_Grid"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "mdl_Module_Table_Xref.parquet"
+            },
+            "source": {
+              "tableName": "mdl_Module_Table_Xref"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "itm_Item_Class.parquet"
+            },
+            "source": {
+              "tableName": "itm_Item_Class"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "das_Chart_Yaxis.parquet"
+            },
+            "source": {
+              "tableName": "das_Chart_Yaxis"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "new_SalesReps.parquet"
+            },
+            "source": {
+              "tableName": "new_SalesReps"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "frm_Form.parquet"
+            },
+            "source": {
+              "tableName": "frm_Form"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Except_Word.parquet"
+            },
+            "source": {
+              "tableName": "utl_Except_Word"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "acc_Account_Type.parquet"
+            },
+            "source": {
+              "tableName": "acc_Account_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ser_View_Query_Field.parquet"
+            },
+            "source": {
+              "tableName": "ser_View_Query_Field"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Service_Ticket_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Service_Ticket_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ser_View_Query_Group.parquet"
+            },
+            "source": {
+              "tableName": "ser_View_Query_Group"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "wof_Milestone_Action.parquet"
+            },
+            "source": {
+              "tableName": "wof_Milestone_Action"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Language.parquet"
+            },
+            "source": {
+              "tableName": "utl_Language"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "wof_Trigger_Type.parquet"
+            },
+            "source": {
+              "tableName": "wof_Trigger_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "wof_Process_Step.parquet"
+            },
+            "source": {
+              "tableName": "wof_Process_Step"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Label_Template.parquet"
+            },
+            "source": {
+              "tableName": "utl_Label_Template"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "acc_Relationship_Account.parquet"
+            },
+            "source": {
+              "tableName": "acc_Relationship_Account"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Module_PreferDefault_Field.parquet"
+            },
+            "source": {
+              "tableName": "utl_Module_PreferDefault_Field"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "itm_Item_Class_Attribute.parquet"
+            },
+            "source": {
+              "tableName": "itm_Item_Class_Attribute"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "rpt_Report_Excel.parquet"
+            },
+            "source": {
+              "tableName": "rpt_Report_Excel"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "rpt_Excel_Report_Layout_Column.parquet"
+            },
+            "source": {
+              "tableName": "rpt_Excel_Report_Layout_Column"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "mdl_Module.parquet"
+            },
+            "source": {
+              "tableName": "mdl_Module"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "act_Activity_Type.parquet"
+            },
+            "source": {
+              "tableName": "act_Activity_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "sec_Module_Owner.parquet"
+            },
+            "source": {
+              "tableName": "sec_Module_Owner"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "frm_Form_HeaderField.parquet"
+            },
+            "source": {
+              "tableName": "frm_Form_HeaderField"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "das_Widget.parquet"
+            },
+            "source": {
+              "tableName": "das_Widget"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "das_Dashboard_Widget.parquet"
+            },
+            "source": {
+              "tableName": "das_Dashboard_Widget"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "out_Outlook_Sync.parquet"
+            },
+            "source": {
+              "tableName": "out_Outlook_Sync"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Purge_Type.parquet"
+            },
+            "source": {
+              "tableName": "utl_Purge_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Accounting_Management_Function.parquet"
+            },
+            "source": {
+              "tableName": "utl_Accounting_Management_Function"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Word_Index.parquet"
+            },
+            "source": {
+              "tableName": "utl_Word_Index"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Word_List.parquet"
+            },
+            "source": {
+              "tableName": "utl_Word_List"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "mdl_Table.parquet"
+            },
+            "source": {
+              "tableName": "mdl_Table"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "con_Name_Prefix.parquet"
+            },
+            "source": {
+              "tableName": "con_Name_Prefix"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "frm_Form_Action_Parameter.parquet"
+            },
+            "source": {
+              "tableName": "frm_Form_Action_Parameter"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "fld_Field_Relationship_Group.parquet"
+            },
+            "source": {
+              "tableName": "fld_Field_Relationship_Group"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "app_Appointment_Calendar.parquet"
+            },
+            "source": {
+              "tableName": "app_Appointment_Calendar"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "app_Appointment.parquet"
+            },
+            "source": {
+              "tableName": "app_Appointment"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "app_Recurrence_Series.parquet"
+            },
+            "source": {
+              "tableName": "app_Recurrence_Series"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "wof_Milestone.parquet"
+            },
+            "source": {
+              "tableName": "wof_Milestone"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "wof_Milestone_Record.parquet"
+            },
+            "source": {
+              "tableName": "wof_Milestone_Record"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Accounting_Xref.parquet"
+            },
+            "source": {
+              "tableName": "utl_Accounting_Xref"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "acc_Account_PreferRequired_Field.parquet"
+            },
+            "source": {
+              "tableName": "acc_Account_PreferRequired_Field"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "con_Contact_PreferRequired_Field.parquet"
+            },
+            "source": {
+              "tableName": "con_Contact_PreferRequired_Field"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "opp_Payment_Terms.parquet"
+            },
+            "source": {
+              "tableName": "opp_Payment_Terms"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "out_Activity_EditInOutlook.parquet"
+            },
+            "source": {
+              "tableName": "out_Activity_EditInOutlook"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "act_Activity_Type_Result_Xref.parquet"
+            },
+            "source": {
+              "tableName": "act_Activity_Type_Result_Xref"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Service_Ticket_Action.parquet"
+            },
+            "source": {
+              "tableName": "set_Service_Ticket_Action"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Branch.parquet"
+            },
+            "source": {
+              "tableName": "utl_Branch"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Address_Type.parquet"
+            },
+            "source": {
+              "tableName": "utl_Address_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "frm_Grid.parquet"
+            },
+            "source": {
+              "tableName": "frm_Grid"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "rpt_Child_Record_Type.parquet"
+            },
+            "source": {
+              "tableName": "rpt_Child_Record_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ser_Tree_Field.parquet"
+            },
+            "source": {
+              "tableName": "ser_Tree_Field"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "acc_Account_PreferDefault_Field.parquet"
+            },
+            "source": {
+              "tableName": "acc_Account_PreferDefault_Field"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "act_Result.parquet"
+            },
+            "source": {
+              "tableName": "act_Result"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "wof_Process_Send_Email.parquet"
+            },
+            "source": {
+              "tableName": "wof_Process_Send_Email"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Module_Filter_Field.parquet"
+            },
+            "source": {
+              "tableName": "utl_Module_Filter_Field"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Regarding.parquet"
+            },
+            "source": {
+              "tableName": "utl_Regarding"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ser_View_Module_Default.parquet"
+            },
+            "source": {
+              "tableName": "ser_View_Module_Default"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "rpt_Report_View.parquet"
+            },
+            "source": {
+              "tableName": "rpt_Report_View"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "rpt_Report_Column.parquet"
+            },
+            "source": {
+              "tableName": "rpt_Report_Column"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Routing_Criterion_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Routing_Criterion_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "acc_Account_PreferDuplicate_Type.parquet"
+            },
+            "source": {
+              "tableName": "acc_Account_PreferDuplicate_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "acc_RollUp_Type.parquet"
+            },
+            "source": {
+              "tableName": "acc_RollUp_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "frm_Form_Action.parquet"
+            },
+            "source": {
+              "tableName": "frm_Form_Action"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "con_Name_Suffix.parquet"
+            },
+            "source": {
+              "tableName": "con_Name_Suffix"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "con_Job_Title.parquet"
+            },
+            "source": {
+              "tableName": "con_Job_Title"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "InstallShield.parquet"
+            },
+            "source": {
+              "tableName": "InstallShield"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "act_Calendar_Alternate_Day.parquet"
+            },
+            "source": {
+              "tableName": "act_Calendar_Alternate_Day"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "wof_Process.parquet"
+            },
+            "source": {
+              "tableName": "wof_Process"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "con_Contact_PreferDuplicate_Type.parquet"
+            },
+            "source": {
+              "tableName": "con_Contact_PreferDuplicate_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "itm_Criteria_Type.parquet"
+            },
+            "source": {
+              "tableName": "itm_Criteria_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "itm_Price_Check_Rule.parquet"
+            },
+            "source": {
+              "tableName": "itm_Price_Check_Rule"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Start_Date_Type.parquet"
+            },
+            "source": {
+              "tableName": "utl_Start_Date_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Ticket_Status_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Ticket_Status_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Ticket_Part_Status_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Ticket_Part_Status_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Day_Of_Week.parquet"
+            },
+            "source": {
+              "tableName": "utl_Day_Of_Week"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Pattern_Field.parquet"
+            },
+            "source": {
+              "tableName": "utl_Pattern_Field"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "crm_Variable.parquet"
+            },
+            "source": {
+              "tableName": "crm_Variable"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "rpt_Report_Layout_Column.parquet"
+            },
+            "source": {
+              "tableName": "rpt_Report_Layout_Column"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "opp_Win_Loss_Reason.parquet"
+            },
+            "source": {
+              "tableName": "opp_Win_Loss_Reason"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "acc_Relationship_Choice.parquet"
+            },
+            "source": {
+              "tableName": "acc_Relationship_Choice"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Shipping_Method.parquet"
+            },
+            "source": {
+              "tableName": "utl_Shipping_Method"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Ticket_Feedback_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Ticket_Feedback_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Ticket_Labor_Fee_Basis_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Ticket_Labor_Fee_Basis_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "tas_Task_Status.parquet"
+            },
+            "source": {
+              "tableName": "tas_Task_Status"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "tbl_Lookup_Value.parquet"
+            },
+            "source": {
+              "tableName": "tbl_Lookup_Value"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "acc_Regions.parquet"
+            },
+            "source": {
+              "tableName": "acc_Regions"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "acc_Customer_Class.parquet"
+            },
+            "source": {
+              "tableName": "acc_Customer_Class"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "cam_Event_SubType.parquet"
+            },
+            "source": {
+              "tableName": "cam_Event_SubType"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "itm_Price_Basis_Type.parquet"
+            },
+            "source": {
+              "tableName": "itm_Price_Basis_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "frm_Object_Type.parquet"
+            },
+            "source": {
+              "tableName": "frm_Object_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "rpt_Report.parquet"
+            },
+            "source": {
+              "tableName": "rpt_Report"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "opp_Opportunity_Status_Type.parquet"
+            },
+            "source": {
+              "tableName": "opp_Opportunity_Status_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "mdl_Module_Type.parquet"
+            },
+            "source": {
+              "tableName": "mdl_Module_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "opp_Importance_ToCustomer_Type.parquet"
+            },
+            "source": {
+              "tableName": "opp_Importance_ToCustomer_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "opp_Competing_Competitiveness_Rating_Type.parquet"
+            },
+            "source": {
+              "tableName": "opp_Competing_Competitiveness_Rating_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "sec_User_Interface_PropertyKey_Type_Attribute.parquet"
+            },
+            "source": {
+              "tableName": "sec_User_Interface_PropertyKey_Type_Attribute"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Approval_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Approval_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Fixed_Labor_Rate_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Fixed_Labor_Rate_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Contract_Status_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Contract_Status_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Contract_Start_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Contract_Start_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_ContractAdmin_Level_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_ContractAdmin_Level_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Coverage_Item_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Coverage_Item_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Contract_End_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Contract_End_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "opp_Closing_Chance_Bracket.parquet"
+            },
+            "source": {
+              "tableName": "opp_Closing_Chance_Bracket"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "opp_Opportunity_Type.parquet"
+            },
+            "source": {
+              "tableName": "opp_Opportunity_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "opp_Tax_Levels.parquet"
+            },
+            "source": {
+              "tableName": "opp_Tax_Levels"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "opp_Line_Item_Type.parquet"
+            },
+            "source": {
+              "tableName": "opp_Line_Item_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "out_Outlook_Client.parquet"
+            },
+            "source": {
+              "tableName": "out_Outlook_Client"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "das_DashBoard.parquet"
+            },
+            "source": {
+              "tableName": "das_DashBoard"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "doc_Template.parquet"
+            },
+            "source": {
+              "tableName": "doc_Template"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "frm_Component_Type.parquet"
+            },
+            "source": {
+              "tableName": "frm_Component_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "con_Contact_PreferDefault_Field.parquet"
+            },
+            "source": {
+              "tableName": "con_Contact_PreferDefault_Field"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "cam_Campaign_Status_Type.parquet"
+            },
+            "source": {
+              "tableName": "cam_Campaign_Status_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "cam_Campaign_Type.parquet"
+            },
+            "source": {
+              "tableName": "cam_Campaign_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "con_Contact_Type.parquet"
+            },
+            "source": {
+              "tableName": "con_Contact_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Waiting_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Waiting_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Ticket_Support_Status_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Ticket_Support_Status_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Service_Fee_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Service_Fee_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Time_Unit_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Time_Unit_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Ticket_Part_Effect_Component_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Ticket_Part_Effect_Component_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Approval_Type.parquet"
+            },
+            "source": {
+              "tableName": "utl_Approval_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Severity_Type.parquet"
+            },
+            "source": {
+              "tableName": "utl_Severity_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Search_Type.parquet"
+            },
+            "source": {
+              "tableName": "utl_Search_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_PreferRequired_Type.parquet"
+            },
+            "source": {
+              "tableName": "utl_PreferRequired_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Priority_Type.parquet"
+            },
+            "source": {
+              "tableName": "utl_Priority_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_KnowledgeBase_Approval_Status.parquet"
+            },
+            "source": {
+              "tableName": "utl_KnowledgeBase_Approval_Status"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Notification_Config.parquet"
+            },
+            "source": {
+              "tableName": "utl_Notification_Config"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "wof_Process_Action_Type.parquet"
+            },
+            "source": {
+              "tableName": "wof_Process_Action_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "con_Decision_Authority_Type.parquet"
+            },
+            "source": {
+              "tableName": "con_Decision_Authority_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "con_Department.parquet"
+            },
+            "source": {
+              "tableName": "con_Department"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "con_Contact_PreferWarning_Field.parquet"
+            },
+            "source": {
+              "tableName": "con_Contact_PreferWarning_Field"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "con_Contact_PreferPrevent_Field.parquet"
+            },
+            "source": {
+              "tableName": "con_Contact_PreferPrevent_Field"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "act_Location.parquet"
+            },
+            "source": {
+              "tableName": "act_Location"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "acc_Relationship.parquet"
+            },
+            "source": {
+              "tableName": "acc_Relationship"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "acc_Account_PreferWarning_Field.parquet"
+            },
+            "source": {
+              "tableName": "acc_Account_PreferWarning_Field"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "acc_Account_PreferPrevent_Field.parquet"
+            },
+            "source": {
+              "tableName": "acc_Account_PreferPrevent_Field"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "acc_Source.parquet"
+            },
+            "source": {
+              "tableName": "acc_Source"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "act_Activity_EmailSend_Type.parquet"
+            },
+            "source": {
+              "tableName": "act_Activity_EmailSend_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "frm_Form_Type.parquet"
+            },
+            "source": {
+              "tableName": "frm_Form_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "frm_Grid_Type.parquet"
+            },
+            "source": {
+              "tableName": "frm_Grid_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "frm_IFrame.parquet"
+            },
+            "source": {
+              "tableName": "frm_IFrame"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "frm_IFrame_Parameter.parquet"
+            },
+            "source": {
+              "tableName": "frm_IFrame_Parameter"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "itm_Which_Price_Type.parquet"
+            },
+            "source": {
+              "tableName": "itm_Which_Price_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "LeadStatus.parquet"
+            },
+            "source": {
+              "tableName": "LeadStatus"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "rpt_Excel_Report_Layout.parquet"
+            },
+            "source": {
+              "tableName": "rpt_Excel_Report_Layout"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "opp_Sale_Goal_Which_Account_Type.parquet"
+            },
+            "source": {
+              "tableName": "opp_Sale_Goal_Which_Account_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "opp_Sale_Goal_Which_Item_Type.parquet"
+            },
+            "source": {
+              "tableName": "opp_Sale_Goal_Which_Item_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "opp_Sale_Goal_Which_Location_Type.parquet"
+            },
+            "source": {
+              "tableName": "opp_Sale_Goal_Which_Location_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "opp_Opportunity_Contact.parquet"
+            },
+            "source": {
+              "tableName": "opp_Opportunity_Contact"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "opp_Association_Type.parquet"
+            },
+            "source": {
+              "tableName": "opp_Association_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "mail_Item_Type.parquet"
+            },
+            "source": {
+              "tableName": "mail_Item_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "led_Lead_PreferPrevent_Field.parquet"
+            },
+            "source": {
+              "tableName": "led_Lead_PreferPrevent_Field"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "led_Lead_PreferWarning_Field.parquet"
+            },
+            "source": {
+              "tableName": "led_Lead_PreferWarning_Field"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Calculation_Option.parquet"
+            },
+            "source": {
+              "tableName": "set_Calculation_Option"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_AssignTo_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_AssignTo_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Coverage_Scope_Level_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Coverage_Scope_Level_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Problem_SubType.parquet"
+            },
+            "source": {
+              "tableName": "set_Problem_SubType"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Labor_Fee_Basis_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Labor_Fee_Basis_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Manual_Posting_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Manual_Posting_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Posting_Method_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Posting_Method_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Resolution_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Resolution_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Coverage_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Coverage_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Contract_Display_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Contract_Display_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Contract_Fee_Basis_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Contract_Fee_Basis_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Contract_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Contract_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Distribution_Method_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Distribution_Method_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Itemization_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Itemization_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Queue_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Queue_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Coverage_Scope_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Coverage_Scope_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Auto_Posting_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Auto_Posting_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "sec_User_Interface_PropertyKey_Type.parquet"
+            },
+            "source": {
+              "tableName": "sec_User_Interface_PropertyKey_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "sec_Right.parquet"
+            },
+            "source": {
+              "tableName": "sec_Right"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "sec_Role_Dashboard.parquet"
+            },
+            "source": {
+              "tableName": "sec_Role_Dashboard"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "opp_Issue.parquet"
+            },
+            "source": {
+              "tableName": "opp_Issue"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "opp_Opportunity_Discount_Type.parquet"
+            },
+            "source": {
+              "tableName": "opp_Opportunity_Discount_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "opp_Win_Loss_Reason_Type.parquet"
+            },
+            "source": {
+              "tableName": "opp_Win_Loss_Reason_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "itm_Item_Discount_Method_Type.parquet"
+            },
+            "source": {
+              "tableName": "itm_Item_Discount_Method_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "fld_Field_Relationship_Group_Type.parquet"
+            },
+            "source": {
+              "tableName": "fld_Field_Relationship_Group_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "act_Activity_Attachment_Type.parquet"
+            },
+            "source": {
+              "tableName": "act_Activity_Attachment_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "acc_Direction_Type.parquet"
+            },
+            "source": {
+              "tableName": "acc_Direction_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "app_Appointment_Status.parquet"
+            },
+            "source": {
+              "tableName": "app_Appointment_Status"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "cam_Target_Market_Type.parquet"
+            },
+            "source": {
+              "tableName": "cam_Target_Market_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "wof_Process_Trigger_Xref.parquet"
+            },
+            "source": {
+              "tableName": "wof_Process_Trigger_Xref"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "wof_Process_Type.parquet"
+            },
+            "source": {
+              "tableName": "wof_Process_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Module_PreferRequired_ModeType.parquet"
+            },
+            "source": {
+              "tableName": "utl_Module_PreferRequired_ModeType"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Job_Type.parquet"
+            },
+            "source": {
+              "tableName": "utl_Job_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Knowledge_Base.parquet"
+            },
+            "source": {
+              "tableName": "utl_Knowledge_Base"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Audit_Trail_Action_Type.parquet"
+            },
+            "source": {
+              "tableName": "utl_Audit_Trail_Action_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Usage_Limit_Unit_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Usage_Limit_Unit_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Ticket_Part_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Ticket_Part_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Ticket_Job_Type.parquet"
+            },
+            "source": {
+              "tableName": "set_Ticket_Job_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Ticket_Job_Class.parquet"
+            },
+            "source": {
+              "tableName": "set_Ticket_Job_Class"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Service_Location.parquet"
+            },
+            "source": {
+              "tableName": "set_Service_Location"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Service_Contract_Preferences.parquet"
+            },
+            "source": {
+              "tableName": "set_Service_Contract_Preferences"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "set_Service_Ticket_Preferences.parquet"
+            },
+            "source": {
+              "tableName": "set_Service_Ticket_Preferences"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Company.parquet"
+            },
+            "source": {
+              "tableName": "utl_Company"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Accounting_Setting.parquet"
+            },
+            "source": {
+              "tableName": "utl_Accounting_Setting"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Data_Transfer_Jobs.parquet"
+            },
+            "source": {
+              "tableName": "utl_Data_Transfer_Jobs"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Knowledge_Base_Approve.parquet"
+            },
+            "source": {
+              "tableName": "utl_Knowledge_Base_Approve"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Knowledge_Base_Category.parquet"
+            },
+            "source": {
+              "tableName": "utl_Knowledge_Base_Category"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Knowledge_Base_Doc.parquet"
+            },
+            "source": {
+              "tableName": "utl_Knowledge_Base_Doc"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Knowledge_Base_Preferences.parquet"
+            },
+            "source": {
+              "tableName": "utl_Knowledge_Base_Preferences"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_Server_Preference.parquet"
+            },
+            "source": {
+              "tableName": "utl_Server_Preference"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "utl_System_Preference.parquet"
+            },
+            "source": {
+              "tableName": "utl_System_Preference"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "con_Contact_Preferences.parquet"
+            },
+            "source": {
+              "tableName": "con_Contact_Preferences"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "cam_Campaign_Preferences.parquet"
+            },
+            "source": {
+              "tableName": "cam_Campaign_Preferences"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "app_Appointment_Attendee.parquet"
+            },
+            "source": {
+              "tableName": "app_Appointment_Attendee"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "acc_Account_Preferences.parquet"
+            },
+            "source": {
+              "tableName": "acc_Account_Preferences"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "act_Calendar.parquet"
+            },
+            "source": {
+              "tableName": "act_Calendar"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "led_Lead_PreferDuplicate_Type.parquet"
+            },
+            "source": {
+              "tableName": "led_Lead_PreferDuplicate_Type"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "led_Lead_Preferences.parquet"
+            },
+            "source": {
+              "tableName": "led_Lead_Preferences"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "LeadQualification.parquet"
+            },
+            "source": {
+              "tableName": "LeadQualification"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "frm_Widget.parquet"
+            },
+            "source": {
+              "tableName": "frm_Widget"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "opp_Opportunity_Preferences.parquet"
+            },
+            "source": {
+              "tableName": "opp_Opportunity_Preferences"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "new_Warranty.parquet"
+            },
+            "source": {
+              "tableName": "new_Warranty"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "rpt_Report_Layout.parquet"
+            },
+            "source": {
+              "tableName": "rpt_Report_Layout"
+            }
+          }
+        ],
+        "type": "Array"
+      }
+    }
+  }
 }

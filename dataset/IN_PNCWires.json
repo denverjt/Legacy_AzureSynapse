@@ -1,74 +1,73 @@
 {
-	"name": "IN_PNCWires",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "tlcdw-WorkspaceDefaultStorage",
-			"type": "LinkedServiceReference"
-		},
-		"annotations": [],
-		"type": "DelimitedText",
-		"typeProperties": {
-			"location": {
-				"type": "AzureBlobFSLocation",
-				"fileName": "PNCWires-Q1-2023.csv",
-				"folderPath": "PNC",
-				"fileSystem": "tlclakefs"
-			},
-			"columnDelimiter": ",",
-			"escapeChar": "\\",
-			"firstRowAsHeader": true,
-			"quoteChar": "\""
-		},
-		"schema": [
-			{
-				"name": "DebitAccount",
-				"type": "String"
-			},
-			{
-				"name": "AccountName",
-				"type": "String"
-			},
-			{
-				"name": "TraceID",
-				"type": "String"
-			},
-			{
-				"name": "TemplateID",
-				"type": "String"
-			},
-			{
-				"name": "TemplateName",
-				"type": "String"
-			},
-			{
-				"name": "Type",
-				"type": "String"
-			},
-			{
-				"name": "ValueSendDate",
-				"type": "String"
-			},
-			{
-				"name": "Beneficiary",
-				"type": "String"
-			},
-			{
-				"name": "Amount",
-				"type": "String"
-			},
-			{
-				"name": "DestinationCurrency",
-				"type": "String"
-			},
-			{
-				"name": "Status",
-				"type": "String"
-			},
-			{
-				"name": "FedRefNumber",
-				"type": "String"
-			}
-		]
-	},
-	"type": "Microsoft.Synapse/workspaces/datasets"
+  "name": "IN_PNCWires",
+  "properties": {
+    "annotations": [],
+    "linkedServiceName": {
+      "referenceName": "tlcdw-WorkspaceDefaultStorage",
+      "type": "LinkedServiceReference"
+    },
+    "schema": [
+      {
+        "name": "DebitAccount",
+        "type": "String"
+      },
+      {
+        "name": "AccountName",
+        "type": "String"
+      },
+      {
+        "name": "TraceID",
+        "type": "String"
+      },
+      {
+        "name": "TemplateID",
+        "type": "String"
+      },
+      {
+        "name": "TemplateName",
+        "type": "String"
+      },
+      {
+        "name": "Type",
+        "type": "String"
+      },
+      {
+        "name": "ValueSendDate",
+        "type": "String"
+      },
+      {
+        "name": "Beneficiary",
+        "type": "String"
+      },
+      {
+        "name": "Amount",
+        "type": "String"
+      },
+      {
+        "name": "DestinationCurrency",
+        "type": "String"
+      },
+      {
+        "name": "Status",
+        "type": "String"
+      },
+      {
+        "name": "FedRefNumber",
+        "type": "String"
+      }
+    ],
+    "type": "DelimitedText",
+    "typeProperties": {
+      "columnDelimiter": ",",
+      "escapeChar": "\\",
+      "firstRowAsHeader": true,
+      "location": {
+        "fileName": "PNCWires-Q1-2023.csv",
+        "fileSystem": "tlclakefs",
+        "folderPath": "PNC",
+        "type": "AzureBlobFSLocation"
+      },
+      "quoteChar": "\""
+    }
+  }
 }

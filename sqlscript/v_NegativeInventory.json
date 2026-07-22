@@ -1,17 +1,17 @@
 {
-	"name": "v_NegativeInventory",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW v_NegativeInventory\nas\nSELECT      A.*, B.ITNO, B.STQT, TRDT, RESP\nFROM\n(\nSELECT      DISTINCT WHLO, WHSL\nFROM        M3.MITPCE\n) A\n\nLEFT JOIN\n\n(\nSELECT      WHLO, ITNO, WHSL, STQT\nFROM        M3.MITLOC\nWHERE       STQT < 0\n) B ON      A.WHLO = B.WHLO AND A.WHSL = B.WHSL\n\nLEFT JOIN\n\n(\nSELECT      DISTINCT M.WHLO, M.WHSL, M.ITNO, M.TRDT, M.RESP\nFROM        M3.MITTRA M\nJOIN        (SELECT WHLO, WHSL, ITNO, MAX(cast(TRDT as varchar(max))+cast(TRTM as varchar(max))) TRDT FROM M3.MITTRA GROUP BY WHLO, WHSL, ITNO) M2 ON M.WHLO = M2.WHLO AND M.WHSL = M2.WHSL AND M.ITNO = M2.ITNO AND cast(M.TRDT as varchar(max))+cast(M.TRTM as varchar(max)) = M2.TRDT\n) C ON      A.WHLO = C.WHLO AND A.WHSL = C.WHSL AND B.ITNO = C.ITNO\nWHERE       STQT < 0",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_NegativeInventory",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW v_NegativeInventory\nas\nSELECT      A.*, B.ITNO, B.STQT, TRDT, RESP\nFROM\n(\nSELECT      DISTINCT WHLO, WHSL\nFROM        M3.MITPCE\n) A\n\nLEFT JOIN\n\n(\nSELECT      WHLO, ITNO, WHSL, STQT\nFROM        M3.MITLOC\nWHERE       STQT < 0\n) B ON      A.WHLO = B.WHLO AND A.WHSL = B.WHSL\n\nLEFT JOIN\n\n(\nSELECT      DISTINCT M.WHLO, M.WHSL, M.ITNO, M.TRDT, M.RESP\nFROM        M3.MITTRA M\nJOIN        (SELECT WHLO, WHSL, ITNO, MAX(cast(TRDT as varchar(max))+cast(TRTM as varchar(max))) TRDT FROM M3.MITTRA GROUP BY WHLO, WHSL, ITNO) M2 ON M.WHLO = M2.WHLO AND M.WHSL = M2.WHSL AND M.ITNO = M2.ITNO AND cast(M.TRDT as varchar(max))+cast(M.TRTM as varchar(max)) = M2.TRDT\n) C ON      A.WHLO = C.WHLO AND A.WHSL = C.WHSL AND B.ITNO = C.ITNO\nWHERE       STQT < 0",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

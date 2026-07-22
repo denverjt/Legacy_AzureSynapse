@@ -1,17 +1,17 @@
 {
-	"name": "Tracking and Shipping",
-	"properties": {
-		"content": {
-			"query": "SELECT \t\tDISTINCT TR.WHLO as [Warehouse]\n,           TR.DLIX as [Delivery Number]\n,           OL.ORNO as [Order Number]\n,           OH.CUOR as [Customer PO]\n,           TR.DLRM as [Carrier]\n,           TR.ETRN as [Tracking]\nFROM \t\tM3.MPTRNS TR\nJOIN\t\tM3.MHDISH MD ON TR.DLIX = MD.DLIX\nJOIN \t\tM3.OOLINE OL ON MD.RIDN = OL.ORNO\nJOIN \t\tM3.OOHEAD OH ON OL.ORNO = OH.ORNO\nWHERE \t\tOH.CUNO = 'COM00486'\n\nSELECT TOP 10 * FROM M3.MPTRNS\n",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": -1
-		},
-		"type": "SqlQuery"
-	}
+  "name": "Tracking and Shipping",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "SELECT \t\tDISTINCT TR.WHLO as [Warehouse]\n,           TR.DLIX as [Delivery Number]\n,           OL.ORNO as [Order Number]\n,           OH.CUOR as [Customer PO]\n,           TR.DLRM as [Carrier]\n,           TR.ETRN as [Tracking]\nFROM \t\tM3.MPTRNS TR\nJOIN\t\tM3.MHDISH MD ON TR.DLIX = MD.DLIX\nJOIN \t\tM3.OOLINE OL ON MD.RIDN = OL.ORNO\nJOIN \t\tM3.OOHEAD OH ON OL.ORNO = OH.ORNO\nWHERE \t\tOH.CUNO = 'COM00486'\n\nSELECT TOP 10 * FROM M3.MPTRNS\n",
+      "resultLimit": -1
+    },
+    "type": "SqlQuery"
+  }
 }

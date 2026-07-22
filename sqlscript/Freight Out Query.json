@@ -1,17 +1,17 @@
 {
-	"name": "Freight Out Query",
-	"properties": {
-		"content": {
-			"query": "\n    SELECT cast([Customer ID] as varchar(max)) collate database_default as [Customer Number]\n    , [Customer Name]\n    , SUM([ACAM]*-1) [Billed Freight Amount]\n    , SUM(SD.[Sales Amt]) as Sales\n    FROM M3.FGLEDG FG \n    JOIN (SELECT [Customer ID], [Customer Name], [Invoice ID], SUM([Sales Amt]) as [Sales Amt] from a_SalesData SD \n              LEFT JOIN BI_ItemMaster MM on SD.[Part ID - Actual] = MM.[Item Number] \n              WHERE MM.Division = 'Commercial'\n              AND SD.Warehouse IN ('DFF', 'DIW', 'DFD', 'DFS')\n              AND SD.[Sales Type] = 'Sales'\n              GROUP BY [Invoice ID], [Customer ID], [Customer Name]\n              ) SD\n  on LEFT(SUBSTRING(FG.VTXT,CHARINDEX(' 24',FG.VTXT)+1,LEN(FG.VTXT)),10) = SD.[Invoice ID] \n    WHERE FG.AIT1 = '431010' \n    AND AIT7 = 'OI201401' \n    AND ACDT BETWEEN '2024-01-01' AND '2024-10-31'\n    GROUP BY [Customer ID] , [Customer Name]",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "Freight Out Query",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "\n    SELECT cast([Customer ID] as varchar(max)) collate database_default as [Customer Number]\n    , [Customer Name]\n    , SUM([ACAM]*-1) [Billed Freight Amount]\n    , SUM(SD.[Sales Amt]) as Sales\n    FROM M3.FGLEDG FG \n    JOIN (SELECT [Customer ID], [Customer Name], [Invoice ID], SUM([Sales Amt]) as [Sales Amt] from a_SalesData SD \n              LEFT JOIN BI_ItemMaster MM on SD.[Part ID - Actual] = MM.[Item Number] \n              WHERE MM.Division = 'Commercial'\n              AND SD.Warehouse IN ('DFF', 'DIW', 'DFD', 'DFS')\n              AND SD.[Sales Type] = 'Sales'\n              GROUP BY [Invoice ID], [Customer ID], [Customer Name]\n              ) SD\n  on LEFT(SUBSTRING(FG.VTXT,CHARINDEX(' 24',FG.VTXT)+1,LEN(FG.VTXT)),10) = SD.[Invoice ID] \n    WHERE FG.AIT1 = '431010' \n    AND AIT7 = 'OI201401' \n    AND ACDT BETWEEN '2024-01-01' AND '2024-10-31'\n    GROUP BY [Customer ID] , [Customer Name]",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

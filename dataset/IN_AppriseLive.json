@@ -1,24 +1,23 @@
 {
-	"name": "IN_AppriseLive",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "AppriseLIVE",
-			"type": "LinkedServiceReference"
-		},
-		"parameters": {
-			"cw_tableName": {
-				"type": "String"
-			}
-		},
-		"annotations": [],
-		"type": "OdbcTable",
-		"schema": [],
-		"typeProperties": {
-			"tableName": {
-				"value": "@dataset().cw_tableName",
-				"type": "Expression"
-			}
-		}
-	},
-	"type": "Microsoft.Synapse/workspaces/datasets"
+  "name": "IN_AppriseLive",
+  "properties": {
+    "annotations": [],
+    "linkedServiceName": {
+      "referenceName": "AppriseLIVE",
+      "type": "LinkedServiceReference"
+    },
+    "parameters": {
+      "cw_tableName": {
+        "type": "String"
+      }
+    },
+    "schema": [],
+    "type": "OdbcTable",
+    "typeProperties": {
+      "tableName": {
+        "type": "Expression",
+        "value": "@dataset().cw_tableName"
+      }
+    }
+  }
 }

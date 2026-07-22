@@ -1,17 +1,17 @@
 {
-	"name": "v_ATP_Report",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW     v_ATP_Report\n--drop view v_ATP_Report\nas\nSELECT          DISTINCT ITM.ITNO AS [Item Number]\n,               ITM.ITDS AS [Item Description]\n,               ITM.ITCL AS [Brand]\n,               ITM.GRP3 as [Finance Brand]\n,               ITB.WHLO AS [Warehouse] \n,               ITB.STQT AS [Quantity on Hand]\n,               ITB.ALQT AS [Quantity Allocated]\n,               ITB.STQT - ITB.ALQT AS [Quantity Available]\n,               ORQA AS [Quantity on Order]\n,               YRE1 as [Reference]\n,               POL.PUNO as [Purchase Order Number]\n,               POH.RGDT as [Order Date]\n,               POL.DWDT as [Factory Ready Date]\n,               left(cast(nullif(CAST(POL.UID2 as varchar(10)),0) as date),10) as [ETA Date]\n,               POL.UID1 as [ETD Date]\n,               ITM.PRGP as [Procurement Group]\n,               POH.PUST as [High Status]\n,               POL.PUPR as [Purchase Price]\n,               POL.LNAM as [Line Amount]\n,               left(cast(nullif(CAST(POL.RCDT as varchar(10)),0) as date),10) as [Receipt Date]\n,               POH.SUNO as [Supplier ID]\n,               SM.SUNM as [Supplier Name]\nFROM            M3.MITBAL ITB\nJOIN            M3.MITMAS ITM ON ITB.ITNO = ITM.ITNO\nLEFT JOIN       M3.MPLINE POL on ITM.ITNO = POL.ITNO and POL.WHLO = ITB.WHLO\nLEFT JOIN       M3.MPHEAD POH ON POH.PUNO = POL.PUNO      \nLEFT JOIN       M3.CIDMAS SM ON POH.SUNO = SM.SUNO",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_ATP_Report",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW     v_ATP_Report\n--drop view v_ATP_Report\nas\nSELECT          DISTINCT ITM.ITNO AS [Item Number]\n,               ITM.ITDS AS [Item Description]\n,               ITM.ITCL AS [Brand]\n,               ITM.GRP3 as [Finance Brand]\n,               ITB.WHLO AS [Warehouse] \n,               ITB.STQT AS [Quantity on Hand]\n,               ITB.ALQT AS [Quantity Allocated]\n,               ITB.STQT - ITB.ALQT AS [Quantity Available]\n,               ORQA AS [Quantity on Order]\n,               YRE1 as [Reference]\n,               POL.PUNO as [Purchase Order Number]\n,               POH.RGDT as [Order Date]\n,               POL.DWDT as [Factory Ready Date]\n,               left(cast(nullif(CAST(POL.UID2 as varchar(10)),0) as date),10) as [ETA Date]\n,               POL.UID1 as [ETD Date]\n,               ITM.PRGP as [Procurement Group]\n,               POH.PUST as [High Status]\n,               POL.PUPR as [Purchase Price]\n,               POL.LNAM as [Line Amount]\n,               left(cast(nullif(CAST(POL.RCDT as varchar(10)),0) as date),10) as [Receipt Date]\n,               POH.SUNO as [Supplier ID]\n,               SM.SUNM as [Supplier Name]\nFROM            M3.MITBAL ITB\nJOIN            M3.MITMAS ITM ON ITB.ITNO = ITM.ITNO\nLEFT JOIN       M3.MPLINE POL on ITM.ITNO = POL.ITNO and POL.WHLO = ITB.WHLO\nLEFT JOIN       M3.MPHEAD POH ON POH.PUNO = POL.PUNO      \nLEFT JOIN       M3.CIDMAS SM ON POH.SUNO = SM.SUNO",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

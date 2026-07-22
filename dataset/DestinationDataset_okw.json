@@ -1,30 +1,25 @@
 {
-	"name": "DestinationDataset_okw",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "tlcdw-WorkspaceDefaultStorage",
-			"type": "LinkedServiceReference"
-		},
-		"parameters": {
-			"cw_fileName": {
-				"type": "String"
-			}
-		},
-		"annotations": [],
-		"type": "Parquet",
-		"typeProperties": {
-			"location": {
-				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "@dataset().cw_fileName",
-					"type": "Expression"
-				},
-				"folderPath": "M3RT",
-				"fileSystem": "tlclakefs"
-			},
-			"compressionCodec": "snappy"
-		},
-		"schema": []
-	},
-	"type": "Microsoft.Synapse/workspaces/datasets"
+  "name": "DestinationDataset_okw",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "tlcdw-WorkspaceDefaultStorage",
+      "type": "LinkedServiceReference"
+    },
+    "parameters": {
+      "cw_fileName": {
+        "type": "String"
+      }
+    },
+    "schema": [],
+    "type": "Parquet",
+    "typeProperties": {
+      "compressionCodec": "snappy",
+      "location": {
+        "fileName": "@dataset().cw_fileName",
+        "fileSystem": "tlclakefs",
+        "folderPath": "M3RT",
+        "type": "AzureBlobFSLocation"
+      }
+    }
+  }
 }

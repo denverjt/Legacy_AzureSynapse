@@ -1,25 +1,23 @@
 {
-	"name": "SourceDataset_okw",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "TLCPG",
-			"type": "LinkedServiceReference"
-		},
-		"parameters": {
-			"cw_table": {
-				"type": "String"
-			}
-		},
-		"annotations": [],
-		"type": "AzurePostgreSqlTable",
-		"schema": [],
-		"typeProperties": {
-			"schema": "m3",
-			"table": {
-				"value": "@dataset().cw_table",
-				"type": "Expression"
-			}
-		}
-	},
-	"type": "Microsoft.Synapse/workspaces/datasets"
+  "name": "SourceDataset_okw",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "TLCPG",
+      "type": "LinkedServiceReference"
+    },
+    "parameters": {
+      "cw_table": {
+        "type": "String"
+      }
+    },
+    "schema": [],
+    "type": "AzurePostgreSqlTable",
+    "typeProperties": {
+      "schema": "m3",
+      "table": {
+        "type": "Expression",
+        "value": "@dataset().cw_table"
+      }
+    }
+  }
 }

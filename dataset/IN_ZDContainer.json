@@ -1,116 +1,115 @@
 {
-	"name": "IN_ZDContainer",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "tlcdw-WorkspaceDefaultStorage",
-			"type": "LinkedServiceReference"
-		},
-		"annotations": [],
-		"type": "Excel",
-		"typeProperties": {
-			"sheetName": "Detail",
-			"location": {
-				"type": "AzureBlobFSLocation",
-				"fileName": "Freight_-_Legacy_Container_Invoice_Report__08_22_2023_08_21_2024_Legacy_Companies_ConsumerGroup__Multiple_Carriers_.xlsx",
-				"folderPath": "ZeroDown",
-				"fileSystem": "tlclakefs"
-			},
-			"firstRowAsHeader": true
-		},
-		"schema": [
-			{
-				"name": "Container Number(s)",
-				"type": "String"
-			},
-			{
-				"name": "Po Number",
-				"type": "String"
-			},
-			{
-				"name": "Invoice Number",
-				"type": "String"
-			},
-			{
-				"name": "Invoice date",
-				"type": "String"
-			},
-			{
-				"name": "Ship Date",
-				"type": "String"
-			},
-			{
-				"name": "Carrier Name",
-				"type": "String"
-			},
-			{
-				"name": "Payable Amount",
-				"type": "String"
-			},
-			{
-				"name": "Linehaul",
-				"type": "String"
-			},
-			{
-				"name": "Final Mile",
-				"type": "String"
-			},
-			{
-				"name": "Other",
-				"type": "String"
-			},
-			{
-				"name": "Payment Number",
-				"type": "String"
-			},
-			{
-				"name": "Batch Date",
-				"type": "String"
-			},
-			{
-				"name": "Status",
-				"type": "String"
-			},
-			{
-				"name": "Division",
-				"type": "String"
-			},
-			{
-				"name": "BOL Number",
-				"type": "String"
-			},
-			{
-				"name": "In Gate Date",
-				"type": "String"
-			},
-			{
-				"name": "Shipper Name",
-				"type": "String"
-			},
-			{
-				"name": "Shipper Address",
-				"type": "String"
-			},
-			{
-				"name": "Shipper City",
-				"type": "String"
-			},
-			{
-				"name": "Shipper State",
-				"type": "String"
-			},
-			{
-				"name": "Shipper Country",
-				"type": "String"
-			},
-			{
-				"name": "Shipper ZIP",
-				"type": "String"
-			},
-			{
-				"name": "Consignee Name",
-				"type": "String"
-			}
-		]
-	},
-	"type": "Microsoft.Synapse/workspaces/datasets"
+  "name": "IN_ZDContainer",
+  "properties": {
+    "annotations": [],
+    "linkedServiceName": {
+      "referenceName": "tlcdw-WorkspaceDefaultStorage",
+      "type": "LinkedServiceReference"
+    },
+    "schema": [
+      {
+        "name": "Container Number(s)",
+        "type": "String"
+      },
+      {
+        "name": "Po Number",
+        "type": "String"
+      },
+      {
+        "name": "Invoice Number",
+        "type": "String"
+      },
+      {
+        "name": "Invoice date",
+        "type": "String"
+      },
+      {
+        "name": "Ship Date",
+        "type": "String"
+      },
+      {
+        "name": "Carrier Name",
+        "type": "String"
+      },
+      {
+        "name": "Payable Amount",
+        "type": "String"
+      },
+      {
+        "name": "Linehaul",
+        "type": "String"
+      },
+      {
+        "name": "Final Mile",
+        "type": "String"
+      },
+      {
+        "name": "Other",
+        "type": "String"
+      },
+      {
+        "name": "Payment Number",
+        "type": "String"
+      },
+      {
+        "name": "Batch Date",
+        "type": "String"
+      },
+      {
+        "name": "Status",
+        "type": "String"
+      },
+      {
+        "name": "Division",
+        "type": "String"
+      },
+      {
+        "name": "BOL Number",
+        "type": "String"
+      },
+      {
+        "name": "In Gate Date",
+        "type": "String"
+      },
+      {
+        "name": "Shipper Name",
+        "type": "String"
+      },
+      {
+        "name": "Shipper Address",
+        "type": "String"
+      },
+      {
+        "name": "Shipper City",
+        "type": "String"
+      },
+      {
+        "name": "Shipper State",
+        "type": "String"
+      },
+      {
+        "name": "Shipper Country",
+        "type": "String"
+      },
+      {
+        "name": "Shipper ZIP",
+        "type": "String"
+      },
+      {
+        "name": "Consignee Name",
+        "type": "String"
+      }
+    ],
+    "type": "Excel",
+    "typeProperties": {
+      "firstRowAsHeader": true,
+      "location": {
+        "fileName": "Freight_-_Legacy_Container_Invoice_Report__08_22_2023_08_21_2024_Legacy_Companies_ConsumerGroup__Multiple_Carriers_.xlsx",
+        "fileSystem": "tlclakefs",
+        "folderPath": "ZeroDown",
+        "type": "AzureBlobFSLocation"
+      },
+      "sheetName": "Detail"
+    }
+  }
 }

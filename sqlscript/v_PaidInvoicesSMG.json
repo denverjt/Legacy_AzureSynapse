@@ -1,17 +1,17 @@
 {
-	"name": "v_PaidInvoicesSMG",
-	"properties": {
-		"content": {
-			"query": "create view v_PaidInvoicesSMG\n-- drop view v_PaidInvoicesSMG\nas\nSELECT      A.CINO, A.CUNO, A.ACDT, ROUND(InvAmt2/NULLIF(count(PONR) OVER (PARTITION BY ORNO),0),2) as InvAmt\n,           B.*\nFROM\n(\nSELECT      CINO, CUNO, MAX(ACDT) as ACDT, SUM(CUAM) as InvAmt2\nFROM        M3.FSLEDG\nWHERE       TRCD = '20'\nAND         CUNO IN\n(\n'50009',\n'50322',\n'50229',\n'50438',\n'50002',\n'50290',\n'50031',\n'50690',\n'50742',\n'50218',\n'50018',\n'50021',\n'50015',\n'50582',\n'50025',\n'50085'\n)\nAND         ACDT >= '2023-01-01'\nGROUP BY    CINO, CUNO\n) A\n\nLEFT JOIN\n\n(\nselect      DISTINCT EXIN, DLIX, ORNO, PONR, POSX\nFROM        M3.ODLINE\n\n) B        ON A.CINO = B.EXIN",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": -1
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_PaidInvoicesSMG",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "create view v_PaidInvoicesSMG\n-- drop view v_PaidInvoicesSMG\nas\nSELECT      A.CINO, A.CUNO, A.ACDT, ROUND(InvAmt2/NULLIF(count(PONR) OVER (PARTITION BY ORNO),0),2) as InvAmt\n,           B.*\nFROM\n(\nSELECT      CINO, CUNO, MAX(ACDT) as ACDT, SUM(CUAM) as InvAmt2\nFROM        M3.FSLEDG\nWHERE       TRCD = '20'\nAND         CUNO IN\n(\n'50009',\n'50322',\n'50229',\n'50438',\n'50002',\n'50290',\n'50031',\n'50690',\n'50742',\n'50218',\n'50018',\n'50021',\n'50015',\n'50582',\n'50025',\n'50085'\n)\nAND         ACDT >= '2023-01-01'\nGROUP BY    CINO, CUNO\n) A\n\nLEFT JOIN\n\n(\nselect      DISTINCT EXIN, DLIX, ORNO, PONR, POSX\nFROM        M3.ODLINE\n\n) B        ON A.CINO = B.EXIN",
+      "resultLimit": -1
+    },
+    "type": "SqlQuery"
+  }
 }

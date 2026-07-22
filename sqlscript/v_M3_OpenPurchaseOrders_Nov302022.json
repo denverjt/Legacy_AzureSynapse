@@ -1,17 +1,17 @@
 {
-	"name": "v_M3_OpenPurchaseOrders_Nov302022",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW     v_M3_OpenPurchaseOrders_Jan012023\nas\nSELECT          DISTINCT POH.PUNO AS [PO Number]\n,               SUP.SUNO as [Supplier ID]\n,               SUP.SUNM as [Supplier Name]\n,               ITM.ITNO AS [Item Number]\n,               ITM.ITDS as [Item Description]\n,               POH.DWDT AS [Requested Delivery Date]\n,               ORQA as [Order Qty]\n,               RVQA as [Received Qty]\n,               ORQA - RVQA as [Open Qty]\nFROM            dbo.M3_MPHEAD POH\nJOIN            dbo.M3_MPLINE POL ON POH.PUNO = POL.PUNO\nJOIN            dbo.M3_MITMAS ITM ON POL.ITNO = ITM.ITNO\nJOIN            dbo.M3_CIDMAS SUP on POL.SUNO = SUP.SUNO\nWHERE           POH.DWDT >= '20230101'\nand           POL.PUSL < '99'\n--drop view     v_M3_OpenPurchaseOrders_Jan012023\n\n\n\n\n\n\n\n",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_M3_OpenPurchaseOrders_Nov302022",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW     v_M3_OpenPurchaseOrders_Jan012023\nas\nSELECT          DISTINCT POH.PUNO AS [PO Number]\n,               SUP.SUNO as [Supplier ID]\n,               SUP.SUNM as [Supplier Name]\n,               ITM.ITNO AS [Item Number]\n,               ITM.ITDS as [Item Description]\n,               POH.DWDT AS [Requested Delivery Date]\n,               ORQA as [Order Qty]\n,               RVQA as [Received Qty]\n,               ORQA - RVQA as [Open Qty]\nFROM            dbo.M3_MPHEAD POH\nJOIN            dbo.M3_MPLINE POL ON POH.PUNO = POL.PUNO\nJOIN            dbo.M3_MITMAS ITM ON POL.ITNO = ITM.ITNO\nJOIN            dbo.M3_CIDMAS SUP on POL.SUNO = SUP.SUNO\nWHERE           POH.DWDT >= '20230101'\nand           POL.PUSL < '99'\n--drop view     v_M3_OpenPurchaseOrders_Jan012023\n\n\n\n\n\n\n\n",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

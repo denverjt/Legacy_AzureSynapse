@@ -1,17 +1,17 @@
 {
-	"name": "Prd_ItemMaster",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW Prd_ItemMaster\n-- drop view Prd_ItemMaster\nAS\n\nSELECT      [Item Number], [Item Name], [Main ERP]\n,           B.[Brand Short Name], [Master Data Brand], [Master Data Finance Brand], [Master Data Division]\nFROM        v_MainERP_Item A\nLEFT JOIN   v_Brand_Item B on A.[Brand Short Name] = B.[Brand Short Name]",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": -1
-		},
-		"type": "SqlQuery"
-	}
+  "name": "Prd_ItemMaster",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW Prd_ItemMaster\n-- drop view Prd_ItemMaster\nAS\n\nSELECT      [Item Number], [Item Name], [Main ERP]\n,           B.[Brand Short Name], [Master Data Brand], [Master Data Finance Brand], [Master Data Division]\nFROM        v_MainERP_Item A\nLEFT JOIN   v_Brand_Item B on A.[Brand Short Name] = B.[Brand Short Name]",
+      "resultLimit": -1
+    },
+    "type": "SqlQuery"
+  }
 }

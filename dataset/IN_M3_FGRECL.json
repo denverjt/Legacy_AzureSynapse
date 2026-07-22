@@ -1,206 +1,205 @@
 {
-	"name": "IN_M3_FGRECL",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "tlcdw-WorkspaceDefaultStorage",
-			"type": "LinkedServiceReference"
-		},
-		"annotations": [],
-		"type": "Json",
-		"typeProperties": {
-			"location": {
-				"type": "AzureBlobFSLocation",
-				"fileName": "FGRECL_2023-01-08_01-49-26-315.json",
-				"folderPath": "M3/JSONProcess/FGRECL",
-				"fileSystem": "tlclakefs"
-			},
-			"compression": {
-				"type": "deflate",
-				"level": "Optimal"
-			}
-		},
-		"schema": {
-			"type": "object",
-			"properties": {
-				"CONO": {
-					"type": "integer"
-				},
-				"DIVI": {
-					"type": "string"
-				},
-				"PUNO": {
-					"type": "string"
-				},
-				"PNLI": {
-					"type": "integer"
-				},
-				"PNLS": {
-					"type": "integer"
-				},
-				"REPN": {
-					"type": "integer"
-				},
-				"RELP": {
-					"type": "integer"
-				},
-				"FACI": {
-					"type": "string"
-				},
-				"WHLO": {
-					"type": "string"
-				},
-				"SUDO": {
-					"type": "string"
-				},
-				"SUNO": {
-					"type": "string"
-				},
-				"SORN": {
-					"type": "string"
-				},
-				"TRDT": {
-					"type": "integer"
-				},
-				"ITNO": {
-					"type": "string"
-				},
-				"IMST": {
-					"type": "integer"
-				},
-				"IMDT": {
-					"type": "integer"
-				},
-				"SCOC": {
-					"type": "number"
-				},
-				"SCOP": {
-					"type": "number"
-				},
-				"SCDC": {
-					"type": "number"
-				},
-				"PUCD": {
-					"type": "integer"
-				},
-				"CUCD": {
-					"type": "string"
-				},
-				"SERA": {
-					"type": "number"
-				},
-				"CRTP": {
-					"type": "integer"
-				},
-				"RPQT": {
-					"type": "number"
-				},
-				"RPQA": {
-					"type": "number"
-				},
-				"CAWE": {
-					"type": "number"
-				},
-				"IVQT": {
-					"type": "number"
-				},
-				"IVQA": {
-					"type": "number"
-				},
-				"IVCW": {
-					"type": "number"
-				},
-				"RCAC": {
-					"type": "number"
-				},
-				"ICAC": {
-					"type": "number"
-				},
-				"IASR": {
-					"type": "integer"
-				},
-				"IASD": {
-					"type": "integer"
-				},
-				"ANBR": {
-					"type": "integer"
-				},
-				"SENO": {
-					"type": "integer"
-				},
-				"HSIN": {
-					"type": "string"
-				},
-				"SBAN": {
-					"type": "string"
-				},
-				"FGTP": {
-					"type": "string"
-				},
-				"ORTY": {
-					"type": "string"
-				},
-				"PIDT": {
-					"type": "integer"
-				},
-				"BUYE": {
-					"type": "string"
-				},
-				"RGDT": {
-					"type": "integer"
-				},
-				"RGTM": {
-					"type": "integer"
-				},
-				"LMDT": {
-					"type": "integer"
-				},
-				"CHNO": {
-					"type": "integer"
-				},
-				"CHID": {
-					"type": "string"
-				},
-				"FIAS": {
-					"type": "integer"
-				},
-				"LMTS": {
-					"type": "integer"
-				},
-				"BANO": {
-					"type": "string"
-				},
-				"TRTM": {
-					"type": "integer"
-				},
-				"CLAN": {
-					"type": "string"
-				},
-				"CLLN": {
-					"type": "integer"
-				},
-				"SCOA": {
-					"type": "integer"
-				},
-				"BLSB": {
-					"type": "integer"
-				},
-				"SUIR": {
-					"type": "integer"
-				},
-				"accountingEntity": {
-					"type": "string"
-				},
-				"variationNumber": {
-					"type": "integer"
-				},
-				"timestamp": {
-					"type": "string"
-				},
-				"deleted": {
-					"type": "boolean"
-				}
-			}
-		}
-	},
-	"type": "Microsoft.Synapse/workspaces/datasets"
+  "name": "IN_M3_FGRECL",
+  "properties": {
+    "annotations": [],
+    "linkedServiceName": {
+      "referenceName": "tlcdw-WorkspaceDefaultStorage",
+      "type": "LinkedServiceReference"
+    },
+    "schema": {
+      "properties": {
+        "ANBR": {
+          "type": "integer"
+        },
+        "BANO": {
+          "type": "string"
+        },
+        "BLSB": {
+          "type": "integer"
+        },
+        "BUYE": {
+          "type": "string"
+        },
+        "CAWE": {
+          "type": "number"
+        },
+        "CHID": {
+          "type": "string"
+        },
+        "CHNO": {
+          "type": "integer"
+        },
+        "CLAN": {
+          "type": "string"
+        },
+        "CLLN": {
+          "type": "integer"
+        },
+        "CONO": {
+          "type": "integer"
+        },
+        "CRTP": {
+          "type": "integer"
+        },
+        "CUCD": {
+          "type": "string"
+        },
+        "DIVI": {
+          "type": "string"
+        },
+        "FACI": {
+          "type": "string"
+        },
+        "FGTP": {
+          "type": "string"
+        },
+        "FIAS": {
+          "type": "integer"
+        },
+        "HSIN": {
+          "type": "string"
+        },
+        "IASD": {
+          "type": "integer"
+        },
+        "IASR": {
+          "type": "integer"
+        },
+        "ICAC": {
+          "type": "number"
+        },
+        "IMDT": {
+          "type": "integer"
+        },
+        "IMST": {
+          "type": "integer"
+        },
+        "ITNO": {
+          "type": "string"
+        },
+        "IVCW": {
+          "type": "number"
+        },
+        "IVQA": {
+          "type": "number"
+        },
+        "IVQT": {
+          "type": "number"
+        },
+        "LMDT": {
+          "type": "integer"
+        },
+        "LMTS": {
+          "type": "integer"
+        },
+        "ORTY": {
+          "type": "string"
+        },
+        "PIDT": {
+          "type": "integer"
+        },
+        "PNLI": {
+          "type": "integer"
+        },
+        "PNLS": {
+          "type": "integer"
+        },
+        "PUCD": {
+          "type": "integer"
+        },
+        "PUNO": {
+          "type": "string"
+        },
+        "RCAC": {
+          "type": "number"
+        },
+        "RELP": {
+          "type": "integer"
+        },
+        "REPN": {
+          "type": "integer"
+        },
+        "RGDT": {
+          "type": "integer"
+        },
+        "RGTM": {
+          "type": "integer"
+        },
+        "RPQA": {
+          "type": "number"
+        },
+        "RPQT": {
+          "type": "number"
+        },
+        "SBAN": {
+          "type": "string"
+        },
+        "SCDC": {
+          "type": "number"
+        },
+        "SCOA": {
+          "type": "integer"
+        },
+        "SCOC": {
+          "type": "number"
+        },
+        "SCOP": {
+          "type": "number"
+        },
+        "SENO": {
+          "type": "integer"
+        },
+        "SERA": {
+          "type": "number"
+        },
+        "SORN": {
+          "type": "string"
+        },
+        "SUDO": {
+          "type": "string"
+        },
+        "SUIR": {
+          "type": "integer"
+        },
+        "SUNO": {
+          "type": "string"
+        },
+        "TRDT": {
+          "type": "integer"
+        },
+        "TRTM": {
+          "type": "integer"
+        },
+        "WHLO": {
+          "type": "string"
+        },
+        "accountingEntity": {
+          "type": "string"
+        },
+        "deleted": {
+          "type": "boolean"
+        },
+        "timestamp": {
+          "type": "string"
+        },
+        "variationNumber": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "type": "Json",
+    "typeProperties": {
+      "compression": {
+        "level": "Optimal",
+        "type": "deflate"
+      },
+      "location": {
+        "fileName": "FGRECL_2023-01-08_01-49-26-315.json",
+        "fileSystem": "tlclakefs",
+        "folderPath": "M3/JSONProcess/FGRECL",
+        "type": "AzureBlobFSLocation"
+      }
+    }
+  }
 }

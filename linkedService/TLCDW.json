@@ -1,15 +1,14 @@
 {
-	"name": "TLCDW",
-	"type": "Microsoft.Synapse/workspaces/linkedservices",
-	"properties": {
-		"annotations": [],
-		"type": "AzureSqlDatabase",
-		"typeProperties": {
-			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tlcdw-ondemand.sql.azuresynapse.net;Initial Catalog=tlcdw"
-		},
-		"connectVia": {
-			"referenceName": "AutoResolveIntegrationRuntime",
-			"type": "IntegrationRuntimeReference"
-		}
-	}
+  "name": "TLCDW",
+  "properties": {
+    "annotations": [],
+    "connectVia": {
+      "referenceName": "AutoResolveIntegrationRuntime",
+      "type": "IntegrationRuntimeReference"
+    },
+    "type": "AzureSqlDatabase",
+    "typeProperties": {
+      "connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tlcdw-ondemand.sql.azuresynapse.net;Initial Catalog=tlcdw"
+    }
+  }
 }

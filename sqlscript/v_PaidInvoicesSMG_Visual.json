@@ -1,17 +1,17 @@
 {
-	"name": "v_PaidInvoicesSMG_Visual",
-	"properties": {
-		"content": {
-			"query": "create view v_PaidInvoicesSMG_Visual\n-- drop view v_PaidInvoicesSMG_Visual\nas\nSELECT\t\t\tA.INVOICE_ID, A.CUSTOMER_ID, A.LAST_PAID_DATE, ROUND(InvAmt2/NULLIF(count(LINE_NO) OVER (PARTITION BY CUST_ORDER_ID),0),2) as InvAmt\n,               B.CUST_ORDER_ID, LINE_NO \nFROM\n(\nSELECT\t\t\tINVOICE_ID, CUSTOMER_ID, MAX(LAST_PAID_DATE) AS LAST_PAID_DATE, SUM(TOTAL_PAID_AMOUNT) AS InvAmt2\nFROM\t\t\tECV.RECEIVABLES_RECEIVABLE\nWHERE\t\t\tLAST_PAID_DATE >= '2023-01-01'\nAND\t\t\t\tCUSTOMER_ID IN\n(\n'BES000',\n'BR7181',\n'HA3125',\n'HD1000',\n'HOM003',\n'HO3000',\n'LO4003',\n'HA8170',\n'E336555',\n'Y336555',\n'LT5501',\n'WA0781',\n'CS8100',\n'E834730',\n'WA1001'\n)\nGROUP BY\t\tINVOICE_ID, CUSTOMER_ID\n) A\n\nLEFT JOIN\n\n(\nSELECT\t\t\tDISTINCT INVOICE_ID, CUST_ORDER_ID, LINE_NO \nfrom\t\t\tECV.RECEIVABLES_RECEIVABLE_LINE\n) B\t\t\t\tON A.INVOICE_ID = B.INVOICE_ID",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_PaidInvoicesSMG_Visual",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "create view v_PaidInvoicesSMG_Visual\n-- drop view v_PaidInvoicesSMG_Visual\nas\nSELECT\t\t\tA.INVOICE_ID, A.CUSTOMER_ID, A.LAST_PAID_DATE, ROUND(InvAmt2/NULLIF(count(LINE_NO) OVER (PARTITION BY CUST_ORDER_ID),0),2) as InvAmt\n,               B.CUST_ORDER_ID, LINE_NO \nFROM\n(\nSELECT\t\t\tINVOICE_ID, CUSTOMER_ID, MAX(LAST_PAID_DATE) AS LAST_PAID_DATE, SUM(TOTAL_PAID_AMOUNT) AS InvAmt2\nFROM\t\t\tECV.RECEIVABLES_RECEIVABLE\nWHERE\t\t\tLAST_PAID_DATE >= '2023-01-01'\nAND\t\t\t\tCUSTOMER_ID IN\n(\n'BES000',\n'BR7181',\n'HA3125',\n'HD1000',\n'HOM003',\n'HO3000',\n'LO4003',\n'HA8170',\n'E336555',\n'Y336555',\n'LT5501',\n'WA0781',\n'CS8100',\n'E834730',\n'WA1001'\n)\nGROUP BY\t\tINVOICE_ID, CUSTOMER_ID\n) A\n\nLEFT JOIN\n\n(\nSELECT\t\t\tDISTINCT INVOICE_ID, CUST_ORDER_ID, LINE_NO \nfrom\t\t\tECV.RECEIVABLES_RECEIVABLE_LINE\n) B\t\t\t\tON A.INVOICE_ID = B.INVOICE_ID",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

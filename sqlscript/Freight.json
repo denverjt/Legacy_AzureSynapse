@@ -1,17 +1,17 @@
 {
-	"name": "Freight",
-	"properties": {
-		"content": {
-			"query": "SELECT                      DISTINCT    [Part ID - Actual]\n,                                       Brand\n,                                       [Order ID]\n,                                       Date\n,                                       [Sales Qty]\n,                                       SUM(Delivery2.IVQT) as [Total Invoiced Units]\n,                                       SUM(CRAM) as [Total Freight]\n,                                       SUM(CRAM)/NULLIF(SUM(Delivery2.IVQT),0) AS [Freight per Unit]\n--,                                       CRAM/nullif([Sales Qty],0) as [Freight Charge per Unit]\nFROM        a_SalesData     Sales\nLEFT JOIN   M3.ODLINE       Delivery on Sales.[Order ID] = Delivery.ORNO and Sales.[Part ID - Actual] = Delivery.ITNO\nLEFT JOIN   M3.ODLINE       Delivery2 on Sales.[Order ID] = Delivery2.ORNO\nLEFT JOIN   M3.OOCHRG       Charge on Sales.[Order ID] = Charge.ORNO and Delivery.DLIX = Charge.DLIX and Charge.CRID = 'FRE002'\nWHERE       Sales.[Sales Type] = 'Sales'\nAND         Sales.Company = 'M3'\nAND         CRAM is not null\nAND         CRAM > 0\nGROUP BY        [Part ID - Actual], Brand, [Order ID], Date, [Sales Qty]",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": -1
-		},
-		"type": "SqlQuery"
-	}
+  "name": "Freight",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "SELECT                      DISTINCT    [Part ID - Actual]\n,                                       Brand\n,                                       [Order ID]\n,                                       Date\n,                                       [Sales Qty]\n,                                       SUM(Delivery2.IVQT) as [Total Invoiced Units]\n,                                       SUM(CRAM) as [Total Freight]\n,                                       SUM(CRAM)/NULLIF(SUM(Delivery2.IVQT),0) AS [Freight per Unit]\n--,                                       CRAM/nullif([Sales Qty],0) as [Freight Charge per Unit]\nFROM        a_SalesData     Sales\nLEFT JOIN   M3.ODLINE       Delivery on Sales.[Order ID] = Delivery.ORNO and Sales.[Part ID - Actual] = Delivery.ITNO\nLEFT JOIN   M3.ODLINE       Delivery2 on Sales.[Order ID] = Delivery2.ORNO\nLEFT JOIN   M3.OOCHRG       Charge on Sales.[Order ID] = Charge.ORNO and Delivery.DLIX = Charge.DLIX and Charge.CRID = 'FRE002'\nWHERE       Sales.[Sales Type] = 'Sales'\nAND         Sales.Company = 'M3'\nAND         CRAM is not null\nAND         CRAM > 0\nGROUP BY        [Part ID - Actual], Brand, [Order ID], Date, [Sales Qty]",
+      "resultLimit": -1
+    },
+    "type": "SqlQuery"
+  }
 }

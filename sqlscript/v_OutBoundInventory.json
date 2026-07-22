@@ -1,17 +1,17 @@
 {
-	"name": "v_OutBoundInventory",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW     v_OutBoundInventory\n-- DROP VIEW v_OutBoundInventory\nas\nSELECT      WHLO, ML.ITNO, WHSL, STQT, IDDT, ITCL, ITDS\nFROM        M3.MITLOC ML\nJOIN        M3.MITMAS MM ON ML.ITNO = MM.ITNO\nWHERE       WHLT = 'OB' \nAND         STQT <> ALQT",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_OutBoundInventory",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW     v_OutBoundInventory\n-- DROP VIEW v_OutBoundInventory\nas\nSELECT      WHLO, ML.ITNO, WHSL, STQT, IDDT, ITCL, ITDS\nFROM        M3.MITLOC ML\nJOIN        M3.MITMAS MM ON ML.ITNO = MM.ITNO\nWHERE       WHLT = 'OB' \nAND         STQT <> ALQT",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

@@ -1,17 +1,17 @@
 {
-	"name": "v_FreightOut",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW v_FreightOut\n--DROP VIEW v_FreightOut\nas\nSELECT      ORNO AS [Order ID]\n,           CASE WHEN CRID = 'FRE002' then 'Freight Income' else 'Freight Expense' end as [Freight Charge]\n,           SUM(CRAM) AS [Charge Amount]\nFROM        M3.OOCHRG\nWHERE       CRID IN ('FRE002', 'FRE003')\nGROUP BY    ORNO,  CASE WHEN CRID = 'FRE002' then 'Freight Income' else 'Freight Expense' end",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_FreightOut",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW v_FreightOut\n--DROP VIEW v_FreightOut\nas\nSELECT      ORNO AS [Order ID]\n,           CASE WHEN CRID = 'FRE002' then 'Freight Income' else 'Freight Expense' end as [Freight Charge]\n,           SUM(CRAM) AS [Charge Amount]\nFROM        M3.OOCHRG\nWHERE       CRID IN ('FRE002', 'FRE003')\nGROUP BY    ORNO,  CASE WHEN CRID = 'FRE002' then 'Freight Income' else 'Freight Expense' end",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

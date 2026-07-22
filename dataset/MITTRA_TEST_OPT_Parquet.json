@@ -1,21 +1,21 @@
 {
-	"name": "MITTRA_TEST_OPT_Parquet",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "tlcdw-WorkspaceDefaultStorage",
-			"type": "LinkedServiceReference"
-		},
-		"annotations": [],
-		"type": "Parquet",
-		"typeProperties": {
-			"location": {
-				"type": "AzureBlobFSLocation",
-				"fileName": "MITTRA_TEST_OPT.parquet",
-				"folderPath": "M3P_TEST",
-				"fileSystem": "tlclakefs"
-			},
-			"compressionCodec": "snappy"
-		},
-		"schema": []
-	}
+  "name": "MITTRA_TEST_OPT_Parquet",
+  "properties": {
+    "annotations": [],
+    "linkedServiceName": {
+      "referenceName": "tlcdw-WorkspaceDefaultStorage",
+      "type": "LinkedServiceReference"
+    },
+    "schema": [],
+    "type": "Parquet",
+    "typeProperties": {
+      "compressionCodec": "snappy",
+      "location": {
+        "fileName": "MITTRA_TEST_OPT.parquet",
+        "fileSystem": "tlclakefs",
+        "folderPath": "M3P_TEST",
+        "type": "AzureBlobFSLocation"
+      }
+    }
+  }
 }

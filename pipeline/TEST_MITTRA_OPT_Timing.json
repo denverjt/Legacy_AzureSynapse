@@ -1,61 +1,62 @@
 {
-	"name": "TEST_MITTRA_OPT_Timing",
-	"properties": {
-		"activities": [
-			{
-				"name": "Copy_OOLINE_TEST_OPT",
-				"type": "Copy",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "AzureSqlSource",
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
-					},
-					"sink": {
-						"type": "ParquetSink",
-						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
-						},
-						"formatSettings": {
-							"type": "ParquetWriteSettings"
-						}
-					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "IN_M3P",
-						"type": "DatasetReference",
-						"parameters": {
-							"cw_table": "OOLINE_TEST_OPT"
-						}
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "OOLINE_TEST_OPT_Parquet",
-						"type": "DatasetReference"
-					}
-				]
-			}
-		],
-		"annotations": []
-	}
+  "name": "TEST_MITTRA_OPT_Timing",
+  "properties": {
+    "activities": [
+      {
+        "dependsOn": [],
+        "inputs": [
+          {
+            "parameters": {
+              "cw_table": "OOLINE_TEST_OPT"
+            },
+            "referenceName": "IN_M3P",
+            "type": "DatasetReference"
+          }
+        ],
+        "name": "Copy_OOLINE_TEST_OPT",
+        "outputs": [
+          {
+            "parameters": {},
+            "referenceName": "OOLINE_TEST_OPT_Parquet",
+            "type": "DatasetReference"
+          }
+        ],
+        "policy": {
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false,
+          "timeout": "0.12:00:00"
+        },
+        "type": "Copy",
+        "typeProperties": {
+          "enableStaging": false,
+          "sink": {
+            "formatSettings": {
+              "type": "ParquetWriteSettings"
+            },
+            "storeSettings": {
+              "type": "AzureBlobFSWriteSettings"
+            },
+            "type": "ParquetSink"
+          },
+          "source": {
+            "partitionOption": "None",
+            "queryTimeout": "02:00:00",
+            "type": "AzureSqlSource"
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          }
+        },
+        "userProperties": []
+      }
+    ],
+    "annotations": []
+  }
 }

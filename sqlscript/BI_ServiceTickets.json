@@ -1,17 +1,17 @@
 {
-	"name": "BI_ServiceTickets",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW BI_ServiceTickets\n --drop view BI_ServiceTickets\n\nAS\n\n    SELECT\n        H.ORNO AS [Order Number],\n        H.AOTY AS [Order Type],\n        H.AOTC AS [Order Category],\n        H.PRNO AS [Product],\n        H.CUNO AS [Customer Number],\n        H.AAGN AS [Agreement],\n        H.TAIL AS [Registration Number],\n        H.AOSL AS [Lowest Status],\n        H.AOST AS [Highest Status],\n        H.ORDT AS [Order Date],\n        H.AAP1 AS [Planned Receipt Date],\n        H.AADT AS [Actual Receipt Date],\n        H.APD1 AS [Planned Delivery Date],\n        H.RLDT AS [Requested Delivery Date],\n        H.CODT AS [Confirmed Delivery Date],\n        H.AACD AS [Actual Delivery Date],\n        H.RESP AS [Responsible],\n        H.YREF AS [Your Reference],\n        H.OREF AS [Our Reference],\n        H.OPRI AS [Priority],\n        H.ACSE AS [Serial Number Administration],\n        H.AMWA AS [Manufacture Warranty],\n        L.BANO AS [Lot Number],\n        L.STRT AS [Product Structure Type],\n        L.SUFI AS [Service],\n        L.AORQ AS [Order Quantity],\n        L.AOST AS [Status],\n        L.RSCD AS [Transaction Reason],\n        L.WHLO AS [Warehouse],\n        L.PONR AS [Order Line],\n        S.FLNO AS [Item Number]\n    \n    FROM M3.ACUORH H\n    LEFT JOIN M3.ACUORL L ON H.ORNO = L.ORNO\n    LEFT JOIN (\n        SELECT DISTINCT\n            SERN,\n            FLNO\n        FROM M3.MILOIN ) S ON L.BANO = S.SERN\n\n    --select top 100 * from M3.MILOIN where FLNO = 'MIM75' SERN = '200710937'\n    --select top 100 * from M3.ACUORH ORDER BY ORDT DESC\n\n\n\n\n\n\n",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "BI_ServiceTickets",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW BI_ServiceTickets\n --drop view BI_ServiceTickets\n\nAS\n\n    SELECT\n        H.ORNO AS [Order Number],\n        H.AOTY AS [Order Type],\n        H.AOTC AS [Order Category],\n        H.PRNO AS [Product],\n        H.CUNO AS [Customer Number],\n        H.AAGN AS [Agreement],\n        H.TAIL AS [Registration Number],\n        H.AOSL AS [Lowest Status],\n        H.AOST AS [Highest Status],\n        H.ORDT AS [Order Date],\n        H.AAP1 AS [Planned Receipt Date],\n        H.AADT AS [Actual Receipt Date],\n        H.APD1 AS [Planned Delivery Date],\n        H.RLDT AS [Requested Delivery Date],\n        H.CODT AS [Confirmed Delivery Date],\n        H.AACD AS [Actual Delivery Date],\n        H.RESP AS [Responsible],\n        H.YREF AS [Your Reference],\n        H.OREF AS [Our Reference],\n        H.OPRI AS [Priority],\n        H.ACSE AS [Serial Number Administration],\n        H.AMWA AS [Manufacture Warranty],\n        L.BANO AS [Lot Number],\n        L.STRT AS [Product Structure Type],\n        L.SUFI AS [Service],\n        L.AORQ AS [Order Quantity],\n        L.AOST AS [Status],\n        L.RSCD AS [Transaction Reason],\n        L.WHLO AS [Warehouse],\n        L.PONR AS [Order Line],\n        S.FLNO AS [Item Number]\n    \n    FROM M3.ACUORH H\n    LEFT JOIN M3.ACUORL L ON H.ORNO = L.ORNO\n    LEFT JOIN (\n        SELECT DISTINCT\n            SERN,\n            FLNO\n        FROM M3.MILOIN ) S ON L.BANO = S.SERN\n\n    --select top 100 * from M3.MILOIN where FLNO = 'MIM75' SERN = '200710937'\n    --select top 100 * from M3.ACUORH ORDER BY ORDT DESC\n\n\n\n\n\n\n",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

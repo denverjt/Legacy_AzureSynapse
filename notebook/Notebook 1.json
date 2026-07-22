@@ -1,92 +1,113 @@
 {
-	"name": "Notebook 1",
-	"properties": {
-		"nbformat": 4,
-		"nbformat_minor": 2,
-		"bigDataPool": {
-			"referenceName": "tlcdw",
-			"type": "BigDataPoolReference"
-		},
-		"sessionProperties": {
-			"driverMemory": "28g",
-			"driverCores": 4,
-			"executorMemory": "28g",
-			"executorCores": 4,
-			"numExecutors": 2,
-			"runAsWorkspaceSystemIdentity": false,
-			"conf": {
-				"spark.dynamicAllocation.enabled": "false",
-				"spark.dynamicAllocation.minExecutors": "2",
-				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "d04782a1-1042-46e4-9cb1-86cf501dd02c"
-			}
-		},
-		"metadata": {
-			"saveOutput": true,
-			"synapse_widget": {
-				"version": "0.1"
-			},
-			"enableDebugMode": false,
-			"language_info": {
-				"name": "python"
-			},
-			"a365ComputeOptions": {
-				"id": "/subscriptions/1663c571-b593-44f6-b433-2475ba765dcb/resourceGroups/US/providers/Microsoft.Synapse/workspaces/tlcdw/bigDataPools/tlcdw",
-				"name": "tlcdw",
-				"type": "Spark",
-				"endpoint": "https://tlcdw.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/tlcdw",
-				"auth": {
-					"type": "AAD",
-					"authResource": "https://dev.azuresynapse.net",
-					"authHeader": null
-				},
-				"sparkVersion": "3.2",
-				"nodeCount": 10,
-				"cores": 4,
-				"memory": 28,
-				"extraHeader": null
-			},
-			"sessionKeepAliveTimeout": 30
-		},
-		"cells": [
-			{
-				"cell_type": "code",
-				"metadata": {
-					"microsoft": {
-						"language": "python"
-					}
-				},
-				"source": [
-					"%%pyspark\r\n",
-					"df = sqlContext.read.option('compression','deflate').json('abfss://tlclakefs@tlclake.dfs.core.windows.net/M3/JSON/OCUSIT/OCUSIT_2022-10-10_00-16-48-780.json')\r\n",
-					"df.write.parquet('abfss://tlclakefs@tlclake.dfs.core.windows.net/M3/OCUSITtest.parquet')\r\n",
-					"\r\n",
-					"%%pyspark\r\n",
-					"df = spark.read.load([\r\n",
-					"    'abfss://tlclakefs@tlclake.dfs.core.windows.net/M3/JSON/OSASTD/OSASTD_2022-10-12_22-00-52-608.json',\r\n",
-					"    'abfss://tlclakefs@tlclake.dfs.core.windows.net/M3/JSON/OSASTD/OSASTD_2022-10-12_22-04-25-148.json'\r\n",
-					"    ], format='json')\r\n",
-					"display(df.limit(10))"
-				],
-				"execution_count": 10
-			},
-			{
-				"cell_type": "code",
-				"metadata": {
-					"jupyter": {
-						"source_hidden": false,
-						"outputs_hidden": false
-					},
-					"nteract": {
-						"transient": {
-							"deleting": false
-						}
-					}
-				},
-				"source": [
-					""
-				]
-			}
-		]
-	}
+  "name": "Notebook 1",
+  "properties": {
+    "bigDataPool": {
+      "referenceName": "tlcdw",
+      "type": "BigDataPoolReference"
+    },
+    "cells": [
+      {
+        "cell_type": "code",
+        "execution_count": 10,
+        "metadata": {
+          "microsoft": {
+            "language": "python"
+          }
+        },
+        "outputs": [
+          {
+            "data": {
+              "application/vnd.livy.statement-meta+json": {
+                "execution_finish_time": "2022-10-11T02:29:05.8703781Z",
+                "execution_start_time": "2022-10-11T02:29:04.9218174Z",
+                "livy_statement_state": "available",
+                "queued_time": "2022-10-11T02:29:04.7976396Z",
+                "session_id": "0",
+                "session_start_time": null,
+                "spark_jobs": null,
+                "spark_pool": "tlcdw",
+                "state": "finished",
+                "statement_id": 10
+              },
+              "text/plain": "StatementMeta(tlcdw, 0, 10, Finished, Available)"
+            },
+            "metadata": {},
+            "output_type": "display_data"
+          },
+          {
+            "output_type": "error"
+          }
+        ],
+        "source": [
+          "%%pyspark\r\n",
+          "df = sqlContext.read.option('compression','deflate').json('abfss://tlclakefs@tlclake.dfs.core.windows.net/M3/JSON/OCUSIT/OCUSIT_2022-10-10_00-16-48-780.json')\r\n",
+          "df.write.parquet('abfss://tlclakefs@tlclake.dfs.core.windows.net/M3/OCUSITtest.parquet')\r\n",
+          "\r\n",
+          "%%pyspark\r\n",
+          "df = spark.read.load([\r\n",
+          "    'abfss://tlclakefs@tlclake.dfs.core.windows.net/M3/JSON/OSASTD/OSASTD_2022-10-12_22-00-52-608.json',\r\n",
+          "    'abfss://tlclakefs@tlclake.dfs.core.windows.net/M3/JSON/OSASTD/OSASTD_2022-10-12_22-04-25-148.json'\r\n",
+          "    ], format='json')\r\n",
+          "display(df.limit(10))"
+        ]
+      },
+      {
+        "cell_type": "code",
+        "metadata": {
+          "jupyter": {
+            "outputs_hidden": false,
+            "source_hidden": false
+          },
+          "nteract": {
+            "transient": {
+              "deleting": false
+            }
+          }
+        },
+        "outputs": [],
+        "source": [
+          ""
+        ]
+      }
+    ],
+    "entityState": null,
+    "metadata": {
+      "a365ComputeOptions": {
+        "auth": {
+          "authHeader": null,
+          "authResource": "https://dev.azuresynapse.net",
+          "type": "AAD"
+        },
+        "cores": 4,
+        "endpoint": "https://tlcdw.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/tlcdw",
+        "extraHeader": null,
+        "id": "/subscriptions/1663c571-b593-44f6-b433-2475ba765dcb/resourceGroups/US/providers/Microsoft.Synapse/workspaces/tlcdw/bigDataPools/tlcdw",
+        "memory": 28,
+        "name": "tlcdw",
+        "nodeCount": 10,
+        "sparkVersion": "3.2",
+        "type": "Spark"
+      },
+      "enableDebugMode": false,
+      "language_info": {
+        "name": "python"
+      },
+      "saveOutput": true,
+      "sessionKeepAliveTimeout": 30,
+      "synapse_widget": {
+        "state": {},
+        "version": "0.1"
+      }
+    },
+    "nbformat": 4,
+    "nbformat_minor": 2,
+    "renameOperationDetails": null,
+    "sessionProperties": {
+      "driverCores": 4,
+      "driverMemory": "28g",
+      "executorCores": 4,
+      "executorMemory": "28g",
+      "numExecutors": 2
+    }
+  }
 }

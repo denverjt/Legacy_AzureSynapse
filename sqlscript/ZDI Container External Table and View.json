@@ -1,17 +1,17 @@
 {
-	"name": "ZDI Container External Table and View",
-	"properties": {
-		"content": {
-			"query": "--DROP VIEW ZDI.Container\nCREATE VIEW ZDI.Container AS \nSELECT *, TRY_CONVERT(date, REPLACE(SUBSTRING([Filename], CHARINDEX('Report__', [Filename]) + 19, 10),'_', '/')) Filedate\nFROM ZDI.ContainerRaw\nWHERE TRY_CONVERT(date, REPLACE(SUBSTRING([Filename], CHARINDEX('Report__', [Filename]) + 19, 10),'_', '/')) IN (\n\tSELECT\n    MAX(TRY_CONVERT(date, REPLACE(SUBSTRING([Filename], CHARINDEX('Report__', [Filename]) + 19, 10),'_', '/'))) FileDate\n    FROM ZDI.ContainerRaw\n)\n\nSELECT TOP 100 *\nFROM ZDI.Container\n\n-- DROP EXTERNAL TABLE ZDI.ContainerAuto\nCREATE EXTERNAL TABLE ZDI.ContainerRaw (\n\t[Container Number(s)] nvarchar(4000),\n\t[Po Number] nvarchar(4000),\n\t[Invoice Number] nvarchar(4000),\n\t[Invoice date] nvarchar(4000),\n\t[Ship Date] nvarchar(4000),\n\t[Carrier Name] nvarchar(4000),\n\t[Payable Amount] float,\n\t[Linehaul] float,\n\t[Final Mile] float,\n\t[Other] float,\n\t[Payment Number] nvarchar(4000),\n\t[Batch Date] nvarchar(4000),\n\t[Status] nvarchar(4000),\n\t[Division] nvarchar(4000),\n\t[BOL Number] nvarchar(4000),\n\t[In Gate Date] nvarchar(4000),\n\t[Shipper Name] nvarchar(4000),\n\t[Shipper Address] nvarchar(4000),\n\t[Shipper City] nvarchar(4000),\n\t[Shipper State] nvarchar(4000),\n\t[Shipper Country] nvarchar(4000),\n\t[Shipper ZIP] nvarchar(4000),\n\t[Consignee Name] nvarchar(4000),\n\t[Filename] AS filename()\n\t)\n\tWITH (\n\tLOCATION = 'ZeroDown/Freight_-_Legacy_Container_Invoice_Report*.csv',\n\tDATA_SOURCE = [tlclakefs_tlclake_dfs_core_windows_net],\n\tFILE_FORMAT = [SynapseDelimitedTextFormatQuote]\n\t)\nGO\n\n",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "ZDI Container External Table and View",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "--DROP VIEW ZDI.Container\nCREATE VIEW ZDI.Container AS \nSELECT *, TRY_CONVERT(date, REPLACE(SUBSTRING([Filename], CHARINDEX('Report__', [Filename]) + 19, 10),'_', '/')) Filedate\nFROM ZDI.ContainerRaw\nWHERE TRY_CONVERT(date, REPLACE(SUBSTRING([Filename], CHARINDEX('Report__', [Filename]) + 19, 10),'_', '/')) IN (\n\tSELECT\n    MAX(TRY_CONVERT(date, REPLACE(SUBSTRING([Filename], CHARINDEX('Report__', [Filename]) + 19, 10),'_', '/'))) FileDate\n    FROM ZDI.ContainerRaw\n)\n\nSELECT TOP 100 *\nFROM ZDI.Container\n\n-- DROP EXTERNAL TABLE ZDI.ContainerAuto\nCREATE EXTERNAL TABLE ZDI.ContainerRaw (\n\t[Container Number(s)] nvarchar(4000),\n\t[Po Number] nvarchar(4000),\n\t[Invoice Number] nvarchar(4000),\n\t[Invoice date] nvarchar(4000),\n\t[Ship Date] nvarchar(4000),\n\t[Carrier Name] nvarchar(4000),\n\t[Payable Amount] float,\n\t[Linehaul] float,\n\t[Final Mile] float,\n\t[Other] float,\n\t[Payment Number] nvarchar(4000),\n\t[Batch Date] nvarchar(4000),\n\t[Status] nvarchar(4000),\n\t[Division] nvarchar(4000),\n\t[BOL Number] nvarchar(4000),\n\t[In Gate Date] nvarchar(4000),\n\t[Shipper Name] nvarchar(4000),\n\t[Shipper Address] nvarchar(4000),\n\t[Shipper City] nvarchar(4000),\n\t[Shipper State] nvarchar(4000),\n\t[Shipper Country] nvarchar(4000),\n\t[Shipper ZIP] nvarchar(4000),\n\t[Consignee Name] nvarchar(4000),\n\t[Filename] AS filename()\n\t)\n\tWITH (\n\tLOCATION = 'ZeroDown/Freight_-_Legacy_Container_Invoice_Report*.csv',\n\tDATA_SOURCE = [tlclakefs_tlclake_dfs_core_windows_net],\n\tFILE_FORMAT = [SynapseDelimitedTextFormatQuote]\n\t)\nGO\n\n",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

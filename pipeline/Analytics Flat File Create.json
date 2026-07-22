@@ -1,459 +1,459 @@
 {
-	"name": "Analytics Flat File Create",
-	"properties": {
-		"activities": [
-			{
-				"name": "v_SalesData",
-				"type": "Copy",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "AzureSqlSource",
-						"sqlReaderQuery": "SELECT [Division] [D]\n,[Company] [C]\n,[Customer ID] [CID]\n,[Customer Name] [CN]\n,[Customer PO] [CPO]\n,[Warehouse] [WH]\n,[Order ID] [OID]\n,[Invoice ID] [IID]\n,[Date]\n,[Brand]\n,[Product Category] [PC]\n,[Part ID - Actual] [PIDA]\n,[Part ID - Go Forward] [PIGF]\n,[Part Description] [DESC]\n,[Supplier ID] [SID]\n,[Sales Amt] [Amt]\n,[Net Sales Amt] [Net Amt]\n,[Sales Qty] [Qty]\n,[Sales Type] [Type]\n,[Ship To Name] [STN]\n,[Ship To Address 1] [SA1]\n,[Ship to Address 2] [SA2]\n,[Ship to City] [STC]\n, [Ship to State] [STS]\n, [Ship to Zip Code] [STZ]\n,[Bill To Name] [BTN]\n,[Bill To Address 1] [BA1]\n,[Bill to Address 2] [BA2]\n, [Bill to City] [BTC]\n, [Bill to State] [BTS]\n, [Bill to Zip Code] [BTZ]\n,[Cost]\n,[Order Entry User] [OEU]\n FROM [dbo].[v_SalesData]",
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
-					},
-					"sink": {
-						"type": "ParquetSink",
-						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings",
-							"copyBehavior": "FlattenHierarchy"
-						},
-						"formatSettings": {
-							"type": "ParquetWriteSettings"
-						}
-					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"mappings": [
-							{
-								"source": {
-									"name": "D",
-									"type": "String",
-									"physicalType": "nvarchar"
-								},
-								"sink": {
-									"name": "D",
-									"type": "String",
-									"physicalType": "UTF8"
-								}
-							},
-							{
-								"source": {
-									"name": "C",
-									"type": "String",
-									"physicalType": "nvarchar"
-								},
-								"sink": {
-									"name": "C",
-									"type": "String",
-									"physicalType": "UTF8"
-								}
-							},
-							{
-								"source": {
-									"name": "CID",
-									"type": "String",
-									"physicalType": "nvarchar"
-								},
-								"sink": {
-									"name": "CID",
-									"type": "String",
-									"physicalType": "UTF8"
-								}
-							},
-							{
-								"source": {
-									"name": "CN",
-									"type": "String",
-									"physicalType": "nvarchar"
-								},
-								"sink": {
-									"name": "CN",
-									"type": "String",
-									"physicalType": "UTF8"
-								}
-							},
-							{
-								"source": {
-									"name": "CPO",
-									"type": "String",
-									"physicalType": "nvarchar"
-								},
-								"sink": {
-									"name": "CPO",
-									"type": "String",
-									"physicalType": "UTF8"
-								}
-							},
-							{
-								"source": {
-									"name": "WH",
-									"type": "String",
-									"physicalType": "nvarchar"
-								},
-								"sink": {
-									"name": "WH",
-									"type": "String",
-									"physicalType": "UTF8"
-								}
-							},
-							{
-								"source": {
-									"name": "OID",
-									"type": "String",
-									"physicalType": "nvarchar"
-								},
-								"sink": {
-									"name": "OID",
-									"type": "String",
-									"physicalType": "UTF8"
-								}
-							},
-							{
-								"source": {
-									"name": "IID",
-									"type": "String",
-									"physicalType": "nvarchar"
-								},
-								"sink": {
-									"name": "IID",
-									"type": "String",
-									"physicalType": "UTF8"
-								}
-							},
-							{
-								"source": {
-									"name": "Date",
-									"type": "DateTime",
-									"physicalType": "datetime2"
-								},
-								"sink": {
-									"name": "Date",
-									"type": "DateTime",
-									"physicalType": "INT_96"
-								}
-							},
-							{
-								"source": {
-									"name": "Brand",
-									"type": "String",
-									"physicalType": "varchar"
-								},
-								"sink": {
-									"name": "Brand",
-									"type": "String",
-									"physicalType": "UTF8"
-								}
-							},
-							{
-								"source": {
-									"name": "PC",
-									"type": "String",
-									"physicalType": "varchar"
-								},
-								"sink": {
-									"name": "PC",
-									"type": "String",
-									"physicalType": "UTF8"
-								}
-							},
-							{
-								"source": {
-									"name": "PIDA",
-									"type": "String",
-									"physicalType": "nvarchar"
-								},
-								"sink": {
-									"name": "PIDA",
-									"type": "String",
-									"physicalType": "UTF8"
-								}
-							},
-							{
-								"source": {
-									"name": "PIGF",
-									"type": "String",
-									"physicalType": "nvarchar"
-								},
-								"sink": {
-									"name": "PIGF",
-									"type": "String",
-									"physicalType": "UTF8"
-								}
-							},
-							{
-								"source": {
-									"name": "DESC",
-									"type": "String",
-									"physicalType": "nvarchar"
-								},
-								"sink": {
-									"name": "DESC",
-									"type": "String",
-									"physicalType": "UTF8"
-								}
-							},
-							{
-								"source": {
-									"name": "SID",
-									"type": "String",
-									"physicalType": "nvarchar"
-								},
-								"sink": {
-									"name": "SID",
-									"type": "String",
-									"physicalType": "UTF8"
-								}
-							},
-							{
-								"source": {
-									"name": "Amt",
-									"type": "Double",
-									"physicalType": "float"
-								},
-								"sink": {
-									"name": "Amt",
-									"type": "Double",
-									"physicalType": "DOUBLE"
-								}
-							},
-							{
-								"source": {
-									"name": "Net Amt",
-									"type": "Double",
-									"physicalType": "float"
-								},
-								"sink": {
-									"name": "NetAmt",
-									"physicalType": "DOUBLE"
-								}
-							},
-							{
-								"source": {
-									"name": "Qty",
-									"type": "Double",
-									"physicalType": "float"
-								},
-								"sink": {
-									"name": "Qty",
-									"type": "Double",
-									"physicalType": "DOUBLE"
-								}
-							},
-							{
-								"source": {
-									"name": "Type",
-									"type": "String",
-									"physicalType": "varchar"
-								},
-								"sink": {
-									"name": "Type",
-									"type": "String",
-									"physicalType": "UTF8"
-								}
-							},
-							{
-								"source": {
-									"name": "STN",
-									"type": "String",
-									"physicalType": "nvarchar"
-								},
-								"sink": {
-									"name": "STN",
-									"type": "String",
-									"physicalType": "UTF8"
-								}
-							},
-							{
-								"source": {
-									"name": "SA1",
-									"type": "String",
-									"physicalType": "nvarchar"
-								},
-								"sink": {
-									"name": "SA1",
-									"type": "String",
-									"physicalType": "UTF8"
-								}
-							},
-							{
-								"source": {
-									"name": "SA2",
-									"type": "String",
-									"physicalType": "nvarchar"
-								},
-								"sink": {
-									"name": "SA2",
-									"type": "String",
-									"physicalType": "UTF8"
-								}
-							},
-							{
-								"source": {
-									"name": "STC",
-									"type": "String",
-									"physicalType": "nvarchar"
-								},
-								"sink": {
-									"name": "STC",
-									"type": "String",
-									"physicalType": "UTF8"
-								}
-							},
-							{
-								"source": {
-									"name": "STS",
-									"type": "String",
-									"physicalType": "nvarchar"
-								},
-								"sink": {
-									"name": "STS",
-									"type": "String",
-									"physicalType": "UTF8"
-								}
-							},
-							{
-								"source": {
-									"name": "STZ",
-									"type": "String",
-									"physicalType": "nvarchar"
-								},
-								"sink": {
-									"name": "STZ",
-									"type": "String",
-									"physicalType": "UTF8"
-								}
-							},
-							{
-								"source": {
-									"name": "BTN",
-									"type": "String",
-									"physicalType": "nvarchar"
-								},
-								"sink": {
-									"name": "BTN",
-									"type": "String",
-									"physicalType": "UTF8"
-								}
-							},
-							{
-								"source": {
-									"name": "BA1",
-									"type": "String",
-									"physicalType": "nvarchar"
-								},
-								"sink": {
-									"name": "BA1",
-									"type": "String",
-									"physicalType": "UTF8"
-								}
-							},
-							{
-								"source": {
-									"name": "BA2",
-									"type": "String",
-									"physicalType": "nvarchar"
-								},
-								"sink": {
-									"name": "BA2",
-									"type": "String",
-									"physicalType": "UTF8"
-								}
-							},
-							{
-								"source": {
-									"name": "BTC",
-									"type": "String",
-									"physicalType": "nvarchar"
-								},
-								"sink": {
-									"name": "BTC",
-									"type": "String",
-									"physicalType": "UTF8"
-								}
-							},
-							{
-								"source": {
-									"name": "BTS",
-									"type": "String",
-									"physicalType": "nvarchar"
-								},
-								"sink": {
-									"name": "BTS",
-									"type": "String",
-									"physicalType": "UTF8"
-								}
-							},
-							{
-								"source": {
-									"name": "BTZ",
-									"type": "String",
-									"physicalType": "nvarchar"
-								},
-								"sink": {
-									"name": "BTZ",
-									"type": "String",
-									"physicalType": "UTF8"
-								}
-							},
-							{
-								"source": {
-									"name": "Cost",
-									"type": "Double",
-									"physicalType": "float"
-								},
-								"sink": {
-									"name": "Cost",
-									"type": "Double",
-									"physicalType": "DOUBLE"
-								}
-							},
-							{
-								"source": {
-									"name": "OEU",
-									"type": "Int32",
-									"physicalType": "int"
-								},
-								"sink": {
-									"name": "OEU",
-									"type": "Int32",
-									"physicalType": "INT_32"
-								}
-							}
-						],
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "IN_v_SalesData",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "OUT_a_SalesData",
-						"type": "DatasetReference"
-					}
-				]
-			}
-		],
-		"annotations": [],
-		"lastPublishTime": "2025-03-03T12:46:08Z"
-	},
-	"type": "Microsoft.Synapse/workspaces/pipelines"
+  "name": "Analytics Flat File Create",
+  "properties": {
+    "activities": [
+      {
+        "dependsOn": [],
+        "inputs": [
+          {
+            "parameters": {},
+            "referenceName": "IN_v_SalesData",
+            "type": "DatasetReference"
+          }
+        ],
+        "name": "v_SalesData",
+        "outputs": [
+          {
+            "parameters": {},
+            "referenceName": "OUT_a_SalesData",
+            "type": "DatasetReference"
+          }
+        ],
+        "policy": {
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false,
+          "timeout": "0.12:00:00"
+        },
+        "type": "Copy",
+        "typeProperties": {
+          "enableStaging": false,
+          "sink": {
+            "formatSettings": {
+              "type": "ParquetWriteSettings"
+            },
+            "storeSettings": {
+              "copyBehavior": "FlattenHierarchy",
+              "type": "AzureBlobFSWriteSettings"
+            },
+            "type": "ParquetSink"
+          },
+          "source": {
+            "partitionOption": "None",
+            "queryTimeout": "02:00:00",
+            "sqlReaderQuery": "SELECT [Division] [D]\n,[Company] [C]\n,[Customer ID] [CID]\n,[Customer Name] [CN]\n,[Customer PO] [CPO]\n,[Warehouse] [WH]\n,[Order ID] [OID]\n,[Invoice ID] [IID]\n,[Date]\n,[Brand]\n,[Product Category] [PC]\n,[Part ID - Actual] [PIDA]\n,[Part ID - Go Forward] [PIGF]\n,[Part Description] [DESC]\n,[Supplier ID] [SID]\n,[Sales Amt] [Amt]\n,[Net Sales Amt] [Net Amt]\n,[Sales Qty] [Qty]\n,[Sales Type] [Type]\n,[Ship To Name] [STN]\n,[Ship To Address 1] [SA1]\n,[Ship to Address 2] [SA2]\n,[Ship to City] [STC]\n, [Ship to State] [STS]\n, [Ship to Zip Code] [STZ]\n,[Bill To Name] [BTN]\n,[Bill To Address 1] [BA1]\n,[Bill to Address 2] [BA2]\n, [Bill to City] [BTC]\n, [Bill to State] [BTS]\n, [Bill to Zip Code] [BTZ]\n,[Cost]\n,[Order Entry User] [OEU]\n FROM [dbo].[v_SalesData]",
+            "type": "AzureSqlSource"
+          },
+          "translator": {
+            "mappings": [
+              {
+                "sink": {
+                  "name": "D",
+                  "physicalType": "UTF8",
+                  "type": "String"
+                },
+                "source": {
+                  "name": "D",
+                  "physicalType": "nvarchar",
+                  "type": "String"
+                }
+              },
+              {
+                "sink": {
+                  "name": "C",
+                  "physicalType": "UTF8",
+                  "type": "String"
+                },
+                "source": {
+                  "name": "C",
+                  "physicalType": "nvarchar",
+                  "type": "String"
+                }
+              },
+              {
+                "sink": {
+                  "name": "CID",
+                  "physicalType": "UTF8",
+                  "type": "String"
+                },
+                "source": {
+                  "name": "CID",
+                  "physicalType": "nvarchar",
+                  "type": "String"
+                }
+              },
+              {
+                "sink": {
+                  "name": "CN",
+                  "physicalType": "UTF8",
+                  "type": "String"
+                },
+                "source": {
+                  "name": "CN",
+                  "physicalType": "nvarchar",
+                  "type": "String"
+                }
+              },
+              {
+                "sink": {
+                  "name": "CPO",
+                  "physicalType": "UTF8",
+                  "type": "String"
+                },
+                "source": {
+                  "name": "CPO",
+                  "physicalType": "nvarchar",
+                  "type": "String"
+                }
+              },
+              {
+                "sink": {
+                  "name": "WH",
+                  "physicalType": "UTF8",
+                  "type": "String"
+                },
+                "source": {
+                  "name": "WH",
+                  "physicalType": "nvarchar",
+                  "type": "String"
+                }
+              },
+              {
+                "sink": {
+                  "name": "OID",
+                  "physicalType": "UTF8",
+                  "type": "String"
+                },
+                "source": {
+                  "name": "OID",
+                  "physicalType": "nvarchar",
+                  "type": "String"
+                }
+              },
+              {
+                "sink": {
+                  "name": "IID",
+                  "physicalType": "UTF8",
+                  "type": "String"
+                },
+                "source": {
+                  "name": "IID",
+                  "physicalType": "nvarchar",
+                  "type": "String"
+                }
+              },
+              {
+                "sink": {
+                  "name": "Date",
+                  "physicalType": "INT_96",
+                  "type": "DateTime"
+                },
+                "source": {
+                  "name": "Date",
+                  "physicalType": "datetime2",
+                  "type": "DateTime"
+                }
+              },
+              {
+                "sink": {
+                  "name": "Brand",
+                  "physicalType": "UTF8",
+                  "type": "String"
+                },
+                "source": {
+                  "name": "Brand",
+                  "physicalType": "varchar",
+                  "type": "String"
+                }
+              },
+              {
+                "sink": {
+                  "name": "PC",
+                  "physicalType": "UTF8",
+                  "type": "String"
+                },
+                "source": {
+                  "name": "PC",
+                  "physicalType": "varchar",
+                  "type": "String"
+                }
+              },
+              {
+                "sink": {
+                  "name": "PIDA",
+                  "physicalType": "UTF8",
+                  "type": "String"
+                },
+                "source": {
+                  "name": "PIDA",
+                  "physicalType": "nvarchar",
+                  "type": "String"
+                }
+              },
+              {
+                "sink": {
+                  "name": "PIGF",
+                  "physicalType": "UTF8",
+                  "type": "String"
+                },
+                "source": {
+                  "name": "PIGF",
+                  "physicalType": "nvarchar",
+                  "type": "String"
+                }
+              },
+              {
+                "sink": {
+                  "name": "DESC",
+                  "physicalType": "UTF8",
+                  "type": "String"
+                },
+                "source": {
+                  "name": "DESC",
+                  "physicalType": "nvarchar",
+                  "type": "String"
+                }
+              },
+              {
+                "sink": {
+                  "name": "SID",
+                  "physicalType": "UTF8",
+                  "type": "String"
+                },
+                "source": {
+                  "name": "SID",
+                  "physicalType": "nvarchar",
+                  "type": "String"
+                }
+              },
+              {
+                "sink": {
+                  "name": "Amt",
+                  "physicalType": "DOUBLE",
+                  "type": "Double"
+                },
+                "source": {
+                  "name": "Amt",
+                  "physicalType": "float",
+                  "type": "Double"
+                }
+              },
+              {
+                "sink": {
+                  "name": "NetAmt",
+                  "physicalType": "DOUBLE"
+                },
+                "source": {
+                  "name": "Net Amt",
+                  "physicalType": "float",
+                  "type": "Double"
+                }
+              },
+              {
+                "sink": {
+                  "name": "Qty",
+                  "physicalType": "DOUBLE",
+                  "type": "Double"
+                },
+                "source": {
+                  "name": "Qty",
+                  "physicalType": "float",
+                  "type": "Double"
+                }
+              },
+              {
+                "sink": {
+                  "name": "Type",
+                  "physicalType": "UTF8",
+                  "type": "String"
+                },
+                "source": {
+                  "name": "Type",
+                  "physicalType": "varchar",
+                  "type": "String"
+                }
+              },
+              {
+                "sink": {
+                  "name": "STN",
+                  "physicalType": "UTF8",
+                  "type": "String"
+                },
+                "source": {
+                  "name": "STN",
+                  "physicalType": "nvarchar",
+                  "type": "String"
+                }
+              },
+              {
+                "sink": {
+                  "name": "SA1",
+                  "physicalType": "UTF8",
+                  "type": "String"
+                },
+                "source": {
+                  "name": "SA1",
+                  "physicalType": "nvarchar",
+                  "type": "String"
+                }
+              },
+              {
+                "sink": {
+                  "name": "SA2",
+                  "physicalType": "UTF8",
+                  "type": "String"
+                },
+                "source": {
+                  "name": "SA2",
+                  "physicalType": "nvarchar",
+                  "type": "String"
+                }
+              },
+              {
+                "sink": {
+                  "name": "STC",
+                  "physicalType": "UTF8",
+                  "type": "String"
+                },
+                "source": {
+                  "name": "STC",
+                  "physicalType": "nvarchar",
+                  "type": "String"
+                }
+              },
+              {
+                "sink": {
+                  "name": "STS",
+                  "physicalType": "UTF8",
+                  "type": "String"
+                },
+                "source": {
+                  "name": "STS",
+                  "physicalType": "nvarchar",
+                  "type": "String"
+                }
+              },
+              {
+                "sink": {
+                  "name": "STZ",
+                  "physicalType": "UTF8",
+                  "type": "String"
+                },
+                "source": {
+                  "name": "STZ",
+                  "physicalType": "nvarchar",
+                  "type": "String"
+                }
+              },
+              {
+                "sink": {
+                  "name": "BTN",
+                  "physicalType": "UTF8",
+                  "type": "String"
+                },
+                "source": {
+                  "name": "BTN",
+                  "physicalType": "nvarchar",
+                  "type": "String"
+                }
+              },
+              {
+                "sink": {
+                  "name": "BA1",
+                  "physicalType": "UTF8",
+                  "type": "String"
+                },
+                "source": {
+                  "name": "BA1",
+                  "physicalType": "nvarchar",
+                  "type": "String"
+                }
+              },
+              {
+                "sink": {
+                  "name": "BA2",
+                  "physicalType": "UTF8",
+                  "type": "String"
+                },
+                "source": {
+                  "name": "BA2",
+                  "physicalType": "nvarchar",
+                  "type": "String"
+                }
+              },
+              {
+                "sink": {
+                  "name": "BTC",
+                  "physicalType": "UTF8",
+                  "type": "String"
+                },
+                "source": {
+                  "name": "BTC",
+                  "physicalType": "nvarchar",
+                  "type": "String"
+                }
+              },
+              {
+                "sink": {
+                  "name": "BTS",
+                  "physicalType": "UTF8",
+                  "type": "String"
+                },
+                "source": {
+                  "name": "BTS",
+                  "physicalType": "nvarchar",
+                  "type": "String"
+                }
+              },
+              {
+                "sink": {
+                  "name": "BTZ",
+                  "physicalType": "UTF8",
+                  "type": "String"
+                },
+                "source": {
+                  "name": "BTZ",
+                  "physicalType": "nvarchar",
+                  "type": "String"
+                }
+              },
+              {
+                "sink": {
+                  "name": "Cost",
+                  "physicalType": "DOUBLE",
+                  "type": "Double"
+                },
+                "source": {
+                  "name": "Cost",
+                  "physicalType": "float",
+                  "type": "Double"
+                }
+              },
+              {
+                "sink": {
+                  "name": "OEU",
+                  "physicalType": "INT_32",
+                  "type": "Int32"
+                },
+                "source": {
+                  "name": "OEU",
+                  "physicalType": "int",
+                  "type": "Int32"
+                }
+              }
+            ],
+            "type": "TabularTranslator",
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          }
+        },
+        "userProperties": []
+      }
+    ],
+    "annotations": []
+  }
 }

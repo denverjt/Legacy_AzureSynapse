@@ -1,17 +1,17 @@
 {
-	"name": "v_BudgetYTD_ConsumerDashboard",
-	"properties": {
-		"content": {
-			"query": "/*******************************************************************************************************\n  Author:       Rene Villarreal\n  Create Date:  August 3, 2022\n  Description:  Create view v_BudgetYTD_ConsumerDashboard\n********************************************************************************************************\nSUMMARY OF CHANGES\n\nDate                    Author                    Comments\n-------------------------------------------------------------------------------\nAugust 3, 2022          Rene Villarreal           Create original view\nAugust 4, 2022          Rene Villarreal           Added Brand from Part/InvMaster\n********************************************************************************************************/\n\n\nCREATE VIEW\t\tv_BudgetYTD_ConsumerDashboard\nAS\n\nSELECT\t\t\tBrand, SUM(Budget) as BUDGET_YTD\nFROM \t\t\tECM.BUDGET_BRAND\nWHERE Month <= MONTH(CAST( GETDATE() AS Date ))\nAND Year = YEAR(CAST( GETDATE() AS Date ))\nGROUP BY        Brand",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_BudgetYTD_ConsumerDashboard",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "/*******************************************************************************************************\n  Author:       Rene Villarreal\n  Create Date:  August 3, 2022\n  Description:  Create view v_BudgetYTD_ConsumerDashboard\n********************************************************************************************************\nSUMMARY OF CHANGES\n\nDate                    Author                    Comments\n-------------------------------------------------------------------------------\nAugust 3, 2022          Rene Villarreal           Create original view\nAugust 4, 2022          Rene Villarreal           Added Brand from Part/InvMaster\n********************************************************************************************************/\n\n\nCREATE VIEW\t\tv_BudgetYTD_ConsumerDashboard\nAS\n\nSELECT\t\t\tBrand, SUM(Budget) as BUDGET_YTD\nFROM \t\t\tECM.BUDGET_BRAND\nWHERE Month <= MONTH(CAST( GETDATE() AS Date ))\nAND Year = YEAR(CAST( GETDATE() AS Date ))\nGROUP BY        Brand",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

@@ -1,19 +1,18 @@
 {
-	"name": "AdCraftD1",
-	"type": "Microsoft.Synapse/workspaces/linkedservices",
-	"properties": {
-		"annotations": [],
-		"type": "Odbc",
-		"typeProperties": {
-			"connectionString": {
-				"type": "SecureString",
-				"value": "**********"
-			},
-			"authenticationType": "Anonymous"
-		},
-		"connectVia": {
-			"referenceName": "tlcdwintegration-adc",
-			"type": "IntegrationRuntimeReference"
-		}
-	}
+  "name": "AdCraftD1",
+  "properties": {
+    "annotations": [],
+    "connectVia": {
+      "referenceName": "tlcdwintegration-adc",
+      "type": "IntegrationRuntimeReference"
+    },
+    "type": "Odbc",
+    "typeProperties": {
+      "authenticationType": "Anonymous",
+      "connectionString": {
+        "type": "SecureString",
+        "value": "**********"
+      }
+    }
+  }
 }

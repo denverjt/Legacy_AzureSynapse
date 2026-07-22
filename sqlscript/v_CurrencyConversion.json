@@ -1,17 +1,17 @@
 {
-	"name": "v_CurrencyConversion",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW v_CurrencyConversion\nas\nSELECT      DISTINCT C1.CUCD, ARAT\nFROM        M3.CCURRA C1\nINNER JOIN  (\n            SELECT CUCD, MAX(CUTD) as MaxDate\n            FROM M3.CCURRA\n            WHERE CRTP = '1'\n            GROUP BY CUCD\n            ) C2 on C1.CUCD = C2.CUCD and C1.CUTD = C2.MaxDate\nWHERE       C1.CRTP = '1'\nAND         C1.CUCD = 'CAD'\n\nUNION\n\nSELECT      'USD' AS CUCD, 1 AS ARAT\n",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": -1
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_CurrencyConversion",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW v_CurrencyConversion\nas\nSELECT      DISTINCT C1.CUCD, ARAT\nFROM        M3.CCURRA C1\nINNER JOIN  (\n            SELECT CUCD, MAX(CUTD) as MaxDate\n            FROM M3.CCURRA\n            WHERE CRTP = '1'\n            GROUP BY CUCD\n            ) C2 on C1.CUCD = C2.CUCD and C1.CUTD = C2.MaxDate\nWHERE       C1.CRTP = '1'\nAND         C1.CUCD = 'CAD'\n\nUNION\n\nSELECT      'USD' AS CUCD, 1 AS ARAT\n",
+      "resultLimit": -1
+    },
+    "type": "SqlQuery"
+  }
 }

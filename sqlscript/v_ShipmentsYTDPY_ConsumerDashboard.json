@@ -1,17 +1,17 @@
 {
-	"name": "v_ShipmentsYTDPY_ConsumerDashboard",
-	"properties": {
-		"content": {
-			"query": "/*******************************************************************************************************\n  Author:       Rene Villarreal\n  Create Date:  August 4, 2022\n  Description:  Create view v_ShipmentsYTDPY_ConsumerDashboard\n********************************************************************************************************\nSUMMARY OF CHANGES\n\nDate                    Author                    Comments\n-------------------------------------------------------------------------------\nAugust 4, 2022          Rene Villarreal           Create original view\n********************************************************************************************************/\n\n\nCREATE VIEW\t\tv_ShipmentsYTDPY_ConsumerDashboard\nAS\n\nSELECT \t\t\tBrand, sum(SHIPMENT) AS [YTD Shipments Prior Year]\nFROM \t\t\tECM.YTD_SHIPMENTS\nWHERE \t\t\tYEAR = YEAR(CAST( GETDATE() AS Date )) - 1\nAND \t\t\tMONTH <= MONTH(CAST( GETDATE() AS Date ))\nGROUP BY\t\tBrand",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_ShipmentsYTDPY_ConsumerDashboard",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "/*******************************************************************************************************\n  Author:       Rene Villarreal\n  Create Date:  August 4, 2022\n  Description:  Create view v_ShipmentsYTDPY_ConsumerDashboard\n********************************************************************************************************\nSUMMARY OF CHANGES\n\nDate                    Author                    Comments\n-------------------------------------------------------------------------------\nAugust 4, 2022          Rene Villarreal           Create original view\n********************************************************************************************************/\n\n\nCREATE VIEW\t\tv_ShipmentsYTDPY_ConsumerDashboard\nAS\n\nSELECT \t\t\tBrand, sum(SHIPMENT) AS [YTD Shipments Prior Year]\nFROM \t\t\tECM.YTD_SHIPMENTS\nWHERE \t\t\tYEAR = YEAR(CAST( GETDATE() AS Date )) - 1\nAND \t\t\tMONTH <= MONTH(CAST( GETDATE() AS Date ))\nGROUP BY\t\tBrand",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

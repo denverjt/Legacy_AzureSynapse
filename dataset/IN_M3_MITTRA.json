@@ -1,299 +1,298 @@
 {
-	"name": "IN_M3_MITTRA",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "tlcdw-WorkspaceDefaultStorage",
-			"type": "LinkedServiceReference"
-		},
-		"annotations": [],
-		"type": "Json",
-		"typeProperties": {
-			"location": {
-				"type": "AzureBlobFSLocation",
-				"fileName": "MITTRA_2022-10-12_22-18-25-443.json",
-				"folderPath": "M3/JSON/MITTRA",
-				"fileSystem": "tlclakefs"
-			},
-			"compression": {
-				"type": "deflate",
-				"level": "Optimal"
-			}
-		},
-		"schema": {
-			"type": "object",
-			"properties": {
-				"CONO": {
-					"type": "integer"
-				},
-				"WHLO": {
-					"type": "string"
-				},
-				"ITNO": {
-					"type": "string"
-				},
-				"RGDT": {
-					"type": "integer"
-				},
-				"RGTM": {
-					"type": "integer"
-				},
-				"TMSX": {
-					"type": "integer"
-				},
-				"TRDT": {
-					"type": "integer"
-				},
-				"TRTM": {
-					"type": "integer"
-				},
-				"RESP": {
-					"type": "string"
-				},
-				"TTID": {
-					"type": "string"
-				},
-				"TRTP": {
-					"type": "string"
-				},
-				"TTYP": {
-					"type": "integer"
-				},
-				"SLTP": {
-					"type": "string"
-				},
-				"WHSL": {
-					"type": "string"
-				},
-				"BANO": {
-					"type": "string"
-				},
-				"CAMU": {
-					"type": "string"
-				},
-				"BREF": {
-					"type": "string"
-				},
-				"BRE2": {
-					"type": "string"
-				},
-				"RIDN": {
-					"type": "string"
-				},
-				"RIDO": {
-					"type": "integer"
-				},
-				"RIDL": {
-					"type": "integer"
-				},
-				"RIDI": {
-					"type": "integer"
-				},
-				"PLSX": {
-					"type": "integer"
-				},
-				"RFTX": {
-					"type": "string"
-				},
-				"RORC": {
-					"type": "integer"
-				},
-				"RORN": {
-					"type": "string"
-				},
-				"RORL": {
-					"type": "integer"
-				},
-				"PRMF": {
-					"type": "string"
-				},
-				"RPRT": {
-					"type": "integer"
-				},
-				"ECVE": {
-					"type": "string"
-				},
-				"STAS": {
-					"type": "string"
-				},
-				"TRQT": {
-					"type": "number"
-				},
-				"NSTQ": {
-					"type": "number"
-				},
-				"NSTT": {
-					"type": "number"
-				},
-				"REPN": {
-					"type": "integer"
-				},
-				"INER": {
-					"type": "integer"
-				},
-				"TUPC": {
-					"type": "integer"
-				},
-				"TRPR": {
-					"type": "number"
-				},
-				"ACRF": {
-					"type": "string"
-				},
-				"ANBR": {
-					"type": "integer"
-				},
-				"MFCO": {
-					"type": "number"
-				},
-				"STNO": {
-					"type": "number"
-				},
-				"PROJ": {
-					"type": "string"
-				},
-				"ELNO": {
-					"type": "string"
-				},
-				"RSCD": {
-					"type": "string"
-				},
-				"CAWE": {
-					"type": "number"
-				},
-				"CNDA": {
-					"type": "integer"
-				},
-				"ADCU": {
-					"type": "integer"
-				},
-				"NHAI": {
-					"type": "string"
-				},
-				"NHSN": {
-					"type": "string"
-				},
-				"BIRT": {
-					"type": "integer"
-				},
-				"INDI": {
-					"type": "integer"
-				},
-				"CFGL": {
-					"type": "string"
-				},
-				"LOCH": {
-					"type": "integer"
-				},
-				"DEID": {
-					"type": "integer"
-				},
-				"ATNR": {
-					"type": "integer"
-				},
-				"ATNB": {
-					"type": "integer"
-				},
-				"CDTP": {
-					"type": "integer"
-				},
-				"TRQA": {
-					"type": "number"
-				},
-				"STCD": {
-					"type": "integer"
-				},
-				"SUDO": {
-					"type": "string"
-				},
-				"UPIS": {
-					"type": "integer"
-				},
-				"PANR": {
-					"type": "string"
-				},
-				"RIDX": {
-					"type": "integer"
-				},
-				"RORX": {
-					"type": "integer"
-				},
-				"LMTS": {
-					"type": "integer"
-				},
-				"SCNB": {
-					"type": "string"
-				},
-				"CANB": {
-					"type": "integer"
-				},
-				"OPAN": {
-					"type": "string"
-				},
-				"FIAS": {
-					"type": "integer"
-				},
-				"HACP": {
-					"type": "integer"
-				},
-				"HACS": {
-					"type": "integer"
-				},
-				"CWTQ": {
-					"type": "number"
-				},
-				"CWTT": {
-					"type": "number"
-				},
-				"CSQT": {
-					"type": "number"
-				},
-				"BFCI": {
-					"type": "integer"
-				},
-				"CADT": {
-					"type": "integer"
-				},
-				"REIT": {
-					"type": "integer"
-				},
-				"PANB": {
-					"type": "integer"
-				},
-				"OHAC": {
-					"type": "integer"
-				},
-				"ENNO": {
-					"type": "string"
-				},
-				"MIGI": {
-					"type": "string"
-				},
-				"CNST": {
-					"type": "number"
-				},
-				"CCWT": {
-					"type": "number"
-				},
-				"CSOT": {
-					"type": "integer"
-				},
-				"CSOW": {
-					"type": "string"
-				},
-				"accountingEntity": {
-					"type": "string"
-				},
-				"variationNumber": {
-					"type": "integer"
-				},
-				"timestamp": {
-					"type": "string"
-				},
-				"deleted": {
-					"type": "boolean"
-				}
-			}
-		}
-	},
-	"type": "Microsoft.Synapse/workspaces/datasets"
+  "name": "IN_M3_MITTRA",
+  "properties": {
+    "annotations": [],
+    "linkedServiceName": {
+      "referenceName": "tlcdw-WorkspaceDefaultStorage",
+      "type": "LinkedServiceReference"
+    },
+    "schema": {
+      "properties": {
+        "ACRF": {
+          "type": "string"
+        },
+        "ADCU": {
+          "type": "integer"
+        },
+        "ANBR": {
+          "type": "integer"
+        },
+        "ATNB": {
+          "type": "integer"
+        },
+        "ATNR": {
+          "type": "integer"
+        },
+        "BANO": {
+          "type": "string"
+        },
+        "BFCI": {
+          "type": "integer"
+        },
+        "BIRT": {
+          "type": "integer"
+        },
+        "BRE2": {
+          "type": "string"
+        },
+        "BREF": {
+          "type": "string"
+        },
+        "CADT": {
+          "type": "integer"
+        },
+        "CAMU": {
+          "type": "string"
+        },
+        "CANB": {
+          "type": "integer"
+        },
+        "CAWE": {
+          "type": "number"
+        },
+        "CCWT": {
+          "type": "number"
+        },
+        "CDTP": {
+          "type": "integer"
+        },
+        "CFGL": {
+          "type": "string"
+        },
+        "CNDA": {
+          "type": "integer"
+        },
+        "CNST": {
+          "type": "number"
+        },
+        "CONO": {
+          "type": "integer"
+        },
+        "CSOT": {
+          "type": "integer"
+        },
+        "CSOW": {
+          "type": "string"
+        },
+        "CSQT": {
+          "type": "number"
+        },
+        "CWTQ": {
+          "type": "number"
+        },
+        "CWTT": {
+          "type": "number"
+        },
+        "DEID": {
+          "type": "integer"
+        },
+        "ECVE": {
+          "type": "string"
+        },
+        "ELNO": {
+          "type": "string"
+        },
+        "ENNO": {
+          "type": "string"
+        },
+        "FIAS": {
+          "type": "integer"
+        },
+        "HACP": {
+          "type": "integer"
+        },
+        "HACS": {
+          "type": "integer"
+        },
+        "INDI": {
+          "type": "integer"
+        },
+        "INER": {
+          "type": "integer"
+        },
+        "ITNO": {
+          "type": "string"
+        },
+        "LMTS": {
+          "type": "integer"
+        },
+        "LOCH": {
+          "type": "integer"
+        },
+        "MFCO": {
+          "type": "number"
+        },
+        "MIGI": {
+          "type": "string"
+        },
+        "NHAI": {
+          "type": "string"
+        },
+        "NHSN": {
+          "type": "string"
+        },
+        "NSTQ": {
+          "type": "number"
+        },
+        "NSTT": {
+          "type": "number"
+        },
+        "OHAC": {
+          "type": "integer"
+        },
+        "OPAN": {
+          "type": "string"
+        },
+        "PANB": {
+          "type": "integer"
+        },
+        "PANR": {
+          "type": "string"
+        },
+        "PLSX": {
+          "type": "integer"
+        },
+        "PRMF": {
+          "type": "string"
+        },
+        "PROJ": {
+          "type": "string"
+        },
+        "REIT": {
+          "type": "integer"
+        },
+        "REPN": {
+          "type": "integer"
+        },
+        "RESP": {
+          "type": "string"
+        },
+        "RFTX": {
+          "type": "string"
+        },
+        "RGDT": {
+          "type": "integer"
+        },
+        "RGTM": {
+          "type": "integer"
+        },
+        "RIDI": {
+          "type": "integer"
+        },
+        "RIDL": {
+          "type": "integer"
+        },
+        "RIDN": {
+          "type": "string"
+        },
+        "RIDO": {
+          "type": "integer"
+        },
+        "RIDX": {
+          "type": "integer"
+        },
+        "RORC": {
+          "type": "integer"
+        },
+        "RORL": {
+          "type": "integer"
+        },
+        "RORN": {
+          "type": "string"
+        },
+        "RORX": {
+          "type": "integer"
+        },
+        "RPRT": {
+          "type": "integer"
+        },
+        "RSCD": {
+          "type": "string"
+        },
+        "SCNB": {
+          "type": "string"
+        },
+        "SLTP": {
+          "type": "string"
+        },
+        "STAS": {
+          "type": "string"
+        },
+        "STCD": {
+          "type": "integer"
+        },
+        "STNO": {
+          "type": "number"
+        },
+        "SUDO": {
+          "type": "string"
+        },
+        "TMSX": {
+          "type": "integer"
+        },
+        "TRDT": {
+          "type": "integer"
+        },
+        "TRPR": {
+          "type": "number"
+        },
+        "TRQA": {
+          "type": "number"
+        },
+        "TRQT": {
+          "type": "number"
+        },
+        "TRTM": {
+          "type": "integer"
+        },
+        "TRTP": {
+          "type": "string"
+        },
+        "TTID": {
+          "type": "string"
+        },
+        "TTYP": {
+          "type": "integer"
+        },
+        "TUPC": {
+          "type": "integer"
+        },
+        "UPIS": {
+          "type": "integer"
+        },
+        "WHLO": {
+          "type": "string"
+        },
+        "WHSL": {
+          "type": "string"
+        },
+        "accountingEntity": {
+          "type": "string"
+        },
+        "deleted": {
+          "type": "boolean"
+        },
+        "timestamp": {
+          "type": "string"
+        },
+        "variationNumber": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "type": "Json",
+    "typeProperties": {
+      "compression": {
+        "level": "Optimal",
+        "type": "deflate"
+      },
+      "location": {
+        "fileName": "MITTRA_2022-10-12_22-18-25-443.json",
+        "fileSystem": "tlclakefs",
+        "folderPath": "M3/JSON/MITTRA",
+        "type": "AzureBlobFSLocation"
+      }
+    }
+  }
 }

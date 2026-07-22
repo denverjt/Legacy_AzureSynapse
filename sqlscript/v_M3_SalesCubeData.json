@@ -1,17 +1,17 @@
 {
-	"name": "v_M3_SalesCubeData",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW         v_M3_SalesCubeData\n-- drop view v_M3_SalesCubeData\nas \nSELECT              ODH.CUNO AS [Customer ID]\n,                   OC.CUNM AS [Customer Name]\n,                   LE.ACDT as [Date]\n,                   IM.ITNO COLLATE SQL_Latin1_General_CP1_CS_AS as [Part ID]\n,                   IM.ITDS COLLATE SQL_Latin1_General_CP1_CS_AS as [Part Description]\n,                   SUM(OL.NEPR*ODL.IVQT) as [Sales Amt]\n,                   SUM(ODL.IVQT) as [Sales Qty]\n,                   SUM(ODL.DCOS) as [Cost]\n,                   CASE WHEN SUM(ODL.IVQT) < 1 then 'Return' else 'Sales' end as [Sales Type]\nFROM                M3.FSLEDG LE\nJOIN                M3.OINVOH IV ON LE.CINO = IV.EXIN\nJOIN                M3.ODHEAD ODH ON ODH.IVNO = IV.IVNO AND LE.PYNO = ODH.PYNO and LE.ACDT = cast(cast(ODH.ACDT as varchar(10)) as date) \nJOIN                M3.ODLINE ODL ON ODH.ORNO = ODL.ORNO AND ODH.DLIX = ODL.DLIX \nJOIN                M3.OOLINE AS OL ON ODL.ORNO = OL.ORNO AND ODL.PONR = OL.PONR AND ODL.POSX = OL.POSX \nJOIN                M3.OCUSMA AS OC ON ODH.CUNO = OC.CUNO JOIN M3.MITMAS AS IM ON ODL.ITNO = IM.ITNO \nWHERE               LE.TRCD = 10 \nand                 ODH.ACDT <> 0 \nand                 IM.ITCL <> 'ZZZ' \nGROUP BY            ODH.CUNO, OC.CUNM, LE.ACDT, IM.ITNO, IM.ITDS\n",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_M3_SalesCubeData",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW         v_M3_SalesCubeData\n-- drop view v_M3_SalesCubeData\nas \nSELECT              ODH.CUNO AS [Customer ID]\n,                   OC.CUNM AS [Customer Name]\n,                   LE.ACDT as [Date]\n,                   IM.ITNO COLLATE SQL_Latin1_General_CP1_CS_AS as [Part ID]\n,                   IM.ITDS COLLATE SQL_Latin1_General_CP1_CS_AS as [Part Description]\n,                   SUM(OL.NEPR*ODL.IVQT) as [Sales Amt]\n,                   SUM(ODL.IVQT) as [Sales Qty]\n,                   SUM(ODL.DCOS) as [Cost]\n,                   CASE WHEN SUM(ODL.IVQT) < 1 then 'Return' else 'Sales' end as [Sales Type]\nFROM                M3.FSLEDG LE\nJOIN                M3.OINVOH IV ON LE.CINO = IV.EXIN\nJOIN                M3.ODHEAD ODH ON ODH.IVNO = IV.IVNO AND LE.PYNO = ODH.PYNO and LE.ACDT = cast(cast(ODH.ACDT as varchar(10)) as date) \nJOIN                M3.ODLINE ODL ON ODH.ORNO = ODL.ORNO AND ODH.DLIX = ODL.DLIX \nJOIN                M3.OOLINE AS OL ON ODL.ORNO = OL.ORNO AND ODL.PONR = OL.PONR AND ODL.POSX = OL.POSX \nJOIN                M3.OCUSMA AS OC ON ODH.CUNO = OC.CUNO JOIN M3.MITMAS AS IM ON ODL.ITNO = IM.ITNO \nWHERE               LE.TRCD = 10 \nand                 ODH.ACDT <> 0 \nand                 IM.ITCL <> 'ZZZ' \nGROUP BY            ODH.CUNO, OC.CUNM, LE.ACDT, IM.ITNO, IM.ITDS\n",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

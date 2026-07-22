@@ -1,17 +1,17 @@
 {
-	"name": "03 - Infor JSON ACLHED",
-	"properties": {
-		"content": {
-			"query": "SELECT \nJSON_VALUE (jsonContent, '$.cono') AS [company]\n, JSON_VALUE (jsonContent, '$.clno') AS [clno]\n, JSON_VALUE (jsonContent, '$.ecln') AS [ecln]\n, JSON_VALUE (jsonContent, '$.variationnumber') AS [variationnumber]\n\nFROM\n    OPENROWSET(\n        BULK 'https://tlclake.dfs.core.windows.net/tlclakefs/M3/JSON/ACLHED*.json',\n        FORMAT = 'CSV',\n        FIELDQUOTE = '0x0b',\n        FIELDTERMINATOR ='0x0b',\n        ROWTERMINATOR = '0x0a',\n        DATA_COMPRESSION = 'GZIP'\n    )\n    WITH (\n        jsonContent varchar(MAX)\n    ) AS [result]\nWHERE JSON_VALUE (jsonContent, '$.variationnumber') in (\n\n--SELECT JSON_VALUE (jsonContent, '$.cono') as [Company], JSON_VALUE (jsonContent, '$.clno') as [Claim], MAX (JSON_VALUE (jsonContent, '$.variationnumber')) AS [variationnumber]\nSELECT MAX (JSON_VALUE (jsonContent, '$.variationnumber')) AS [variationnumber]\n\nFROM\n    OPENROWSET(\n        BULK 'https://tlclake.dfs.core.windows.net/tlclakefs/M3/JSON/ACLHED*.json',\n        FORMAT = 'CSV',\n        FIELDQUOTE = '0x0b',\n        FIELDTERMINATOR ='0x0b',\n        ROWTERMINATOR = '0x0a',\n        DATA_COMPRESSION = 'GZIP'\n    )\n    WITH (\n        jsonContent varchar(MAX)\n    ) AS [result]\nWHERE JSON_VALUE (jsonContent, '$.cono')=752 \nGROUP BY JSON_VALUE (jsonContent, '$.cono'), JSON_VALUE (jsonContent, '$.clno'))",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "master",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "03 - Infor JSON ACLHED",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "master",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "SELECT \nJSON_VALUE (jsonContent, '$.cono') AS [company]\n, JSON_VALUE (jsonContent, '$.clno') AS [clno]\n, JSON_VALUE (jsonContent, '$.ecln') AS [ecln]\n, JSON_VALUE (jsonContent, '$.variationnumber') AS [variationnumber]\n\nFROM\n    OPENROWSET(\n        BULK 'https://tlclake.dfs.core.windows.net/tlclakefs/M3/JSON/ACLHED*.json',\n        FORMAT = 'CSV',\n        FIELDQUOTE = '0x0b',\n        FIELDTERMINATOR ='0x0b',\n        ROWTERMINATOR = '0x0a',\n        DATA_COMPRESSION = 'GZIP'\n    )\n    WITH (\n        jsonContent varchar(MAX)\n    ) AS [result]\nWHERE JSON_VALUE (jsonContent, '$.variationnumber') in (\n\n--SELECT JSON_VALUE (jsonContent, '$.cono') as [Company], JSON_VALUE (jsonContent, '$.clno') as [Claim], MAX (JSON_VALUE (jsonContent, '$.variationnumber')) AS [variationnumber]\nSELECT MAX (JSON_VALUE (jsonContent, '$.variationnumber')) AS [variationnumber]\n\nFROM\n    OPENROWSET(\n        BULK 'https://tlclake.dfs.core.windows.net/tlclakefs/M3/JSON/ACLHED*.json',\n        FORMAT = 'CSV',\n        FIELDQUOTE = '0x0b',\n        FIELDTERMINATOR ='0x0b',\n        ROWTERMINATOR = '0x0a',\n        DATA_COMPRESSION = 'GZIP'\n    )\n    WITH (\n        jsonContent varchar(MAX)\n    ) AS [result]\nWHERE JSON_VALUE (jsonContent, '$.cono')=752 \nGROUP BY JSON_VALUE (jsonContent, '$.cono'), JSON_VALUE (jsonContent, '$.clno'))",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

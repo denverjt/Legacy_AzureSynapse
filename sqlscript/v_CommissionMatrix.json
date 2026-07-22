@@ -1,17 +1,17 @@
 {
-	"name": "v_CommissionMatrix",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW v_CommissionMatrix\n-- drop view v_CommissionMatrix\nas\nSELECT      PREX+' - '+'Sales Rep/Item' AS [Priority]\n,           OBV1+' - '+CS.TX40 AS [Sales Rep]\n,           OBV2 AS [Dimension 2]\n,           OBV3 AS [Dimension 3]\n,           MT.TAGN AS [Agreement Number]\n,           TR.RATE/100 as [Commission Rate]\nFROM        M3.OBTMTX MT\nJOIN        M3.CSYTAB CS on MT.OBV1 = CS.STKY and STCO = 'SMCD'\nJOIN        M3.OBTREC TR on MT.TAGN = TR.TAGN\nWHERE       MT.TATB = 'CONSUMER'\nAND         MT.PREX = 0\n\nUNION ALL\n\nSELECT      PREX+' - '+'Sales Rep/Customer/Brand' AS [Priority]\n,           OBV1+' - '+CS.TX40 AS [Sales Rep]\n,           OBV2+' - '+OC.CUNM AS [Dimension 2]\n,           CS2.TX40 AS [Dimension 3]\n,           MT.TAGN AS [Agreement Number]\n,           TR.RATE/100 as [Commission Rate]\nFROM        M3.OBTMTX MT\nJOIN        M3.CSYTAB CS on MT.OBV1 = CS.STKY and CS.STCO = 'SMCD'\nJOIN        M3.CSYTAB CS2 on MT.OBV3 = CS2.STKY and CS2.STCO = 'ITCL'\nJOIN        M3.OBTREC TR on MT.TAGN = TR.TAGN\nJOIN        M3.OCUSMA OC ON MT.OBV2 = OC.CUNO\nWHERE       MT.TATB = 'CONSUMER'\nAND         MT.PREX = 3\n\nUNION ALL\n\nSELECT      PREX+' - '+'Sales Rep/Market/Brand' AS [Priority]\n,           OBV1+' - '+CS.TX40 AS [Sales Rep]\n,           CS3.TX40 AS [Dimension 2]\n,           CS2.TX40 AS [Dimension 3]\n,           MT.TAGN AS [Agreement Number]\n,           TR.RATE/100 as [Commission Rate]\nFROM        M3.OBTMTX MT\nJOIN        M3.CSYTAB CS on MT.OBV1 = CS.STKY and CS.STCO = 'SMCD'\nJOIN        M3.CSYTAB CS2 on MT.OBV3 = CS2.STKY and CS2.STCO = 'ITCL'\nJOIN        M3.CSYTAB CS3 on MT.OBV2 = CS3.STKY and CS3.STCO = 'CUCL'\nJOIN        M3.OBTREC TR on MT.TAGN = TR.TAGN\nWHERE       MT.TATB = 'CONSUMER'\nAND         MT.PREX = 5\n\nUNION ALL\n\nSELECT      PREX+' - '+'Sales Rep/Brand' AS [Priority]\n,           OBV1+' - '+CS.TX40 AS [Sales Rep]\n,           CASE WHEN OBV2 = 'ZZZ' then 'DEDUCTIONS and ALLOWANCES' else CS2.TX40 end AS [Dimension 2]\n,           OBV3 AS [Dimension 3]\n,           MT.TAGN AS [Agreement Number]\n,           TR.RATE/100 as [Commission Rate]\nFROM        M3.OBTMTX MT\nJOIN        M3.CSYTAB CS on MT.OBV1 = CS.STKY and CS.STCO = 'SMCD'\nJOIN        M3.CSYTAB CS2 on MT.OBV2 = CS2.STKY and CS2.STCO = 'ITCL'\nJOIN        M3.OBTREC TR on MT.TAGN = TR.TAGN\nWHERE       MT.TATB = 'CONSUMER'\nAND         MT.PREX = 8\n\nUNION ALL\n\nSELECT      PREX+' - '+'Sales Rep' AS [Priority]\n,           OBV1+' - '+CS.TX40 AS [Sales Rep]\n,           OBV2 AS [Dimension 2]\n,           OBV3 AS [Dimension 3]\n,           MT.TAGN AS [Agreement Number]\n,           TR.RATE/100 as [Commission Rate]\nFROM        M3.OBTMTX MT\nJOIN        M3.CSYTAB CS on MT.OBV1 = CS.STKY and CS.STCO = 'SMCD'\nJOIN        M3.OBTREC TR on MT.TAGN = TR.TAGN\nWHERE       MT.TATB = 'CONSUMER'\nAND         MT.PREX = 9\n",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_CommissionMatrix",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW v_CommissionMatrix\n-- drop view v_CommissionMatrix\nas\nSELECT      PREX+' - '+'Sales Rep/Item' AS [Priority]\n,           OBV1+' - '+CS.TX40 AS [Sales Rep]\n,           OBV2 AS [Dimension 2]\n,           OBV3 AS [Dimension 3]\n,           MT.TAGN AS [Agreement Number]\n,           TR.RATE/100 as [Commission Rate]\nFROM        M3.OBTMTX MT\nJOIN        M3.CSYTAB CS on MT.OBV1 = CS.STKY and STCO = 'SMCD'\nJOIN        M3.OBTREC TR on MT.TAGN = TR.TAGN\nWHERE       MT.TATB = 'CONSUMER'\nAND         MT.PREX = 0\n\nUNION ALL\n\nSELECT      PREX+' - '+'Sales Rep/Customer/Brand' AS [Priority]\n,           OBV1+' - '+CS.TX40 AS [Sales Rep]\n,           OBV2+' - '+OC.CUNM AS [Dimension 2]\n,           CS2.TX40 AS [Dimension 3]\n,           MT.TAGN AS [Agreement Number]\n,           TR.RATE/100 as [Commission Rate]\nFROM        M3.OBTMTX MT\nJOIN        M3.CSYTAB CS on MT.OBV1 = CS.STKY and CS.STCO = 'SMCD'\nJOIN        M3.CSYTAB CS2 on MT.OBV3 = CS2.STKY and CS2.STCO = 'ITCL'\nJOIN        M3.OBTREC TR on MT.TAGN = TR.TAGN\nJOIN        M3.OCUSMA OC ON MT.OBV2 = OC.CUNO\nWHERE       MT.TATB = 'CONSUMER'\nAND         MT.PREX = 3\n\nUNION ALL\n\nSELECT      PREX+' - '+'Sales Rep/Market/Brand' AS [Priority]\n,           OBV1+' - '+CS.TX40 AS [Sales Rep]\n,           CS3.TX40 AS [Dimension 2]\n,           CS2.TX40 AS [Dimension 3]\n,           MT.TAGN AS [Agreement Number]\n,           TR.RATE/100 as [Commission Rate]\nFROM        M3.OBTMTX MT\nJOIN        M3.CSYTAB CS on MT.OBV1 = CS.STKY and CS.STCO = 'SMCD'\nJOIN        M3.CSYTAB CS2 on MT.OBV3 = CS2.STKY and CS2.STCO = 'ITCL'\nJOIN        M3.CSYTAB CS3 on MT.OBV2 = CS3.STKY and CS3.STCO = 'CUCL'\nJOIN        M3.OBTREC TR on MT.TAGN = TR.TAGN\nWHERE       MT.TATB = 'CONSUMER'\nAND         MT.PREX = 5\n\nUNION ALL\n\nSELECT      PREX+' - '+'Sales Rep/Brand' AS [Priority]\n,           OBV1+' - '+CS.TX40 AS [Sales Rep]\n,           CASE WHEN OBV2 = 'ZZZ' then 'DEDUCTIONS and ALLOWANCES' else CS2.TX40 end AS [Dimension 2]\n,           OBV3 AS [Dimension 3]\n,           MT.TAGN AS [Agreement Number]\n,           TR.RATE/100 as [Commission Rate]\nFROM        M3.OBTMTX MT\nJOIN        M3.CSYTAB CS on MT.OBV1 = CS.STKY and CS.STCO = 'SMCD'\nJOIN        M3.CSYTAB CS2 on MT.OBV2 = CS2.STKY and CS2.STCO = 'ITCL'\nJOIN        M3.OBTREC TR on MT.TAGN = TR.TAGN\nWHERE       MT.TATB = 'CONSUMER'\nAND         MT.PREX = 8\n\nUNION ALL\n\nSELECT      PREX+' - '+'Sales Rep' AS [Priority]\n,           OBV1+' - '+CS.TX40 AS [Sales Rep]\n,           OBV2 AS [Dimension 2]\n,           OBV3 AS [Dimension 3]\n,           MT.TAGN AS [Agreement Number]\n,           TR.RATE/100 as [Commission Rate]\nFROM        M3.OBTMTX MT\nJOIN        M3.CSYTAB CS on MT.OBV1 = CS.STKY and CS.STCO = 'SMCD'\nJOIN        M3.OBTREC TR on MT.TAGN = TR.TAGN\nWHERE       MT.TATB = 'CONSUMER'\nAND         MT.PREX = 9\n",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

@@ -1,212 +1,211 @@
 {
-	"name": "IN_M3_ACUOLS",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "tlcdw-WorkspaceDefaultStorage",
-			"type": "LinkedServiceReference"
-		},
-		"annotations": [],
-		"type": "Json",
-		"typeProperties": {
-			"location": {
-				"type": "AzureBlobFSLocation",
-				"fileName": "ACUOLS_2023-01-03_20-05-01-759.json",
-				"folderPath": "M3/JSONProcess/ACUOLS",
-				"fileSystem": "tlclakefs"
-			},
-			"compression": {
-				"type": "deflate",
-				"level": "Optimal"
-			}
-		},
-		"schema": {
-			"type": "object",
-			"properties": {
-				"CONO": {
-					"type": "integer"
-				},
-				"FACI": {
-					"type": "string"
-				},
-				"ORNO": {
-					"type": "string"
-				},
-				"PONR": {
-					"type": "integer"
-				},
-				"AQUO": {
-					"type": "integer"
-				},
-				"RESP": {
-					"type": "string"
-				},
-				"ASTM": {
-					"type": "number"
-				},
-				"ASMT": {
-					"type": "number"
-				},
-				"ASMC": {
-					"type": "number"
-				},
-				"ASSC": {
-					"type": "number"
-				},
-				"ASSH": {
-					"type": "number"
-				},
-				"ASMI": {
-					"type": "number"
-				},
-				"ACTU": {
-					"type": "number"
-				},
-				"ACM1": {
-					"type": "number"
-				},
-				"ACSC": {
-					"type": "integer"
-				},
-				"ACMS": {
-					"type": "integer"
-				},
-				"AACO": {
-					"type": "integer"
-				},
-				"AACT": {
-					"type": "integer"
-				},
-				"AACL": {
-					"type": "integer"
-				},
-				"AACM": {
-					"type": "integer"
-				},
-				"APA1": {
-					"type": "integer"
-				},
-				"APM1": {
-					"type": "integer"
-				},
-				"TIAM": {
-					"type": "integer"
-				},
-				"MAA1": {
-					"type": "integer"
-				},
-				"SUAM": {
-					"type": "integer"
-				},
-				"MIA1": {
-					"type": "integer"
-				},
-				"LOA3": {
-					"type": "integer"
-				},
-				"TIP1": {
-					"type": "number"
-				},
-				"MAP1": {
-					"type": "number"
-				},
-				"SUP1": {
-					"type": "number"
-				},
-				"MIP1": {
-					"type": "number"
-				},
-				"LOP1": {
-					"type": "number"
-				},
-				"APAC": {
-					"type": "integer"
-				},
-				"TXID": {
-					"type": "integer"
-				},
-				"RGDT": {
-					"type": "integer"
-				},
-				"RGTM": {
-					"type": "integer"
-				},
-				"LMDT": {
-					"type": "integer"
-				},
-				"CHNO": {
-					"type": "integer"
-				},
-				"CHID": {
-					"type": "string"
-				},
-				"LMTS": {
-					"type": "integer"
-				},
-				"ADF1": {
-					"type": "integer"
-				},
-				"ADY1": {
-					"type": "integer"
-				},
-				"ADX1": {
-					"type": "string"
-				},
-				"ADF2": {
-					"type": "integer"
-				},
-				"ADY2": {
-					"type": "integer"
-				},
-				"ADX2": {
-					"type": "string"
-				},
-				"ADF3": {
-					"type": "integer"
-				},
-				"ADY3": {
-					"type": "integer"
-				},
-				"ADX3": {
-					"type": "string"
-				},
-				"ADF4": {
-					"type": "integer"
-				},
-				"ADY4": {
-					"type": "integer"
-				},
-				"ADX4": {
-					"type": "string"
-				},
-				"SRVP": {
-					"type": "integer"
-				},
-				"MES0": {
-					"type": "string"
-				},
-				"MVA0": {
-					"type": "number"
-				},
-				"SAPR": {
-					"type": "integer"
-				},
-				"PERI": {
-					"type": "integer"
-				},
-				"accountingEntity": {
-					"type": "string"
-				},
-				"variationNumber": {
-					"type": "integer"
-				},
-				"timestamp": {
-					"type": "string"
-				},
-				"deleted": {
-					"type": "boolean"
-				}
-			}
-		}
-	},
-	"type": "Microsoft.Synapse/workspaces/datasets"
+  "name": "IN_M3_ACUOLS",
+  "properties": {
+    "annotations": [],
+    "linkedServiceName": {
+      "referenceName": "tlcdw-WorkspaceDefaultStorage",
+      "type": "LinkedServiceReference"
+    },
+    "schema": {
+      "properties": {
+        "AACL": {
+          "type": "integer"
+        },
+        "AACM": {
+          "type": "integer"
+        },
+        "AACO": {
+          "type": "integer"
+        },
+        "AACT": {
+          "type": "integer"
+        },
+        "ACM1": {
+          "type": "number"
+        },
+        "ACMS": {
+          "type": "integer"
+        },
+        "ACSC": {
+          "type": "integer"
+        },
+        "ACTU": {
+          "type": "number"
+        },
+        "ADF1": {
+          "type": "integer"
+        },
+        "ADF2": {
+          "type": "integer"
+        },
+        "ADF3": {
+          "type": "integer"
+        },
+        "ADF4": {
+          "type": "integer"
+        },
+        "ADX1": {
+          "type": "string"
+        },
+        "ADX2": {
+          "type": "string"
+        },
+        "ADX3": {
+          "type": "string"
+        },
+        "ADX4": {
+          "type": "string"
+        },
+        "ADY1": {
+          "type": "integer"
+        },
+        "ADY2": {
+          "type": "integer"
+        },
+        "ADY3": {
+          "type": "integer"
+        },
+        "ADY4": {
+          "type": "integer"
+        },
+        "APA1": {
+          "type": "integer"
+        },
+        "APAC": {
+          "type": "integer"
+        },
+        "APM1": {
+          "type": "integer"
+        },
+        "AQUO": {
+          "type": "integer"
+        },
+        "ASMC": {
+          "type": "number"
+        },
+        "ASMI": {
+          "type": "number"
+        },
+        "ASMT": {
+          "type": "number"
+        },
+        "ASSC": {
+          "type": "number"
+        },
+        "ASSH": {
+          "type": "number"
+        },
+        "ASTM": {
+          "type": "number"
+        },
+        "CHID": {
+          "type": "string"
+        },
+        "CHNO": {
+          "type": "integer"
+        },
+        "CONO": {
+          "type": "integer"
+        },
+        "FACI": {
+          "type": "string"
+        },
+        "LMDT": {
+          "type": "integer"
+        },
+        "LMTS": {
+          "type": "integer"
+        },
+        "LOA3": {
+          "type": "integer"
+        },
+        "LOP1": {
+          "type": "number"
+        },
+        "MAA1": {
+          "type": "integer"
+        },
+        "MAP1": {
+          "type": "number"
+        },
+        "MES0": {
+          "type": "string"
+        },
+        "MIA1": {
+          "type": "integer"
+        },
+        "MIP1": {
+          "type": "number"
+        },
+        "MVA0": {
+          "type": "number"
+        },
+        "ORNO": {
+          "type": "string"
+        },
+        "PERI": {
+          "type": "integer"
+        },
+        "PONR": {
+          "type": "integer"
+        },
+        "RESP": {
+          "type": "string"
+        },
+        "RGDT": {
+          "type": "integer"
+        },
+        "RGTM": {
+          "type": "integer"
+        },
+        "SAPR": {
+          "type": "integer"
+        },
+        "SRVP": {
+          "type": "integer"
+        },
+        "SUAM": {
+          "type": "integer"
+        },
+        "SUP1": {
+          "type": "number"
+        },
+        "TIAM": {
+          "type": "integer"
+        },
+        "TIP1": {
+          "type": "number"
+        },
+        "TXID": {
+          "type": "integer"
+        },
+        "accountingEntity": {
+          "type": "string"
+        },
+        "deleted": {
+          "type": "boolean"
+        },
+        "timestamp": {
+          "type": "string"
+        },
+        "variationNumber": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "type": "Json",
+    "typeProperties": {
+      "compression": {
+        "level": "Optimal",
+        "type": "deflate"
+      },
+      "location": {
+        "fileName": "ACUOLS_2023-01-03_20-05-01-759.json",
+        "fileSystem": "tlclakefs",
+        "folderPath": "M3/JSONProcess/ACUOLS",
+        "type": "AzureBlobFSLocation"
+      }
+    }
+  }
 }

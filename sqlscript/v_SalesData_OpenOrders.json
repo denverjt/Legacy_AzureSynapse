@@ -1,17 +1,17 @@
 {
-	"name": "v_SalesData_OpenOrders",
-	"properties": {
-		"content": {
-			"query": "create view v_SalesData_OpenOrders\nas\nSELECT      distinct CASE WHEN IM.ITCL IN ('BEV', 'BLA', 'DUUR', 'GEN', 'MXC', 'MXI', 'PGEN', 'PMXC', 'PMXI', 'POME', 'SAP') then 'Commercial'\n            WHEN IM.ITCL IN ('AVA') then 'Compact' else 'Countertop' end as Division\n,         'M3' as Company\n,          OH.CUNO AS [Customer ID]\n,          OC.CUNM AS [Customer Name]\n,          OL.CUOR AS [Customer PO]\n,          OH.ORNO AS [Order ID]\n,          OL.ORST AS [Line Status]\n,          OH.ORDT  as [Date]\n,          CASE WHEN IM.ITCL COLLATE SQL_Latin1_General_CP1_CS_AS  IN ('AVA') then 'AVANTI'\n            WHEN IM.ITCL = 'BLA' then 'BLAKESLEE'\n            WHEN IM.ITCL = 'BEV' then 'BEVLES'\n            WHEN IM.ITCL = 'MXC' then 'MAXX COLD'\n            WHEN IM.ITCL = 'PMXC' then 'MAXX COLD - PRIVATE LABEL'\n            WHEN IM.ITCL = 'EXC' then 'EXCALIBUR'\n            WHEN IM.ITCL = 'GEN' then 'GENERAL'\n            WHEN IM.ITCL = 'PGEN' then 'GENERAL - PRIVATE LABEL'\n            WHEN IM.ITCL = 'MXI' then 'MAXX ICE'\n            WHEN IM.ITCL = 'PMXI' then 'MAXX ICE - PRIVATE LABEL'\n            WHEN IM.ITCL = 'DUUR' then 'DUURA'\n            WHEN IM.ITCL = 'OME' then 'OMEGA'\n            WHEN IM.ITCL = 'POME' then 'OMEGA - PRIVATE LABEL'\n            WHEN IM.ITCL = 'SAP' THEN 'SAPPHIRE'\n            WHEN IM.ITCL = 'ZER' THEN 'ZEROLL'\n            WHEN IM.ITCL = 'YON' THEN 'YONANAS'\n            WHEN IM.ITCL = 'CHF' THEN 'CHEFS CHOICE'\n            WHEN IM.ITCL = 'WES' THEN 'WESTBEND'\n            WHEN IM.ITCL = 'VIN' THEN 'VINTURI'\n            WHEN IM.ITCL = 'ELE' THEN 'ELEMENT'\n            WHEN IM.ITCL = 'APX' THEN 'APEX'\n            WHEN IM.ITCL = 'VNT' THEN 'VINOTEMP'\n            WHEN IM.ITCL = 'BRA' THEN 'BRAMA'\n            WHEN IM.ITCL = 'WIN' THEN 'WINEMATE'\n            WHEN IM.ITCL = 'NS' THEN 'NON STOCK'\n            WHEN IM.ITCL = 'MIS' THEN 'MISCELLANEOUS'\n            WHEN IM.ITCL = 'EDG' THEN 'EDGECRAFT'\n            WHEN IM.ITCL = 'EPI' THEN 'EPICUREANIST'\n            ELSE IM.ITCL END  as Brand\n--,          CS.TX40 as [Product Category]\n,           IM.ITNO as [Part ID]\n,           IM.ITDS as [Part Description]\n,           IM.SUNO as [Supplier ID]\n,           OL.NEPR*OL.ORQT as [Order Amt]\n,           OL.ORQT as [Order Qty]\n,           OL.UCOS*OL.ORQT as [Cost M3]\nFROM        M3.OOHEAD OH\nJOIN        M3.OOLINE OL ON OH.ORNO = OL.ORNO\nJOIN        M3.OCUSMA OC ON OH.CUNO = OC.CUNO\nJOIN        M3.MITMAS IM ON OL.ITNO = IM.ITNO\n--LEFT JOIN\t\tM3.CSYTAB CS on IM.ITGR = CS.STKY and STCO = 'ITGR'\nAND         OL.ORST >= '22'\nAND         OL.ORST < '66'",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_SalesData_OpenOrders",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "create view v_SalesData_OpenOrders\nas\nSELECT      distinct CASE WHEN IM.ITCL IN ('BEV', 'BLA', 'DUUR', 'GEN', 'MXC', 'MXI', 'PGEN', 'PMXC', 'PMXI', 'POME', 'SAP') then 'Commercial'\n            WHEN IM.ITCL IN ('AVA') then 'Compact' else 'Countertop' end as Division\n,         'M3' as Company\n,          OH.CUNO AS [Customer ID]\n,          OC.CUNM AS [Customer Name]\n,          OL.CUOR AS [Customer PO]\n,          OH.ORNO AS [Order ID]\n,          OL.ORST AS [Line Status]\n,          OH.ORDT  as [Date]\n,          CASE WHEN IM.ITCL COLLATE SQL_Latin1_General_CP1_CS_AS  IN ('AVA') then 'AVANTI'\n            WHEN IM.ITCL = 'BLA' then 'BLAKESLEE'\n            WHEN IM.ITCL = 'BEV' then 'BEVLES'\n            WHEN IM.ITCL = 'MXC' then 'MAXX COLD'\n            WHEN IM.ITCL = 'PMXC' then 'MAXX COLD - PRIVATE LABEL'\n            WHEN IM.ITCL = 'EXC' then 'EXCALIBUR'\n            WHEN IM.ITCL = 'GEN' then 'GENERAL'\n            WHEN IM.ITCL = 'PGEN' then 'GENERAL - PRIVATE LABEL'\n            WHEN IM.ITCL = 'MXI' then 'MAXX ICE'\n            WHEN IM.ITCL = 'PMXI' then 'MAXX ICE - PRIVATE LABEL'\n            WHEN IM.ITCL = 'DUUR' then 'DUURA'\n            WHEN IM.ITCL = 'OME' then 'OMEGA'\n            WHEN IM.ITCL = 'POME' then 'OMEGA - PRIVATE LABEL'\n            WHEN IM.ITCL = 'SAP' THEN 'SAPPHIRE'\n            WHEN IM.ITCL = 'ZER' THEN 'ZEROLL'\n            WHEN IM.ITCL = 'YON' THEN 'YONANAS'\n            WHEN IM.ITCL = 'CHF' THEN 'CHEFS CHOICE'\n            WHEN IM.ITCL = 'WES' THEN 'WESTBEND'\n            WHEN IM.ITCL = 'VIN' THEN 'VINTURI'\n            WHEN IM.ITCL = 'ELE' THEN 'ELEMENT'\n            WHEN IM.ITCL = 'APX' THEN 'APEX'\n            WHEN IM.ITCL = 'VNT' THEN 'VINOTEMP'\n            WHEN IM.ITCL = 'BRA' THEN 'BRAMA'\n            WHEN IM.ITCL = 'WIN' THEN 'WINEMATE'\n            WHEN IM.ITCL = 'NS' THEN 'NON STOCK'\n            WHEN IM.ITCL = 'MIS' THEN 'MISCELLANEOUS'\n            WHEN IM.ITCL = 'EDG' THEN 'EDGECRAFT'\n            WHEN IM.ITCL = 'EPI' THEN 'EPICUREANIST'\n            ELSE IM.ITCL END  as Brand\n--,          CS.TX40 as [Product Category]\n,           IM.ITNO as [Part ID]\n,           IM.ITDS as [Part Description]\n,           IM.SUNO as [Supplier ID]\n,           OL.NEPR*OL.ORQT as [Order Amt]\n,           OL.ORQT as [Order Qty]\n,           OL.UCOS*OL.ORQT as [Cost M3]\nFROM        M3.OOHEAD OH\nJOIN        M3.OOLINE OL ON OH.ORNO = OL.ORNO\nJOIN        M3.OCUSMA OC ON OH.CUNO = OC.CUNO\nJOIN        M3.MITMAS IM ON OL.ITNO = IM.ITNO\n--LEFT JOIN\t\tM3.CSYTAB CS on IM.ITGR = CS.STKY and STCO = 'ITGR'\nAND         OL.ORST >= '22'\nAND         OL.ORST < '66'",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

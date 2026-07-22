@@ -1,17 +1,17 @@
 {
-	"name": "v_ItemUPC",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW     v_ItemUPC\nAS\nSELECT      MM.ITNO AS ItemNumber\n,           MM.ITDS AS ItemDescription\n,           MM.ITCL AS Brand\n,           MP.POPN as UPC\nFROM        M3.MITPOP MP\nJOIN        M3.MITMAS MM ON MP.ITNO = MM.ITNO\nWHERE       ALWQ = 'UPC'",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_ItemUPC",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW     v_ItemUPC\nAS\nSELECT      MM.ITNO AS ItemNumber\n,           MM.ITDS AS ItemDescription\n,           MM.ITCL AS Brand\n,           MP.POPN as UPC\nFROM        M3.MITPOP MP\nJOIN        M3.MITMAS MM ON MP.ITNO = MM.ITNO\nWHERE       ALWQ = 'UPC'",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

@@ -1,22 +1,21 @@
 {
-	"name": "OUT_M3_MITMAS",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "tlcdw-WorkspaceDefaultStorage",
-			"type": "LinkedServiceReference"
-		},
-		"annotations": [],
-		"type": "Parquet",
-		"typeProperties": {
-			"location": {
-				"type": "AzureBlobFSLocation",
-				"fileName": "MITMAS.parquet",
-				"folderPath": "M3",
-				"fileSystem": "tlclakefs"
-			},
-			"compressionCodec": "snappy"
-		},
-		"schema": []
-	},
-	"type": "Microsoft.Synapse/workspaces/datasets"
+  "name": "OUT_M3_MITMAS",
+  "properties": {
+    "annotations": [],
+    "linkedServiceName": {
+      "referenceName": "tlcdw-WorkspaceDefaultStorage",
+      "type": "LinkedServiceReference"
+    },
+    "schema": [],
+    "type": "Parquet",
+    "typeProperties": {
+      "compressionCodec": "snappy",
+      "location": {
+        "fileName": "MITMAS.parquet",
+        "fileSystem": "tlclakefs",
+        "folderPath": "M3",
+        "type": "AzureBlobFSLocation"
+      }
+    }
+  }
 }

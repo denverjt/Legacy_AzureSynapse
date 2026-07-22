@@ -1,17 +1,17 @@
 {
-	"name": "v_PreviousDayReceipts",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW v_PreviousDayReceipts\n-- drop view v_PreviousDayReceipts\nas\nSELECT      ML.WHLO as Warehouse\n,           MM.ITCL as Brand\n,           MM.ITNO as ItemNumber\n,           MM.ITDS as ItemDescription\n,           ML.RVQA as Qty\nFROM        M3.MPHEAD MP \nJOIN        M3.MPLINE ML ON MP.PUNO = ML.PUNO\nJOIN        M3.MITMAS MM ON ML.ITNO = MM.ITNO\nWHERE       cast(CAST(NULLIF(ML.RCDT,0) as varchar(max)) as date) = cast(getdate() - 1 as date)\n\n/*\nAhirst\nmaryanne\nlauren\n*/",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_PreviousDayReceipts",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW v_PreviousDayReceipts\n-- drop view v_PreviousDayReceipts\nas\nSELECT      ML.WHLO as Warehouse\n,           MM.ITCL as Brand\n,           MM.ITNO as ItemNumber\n,           MM.ITDS as ItemDescription\n,           ML.RVQA as Qty\nFROM        M3.MPHEAD MP \nJOIN        M3.MPLINE ML ON MP.PUNO = ML.PUNO\nJOIN        M3.MITMAS MM ON ML.ITNO = MM.ITNO\nWHERE       cast(CAST(NULLIF(ML.RCDT,0) as varchar(max)) as date) = cast(getdate() - 1 as date)\n\n/*\nAhirst\nmaryanne\nlauren\n*/",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

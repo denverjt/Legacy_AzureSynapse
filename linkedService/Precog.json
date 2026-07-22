@@ -1,15 +1,14 @@
 {
-	"name": "Precog",
-	"properties": {
-		"annotations": [],
-		"type": "AzureSqlDatabase",
-		"typeProperties": {
-			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tlcus.database.windows.net;Initial Catalog=precog"
-		},
-		"connectVia": {
-			"referenceName": "tlcdwintegration",
-			"type": "IntegrationRuntimeReference"
-		}
-	},
-	"type": "Microsoft.Synapse/workspaces/linkedservices"
+  "name": "Precog",
+  "properties": {
+    "annotations": [],
+    "connectVia": {
+      "referenceName": "tlcdwintegration",
+      "type": "IntegrationRuntimeReference"
+    },
+    "type": "AzureSqlDatabase",
+    "typeProperties": {
+      "connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tlcus.database.windows.net;Initial Catalog=precog"
+    }
+  }
 }

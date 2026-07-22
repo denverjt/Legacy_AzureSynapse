@@ -1,17 +1,17 @@
 {
-	"name": "WIP_CustomerMaster",
-	"properties": {
-		"content": {
-			"query": "SELECT      DISTINCT [Customer Number]\n,           [Customer Name]\n,           [Payment Terms]\n,           [Sales Order]\n,           [Customer PO]\n,           [Entry Date]\n,           [Requested Date]\n,           SUM([Unit Price]*[Order Quantity]) as [Order Value]\nFROM        V_OPENORDERSBYSTATUS\nWHERE       [Customer Number] like 'COM%'\nAND         [Order Stop Code] = 3\nAND         [Qty Status] IN ('2 - Reserved/Backorder', '3 - Allocated')\nGROUP BY    [Customer Number]\n,           [Customer Name]\n,           [Payment Terms]\n,           [Sales Order]\n,           [Customer PO]\n,           [Entry Date]\n,           [Requested Date]\n\n\n",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "WIP_CustomerMaster",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "SELECT      DISTINCT [Customer Number]\n,           [Customer Name]\n,           [Payment Terms]\n,           [Sales Order]\n,           [Customer PO]\n,           [Entry Date]\n,           [Requested Date]\n,           SUM([Unit Price]*[Order Quantity]) as [Order Value]\nFROM        V_OPENORDERSBYSTATUS\nWHERE       [Customer Number] like 'COM%'\nAND         [Order Stop Code] = 3\nAND         [Qty Status] IN ('2 - Reserved/Backorder', '3 - Allocated')\nGROUP BY    [Customer Number]\n,           [Customer Name]\n,           [Payment Terms]\n,           [Sales Order]\n,           [Customer PO]\n,           [Entry Date]\n,           [Requested Date]\n\n\n",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

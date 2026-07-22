@@ -1,13 +1,12 @@
 {
-	"name": "IN_NetSuite",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "NetsuiteVT",
-			"type": "LinkedServiceReference"
-		},
-		"annotations": [],
-		"type": "SqlServerTable",
-		"schema": []
-	},
-	"type": "Microsoft.Synapse/workspaces/datasets"
+  "name": "IN_NetSuite",
+  "properties": {
+    "annotations": [],
+    "linkedServiceName": {
+      "referenceName": "NetsuiteVT",
+      "type": "LinkedServiceReference"
+    },
+    "schema": [],
+    "type": "SqlServerTable"
+  }
 }

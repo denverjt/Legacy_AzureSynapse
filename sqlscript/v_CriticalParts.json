@@ -1,17 +1,17 @@
 {
-	"name": "v_CriticalParts",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW     v_CriticalParts\n-- drop view v_CriticalParts\nas\nSELECT          MW.MFNO AS                  [Manufacturing Order]\n,               MW.PRNO AS                  [Product Number]\n,               MW.STDT AS                  [Start Date]\n,               MW.FIDT AS                  [Finish Date]\n,               MW.WHLO AS                  [Warehouse]\n,               MW.WCLN AS                  [Production Line]\n,               MW.RESP AS                  [Responsible]\n,               MW.ORQA AS                  [Finished Good Order Qty]\n,               MM.MTNO AS                  [Component]\n,               MM.REQA AS                  [Component Qty]\n,               MB.SUNO AS                  [Supplier]\n,               IM.ITDS AS                  [Component Description]\n,     ISNULL(SUM(ML.ORQA - ML.RVQA),0) AS   [Open Qty]\n,               SUM(MB.STQT) AS             [On Hand Qty]\n,               MW.WHST AS                  [MO Status]\nFROM            M3.MWOHED MW\nJOIN            M3.MWOMAT MM ON MW.MFNO = MM.MFNO AND MW.PRNO = MM.PRNO\nLEFT JOIN       M3.MITMAS IM ON MM.MTNO = IM.ITNO\nLEFT JOIN       M3.MITBAL MB ON MM.MTNO = MB.ITNO AND MW.WHLO = MB.WHLO\nLEFT JOIN       M3.MPLINE ML ON MM.MTNO = ML.ITNO AND MM.WHLO = ML.WHLO AND PUSL <> '99'\nGROUP BY        MW.MFNO, MW.PRNO, MW.STDT, MW.FIDT, MW.WHLO, MW.WCLN, MW.RESP\n,               MW.ORQA, MM.MTNO, MM.REQA, MB.SUNO, IM.ITDS, MW.WHST",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_CriticalParts",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW     v_CriticalParts\n-- drop view v_CriticalParts\nas\nSELECT          MW.MFNO AS                  [Manufacturing Order]\n,               MW.PRNO AS                  [Product Number]\n,               MW.STDT AS                  [Start Date]\n,               MW.FIDT AS                  [Finish Date]\n,               MW.WHLO AS                  [Warehouse]\n,               MW.WCLN AS                  [Production Line]\n,               MW.RESP AS                  [Responsible]\n,               MW.ORQA AS                  [Finished Good Order Qty]\n,               MM.MTNO AS                  [Component]\n,               MM.REQA AS                  [Component Qty]\n,               MB.SUNO AS                  [Supplier]\n,               IM.ITDS AS                  [Component Description]\n,     ISNULL(SUM(ML.ORQA - ML.RVQA),0) AS   [Open Qty]\n,               SUM(MB.STQT) AS             [On Hand Qty]\n,               MW.WHST AS                  [MO Status]\nFROM            M3.MWOHED MW\nJOIN            M3.MWOMAT MM ON MW.MFNO = MM.MFNO AND MW.PRNO = MM.PRNO\nLEFT JOIN       M3.MITMAS IM ON MM.MTNO = IM.ITNO\nLEFT JOIN       M3.MITBAL MB ON MM.MTNO = MB.ITNO AND MW.WHLO = MB.WHLO\nLEFT JOIN       M3.MPLINE ML ON MM.MTNO = ML.ITNO AND MM.WHLO = ML.WHLO AND PUSL <> '99'\nGROUP BY        MW.MFNO, MW.PRNO, MW.STDT, MW.FIDT, MW.WHLO, MW.WCLN, MW.RESP\n,               MW.ORQA, MM.MTNO, MM.REQA, MB.SUNO, IM.ITDS, MW.WHST",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

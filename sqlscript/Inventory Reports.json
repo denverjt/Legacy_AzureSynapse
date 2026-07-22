@@ -1,17 +1,17 @@
 {
-	"name": "Inventory Reports",
-	"properties": {
-		"content": {
-			"query": "SELECT          'Bevles' as Brand, 'Erie' as Warehouse\n,               IM.ITNO as [Item Number], IM.ITDS as [Item Description], BA.STQT - BA.ALQT AS [Quantity Available]\nFROM            M3_MITMAS IM\nJOIN            M3_MITBAL BA ON IM.ITNO = BA.ITNO\nWHERE           IM.BUAR = 'COM'\nAND             IM.ITCL IN ('BEV')\nAND             BA.WHLO IN ('EPA')\nAND             PRGP = 'FG'\nAND             ITGR NOT IN ('C113', 'C112')\nAND             BA.STQT - BA.ALQT > 0\n;\n\n\n\nSELECT          CASE WHEN IM.ITCL = 'GEN' then 'General'\n                WHEN IM.ITCL = 'MXC' then 'Maxx Cold'\n                WHEN IM.ITCL = 'MXI' then 'Maxx Ice'\n                WHEN IM.ITCL = 'OME' then 'Omega' END as Brand\n,               IM.ITNO as [Item Number], IM.ITDS as [Item Description], BA.STQT - BA.ALQT AS [Quantity Available]\nFROM            M3_MITMAS IM\nJOIN            M3_MITBAL BA ON IM.ITNO = BA.ITNO\nWHERE           IM.BUAR = 'COM'\nAND             IM.ITCL IN ('GEN', 'MXC', 'MXI', 'OME')\nAND             BA.WHLO IN ('PKY', 'SNV')\nAND             PRGP = 'FG'\nAND             ITGR NOT IN ('C113', 'C112')\nAND             ITTY NOT IN ('210')\nAND             BA.STQT - BA.ALQT > 0\n;\n\n\n\nSELECT         'Sapphire' Brand\n,               IM.ITNO as [Item Number], IM.ITDS as [Item Description], BA.STQT - BA.ALQT AS [Quantity Available]\nFROM            M3_MITMAS IM\nJOIN            M3_MITBAL BA ON IM.ITNO = BA.ITNO\nWHERE           IM.BUAR = 'COM'\nAND             IM.ITCL IN ('SAP')\nAND             BA.WHLO = 'PKY'\nAND             BA.STQT - BA.ALQT > 0\n;",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "Inventory Reports",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "SELECT          'Bevles' as Brand, 'Erie' as Warehouse\n,               IM.ITNO as [Item Number], IM.ITDS as [Item Description], BA.STQT - BA.ALQT AS [Quantity Available]\nFROM            M3_MITMAS IM\nJOIN            M3_MITBAL BA ON IM.ITNO = BA.ITNO\nWHERE           IM.BUAR = 'COM'\nAND             IM.ITCL IN ('BEV')\nAND             BA.WHLO IN ('EPA')\nAND             PRGP = 'FG'\nAND             ITGR NOT IN ('C113', 'C112')\nAND             BA.STQT - BA.ALQT > 0\n;\n\n\n\nSELECT          CASE WHEN IM.ITCL = 'GEN' then 'General'\n                WHEN IM.ITCL = 'MXC' then 'Maxx Cold'\n                WHEN IM.ITCL = 'MXI' then 'Maxx Ice'\n                WHEN IM.ITCL = 'OME' then 'Omega' END as Brand\n,               IM.ITNO as [Item Number], IM.ITDS as [Item Description], BA.STQT - BA.ALQT AS [Quantity Available]\nFROM            M3_MITMAS IM\nJOIN            M3_MITBAL BA ON IM.ITNO = BA.ITNO\nWHERE           IM.BUAR = 'COM'\nAND             IM.ITCL IN ('GEN', 'MXC', 'MXI', 'OME')\nAND             BA.WHLO IN ('PKY', 'SNV')\nAND             PRGP = 'FG'\nAND             ITGR NOT IN ('C113', 'C112')\nAND             ITTY NOT IN ('210')\nAND             BA.STQT - BA.ALQT > 0\n;\n\n\n\nSELECT         'Sapphire' Brand\n,               IM.ITNO as [Item Number], IM.ITDS as [Item Description], BA.STQT - BA.ALQT AS [Quantity Available]\nFROM            M3_MITMAS IM\nJOIN            M3_MITBAL BA ON IM.ITNO = BA.ITNO\nWHERE           IM.BUAR = 'COM'\nAND             IM.ITCL IN ('SAP')\nAND             BA.WHLO = 'PKY'\nAND             BA.STQT - BA.ALQT > 0\n;",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

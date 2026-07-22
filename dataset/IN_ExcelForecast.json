@@ -1,151 +1,150 @@
 {
-	"name": "IN_ExcelForecast",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "tlcdw-WorkspaceDefaultStorage",
-			"type": "LinkedServiceReference"
-		},
-		"annotations": [],
-		"type": "Excel",
-		"typeProperties": {
-			"sheetName": "Reforecast Data table",
-			"location": {
-				"type": "AzureBlobFSLocation",
-				"fileName": "Consolidated Sales Reforecast 2023 GOOD GB & MP Notes.xlsx",
-				"folderPath": "Budget",
-				"fileSystem": "tlclakefs"
-			},
-			"range": "B6:AQ687",
-			"firstRowAsHeader": false
-		},
-		"schema": [
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			}
-		]
-	},
-	"type": "Microsoft.Synapse/workspaces/datasets"
+  "name": "IN_ExcelForecast",
+  "properties": {
+    "annotations": [],
+    "linkedServiceName": {
+      "referenceName": "tlcdw-WorkspaceDefaultStorage",
+      "type": "LinkedServiceReference"
+    },
+    "schema": [
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      },
+      {
+        "type": "String"
+      }
+    ],
+    "type": "Excel",
+    "typeProperties": {
+      "firstRowAsHeader": false,
+      "location": {
+        "fileName": "Consolidated Sales Reforecast 2023 GOOD GB & MP Notes.xlsx",
+        "fileSystem": "tlclakefs",
+        "folderPath": "Budget",
+        "type": "AzureBlobFSLocation"
+      },
+      "range": "B6:AQ687",
+      "sheetName": "Reforecast Data table"
+    }
+  }
 }

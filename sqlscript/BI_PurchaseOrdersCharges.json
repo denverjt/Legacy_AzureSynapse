@@ -1,17 +1,17 @@
 {
-	"name": "BI_PurchaseOrdersCharges",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW BI_PurchaseOrdersCharges\n-- drop view BI_PurchaseOrdersCharges\n\nAS\n\nSELECT * FROM M3.MPOEXP\nWHERE\n    PUNO <> '`' AND\n    CEID IN ('FREI01', 'FREI02', 'FREI03', 'FREVEN', 'SLSTAX') AND\n    PNLI = '0'\n",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "BI_PurchaseOrdersCharges",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW BI_PurchaseOrdersCharges\n-- drop view BI_PurchaseOrdersCharges\n\nAS\n\nSELECT * FROM M3.MPOEXP\nWHERE\n    PUNO <> '`' AND\n    CEID IN ('FREI01', 'FREI02', 'FREI03', 'FREVEN', 'SLSTAX') AND\n    PNLI = '0'\n",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

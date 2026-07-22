@@ -1,17 +1,17 @@
 {
-	"name": "BI_CustomerPriceLists",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW BI_CustomerPriceLists\n-- drop view BI_CustomerPriceLists\n\nAS\n\nSELECT\n    OC.CUNO AS [Customer Number],\n    OC.CUNM AS [Customer Name],\n    OC.CFC8 AS [Price List Market],\n    CS.TX15 AS [Delivery Terms],\n    2 AS [Priority],\n    PLT2.PLTB AS [Price List Tab],\n    PLT2.PRRF AS [Base Price List],\n    PRL.ITNO AS [Item Number],\n    PRL.SAPR AS [Customer Price],\n    PRL.LMDT AS [Change Date],\n    PRL.CHNO AS [Change Number],\n    PRL.CHID AS [Change By],\n    PRL.FVDT AS [Valid From],\n    PRL.LVDT AS [Valid To],\n    MM.SAPR AS [Sales Price],\n    CASE\n        WHEN PRL.LVDT < CAST(GETDATE() AS date) THEN 'Expired'\n        WHEN PRL.FVDT > CAST(GETDATE() AS date) THEN 'Future'\n        WHEN PRL.FVDT <= CAST(GETDATE() AS date) AND PRL.LVDT >= CAST(GETDATE() AS date) THEN 'Current'\n        ELSE 'Review'\n    END AS [Price List Status]\n\nFROM M3.OCUSMA OC\nJOIN M3.OPRMTX PLT2 ON OC.PLTB = PLT2.PLTB AND OC.CUNO = PLT2.OBV1 AND PLT2.PREX = 2\nJOIN M3.OPRBAS PRL ON PRL.PRRF = PLT2.PRRF\nLEFT JOIN M3.MITMAS MM ON PRL.ITNO = MM.ITNO\nLEFT JOIN M3.CSYTAB CS ON OC.TEDL = CS.STKY AND CS.STCO = 'TEDL'\nWHERE OC.STAT = 20\n\nUNION ALL\n\nSELECT\n    OC.CUNO AS [Customer Number],\n    OC.CUNM AS [Customer Name],\n    OC.CFC8 AS [Price List Market],\n    CS.TX15 AS [Delivery Terms],\n    6 AS [Priority],\n    PLT6.PLTB AS [Price List Tab],\n    PLT6.PRRF AS [Base Price List],\n    PRL.ITNO AS [Item Number],\n    PRL.SAPR AS [Customer Price],\n    PRL.LMDT AS [Change Date],\n    PRL.CHNO AS [Change Number],\n    PRL.CHID AS [Change By],\n    PRL.FVDT AS [Valid From],\n    PRL.LVDT AS [Valid To],\n    MM.SAPR AS [Sales Price],\n    CASE\n        WHEN PRL.LVDT < CAST(GETDATE() AS date) THEN 'Expired'\n        WHEN PRL.FVDT > CAST(GETDATE() AS date) THEN 'Future'\n        WHEN PRL.FVDT <= CAST(GETDATE() AS date) AND PRL.LVDT >= CAST(GETDATE() AS date) THEN 'Current'\n        ELSE 'Review'\n    END AS [Price List Status]\n\nFROM M3.OCUSMA OC\nJOIN M3.OPRMTX PLT6 ON OC.PLTB = PLT6.PLTB AND OC.CFC8 = PLT6.OBV1 AND PLT6.PREX = 6\nJOIN M3.OPRBAS PRL ON PRL.PRRF = PLT6.PRRF\nLEFT JOIN M3.MITMAS MM ON PRL.ITNO = MM.ITNO\nLEFT JOIN M3.CSYTAB CS ON OC.TEDL = CS.STKY AND CS.STCO = 'TEDL'\nWHERE OC.STAT = 20\n\n",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "BI_CustomerPriceLists",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW BI_CustomerPriceLists\n-- drop view BI_CustomerPriceLists\n\nAS\n\nSELECT\n    OC.CUNO AS [Customer Number],\n    OC.CUNM AS [Customer Name],\n    OC.CFC8 AS [Price List Market],\n    CS.TX15 AS [Delivery Terms],\n    2 AS [Priority],\n    PLT2.PLTB AS [Price List Tab],\n    PLT2.PRRF AS [Base Price List],\n    PRL.ITNO AS [Item Number],\n    PRL.SAPR AS [Customer Price],\n    PRL.LMDT AS [Change Date],\n    PRL.CHNO AS [Change Number],\n    PRL.CHID AS [Change By],\n    PRL.FVDT AS [Valid From],\n    PRL.LVDT AS [Valid To],\n    MM.SAPR AS [Sales Price],\n    CASE\n        WHEN PRL.LVDT < CAST(GETDATE() AS date) THEN 'Expired'\n        WHEN PRL.FVDT > CAST(GETDATE() AS date) THEN 'Future'\n        WHEN PRL.FVDT <= CAST(GETDATE() AS date) AND PRL.LVDT >= CAST(GETDATE() AS date) THEN 'Current'\n        ELSE 'Review'\n    END AS [Price List Status]\n\nFROM M3.OCUSMA OC\nJOIN M3.OPRMTX PLT2 ON OC.PLTB = PLT2.PLTB AND OC.CUNO = PLT2.OBV1 AND PLT2.PREX = 2\nJOIN M3.OPRBAS PRL ON PRL.PRRF = PLT2.PRRF\nLEFT JOIN M3.MITMAS MM ON PRL.ITNO = MM.ITNO\nLEFT JOIN M3.CSYTAB CS ON OC.TEDL = CS.STKY AND CS.STCO = 'TEDL'\nWHERE OC.STAT = 20\n\nUNION ALL\n\nSELECT\n    OC.CUNO AS [Customer Number],\n    OC.CUNM AS [Customer Name],\n    OC.CFC8 AS [Price List Market],\n    CS.TX15 AS [Delivery Terms],\n    6 AS [Priority],\n    PLT6.PLTB AS [Price List Tab],\n    PLT6.PRRF AS [Base Price List],\n    PRL.ITNO AS [Item Number],\n    PRL.SAPR AS [Customer Price],\n    PRL.LMDT AS [Change Date],\n    PRL.CHNO AS [Change Number],\n    PRL.CHID AS [Change By],\n    PRL.FVDT AS [Valid From],\n    PRL.LVDT AS [Valid To],\n    MM.SAPR AS [Sales Price],\n    CASE\n        WHEN PRL.LVDT < CAST(GETDATE() AS date) THEN 'Expired'\n        WHEN PRL.FVDT > CAST(GETDATE() AS date) THEN 'Future'\n        WHEN PRL.FVDT <= CAST(GETDATE() AS date) AND PRL.LVDT >= CAST(GETDATE() AS date) THEN 'Current'\n        ELSE 'Review'\n    END AS [Price List Status]\n\nFROM M3.OCUSMA OC\nJOIN M3.OPRMTX PLT6 ON OC.PLTB = PLT6.PLTB AND OC.CFC8 = PLT6.OBV1 AND PLT6.PREX = 6\nJOIN M3.OPRBAS PRL ON PRL.PRRF = PLT6.PRRF\nLEFT JOIN M3.MITMAS MM ON PRL.ITNO = MM.ITNO\nLEFT JOIN M3.CSYTAB CS ON OC.TEDL = CS.STKY AND CS.STCO = 'TEDL'\nWHERE OC.STAT = 20\n\n",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

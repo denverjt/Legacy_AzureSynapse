@@ -1,22 +1,20 @@
 {
-	"name": "DestinationDataset_wqb",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "tlcdw-WorkspaceDefaultStorage",
-			"type": "LinkedServiceReference"
-		},
-		"annotations": [],
-		"type": "Parquet",
-		"typeProperties": {
-			"location": {
-				"type": "AzureBlobFSLocation",
-				"fileName": "arinvitm.parquet",
-				"folderPath": "AppriseLIVE",
-				"fileSystem": "tlclakefs"
-			},
-			"compressionCodec": "snappy"
-		},
-		"schema": []
-	},
-	"type": "Microsoft.Synapse/workspaces/datasets"
+  "name": "DestinationDataset_wqb",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "tlcdw-WorkspaceDefaultStorage",
+      "type": "LinkedServiceReference"
+    },
+    "schema": [],
+    "type": "Parquet",
+    "typeProperties": {
+      "compressionCodec": "snappy",
+      "location": {
+        "fileName": "arinvitm.parquet",
+        "fileSystem": "tlclakefs",
+        "folderPath": "AppriseLIVE",
+        "type": "AzureBlobFSLocation"
+      }
+    }
+  }
 }

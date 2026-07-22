@@ -1,17 +1,17 @@
 {
-	"name": "BI_PackageTracking",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW BI_PackageTracking\n-- drop view BI_PackageTracking\nAS\n\nSELECT MF.ITNO AS ITEM_NUMBER\n      ,MT.POPN AS CUSTOMER_SKU\n      ,MF.CUOR AS CUST_PO_NUMBER\n      ,MF.DLIX AS DELIVERY_NUMBER\n      ,MF.RIDN AS ORDER_NUMBER\n      ,MF.PANR AS PACKAGE_NUMBER\n      ,MF.DLQT AS SHIPPED_QUANTITY\n      ,MF.GRWE AS PACKAGE_WEIGHT\n      ,MP.DLRM AS CARRIER\n      ,MP.ETRN AS TRACKING_NUMBER\n      ,MF.RGDT AS ENTRY_DATE\n      ,MP.CUNO AS CUSTOMER_NUMBER\n      ,MP.PACO AS PACKAGE_LEVEL\nFROM M3.MFTRNS MF\n    LEFT JOIN M3.MPTRNS MP ON MF.PANR = MP.SSCC AND MF.DLIX = MP.DLIX AND (MP.PACO = 0 OR MP.PACO IS NULL OR MP.PACO IS NULL)\n    LEFT JOIN M3.MITPOP MT ON MF.ITNO = MT.ITNO AND MT.E0PA = MP.CUNO AND ALWT = '6'\n    LEFT JOIN M3.MHDISH MH ON MF.DLIX = MH.DLIX\nWHERE MH.PGRS = 90 AND MH.RORC = 3 ",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "BI_PackageTracking",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW BI_PackageTracking\n-- drop view BI_PackageTracking\nAS\n\nSELECT MF.ITNO AS ITEM_NUMBER\n      ,MT.POPN AS CUSTOMER_SKU\n      ,MF.CUOR AS CUST_PO_NUMBER\n      ,MF.DLIX AS DELIVERY_NUMBER\n      ,MF.RIDN AS ORDER_NUMBER\n      ,MF.PANR AS PACKAGE_NUMBER\n      ,MF.DLQT AS SHIPPED_QUANTITY\n      ,MF.GRWE AS PACKAGE_WEIGHT\n      ,MP.DLRM AS CARRIER\n      ,MP.ETRN AS TRACKING_NUMBER\n      ,MF.RGDT AS ENTRY_DATE\n      ,MP.CUNO AS CUSTOMER_NUMBER\n      ,MP.PACO AS PACKAGE_LEVEL\nFROM M3.MFTRNS MF\n    LEFT JOIN M3.MPTRNS MP ON MF.PANR = MP.SSCC AND MF.DLIX = MP.DLIX AND (MP.PACO = 0 OR MP.PACO IS NULL OR MP.PACO IS NULL)\n    LEFT JOIN M3.MITPOP MT ON MF.ITNO = MT.ITNO AND MT.E0PA = MP.CUNO AND ALWT = '6'\n    LEFT JOIN M3.MHDISH MH ON MF.DLIX = MH.DLIX\nWHERE MH.PGRS = 90 AND MH.RORC = 3 ",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

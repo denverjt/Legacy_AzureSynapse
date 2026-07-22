@@ -1,17 +1,17 @@
 {
-	"name": "Consolidated Orders",
-	"properties": {
-		"content": {
-			"query": "SELECT          OH.CUNO AS [Customer ID]\n,               CM.CUNM AS [Customer Name]\n,               OH.ORNO AS [Sales Order]\n,               OH.CUOR AS [Customer PO]\n,               OH.ORDT AS [Order Date]\n,               OH.RGDT AS [Entry Date]\n,               OH.RLDT AS [Requested Delivery Date]\n,               OH.ORTP AS [Order Type]\n,               OH.SMCD AS [Salesperson]\n,               OH.RESP AS [Responsible]\n,               OL.PONR AS [Line Number]\n,               OL.ORST AS [Line Status]\n,               OL.ITNO AS [Item Number]\n,               IM.ITDS AS [Item Description]\n,               IM.BUAR AS [Business Area]\n,               IM.ITCL AS [Brand]\n,               IM.ITGR AS [Category]\n,               IM.PDLN AS [Sub Category]\n,               IM.PRGP AS [Procurement Group]\n,               IM.SUNO AS [Supplier ID]\n,               SM.SUNM AS [Supplier Name]\n,               OL.WHLO AS Warehouse\n,               OL.ORQT AS [Order Qty]\n,               OL.NEPR AS [Unit Price]\n,               OL.ORQT*OL.NEPR AS [Sales Amt]\n,               OL.UCOS AS [Unit Cost]\n,               OL.ORQT*OL.UCOS AS [Cost Amt]\n,               ODL.DLIX AS [Delivery Number]\n,               ODL.IVNO AS [Invoice Number]\n,               ODH.IVDT AS [Invoice Date]    \n,               ODL.IVQT AS [Invoiced Qty]\nFROM            M3_OOHEAD OH\nJOIN            M3_OOLINE OL ON OH.ORNO = OL.ORNO\nJOIN            M3_MITMAS IM ON OL.ITNO = IM.ITNO\nJOIN            M3_OCUSMA CM ON OH.CUNO = CM.CUNO\nLEFT JOIN       M3_CIDMAS SM ON OL.SUNO = SM.SUNO\nLEFT JOIN       M3_ODLINE ODL ON OH.ORNO = ODL.ORNO AND OL.PONR = ODL.PONR\nLEFT JOIN       M3_ODHEAD ODH ON OH.ORNO = ODH.ORNO AND ODL.DLIX = ODH.DLIX",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": -1
-		},
-		"type": "SqlQuery"
-	}
+  "name": "Consolidated Orders",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "SELECT          OH.CUNO AS [Customer ID]\n,               CM.CUNM AS [Customer Name]\n,               OH.ORNO AS [Sales Order]\n,               OH.CUOR AS [Customer PO]\n,               OH.ORDT AS [Order Date]\n,               OH.RGDT AS [Entry Date]\n,               OH.RLDT AS [Requested Delivery Date]\n,               OH.ORTP AS [Order Type]\n,               OH.SMCD AS [Salesperson]\n,               OH.RESP AS [Responsible]\n,               OL.PONR AS [Line Number]\n,               OL.ORST AS [Line Status]\n,               OL.ITNO AS [Item Number]\n,               IM.ITDS AS [Item Description]\n,               IM.BUAR AS [Business Area]\n,               IM.ITCL AS [Brand]\n,               IM.ITGR AS [Category]\n,               IM.PDLN AS [Sub Category]\n,               IM.PRGP AS [Procurement Group]\n,               IM.SUNO AS [Supplier ID]\n,               SM.SUNM AS [Supplier Name]\n,               OL.WHLO AS Warehouse\n,               OL.ORQT AS [Order Qty]\n,               OL.NEPR AS [Unit Price]\n,               OL.ORQT*OL.NEPR AS [Sales Amt]\n,               OL.UCOS AS [Unit Cost]\n,               OL.ORQT*OL.UCOS AS [Cost Amt]\n,               ODL.DLIX AS [Delivery Number]\n,               ODL.IVNO AS [Invoice Number]\n,               ODH.IVDT AS [Invoice Date]    \n,               ODL.IVQT AS [Invoiced Qty]\nFROM            M3_OOHEAD OH\nJOIN            M3_OOLINE OL ON OH.ORNO = OL.ORNO\nJOIN            M3_MITMAS IM ON OL.ITNO = IM.ITNO\nJOIN            M3_OCUSMA CM ON OH.CUNO = CM.CUNO\nLEFT JOIN       M3_CIDMAS SM ON OL.SUNO = SM.SUNO\nLEFT JOIN       M3_ODLINE ODL ON OH.ORNO = ODL.ORNO AND OL.PONR = ODL.PONR\nLEFT JOIN       M3_ODHEAD ODH ON OH.ORNO = ODH.ORNO AND ODL.DLIX = ODH.DLIX",
+      "resultLimit": -1
+    },
+    "type": "SqlQuery"
+  }
 }

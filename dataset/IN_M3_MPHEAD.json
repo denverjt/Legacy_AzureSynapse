@@ -1,377 +1,376 @@
 {
-	"name": "IN_M3_MPHEAD",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "tlcdw-WorkspaceDefaultStorage",
-			"type": "LinkedServiceReference"
-		},
-		"annotations": [],
-		"type": "Json",
-		"typeProperties": {
-			"location": {
-				"type": "AzureBlobFSLocation",
-				"fileName": "MPHEAD_2022-10-12_23-23-43-433.json",
-				"folderPath": "M3/JSON/MPHEAD",
-				"fileSystem": "tlclakefs"
-			},
-			"compression": {
-				"type": "deflate",
-				"level": "Optimal"
-			}
-		},
-		"schema": {
-			"type": "object",
-			"properties": {
-				"CONO": {
-					"type": "integer"
-				},
-				"DIVI": {
-					"type": "string"
-				},
-				"FACI": {
-					"type": "string"
-				},
-				"WHLO": {
-					"type": "string"
-				},
-				"PUNO": {
-					"type": "string"
-				},
-				"ORTY": {
-					"type": "string"
-				},
-				"POTC": {
-					"type": "string"
-				},
-				"PUSL": {
-					"type": "string"
-				},
-				"SLDT": {
-					"type": "integer"
-				},
-				"PUST": {
-					"type": "string"
-				},
-				"SCDT": {
-					"type": "integer"
-				},
-				"CMCO": {
-					"type": "string"
-				},
-				"PUDT": {
-					"type": "integer"
-				},
-				"SUNO": {
-					"type": "string"
-				},
-				"LNCD": {
-					"type": "string"
-				},
-				"CUCD": {
-					"type": "string"
-				},
-				"TEPY": {
-					"type": "string"
-				},
-				"PYME": {
-					"type": "string"
-				},
-				"MODL": {
-					"type": "string"
-				},
-				"TEDL": {
-					"type": "string"
-				},
-				"TEAF": {
-					"type": "string"
-				},
-				"TEPA": {
-					"type": "string"
-				},
-				"RFID": {
-					"type": "string"
-				},
-				"YRE1": {
-					"type": "string"
-				},
-				"DWDT": {
-					"type": "integer"
-				},
-				"HDDT": {
-					"type": "integer"
-				},
-				"PRSU": {
-					"type": "string"
-				},
-				"OURR": {
-					"type": "string"
-				},
-				"OURT": {
-					"type": "string"
-				},
-				"AGNT": {
-					"type": "string"
-				},
-				"NTAM": {
-					"type": "number"
-				},
-				"BRAM": {
-					"type": "number"
-				},
-				"OTBA": {
-					"type": "number"
-				},
-				"PURC": {
-					"type": "string"
-				},
-				"BUYE": {
-					"type": "string"
-				},
-				"AURE": {
-					"type": "string"
-				},
-				"LEDT": {
-					"type": "integer"
-				},
-				"FUSC": {
-					"type": "string"
-				},
-				"EXAT": {
-					"type": "integer"
-				},
-				"PTAC": {
-					"type": "integer"
-				},
-				"RTAC": {
-					"type": "integer"
-				},
-				"EXAV": {
-					"type": "integer"
-				},
-				"NOPP": {
-					"type": "integer"
-				},
-				"NOLN": {
-					"type": "integer"
-				},
-				"MTWP": {
-					"type": "integer"
-				},
-				"MTDP": {
-					"type": "integer"
-				},
-				"COAM": {
-					"type": "number"
-				},
-				"ODAM": {
-					"type": "number"
-				},
-				"OTPC": {
-					"type": "number"
-				},
-				"PRLA": {
-					"type": "integer"
-				},
-				"VOL3": {
-					"type": "number"
-				},
-				"GRWE": {
-					"type": "number"
-				},
-				"TOQT": {
-					"type": "number"
-				},
-				"TFNO": {
-					"type": "string"
-				},
-				"LRED": {
-					"type": "integer"
-				},
-				"ATDT": {
-					"type": "integer"
-				},
-				"POPO": {
-					"type": "integer"
-				},
-				"TEL1": {
-					"type": "string"
-				},
-				"DUDT": {
-					"type": "integer"
-				},
-				"CUTE": {
-					"type": "integer"
-				},
-				"AGRA": {
-					"type": "number"
-				},
-				"PYAD": {
-					"type": "string"
-				},
-				"SHVI": {
-					"type": "string"
-				},
-				"FIDS": {
-					"type": "string"
-				},
-				"RCDT": {
-					"type": "integer"
-				},
-				"LIDT": {
-					"type": "integer"
-				},
-				"EXEP": {
-					"type": "number"
-				},
-				"INEP": {
-					"type": "number"
-				},
-				"TLEX": {
-					"type": "number"
-				},
-				"TLIN": {
-					"type": "number"
-				},
-				"TEOR": {
-					"type": "integer"
-				},
-				"TXID": {
-					"type": "integer"
-				},
-				"PRTX": {
-					"type": "integer"
-				},
-				"POTX": {
-					"type": "integer"
-				},
-				"DTID": {
-					"type": "integer"
-				},
-				"PROJ": {
-					"type": "string"
-				},
-				"ELNO": {
-					"type": "string"
-				},
-				"ECLC": {
-					"type": "string"
-				},
-				"CPRI": {
-					"type": "string"
-				},
-				"HAFE": {
-					"type": "string"
-				},
-				"TIHM": {
-					"type": "integer"
-				},
-				"MEDC": {
-					"type": "string"
-				},
-				"RGDT": {
-					"type": "integer"
-				},
-				"RGTM": {
-					"type": "integer"
-				},
-				"LMDT": {
-					"type": "integer"
-				},
-				"CHNO": {
-					"type": "integer"
-				},
-				"CHID": {
-					"type": "string"
-				},
-				"LMTS": {
-					"type": "integer"
-				},
-				"PRVW": {
-					"type": "integer"
-				},
-				"RASN": {
-					"type": "string"
-				},
-				"FECN": {
-					"type": "string"
-				},
-				"UCA1": {
-					"type": "string"
-				},
-				"UCA2": {
-					"type": "string"
-				},
-				"UCA3": {
-					"type": "string"
-				},
-				"UCA4": {
-					"type": "string"
-				},
-				"UCA5": {
-					"type": "string"
-				},
-				"UCA6": {
-					"type": "string"
-				},
-				"UCA7": {
-					"type": "string"
-				},
-				"UCA8": {
-					"type": "string"
-				},
-				"UCA9": {
-					"type": "string"
-				},
-				"UCA0": {
-					"type": "string"
-				},
-				"UDN1": {
-					"type": "integer"
-				},
-				"UDN2": {
-					"type": "integer"
-				},
-				"UDN3": {
-					"type": "integer"
-				},
-				"UDN4": {
-					"type": "integer"
-				},
-				"UDN5": {
-					"type": "integer"
-				},
-				"UDN6": {
-					"type": "integer"
-				},
-				"UID1": {
-					"type": "integer"
-				},
-				"UID2": {
-					"type": "integer"
-				},
-				"UID3": {
-					"type": "integer"
-				},
-				"UCT1": {
-					"type": "string"
-				},
-				"PORG": {
-					"type": "string"
-				},
-				"accountingEntity": {
-					"type": "string"
-				},
-				"variationNumber": {
-					"type": "integer"
-				},
-				"timestamp": {
-					"type": "string"
-				},
-				"deleted": {
-					"type": "boolean"
-				}
-			}
-		}
-	},
-	"type": "Microsoft.Synapse/workspaces/datasets"
+  "name": "IN_M3_MPHEAD",
+  "properties": {
+    "annotations": [],
+    "linkedServiceName": {
+      "referenceName": "tlcdw-WorkspaceDefaultStorage",
+      "type": "LinkedServiceReference"
+    },
+    "schema": {
+      "properties": {
+        "AGNT": {
+          "type": "string"
+        },
+        "AGRA": {
+          "type": "number"
+        },
+        "ATDT": {
+          "type": "integer"
+        },
+        "AURE": {
+          "type": "string"
+        },
+        "BRAM": {
+          "type": "number"
+        },
+        "BUYE": {
+          "type": "string"
+        },
+        "CHID": {
+          "type": "string"
+        },
+        "CHNO": {
+          "type": "integer"
+        },
+        "CMCO": {
+          "type": "string"
+        },
+        "COAM": {
+          "type": "number"
+        },
+        "CONO": {
+          "type": "integer"
+        },
+        "CPRI": {
+          "type": "string"
+        },
+        "CUCD": {
+          "type": "string"
+        },
+        "CUTE": {
+          "type": "integer"
+        },
+        "DIVI": {
+          "type": "string"
+        },
+        "DTID": {
+          "type": "integer"
+        },
+        "DUDT": {
+          "type": "integer"
+        },
+        "DWDT": {
+          "type": "integer"
+        },
+        "ECLC": {
+          "type": "string"
+        },
+        "ELNO": {
+          "type": "string"
+        },
+        "EXAT": {
+          "type": "integer"
+        },
+        "EXAV": {
+          "type": "integer"
+        },
+        "EXEP": {
+          "type": "number"
+        },
+        "FACI": {
+          "type": "string"
+        },
+        "FECN": {
+          "type": "string"
+        },
+        "FIDS": {
+          "type": "string"
+        },
+        "FUSC": {
+          "type": "string"
+        },
+        "GRWE": {
+          "type": "number"
+        },
+        "HAFE": {
+          "type": "string"
+        },
+        "HDDT": {
+          "type": "integer"
+        },
+        "INEP": {
+          "type": "number"
+        },
+        "LEDT": {
+          "type": "integer"
+        },
+        "LIDT": {
+          "type": "integer"
+        },
+        "LMDT": {
+          "type": "integer"
+        },
+        "LMTS": {
+          "type": "integer"
+        },
+        "LNCD": {
+          "type": "string"
+        },
+        "LRED": {
+          "type": "integer"
+        },
+        "MEDC": {
+          "type": "string"
+        },
+        "MODL": {
+          "type": "string"
+        },
+        "MTDP": {
+          "type": "integer"
+        },
+        "MTWP": {
+          "type": "integer"
+        },
+        "NOLN": {
+          "type": "integer"
+        },
+        "NOPP": {
+          "type": "integer"
+        },
+        "NTAM": {
+          "type": "number"
+        },
+        "ODAM": {
+          "type": "number"
+        },
+        "ORTY": {
+          "type": "string"
+        },
+        "OTBA": {
+          "type": "number"
+        },
+        "OTPC": {
+          "type": "number"
+        },
+        "OURR": {
+          "type": "string"
+        },
+        "OURT": {
+          "type": "string"
+        },
+        "POPO": {
+          "type": "integer"
+        },
+        "PORG": {
+          "type": "string"
+        },
+        "POTC": {
+          "type": "string"
+        },
+        "POTX": {
+          "type": "integer"
+        },
+        "PRLA": {
+          "type": "integer"
+        },
+        "PROJ": {
+          "type": "string"
+        },
+        "PRSU": {
+          "type": "string"
+        },
+        "PRTX": {
+          "type": "integer"
+        },
+        "PRVW": {
+          "type": "integer"
+        },
+        "PTAC": {
+          "type": "integer"
+        },
+        "PUDT": {
+          "type": "integer"
+        },
+        "PUNO": {
+          "type": "string"
+        },
+        "PURC": {
+          "type": "string"
+        },
+        "PUSL": {
+          "type": "string"
+        },
+        "PUST": {
+          "type": "string"
+        },
+        "PYAD": {
+          "type": "string"
+        },
+        "PYME": {
+          "type": "string"
+        },
+        "RASN": {
+          "type": "string"
+        },
+        "RCDT": {
+          "type": "integer"
+        },
+        "RFID": {
+          "type": "string"
+        },
+        "RGDT": {
+          "type": "integer"
+        },
+        "RGTM": {
+          "type": "integer"
+        },
+        "RTAC": {
+          "type": "integer"
+        },
+        "SCDT": {
+          "type": "integer"
+        },
+        "SHVI": {
+          "type": "string"
+        },
+        "SLDT": {
+          "type": "integer"
+        },
+        "SUNO": {
+          "type": "string"
+        },
+        "TEAF": {
+          "type": "string"
+        },
+        "TEDL": {
+          "type": "string"
+        },
+        "TEL1": {
+          "type": "string"
+        },
+        "TEOR": {
+          "type": "integer"
+        },
+        "TEPA": {
+          "type": "string"
+        },
+        "TEPY": {
+          "type": "string"
+        },
+        "TFNO": {
+          "type": "string"
+        },
+        "TIHM": {
+          "type": "integer"
+        },
+        "TLEX": {
+          "type": "number"
+        },
+        "TLIN": {
+          "type": "number"
+        },
+        "TOQT": {
+          "type": "number"
+        },
+        "TXID": {
+          "type": "integer"
+        },
+        "UCA0": {
+          "type": "string"
+        },
+        "UCA1": {
+          "type": "string"
+        },
+        "UCA2": {
+          "type": "string"
+        },
+        "UCA3": {
+          "type": "string"
+        },
+        "UCA4": {
+          "type": "string"
+        },
+        "UCA5": {
+          "type": "string"
+        },
+        "UCA6": {
+          "type": "string"
+        },
+        "UCA7": {
+          "type": "string"
+        },
+        "UCA8": {
+          "type": "string"
+        },
+        "UCA9": {
+          "type": "string"
+        },
+        "UCT1": {
+          "type": "string"
+        },
+        "UDN1": {
+          "type": "integer"
+        },
+        "UDN2": {
+          "type": "integer"
+        },
+        "UDN3": {
+          "type": "integer"
+        },
+        "UDN4": {
+          "type": "integer"
+        },
+        "UDN5": {
+          "type": "integer"
+        },
+        "UDN6": {
+          "type": "integer"
+        },
+        "UID1": {
+          "type": "integer"
+        },
+        "UID2": {
+          "type": "integer"
+        },
+        "UID3": {
+          "type": "integer"
+        },
+        "VOL3": {
+          "type": "number"
+        },
+        "WHLO": {
+          "type": "string"
+        },
+        "YRE1": {
+          "type": "string"
+        },
+        "accountingEntity": {
+          "type": "string"
+        },
+        "deleted": {
+          "type": "boolean"
+        },
+        "timestamp": {
+          "type": "string"
+        },
+        "variationNumber": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "type": "Json",
+    "typeProperties": {
+      "compression": {
+        "level": "Optimal",
+        "type": "deflate"
+      },
+      "location": {
+        "fileName": "MPHEAD_2022-10-12_23-23-43-433.json",
+        "fileSystem": "tlclakefs",
+        "folderPath": "M3/JSON/MPHEAD",
+        "type": "AzureBlobFSLocation"
+      }
+    }
+  }
 }

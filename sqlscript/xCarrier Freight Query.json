@@ -1,17 +1,17 @@
 {
-	"name": "xCarrier Freight Query",
-	"properties": {
-		"content": {
-			"query": "SELECT\t\t\tOrderNumber\n,\t\t\t\tCustomerOrderNumber\n,\t\t\t\tDeliveryNumber\n,               PackageNumber\n,\t\t\t\tTrackingNumber\n,\t\t\t\tSUM(PubFreightCost) OVER (PARTITION BY \n                OrderNumber, CustomerOrderNumber, DeliveryNumber, PackageNumber, TrackingNumber) as PublishedFreight\n,\t\t\t\tSUM(DiscFreightCost) OVER (PARTITION BY \n                OrderNumber, CustomerOrderNumber, DeliveryNumber, PackageNumber, TrackingNumber) as DiscountedFreight\nFROM\t\t\tPWP.LC_SHIPMENTS\nORDER BY\t\tShipDate Desc, OrderNumber, DeliveryNumber, PackageNumber",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "xCarrier Freight Query",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "SELECT\t\t\tOrderNumber\n,\t\t\t\tCustomerOrderNumber\n,\t\t\t\tDeliveryNumber\n,               PackageNumber\n,\t\t\t\tTrackingNumber\n,\t\t\t\tSUM(PubFreightCost) OVER (PARTITION BY \n                OrderNumber, CustomerOrderNumber, DeliveryNumber, PackageNumber, TrackingNumber) as PublishedFreight\n,\t\t\t\tSUM(DiscFreightCost) OVER (PARTITION BY \n                OrderNumber, CustomerOrderNumber, DeliveryNumber, PackageNumber, TrackingNumber) as DiscountedFreight\nFROM\t\t\tPWP.LC_SHIPMENTS\nORDER BY\t\tShipDate Desc, OrderNumber, DeliveryNumber, PackageNumber",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

@@ -1,215 +1,213 @@
 {
-	"name": "AdCraft_Pipeline",
-	"properties": {
-		"activities": [
-			{
-				"name": "ForEach_Table",
-				"type": "ForEach",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"items": {
-						"value": "@pipeline().parameters.cw_items",
-						"type": "Expression"
-					},
-					"activities": [
-						{
-							"name": "Copy_Tables",
-							"type": "Copy",
-							"dependsOn": [],
-							"policy": {
-								"timeout": "7.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [
-								{
-									"name": "Source",
-									"value": "@{item().source.tableName}"
-								},
-								{
-									"name": "Destination",
-									"value": "tlclakefs/AdCraft/@{item().destination.fileName}"
-								}
-							],
-							"typeProperties": {
-								"source": {
-									"type": "OdbcSource"
-								},
-								"sink": {
-									"type": "ParquetSink",
-									"storeSettings": {
-										"type": "AzureBlobFSWriteSettings"
-									},
-									"formatSettings": {
-										"type": "ParquetWriteSettings"
-									}
-								},
-								"enableStaging": false,
-								"validateDataConsistency": false
-							},
-							"inputs": [
-								{
-									"referenceName": "IN_AdCraftD1",
-									"type": "DatasetReference",
-									"parameters": {
-										"cw_tableName": "@item().source.tableName"
-									}
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "OUT_AdCraftD1",
-									"type": "DatasetReference",
-									"parameters": {
-										"cw_fileName": "@item().destination.fileName"
-									}
-								}
-							]
-						}
-					]
-				}
-			}
-		],
-		"parameters": {
-			"cw_items": {
-				"type": "Array",
-				"defaultValue": [
-					{
-						"source": {
-							"tableName": "\"PUB\".\"wa_item\""
-						},
-						"destination": {
-							"fileName": "wa_item.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "\"PUB\".\"ap_line\""
-						},
-						"destination": {
-							"fileName": "ap_line.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "\"PUB\".\"ar_main\""
-						},
-						"destination": {
-							"fileName": "ar_main.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "\"PUB\".\"oe_line\""
-						},
-						"destination": {
-							"fileName": "oe_line.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "\"PUB\".\"customer\""
-						},
-						"destination": {
-							"fileName": "customer.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "\"PUB\".\"cu_shipto\""
-						},
-						"destination": {
-							"fileName": "cu_shipto.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "\"PUB\".\"cu_contact\""
-						},
-						"destination": {
-							"fileName": "cu_contact.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "\"PUB\".\"item\""
-						},
-						"destination": {
-							"fileName": "item.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "\"PUB\".\"po_head\""
-						},
-						"destination": {
-							"fileName": "po_head.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "\"PUB\".\"po_line\""
-						},
-						"destination": {
-							"fileName": "po_line.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "\"PUB\".\"price\""
-						},
-						"destination": {
-							"fileName": "price.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "\"PUB\".\"salesman\""
-						},
-						"destination": {
-							"fileName": "salesman.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "\"PUB\".\"vendor\""
-						},
-						"destination": {
-							"fileName": "vendor.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "\"PUB\".\"warehouse\""
-						},
-						"destination": {
-							"fileName": "warehouse.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "\"PUB\".\"wa_it_loc\""
-						},
-						"destination": {
-							"fileName": "wa_it_loc.parquet"
-						}
-					},
-					{
-						"source": {
-							"tableName": "\"PUB\".\"cu_prcitem\""
-						},
-						"destination": {
-							"fileName": "cu_prcitem.parquet"
-						}
-					}
-				]
-			}
-		},
-		"annotations": [],
-		"lastPublishTime": "2023-10-05T15:10:37Z"
-	},
-	"type": "Microsoft.Synapse/workspaces/pipelines"
+  "name": "AdCraft_Pipeline",
+  "properties": {
+    "activities": [
+      {
+        "dependsOn": [],
+        "name": "ForEach_Table",
+        "type": "ForEach",
+        "typeProperties": {
+          "activities": [
+            {
+              "dependsOn": [],
+              "inputs": [
+                {
+                  "parameters": {
+                    "cw_tableName": "@item().source.tableName"
+                  },
+                  "referenceName": "IN_AdCraftD1",
+                  "type": "DatasetReference"
+                }
+              ],
+              "name": "Copy_Tables",
+              "outputs": [
+                {
+                  "parameters": {
+                    "cw_fileName": "@item().destination.fileName"
+                  },
+                  "referenceName": "OUT_AdCraftD1",
+                  "type": "DatasetReference"
+                }
+              ],
+              "policy": {
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false,
+                "timeout": "7.00:00:00"
+              },
+              "type": "Copy",
+              "typeProperties": {
+                "enableStaging": false,
+                "sink": {
+                  "formatSettings": {
+                    "type": "ParquetWriteSettings"
+                  },
+                  "storeSettings": {
+                    "type": "AzureBlobFSWriteSettings"
+                  },
+                  "type": "ParquetSink"
+                },
+                "source": {
+                  "type": "OdbcSource"
+                },
+                "validateDataConsistency": false
+              },
+              "userProperties": [
+                {
+                  "name": "Source",
+                  "value": "@{item().source.tableName}"
+                },
+                {
+                  "name": "Destination",
+                  "value": "tlclakefs/AdCraft/@{item().destination.fileName}"
+                }
+              ]
+            }
+          ],
+          "items": {
+            "type": "Expression",
+            "value": "@pipeline().parameters.cw_items"
+          }
+        },
+        "userProperties": []
+      }
+    ],
+    "annotations": [],
+    "parameters": {
+      "cw_items": {
+        "defaultValue": [
+          {
+            "destination": {
+              "fileName": "wa_item.parquet"
+            },
+            "source": {
+              "tableName": "\"PUB\".\"wa_item\""
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ap_line.parquet"
+            },
+            "source": {
+              "tableName": "\"PUB\".\"ap_line\""
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ar_main.parquet"
+            },
+            "source": {
+              "tableName": "\"PUB\".\"ar_main\""
+            }
+          },
+          {
+            "destination": {
+              "fileName": "oe_line.parquet"
+            },
+            "source": {
+              "tableName": "\"PUB\".\"oe_line\""
+            }
+          },
+          {
+            "destination": {
+              "fileName": "customer.parquet"
+            },
+            "source": {
+              "tableName": "\"PUB\".\"customer\""
+            }
+          },
+          {
+            "destination": {
+              "fileName": "cu_shipto.parquet"
+            },
+            "source": {
+              "tableName": "\"PUB\".\"cu_shipto\""
+            }
+          },
+          {
+            "destination": {
+              "fileName": "cu_contact.parquet"
+            },
+            "source": {
+              "tableName": "\"PUB\".\"cu_contact\""
+            }
+          },
+          {
+            "destination": {
+              "fileName": "item.parquet"
+            },
+            "source": {
+              "tableName": "\"PUB\".\"item\""
+            }
+          },
+          {
+            "destination": {
+              "fileName": "po_head.parquet"
+            },
+            "source": {
+              "tableName": "\"PUB\".\"po_head\""
+            }
+          },
+          {
+            "destination": {
+              "fileName": "po_line.parquet"
+            },
+            "source": {
+              "tableName": "\"PUB\".\"po_line\""
+            }
+          },
+          {
+            "destination": {
+              "fileName": "price.parquet"
+            },
+            "source": {
+              "tableName": "\"PUB\".\"price\""
+            }
+          },
+          {
+            "destination": {
+              "fileName": "salesman.parquet"
+            },
+            "source": {
+              "tableName": "\"PUB\".\"salesman\""
+            }
+          },
+          {
+            "destination": {
+              "fileName": "vendor.parquet"
+            },
+            "source": {
+              "tableName": "\"PUB\".\"vendor\""
+            }
+          },
+          {
+            "destination": {
+              "fileName": "warehouse.parquet"
+            },
+            "source": {
+              "tableName": "\"PUB\".\"warehouse\""
+            }
+          },
+          {
+            "destination": {
+              "fileName": "wa_it_loc.parquet"
+            },
+            "source": {
+              "tableName": "\"PUB\".\"wa_it_loc\""
+            }
+          },
+          {
+            "destination": {
+              "fileName": "cu_prcitem.parquet"
+            },
+            "source": {
+              "tableName": "\"PUB\".\"cu_prcitem\""
+            }
+          }
+        ],
+        "type": "Array"
+      }
+    }
+  }
 }

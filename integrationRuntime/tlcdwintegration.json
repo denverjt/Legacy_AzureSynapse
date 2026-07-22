@@ -1,6 +1,6 @@
 {
-	"name": "tlcdwintegration",
-	"properties": {
-		"type": "SelfHosted"
-	}
+  "name": "tlcdwintegration",
+  "properties": {
+    "type": "SelfHosted"
+  }
 }

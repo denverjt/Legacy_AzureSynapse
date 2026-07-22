@@ -1,1160 +1,1159 @@
 {
-	"name": "CopyPipelineNS",
-	"properties": {
-		"activities": [
-			{
-				"name": "ForEach",
-				"type": "ForEach",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"items": {
-						"value": "@pipeline().parameters.tlcNStoAzure",
-						"type": "Expression"
-					},
-					"activities": [
-						{
-							"name": "Copy_Files",
-							"type": "Copy",
-							"dependsOn": [],
-							"policy": {
-								"timeout": "0.12:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [
-								{
-									"name": "Source",
-									"value": "."
-								},
-								{
-									"name": "Destination",
-									"value": "tlclakefs/NetsuiteVT/Account.parquet"
-								}
-							],
-							"typeProperties": {
-								"source": {
-									"type": "SqlServerSource",
-									"sqlReaderQuery": {
-										"value": "@item().NSQuery",
-										"type": "Expression"
-									},
-									"partitionOption": "None"
-								},
-								"sink": {
-									"type": "ParquetSink",
-									"storeSettings": {
-										"type": "AzureBlobFSWriteSettings"
-									},
-									"formatSettings": {
-										"type": "ParquetWriteSettings"
-									}
-								},
-								"enableStaging": false,
-								"validateDataConsistency": false
-							},
-							"inputs": [
-								{
-									"referenceName": "IN_NetSuite",
-									"type": "DatasetReference"
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "OUT_NetSuite",
-									"type": "DatasetReference",
-									"parameters": {
-										"destinationName": {
-											"value": "@item().destinationName",
-											"type": "Expression"
-										}
-									}
-								}
-							]
-						}
-					]
-				}
-			}
-		],
-		"parameters": {
-			"tlcNStoAzure": {
-				"type": "array",
-				"defaultValue": [
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[Account]",
-						"destinationName": "Account.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[AccountContextSearch]",
-						"destinationName": "AccountContextSearch.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[accountingPeriodFiscalCalendars]",
-						"destinationName": "accountingPeriodFiscalCalendars.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[accountType]",
-						"destinationName": "accountType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[Activity]",
-						"destinationName": "Activity.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[AddressBook]",
-						"destinationName": "AddressBook.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[addressType]",
-						"destinationName": "addressType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[AdmissibilityPackageType]",
-						"destinationName": "AdmissibilityPackageType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[aggregateItemLocation]",
-						"destinationName": "aggregateItemLocation.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[alignOrHide]",
-						"destinationName": "alignOrHide.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[AllocationMethod]",
-						"destinationName": "AllocationMethod.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[AmortizationType]",
-						"destinationName": "AmortizationType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ApplicabilityModeType]",
-						"destinationName": "ApplicabilityModeType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ApplicabilityReasonType]",
-						"destinationName": "ApplicabilityReasonType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ApplicabilityStatusType]",
-						"destinationName": "ApplicabilityStatusType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[applyDiscountTo]",
-						"destinationName": "applyDiscountTo.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ApprovalStatus]",
-						"destinationName": "ApprovalStatus.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[assemblyItemCorrelateditem]",
-						"destinationName": "assemblyItemCorrelateditem.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[assemblyItemItemQuantityPricingDiscount]",
-						"destinationName": "assemblyItemItemQuantityPricingDiscount.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[assemblyItemItemVendor]",
-						"destinationName": "assemblyItemItemVendor.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[assemblyItemLocations]",
-						"destinationName": "assemblyItemLocations.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[assemblyItemMember]",
-						"destinationName": "assemblyItemMember.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[assemblyItemPresentationItem]",
-						"destinationName": "assemblyItemPresentationItem.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[assemblyItemPrice]",
-						"destinationName": "assemblyItemPrice.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[assemblyItemQuantity]",
-						"destinationName": "assemblyItemQuantity.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ATPMethodType]",
-						"destinationName": "ATPMethodType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[Attendee]",
-						"destinationName": "Attendee.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[AutomatedClearingHouseAccountType]",
-						"destinationName": "AutomatedClearingHouseAccountType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[billingClassPriceCost]",
-						"destinationName": "billingClassPriceCost.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[BillingScheduleType]",
-						"destinationName": "BillingScheduleType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[BillVarianceStatus]",
-						"destinationName": "BillVarianceStatus.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[bin]",
-						"destinationName": "bin.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[BinInventoryBalance]",
-						"destinationName": "BinInventoryBalance.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[blanketPurchaseOrderExpenseMachine]",
-						"destinationName": "blanketPurchaseOrderExpenseMachine.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[bomAssembly]",
-						"destinationName": "bomAssembly.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[BusinessEventHandler]",
-						"destinationName": "BusinessEventHandler.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[BusinessEventHandlerFeedDetailType]",
-						"destinationName": "BusinessEventHandlerFeedDetailType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[BusinessEventHandlerFeedStatus]",
-						"destinationName": "BusinessEventHandlerFeedStatus.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[BusinessEventType]",
-						"destinationName": "BusinessEventType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CalculateDiscountType]",
-						"destinationName": "CalculateDiscountType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CalendarEvent]",
-						"destinationName": "CalendarEvent.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CardholderAuthenticationStatus]",
-						"destinationName": "CardholderAuthenticationStatus.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CartSortOrder]",
-						"destinationName": "CartSortOrder.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[cashRefundBillingAddress]",
-						"destinationName": "cashRefundBillingAddress.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[cashRefundShippingAddress]",
-						"destinationName": "cashRefundShippingAddress.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[cashRefundTranPromotion]",
-						"destinationName": "cashRefundTranPromotion.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CashSaleBillingAddress]",
-						"destinationName": "CashSaleBillingAddress.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CashSaleItemShippingAddress]",
-						"destinationName": "CashSaleItemShippingAddress.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CashSaleShippingAddress]",
-						"destinationName": "CashSaleShippingAddress.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CashSaleTranPromotion]",
-						"destinationName": "CashSaleTranPromotion.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[category1099misc]",
-						"destinationName": "category1099misc.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CcBccRecipient]",
-						"destinationName": "CcBccRecipient.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CenterType]",
-						"destinationName": "CenterType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ChallengeWindowSize]",
-						"destinationName": "ChallengeWindowSize.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[Chargestagetype]",
-						"destinationName": "Chargestagetype.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[Chargeuse]",
-						"destinationName": "Chargeuse.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CheckExpenseMachine]",
-						"destinationName": "CheckExpenseMachine.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[checkPayeeAddress]",
-						"destinationName": "checkPayeeAddress.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[classification]",
-						"destinationName": "classification.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CommissionPaymentType]",
-						"destinationName": "CommissionPaymentType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CompanyAddressbook]",
-						"destinationName": "CompanyAddressbook.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CompanyAddressbookEntityAddress]",
-						"destinationName": "CompanyAddressbookEntityAddress.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CompanyCompanyContact]",
-						"destinationName": "CompanyCompanyContact.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[consolidatedExchangeRate]",
-						"destinationName": "consolidatedExchangeRate.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ConsolidatedRateType]",
-						"destinationName": "ConsolidatedRateType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[Contact]",
-						"destinationName": "Contact.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ContactAddressbook]",
-						"destinationName": "ContactAddressbook.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ContactAddressbookEntityAddress]",
-						"destinationName": "ContactAddressbookEntityAddress.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ContactRole]",
-						"destinationName": "ContactRole.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ContactSubscriptions]",
-						"destinationName": "ContactSubscriptions.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ContactSubsidiaryRelationship]",
-						"destinationName": "ContactSubsidiaryRelationship.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[costCategory]",
-						"destinationName": "costCategory.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CostCategoryType]",
-						"destinationName": "CostCategoryType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CostEstimateType]",
-						"destinationName": "CostEstimateType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CostingMethodType]",
-						"destinationName": "CostingMethodType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[couponCode]",
-						"destinationName": "couponCode.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CreditCardChargeExpenseMachine]",
-						"destinationName": "CreditCardChargeExpenseMachine.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CreditCardRefundExpenseMachine]",
-						"destinationName": "CreditCardRefundExpenseMachine.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[Creditholdoverridetype]",
-						"destinationName": "Creditholdoverridetype.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[creditMemoBillingAddress]",
-						"destinationName": "creditMemoBillingAddress.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CreditMemoItemShippingAddress]",
-						"destinationName": "CreditMemoItemShippingAddress.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[creditMemoShippingAddress]",
-						"destinationName": "creditMemoShippingAddress.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[creditMemoTranPromotion]",
-						"destinationName": "creditMemoTranPromotion.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CrmTemplateType]",
-						"destinationName": "CrmTemplateType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[currency]",
-						"destinationName": "currency.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[currencyRate]",
-						"destinationName": "currencyRate.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CurrencyRateType]",
-						"destinationName": "CurrencyRateType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CurrencySymbol]",
-						"destinationName": "CurrencySymbol.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CurrencySymbolPlacement]",
-						"destinationName": "CurrencySymbolPlacement.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[customerAddressbook]",
-						"destinationName": "customerAddressbook.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[customerAddressbookEntityAddress]",
-						"destinationName": "customerAddressbookEntityAddress.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[customerCategory]",
-						"destinationName": "customerCategory.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CustomerCompanyContact]",
-						"destinationName": "CustomerCompanyContact.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[customerContactRole]",
-						"destinationName": "customerContactRole.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[customerCurrencyBalance]",
-						"destinationName": "customerCurrencyBalance.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[customerMessage]",
-						"destinationName": "customerMessage.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[customerRefundPayeeAddress]",
-						"destinationName": "customerRefundPayeeAddress.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CustomerSegmentCustomer]",
-						"destinationName": "CustomerSegmentCustomer.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CustomerSubscriptionMessageHistory]",
-						"destinationName": "CustomerSubscriptionMessageHistory.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CustomerSubscriptions]",
-						"destinationName": "CustomerSubscriptions.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CustomerSubsidiaryRelationship]",
-						"destinationName": "CustomerSubsidiaryRelationship.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[DayOfWeek]",
-						"destinationName": "DayOfWeek.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[demandSourceType]",
-						"destinationName": "demandSourceType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[department]",
-						"destinationName": "department.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[deploymentsAction]",
-						"destinationName": "deploymentsAction.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[deploymentsBundleInstallation]",
-						"destinationName": "deploymentsBundleInstallation.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[deploymentsClient]",
-						"destinationName": "deploymentsClient.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[deploymentsMassUpdate]",
-						"destinationName": "deploymentsMassUpdate.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[deploymentsPortlet]",
-						"destinationName": "deploymentsPortlet.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[DeploymentsRecordAction]",
-						"destinationName": "DeploymentsRecordAction.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[deploymentsRestlet]",
-						"destinationName": "deploymentsRestlet.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[deploymentsScheduled]",
-						"destinationName": "deploymentsScheduled.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[deploymentsScript]",
-						"destinationName": "deploymentsScript.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[deploymentsSuitelet]",
-						"destinationName": "deploymentsSuitelet.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[deploymentsUserEvent]",
-						"destinationName": "deploymentsUserEvent.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[downloadItemCorrelateditem]",
-						"destinationName": "downloadItemCorrelateditem.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[downloadItemItemQuantityPricingDiscount]",
-						"destinationName": "downloadItemItemQuantityPricingDiscount.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[downloadItemPresentationItem]",
-						"destinationName": "downloadItemPresentationItem.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[downloadItemPrice]",
-						"destinationName": "downloadItemPrice.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[downloadItemQuantity]",
-						"destinationName": "downloadItemQuantity.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[dual]",
-						"destinationName": "dual.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EffectivityBasedOnType]",
-						"destinationName": "EffectivityBasedOnType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EmailPreferenceType]",
-						"destinationName": "EmailPreferenceType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EmailTemplate]",
-						"destinationName": "EmailTemplate.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[employee]",
-						"destinationName": "employee.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[employeeAddressbook]",
-						"destinationName": "employeeAddressbook.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[employeeAddressbookEntityAddress]",
-						"destinationName": "employeeAddressbookEntityAddress.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[employeeEmpPerms]",
-						"destinationName": "employeeEmpPerms.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EmployeeExpenseReportCurrencies]",
-						"destinationName": "EmployeeExpenseReportCurrencies.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[employeeRoles]",
-						"destinationName": "employeeRoles.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[employeeRolesForSearch]",
-						"destinationName": "employeeRolesForSearch.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EmployeeStatusCategory]",
-						"destinationName": "EmployeeStatusCategory.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[employeeSubscriptionMessageHistory]",
-						"destinationName": "employeeSubscriptionMessageHistory.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[employeeSubscriptions]",
-						"destinationName": "employeeSubscriptions.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EmployeeSubsidiaryRelationship]",
-						"destinationName": "EmployeeSubsidiaryRelationship.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EmployeeTypeCategory]",
-						"destinationName": "EmployeeTypeCategory.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EmploymentCategory]",
-						"destinationName": "EmploymentCategory.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EntityAddress]",
-						"destinationName": "EntityAddress.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EntityGroup]",
-						"destinationName": "EntityGroup.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EntityGroupMember]",
-						"destinationName": "EntityGroupMember.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[entityGroupType]",
-						"destinationName": "entityGroupType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EntityListType]",
-						"destinationName": "EntityListType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EntityStage]",
-						"destinationName": "EntityStage.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EntityStatus]",
-						"destinationName": "EntityStatus.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EntitySubsidiaryRelationship]",
-						"destinationName": "EntitySubsidiaryRelationship.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[estimateBillingAddress]",
-						"destinationName": "estimateBillingAddress.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[estimateItemShippingAddress]",
-						"destinationName": "estimateItemShippingAddress.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[estimateShippingAddress]",
-						"destinationName": "estimateShippingAddress.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[estimateTranPromotion]",
-						"destinationName": "estimateTranPromotion.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EventDowim]",
-						"destinationName": "EventDowim.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EventFrequency]",
-						"destinationName": "EventFrequency.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EventPriority]",
-						"destinationName": "EventPriority.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EventType]",
-						"destinationName": "EventType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[executionContext]",
-						"destinationName": "executionContext.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[FairValueRangePolicy]",
-						"destinationName": "FairValueRangePolicy.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[File]",
-						"destinationName": "File.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[FirstRunTimeSelect]",
-						"destinationName": "FirstRunTimeSelect.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[FolderType]",
-						"destinationName": "FolderType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ForecastType]",
-						"destinationName": "ForecastType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[FrequencyType]",
-						"destinationName": "FrequencyType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[FulfillmentChoice]",
-						"destinationName": "FulfillmentChoice.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[FulfillmentExceptionType]",
-						"destinationName": "FulfillmentExceptionType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[FulfillmentRequestType]",
-						"destinationName": "FulfillmentRequestType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[FXRATEUPDATEZONE]",
-						"destinationName": "FXRATEUPDATEZONE.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[gatewayTokenFamily]",
-						"destinationName": "gatewayTokenFamily.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[generalizedItem]",
-						"destinationName": "generalizedItem.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[GenericCampaignEventResponse]",
-						"destinationName": "GenericCampaignEventResponse.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[giftCertificateItemCorrelateditem]",
-						"destinationName": "giftCertificateItemCorrelateditem.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[giftCertificateItemPresentationItem]",
-						"destinationName": "giftCertificateItemPresentationItem.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[giftCertificateItemPrice]",
-						"destinationName": "giftCertificateItemPrice.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[giftCertificateItemQuantity]",
-						"destinationName": "giftCertificateItemQuantity.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[Hcmterminationcategory]",
-						"destinationName": "Hcmterminationcategory.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ImportedEmployeeExpenseStatus]",
-						"destinationName": "ImportedEmployeeExpenseStatus.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[IncotermType]",
-						"destinationName": "IncotermType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[intercompanyTransferOrderShippingAddress]",
-						"destinationName": "intercompanyTransferOrderShippingAddress.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[inventoryAssignment]",
-						"destinationName": "inventoryAssignment.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[InventoryBalance]",
-						"destinationName": "InventoryBalance.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[inventoryItemCorrelateditem]",
-						"destinationName": "inventoryItemCorrelateditem.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[inventoryItemItemQuantityPricingDiscount]",
-						"destinationName": "inventoryItemItemQuantityPricingDiscount.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[inventoryItemItemVendor]",
-						"destinationName": "inventoryItemItemVendor.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[inventoryItemLocations]",
-						"destinationName": "inventoryItemLocations.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[inventoryItemPresentationItem]",
-						"destinationName": "inventoryItemPresentationItem.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[inventoryItemPrice]",
-						"destinationName": "inventoryItemPrice.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[inventoryItemQuantity]",
-						"destinationName": "inventoryItemQuantity.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[inventoryNumber]",
-						"destinationName": "inventoryNumber.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[InventoryNumberInventoryBalance]",
-						"destinationName": "InventoryNumberInventoryBalance.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[InventoryNumberLocation]",
-						"destinationName": "InventoryNumberLocation.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[InventoryStatusInventoryBalance]",
-						"destinationName": "InventoryStatusInventoryBalance.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[InvoiceBillingAddress]",
-						"destinationName": "InvoiceBillingAddress.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[InvoiceItemShippingAddress]",
-						"destinationName": "InvoiceItemShippingAddress.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[InvoiceShippingAddress]",
-						"destinationName": "InvoiceShippingAddress.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[InvoiceTranPromotion]",
-						"destinationName": "InvoiceTranPromotion.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[InvtCommit]",
-						"destinationName": "InvtCommit.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[InvtItemPriceHistory]",
-						"destinationName": "InvtItemPriceHistory.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[IPRestrictions]",
-						"destinationName": "IPRestrictions.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[IssueVersionRelation]",
-						"destinationName": "IssueVersionRelation.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[itemBinQuantity]",
-						"destinationName": "itemBinQuantity.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ItemCorrelatedItem]",
-						"destinationName": "ItemCorrelatedItem.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ItemDemandSource]",
-						"destinationName": "ItemDemandSource.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ItemFulfillmentPackage]",
-						"destinationName": "ItemFulfillmentPackage.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ItemFulfillmentPackageFedex]",
-						"destinationName": "ItemFulfillmentPackageFedex.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ItemFulfillmentPackageUps]",
-						"destinationName": "ItemFulfillmentPackageUps.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ItemFulfillmentPackageUsps]",
-						"destinationName": "ItemFulfillmentPackageUsps.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[itemFulfillmentReturnAddress]",
-						"destinationName": "itemFulfillmentReturnAddress.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[itemFulfillmentShippingAddress]",
-						"destinationName": "itemFulfillmentShippingAddress.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[itemGroupMember]",
-						"destinationName": "itemGroupMember.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ItemInventoryBalance]",
-						"destinationName": "ItemInventoryBalance.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[itemMember]",
-						"destinationName": "itemMember.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ItemPeriodicLotSizeType]",
-						"destinationName": "ItemPeriodicLotSizeType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ItemPresentationItem]",
-						"destinationName": "ItemPresentationItem.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[itemPrice]",
-						"destinationName": "itemPrice.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[itemQuantity]",
-						"destinationName": "itemQuantity.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[itemQuantityPricingDiscount]",
-						"destinationName": "itemQuantityPricingDiscount.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ItemSegmentIncludingSyntheticInclsynthitem]",
-						"destinationName": "ItemSegmentIncludingSyntheticInclsynthitem.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ItemSegmentType]",
-						"destinationName": "ItemSegmentType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ItemSource]",
-						"destinationName": "ItemSource.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ItemSubtype]",
-						"destinationName": "ItemSubtype.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ItemSupplyLotSizingType]",
-						"destinationName": "ItemSupplyLotSizingType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ItemSupplyType]",
-						"destinationName": "ItemSupplyType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[itemType]",
-						"destinationName": "itemType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ItemUnit]",
-						"destinationName": "ItemUnit.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[itemVendor]",
-						"destinationName": "itemVendor.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[jobAddressbook]",
-						"destinationName": "jobAddressbook.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[jobAddressbookEntityAddress]",
-						"destinationName": "jobAddressbookEntityAddress.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[jobCompanyContact]",
-						"destinationName": "jobCompanyContact.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[JobRequisitionPostingType]",
-						"destinationName": "JobRequisitionPostingType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[JobRequisitionStatus]",
-						"destinationName": "JobRequisitionStatus.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[JobStatus]",
-						"destinationName": "JobStatus.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[kitItemCorrelateditem]",
-						"destinationName": "kitItemCorrelateditem.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[kitItemItemQuantityPricingDiscount]",
-						"destinationName": "kitItemItemQuantityPricingDiscount.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[kitItemMember]",
-						"destinationName": "kitItemMember.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[kitItemPresentationItem]",
-						"destinationName": "kitItemPresentationItem.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[kitItemPrice]",
-						"destinationName": "kitItemPrice.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[kitItemQuantity]",
-						"destinationName": "kitItemQuantity.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[LagType]",
-						"destinationName": "LagType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[Language]",
-						"destinationName": "Language.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesAction]",
-						"destinationName": "librariesAction.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesAdvancedRevRec]",
-						"destinationName": "librariesAdvancedRevRec.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesBundleInstallation]",
-						"destinationName": "librariesBundleInstallation.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesClient]",
-						"destinationName": "librariesClient.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesConsolRateAdjustor]",
-						"destinationName": "librariesConsolRateAdjustor.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesCustomGlLines]",
-						"destinationName": "librariesCustomGlLines.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesDatasetBuilder]",
-						"destinationName": "librariesDatasetBuilder.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesEmailCapture]",
-						"destinationName": "librariesEmailCapture.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[LibrariesFIParserPlugin]",
-						"destinationName": "LibrariesFIParserPlugin.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesMassUpdate]",
-						"destinationName": "librariesMassUpdate.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesPaymentGateway]",
-						"destinationName": "librariesPaymentGateway.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesPlugInType]",
-						"destinationName": "librariesPlugInType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesPlugInTypeImpl]",
-						"destinationName": "librariesPlugInTypeImpl.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesPortlet]",
-						"destinationName": "librariesPortlet.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesPromotions]",
-						"destinationName": "librariesPromotions.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesRestlet]",
-						"destinationName": "librariesRestlet.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesScheduled]",
-						"destinationName": "librariesScheduled.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesShippingPartners]",
-						"destinationName": "librariesShippingPartners.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesSuitelet]",
-						"destinationName": "librariesSuitelet.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesTaxCalculation]",
-						"destinationName": "librariesTaxCalculation.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesTestPlugin]",
-						"destinationName": "librariesTestPlugin.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesUserEvent]",
-						"destinationName": "librariesUserEvent.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesWebApp]",
-						"destinationName": "librariesWebApp.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesWorkbookBuilder]",
-						"destinationName": "librariesWorkbookBuilder.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[Location]",
-						"destinationName": "Location.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[LocationInventoryBalance]",
-						"destinationName": "LocationInventoryBalance.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[LocationMainAddress]",
-						"destinationName": "LocationMainAddress.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[LocationReturnAddress]",
-						"destinationName": "LocationReturnAddress.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[LocationType]",
-						"destinationName": "LocationType.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[LoginAudit]",
-						"destinationName": "LoginAudit.parquet"
-					},
-					{
-						"NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[MailTemplate]",
-						"destinationName": "MailTemplate.parquet"
-					}
-				]
-			}
-		},
-		"annotations": [],
-		"lastPublishTime": "2022-12-20T21:03:07Z"
-	},
-	"type": "Microsoft.Synapse/workspaces/pipelines"
+  "name": "CopyPipelineNS",
+  "properties": {
+    "activities": [
+      {
+        "dependsOn": [],
+        "name": "ForEach",
+        "type": "ForEach",
+        "typeProperties": {
+          "activities": [
+            {
+              "dependsOn": [],
+              "inputs": [
+                {
+                  "parameters": {},
+                  "referenceName": "IN_NetSuite",
+                  "type": "DatasetReference"
+                }
+              ],
+              "name": "Copy_Files",
+              "outputs": [
+                {
+                  "parameters": {
+                    "destinationName": {
+                      "type": "Expression",
+                      "value": "@item().destinationName"
+                    }
+                  },
+                  "referenceName": "OUT_NetSuite",
+                  "type": "DatasetReference"
+                }
+              ],
+              "policy": {
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false,
+                "timeout": "0.12:00:00"
+              },
+              "type": "Copy",
+              "typeProperties": {
+                "enableStaging": false,
+                "sink": {
+                  "formatSettings": {
+                    "type": "ParquetWriteSettings"
+                  },
+                  "storeSettings": {
+                    "type": "AzureBlobFSWriteSettings"
+                  },
+                  "type": "ParquetSink"
+                },
+                "source": {
+                  "partitionOption": "None",
+                  "sqlReaderQuery": {
+                    "type": "Expression",
+                    "value": "@item().NSQuery"
+                  },
+                  "type": "SqlServerSource"
+                },
+                "validateDataConsistency": false
+              },
+              "userProperties": [
+                {
+                  "name": "Source",
+                  "value": "."
+                },
+                {
+                  "name": "Destination",
+                  "value": "tlclakefs/NetsuiteVT/Account.parquet"
+                }
+              ]
+            }
+          ],
+          "items": {
+            "type": "Expression",
+            "value": "@pipeline().parameters.tlcNStoAzure"
+          }
+        },
+        "userProperties": []
+      }
+    ],
+    "annotations": [],
+    "parameters": {
+      "tlcNStoAzure": {
+        "defaultValue": [
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[Account]",
+            "destinationName": "Account.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[AccountContextSearch]",
+            "destinationName": "AccountContextSearch.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[accountingPeriodFiscalCalendars]",
+            "destinationName": "accountingPeriodFiscalCalendars.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[accountType]",
+            "destinationName": "accountType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[Activity]",
+            "destinationName": "Activity.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[AddressBook]",
+            "destinationName": "AddressBook.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[addressType]",
+            "destinationName": "addressType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[AdmissibilityPackageType]",
+            "destinationName": "AdmissibilityPackageType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[aggregateItemLocation]",
+            "destinationName": "aggregateItemLocation.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[alignOrHide]",
+            "destinationName": "alignOrHide.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[AllocationMethod]",
+            "destinationName": "AllocationMethod.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[AmortizationType]",
+            "destinationName": "AmortizationType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ApplicabilityModeType]",
+            "destinationName": "ApplicabilityModeType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ApplicabilityReasonType]",
+            "destinationName": "ApplicabilityReasonType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ApplicabilityStatusType]",
+            "destinationName": "ApplicabilityStatusType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[applyDiscountTo]",
+            "destinationName": "applyDiscountTo.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ApprovalStatus]",
+            "destinationName": "ApprovalStatus.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[assemblyItemCorrelateditem]",
+            "destinationName": "assemblyItemCorrelateditem.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[assemblyItemItemQuantityPricingDiscount]",
+            "destinationName": "assemblyItemItemQuantityPricingDiscount.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[assemblyItemItemVendor]",
+            "destinationName": "assemblyItemItemVendor.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[assemblyItemLocations]",
+            "destinationName": "assemblyItemLocations.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[assemblyItemMember]",
+            "destinationName": "assemblyItemMember.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[assemblyItemPresentationItem]",
+            "destinationName": "assemblyItemPresentationItem.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[assemblyItemPrice]",
+            "destinationName": "assemblyItemPrice.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[assemblyItemQuantity]",
+            "destinationName": "assemblyItemQuantity.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ATPMethodType]",
+            "destinationName": "ATPMethodType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[Attendee]",
+            "destinationName": "Attendee.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[AutomatedClearingHouseAccountType]",
+            "destinationName": "AutomatedClearingHouseAccountType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[billingClassPriceCost]",
+            "destinationName": "billingClassPriceCost.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[BillingScheduleType]",
+            "destinationName": "BillingScheduleType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[BillVarianceStatus]",
+            "destinationName": "BillVarianceStatus.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[bin]",
+            "destinationName": "bin.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[BinInventoryBalance]",
+            "destinationName": "BinInventoryBalance.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[blanketPurchaseOrderExpenseMachine]",
+            "destinationName": "blanketPurchaseOrderExpenseMachine.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[bomAssembly]",
+            "destinationName": "bomAssembly.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[BusinessEventHandler]",
+            "destinationName": "BusinessEventHandler.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[BusinessEventHandlerFeedDetailType]",
+            "destinationName": "BusinessEventHandlerFeedDetailType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[BusinessEventHandlerFeedStatus]",
+            "destinationName": "BusinessEventHandlerFeedStatus.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[BusinessEventType]",
+            "destinationName": "BusinessEventType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CalculateDiscountType]",
+            "destinationName": "CalculateDiscountType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CalendarEvent]",
+            "destinationName": "CalendarEvent.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CardholderAuthenticationStatus]",
+            "destinationName": "CardholderAuthenticationStatus.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CartSortOrder]",
+            "destinationName": "CartSortOrder.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[cashRefundBillingAddress]",
+            "destinationName": "cashRefundBillingAddress.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[cashRefundShippingAddress]",
+            "destinationName": "cashRefundShippingAddress.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[cashRefundTranPromotion]",
+            "destinationName": "cashRefundTranPromotion.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CashSaleBillingAddress]",
+            "destinationName": "CashSaleBillingAddress.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CashSaleItemShippingAddress]",
+            "destinationName": "CashSaleItemShippingAddress.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CashSaleShippingAddress]",
+            "destinationName": "CashSaleShippingAddress.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CashSaleTranPromotion]",
+            "destinationName": "CashSaleTranPromotion.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[category1099misc]",
+            "destinationName": "category1099misc.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CcBccRecipient]",
+            "destinationName": "CcBccRecipient.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CenterType]",
+            "destinationName": "CenterType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ChallengeWindowSize]",
+            "destinationName": "ChallengeWindowSize.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[Chargestagetype]",
+            "destinationName": "Chargestagetype.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[Chargeuse]",
+            "destinationName": "Chargeuse.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CheckExpenseMachine]",
+            "destinationName": "CheckExpenseMachine.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[checkPayeeAddress]",
+            "destinationName": "checkPayeeAddress.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[classification]",
+            "destinationName": "classification.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CommissionPaymentType]",
+            "destinationName": "CommissionPaymentType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CompanyAddressbook]",
+            "destinationName": "CompanyAddressbook.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CompanyAddressbookEntityAddress]",
+            "destinationName": "CompanyAddressbookEntityAddress.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CompanyCompanyContact]",
+            "destinationName": "CompanyCompanyContact.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[consolidatedExchangeRate]",
+            "destinationName": "consolidatedExchangeRate.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ConsolidatedRateType]",
+            "destinationName": "ConsolidatedRateType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[Contact]",
+            "destinationName": "Contact.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ContactAddressbook]",
+            "destinationName": "ContactAddressbook.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ContactAddressbookEntityAddress]",
+            "destinationName": "ContactAddressbookEntityAddress.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ContactRole]",
+            "destinationName": "ContactRole.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ContactSubscriptions]",
+            "destinationName": "ContactSubscriptions.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ContactSubsidiaryRelationship]",
+            "destinationName": "ContactSubsidiaryRelationship.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[costCategory]",
+            "destinationName": "costCategory.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CostCategoryType]",
+            "destinationName": "CostCategoryType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CostEstimateType]",
+            "destinationName": "CostEstimateType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CostingMethodType]",
+            "destinationName": "CostingMethodType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[couponCode]",
+            "destinationName": "couponCode.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CreditCardChargeExpenseMachine]",
+            "destinationName": "CreditCardChargeExpenseMachine.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CreditCardRefundExpenseMachine]",
+            "destinationName": "CreditCardRefundExpenseMachine.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[Creditholdoverridetype]",
+            "destinationName": "Creditholdoverridetype.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[creditMemoBillingAddress]",
+            "destinationName": "creditMemoBillingAddress.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CreditMemoItemShippingAddress]",
+            "destinationName": "CreditMemoItemShippingAddress.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[creditMemoShippingAddress]",
+            "destinationName": "creditMemoShippingAddress.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[creditMemoTranPromotion]",
+            "destinationName": "creditMemoTranPromotion.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CrmTemplateType]",
+            "destinationName": "CrmTemplateType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[currency]",
+            "destinationName": "currency.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[currencyRate]",
+            "destinationName": "currencyRate.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CurrencyRateType]",
+            "destinationName": "CurrencyRateType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CurrencySymbol]",
+            "destinationName": "CurrencySymbol.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CurrencySymbolPlacement]",
+            "destinationName": "CurrencySymbolPlacement.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[customerAddressbook]",
+            "destinationName": "customerAddressbook.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[customerAddressbookEntityAddress]",
+            "destinationName": "customerAddressbookEntityAddress.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[customerCategory]",
+            "destinationName": "customerCategory.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CustomerCompanyContact]",
+            "destinationName": "CustomerCompanyContact.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[customerContactRole]",
+            "destinationName": "customerContactRole.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[customerCurrencyBalance]",
+            "destinationName": "customerCurrencyBalance.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[customerMessage]",
+            "destinationName": "customerMessage.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[customerRefundPayeeAddress]",
+            "destinationName": "customerRefundPayeeAddress.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CustomerSegmentCustomer]",
+            "destinationName": "CustomerSegmentCustomer.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CustomerSubscriptionMessageHistory]",
+            "destinationName": "CustomerSubscriptionMessageHistory.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CustomerSubscriptions]",
+            "destinationName": "CustomerSubscriptions.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[CustomerSubsidiaryRelationship]",
+            "destinationName": "CustomerSubsidiaryRelationship.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[DayOfWeek]",
+            "destinationName": "DayOfWeek.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[demandSourceType]",
+            "destinationName": "demandSourceType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[department]",
+            "destinationName": "department.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[deploymentsAction]",
+            "destinationName": "deploymentsAction.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[deploymentsBundleInstallation]",
+            "destinationName": "deploymentsBundleInstallation.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[deploymentsClient]",
+            "destinationName": "deploymentsClient.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[deploymentsMassUpdate]",
+            "destinationName": "deploymentsMassUpdate.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[deploymentsPortlet]",
+            "destinationName": "deploymentsPortlet.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[DeploymentsRecordAction]",
+            "destinationName": "DeploymentsRecordAction.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[deploymentsRestlet]",
+            "destinationName": "deploymentsRestlet.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[deploymentsScheduled]",
+            "destinationName": "deploymentsScheduled.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[deploymentsScript]",
+            "destinationName": "deploymentsScript.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[deploymentsSuitelet]",
+            "destinationName": "deploymentsSuitelet.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[deploymentsUserEvent]",
+            "destinationName": "deploymentsUserEvent.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[downloadItemCorrelateditem]",
+            "destinationName": "downloadItemCorrelateditem.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[downloadItemItemQuantityPricingDiscount]",
+            "destinationName": "downloadItemItemQuantityPricingDiscount.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[downloadItemPresentationItem]",
+            "destinationName": "downloadItemPresentationItem.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[downloadItemPrice]",
+            "destinationName": "downloadItemPrice.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[downloadItemQuantity]",
+            "destinationName": "downloadItemQuantity.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[dual]",
+            "destinationName": "dual.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EffectivityBasedOnType]",
+            "destinationName": "EffectivityBasedOnType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EmailPreferenceType]",
+            "destinationName": "EmailPreferenceType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EmailTemplate]",
+            "destinationName": "EmailTemplate.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[employee]",
+            "destinationName": "employee.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[employeeAddressbook]",
+            "destinationName": "employeeAddressbook.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[employeeAddressbookEntityAddress]",
+            "destinationName": "employeeAddressbookEntityAddress.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[employeeEmpPerms]",
+            "destinationName": "employeeEmpPerms.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EmployeeExpenseReportCurrencies]",
+            "destinationName": "EmployeeExpenseReportCurrencies.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[employeeRoles]",
+            "destinationName": "employeeRoles.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[employeeRolesForSearch]",
+            "destinationName": "employeeRolesForSearch.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EmployeeStatusCategory]",
+            "destinationName": "EmployeeStatusCategory.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[employeeSubscriptionMessageHistory]",
+            "destinationName": "employeeSubscriptionMessageHistory.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[employeeSubscriptions]",
+            "destinationName": "employeeSubscriptions.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EmployeeSubsidiaryRelationship]",
+            "destinationName": "EmployeeSubsidiaryRelationship.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EmployeeTypeCategory]",
+            "destinationName": "EmployeeTypeCategory.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EmploymentCategory]",
+            "destinationName": "EmploymentCategory.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EntityAddress]",
+            "destinationName": "EntityAddress.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EntityGroup]",
+            "destinationName": "EntityGroup.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EntityGroupMember]",
+            "destinationName": "EntityGroupMember.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[entityGroupType]",
+            "destinationName": "entityGroupType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EntityListType]",
+            "destinationName": "EntityListType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EntityStage]",
+            "destinationName": "EntityStage.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EntityStatus]",
+            "destinationName": "EntityStatus.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EntitySubsidiaryRelationship]",
+            "destinationName": "EntitySubsidiaryRelationship.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[estimateBillingAddress]",
+            "destinationName": "estimateBillingAddress.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[estimateItemShippingAddress]",
+            "destinationName": "estimateItemShippingAddress.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[estimateShippingAddress]",
+            "destinationName": "estimateShippingAddress.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[estimateTranPromotion]",
+            "destinationName": "estimateTranPromotion.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EventDowim]",
+            "destinationName": "EventDowim.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EventFrequency]",
+            "destinationName": "EventFrequency.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EventPriority]",
+            "destinationName": "EventPriority.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[EventType]",
+            "destinationName": "EventType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[executionContext]",
+            "destinationName": "executionContext.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[FairValueRangePolicy]",
+            "destinationName": "FairValueRangePolicy.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[File]",
+            "destinationName": "File.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[FirstRunTimeSelect]",
+            "destinationName": "FirstRunTimeSelect.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[FolderType]",
+            "destinationName": "FolderType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ForecastType]",
+            "destinationName": "ForecastType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[FrequencyType]",
+            "destinationName": "FrequencyType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[FulfillmentChoice]",
+            "destinationName": "FulfillmentChoice.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[FulfillmentExceptionType]",
+            "destinationName": "FulfillmentExceptionType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[FulfillmentRequestType]",
+            "destinationName": "FulfillmentRequestType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[FXRATEUPDATEZONE]",
+            "destinationName": "FXRATEUPDATEZONE.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[gatewayTokenFamily]",
+            "destinationName": "gatewayTokenFamily.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[generalizedItem]",
+            "destinationName": "generalizedItem.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[GenericCampaignEventResponse]",
+            "destinationName": "GenericCampaignEventResponse.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[giftCertificateItemCorrelateditem]",
+            "destinationName": "giftCertificateItemCorrelateditem.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[giftCertificateItemPresentationItem]",
+            "destinationName": "giftCertificateItemPresentationItem.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[giftCertificateItemPrice]",
+            "destinationName": "giftCertificateItemPrice.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[giftCertificateItemQuantity]",
+            "destinationName": "giftCertificateItemQuantity.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[Hcmterminationcategory]",
+            "destinationName": "Hcmterminationcategory.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ImportedEmployeeExpenseStatus]",
+            "destinationName": "ImportedEmployeeExpenseStatus.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[IncotermType]",
+            "destinationName": "IncotermType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[intercompanyTransferOrderShippingAddress]",
+            "destinationName": "intercompanyTransferOrderShippingAddress.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[inventoryAssignment]",
+            "destinationName": "inventoryAssignment.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[InventoryBalance]",
+            "destinationName": "InventoryBalance.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[inventoryItemCorrelateditem]",
+            "destinationName": "inventoryItemCorrelateditem.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[inventoryItemItemQuantityPricingDiscount]",
+            "destinationName": "inventoryItemItemQuantityPricingDiscount.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[inventoryItemItemVendor]",
+            "destinationName": "inventoryItemItemVendor.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[inventoryItemLocations]",
+            "destinationName": "inventoryItemLocations.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[inventoryItemPresentationItem]",
+            "destinationName": "inventoryItemPresentationItem.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[inventoryItemPrice]",
+            "destinationName": "inventoryItemPrice.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[inventoryItemQuantity]",
+            "destinationName": "inventoryItemQuantity.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[inventoryNumber]",
+            "destinationName": "inventoryNumber.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[InventoryNumberInventoryBalance]",
+            "destinationName": "InventoryNumberInventoryBalance.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[InventoryNumberLocation]",
+            "destinationName": "InventoryNumberLocation.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[InventoryStatusInventoryBalance]",
+            "destinationName": "InventoryStatusInventoryBalance.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[InvoiceBillingAddress]",
+            "destinationName": "InvoiceBillingAddress.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[InvoiceItemShippingAddress]",
+            "destinationName": "InvoiceItemShippingAddress.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[InvoiceShippingAddress]",
+            "destinationName": "InvoiceShippingAddress.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[InvoiceTranPromotion]",
+            "destinationName": "InvoiceTranPromotion.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[InvtCommit]",
+            "destinationName": "InvtCommit.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[InvtItemPriceHistory]",
+            "destinationName": "InvtItemPriceHistory.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[IPRestrictions]",
+            "destinationName": "IPRestrictions.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[IssueVersionRelation]",
+            "destinationName": "IssueVersionRelation.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[itemBinQuantity]",
+            "destinationName": "itemBinQuantity.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ItemCorrelatedItem]",
+            "destinationName": "ItemCorrelatedItem.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ItemDemandSource]",
+            "destinationName": "ItemDemandSource.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ItemFulfillmentPackage]",
+            "destinationName": "ItemFulfillmentPackage.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ItemFulfillmentPackageFedex]",
+            "destinationName": "ItemFulfillmentPackageFedex.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ItemFulfillmentPackageUps]",
+            "destinationName": "ItemFulfillmentPackageUps.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ItemFulfillmentPackageUsps]",
+            "destinationName": "ItemFulfillmentPackageUsps.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[itemFulfillmentReturnAddress]",
+            "destinationName": "itemFulfillmentReturnAddress.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[itemFulfillmentShippingAddress]",
+            "destinationName": "itemFulfillmentShippingAddress.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[itemGroupMember]",
+            "destinationName": "itemGroupMember.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ItemInventoryBalance]",
+            "destinationName": "ItemInventoryBalance.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[itemMember]",
+            "destinationName": "itemMember.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ItemPeriodicLotSizeType]",
+            "destinationName": "ItemPeriodicLotSizeType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ItemPresentationItem]",
+            "destinationName": "ItemPresentationItem.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[itemPrice]",
+            "destinationName": "itemPrice.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[itemQuantity]",
+            "destinationName": "itemQuantity.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[itemQuantityPricingDiscount]",
+            "destinationName": "itemQuantityPricingDiscount.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ItemSegmentIncludingSyntheticInclsynthitem]",
+            "destinationName": "ItemSegmentIncludingSyntheticInclsynthitem.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ItemSegmentType]",
+            "destinationName": "ItemSegmentType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ItemSource]",
+            "destinationName": "ItemSource.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ItemSubtype]",
+            "destinationName": "ItemSubtype.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ItemSupplyLotSizingType]",
+            "destinationName": "ItemSupplyLotSizingType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ItemSupplyType]",
+            "destinationName": "ItemSupplyType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[itemType]",
+            "destinationName": "itemType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[ItemUnit]",
+            "destinationName": "ItemUnit.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[itemVendor]",
+            "destinationName": "itemVendor.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[jobAddressbook]",
+            "destinationName": "jobAddressbook.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[jobAddressbookEntityAddress]",
+            "destinationName": "jobAddressbookEntityAddress.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[jobCompanyContact]",
+            "destinationName": "jobCompanyContact.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[JobRequisitionPostingType]",
+            "destinationName": "JobRequisitionPostingType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[JobRequisitionStatus]",
+            "destinationName": "JobRequisitionStatus.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[JobStatus]",
+            "destinationName": "JobStatus.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[kitItemCorrelateditem]",
+            "destinationName": "kitItemCorrelateditem.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[kitItemItemQuantityPricingDiscount]",
+            "destinationName": "kitItemItemQuantityPricingDiscount.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[kitItemMember]",
+            "destinationName": "kitItemMember.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[kitItemPresentationItem]",
+            "destinationName": "kitItemPresentationItem.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[kitItemPrice]",
+            "destinationName": "kitItemPrice.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[kitItemQuantity]",
+            "destinationName": "kitItemQuantity.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[LagType]",
+            "destinationName": "LagType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[Language]",
+            "destinationName": "Language.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesAction]",
+            "destinationName": "librariesAction.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesAdvancedRevRec]",
+            "destinationName": "librariesAdvancedRevRec.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesBundleInstallation]",
+            "destinationName": "librariesBundleInstallation.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesClient]",
+            "destinationName": "librariesClient.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesConsolRateAdjustor]",
+            "destinationName": "librariesConsolRateAdjustor.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesCustomGlLines]",
+            "destinationName": "librariesCustomGlLines.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesDatasetBuilder]",
+            "destinationName": "librariesDatasetBuilder.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesEmailCapture]",
+            "destinationName": "librariesEmailCapture.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[LibrariesFIParserPlugin]",
+            "destinationName": "LibrariesFIParserPlugin.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesMassUpdate]",
+            "destinationName": "librariesMassUpdate.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesPaymentGateway]",
+            "destinationName": "librariesPaymentGateway.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesPlugInType]",
+            "destinationName": "librariesPlugInType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesPlugInTypeImpl]",
+            "destinationName": "librariesPlugInTypeImpl.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesPortlet]",
+            "destinationName": "librariesPortlet.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesPromotions]",
+            "destinationName": "librariesPromotions.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesRestlet]",
+            "destinationName": "librariesRestlet.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesScheduled]",
+            "destinationName": "librariesScheduled.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesShippingPartners]",
+            "destinationName": "librariesShippingPartners.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesSuitelet]",
+            "destinationName": "librariesSuitelet.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesTaxCalculation]",
+            "destinationName": "librariesTaxCalculation.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesTestPlugin]",
+            "destinationName": "librariesTestPlugin.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesUserEvent]",
+            "destinationName": "librariesUserEvent.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesWebApp]",
+            "destinationName": "librariesWebApp.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[librariesWorkbookBuilder]",
+            "destinationName": "librariesWorkbookBuilder.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[Location]",
+            "destinationName": "Location.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[LocationInventoryBalance]",
+            "destinationName": "LocationInventoryBalance.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[LocationMainAddress]",
+            "destinationName": "LocationMainAddress.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[LocationReturnAddress]",
+            "destinationName": "LocationReturnAddress.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[LocationType]",
+            "destinationName": "LocationType.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[LoginAudit]",
+            "destinationName": "LoginAudit.parquet"
+          },
+          {
+            "NSQuery": "SELECT * FROM [NETSUITE].[Vinotemp International].[Vinotemp SuiteAnalytics Connector].[MailTemplate]",
+            "destinationName": "MailTemplate.parquet"
+          }
+        ],
+        "type": "array"
+      }
+    }
+  }
 }

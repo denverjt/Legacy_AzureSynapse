@@ -1,108 +1,109 @@
 {
-	"name": "NetsuiteVT_Trigger",
-	"properties": {
-		"annotations": [],
-		"runtimeState": "Stopped",
-		"pipelines": [
-			{
-				"pipelineReference": {
-					"referenceName": "NetsuiteVT_Pipeline",
-					"type": "PipelineReference"
-				},
-				"parameters": {
-					"cw_items": [
-						{
-							"source": {
-								"table": "NetSuiteTransactionLine"
-							},
-							"destination": {
-								"fileName": "NetSuiteTransactionLine.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "Entity"
-							},
-							"destination": {
-								"fileName": "Entity.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "NetSuiteTransaction"
-							},
-							"destination": {
-								"fileName": "NetSuiteTransaction.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "SalesInvoiced"
-							},
-							"destination": {
-								"fileName": "SalesInvoiced.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "SalesOrdered"
-							},
-							"destination": {
-								"fileName": "SalesOrdered.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "entityAddressbook"
-							},
-							"destination": {
-								"fileName": "entityAddressbook.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "Customer"
-							},
-							"destination": {
-								"fileName": "Customer.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "Item"
-							},
-							"destination": {
-								"fileName": "Item.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "Vendor"
-							},
-							"destination": {
-								"fileName": "Vendor.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "Class"
-							},
-							"destination": {
-								"fileName": "Class.parquet"
-							}
-						}
-					]
-				}
-			}
-		],
-		"type": "ScheduleTrigger",
-		"typeProperties": {
-			"recurrence": {
-				"frequency": "Day",
-				"interval": 1,
-				"startTime": "2022-08-08T23:00:00",
-				"timeZone": "Eastern Standard Time"
-			}
-		}
-	}
+  "name": "NetsuiteVT_Trigger",
+  "properties": {
+    "annotations": [],
+    "pipelines": [
+      {
+        "parameters": {
+          "cw_items": [
+            {
+              "destination": {
+                "fileName": "NetSuiteTransactionLine.parquet"
+              },
+              "source": {
+                "table": "NetSuiteTransactionLine"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "Entity.parquet"
+              },
+              "source": {
+                "table": "Entity"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "NetSuiteTransaction.parquet"
+              },
+              "source": {
+                "table": "NetSuiteTransaction"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "SalesInvoiced.parquet"
+              },
+              "source": {
+                "table": "SalesInvoiced"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "SalesOrdered.parquet"
+              },
+              "source": {
+                "table": "SalesOrdered"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "entityAddressbook.parquet"
+              },
+              "source": {
+                "table": "entityAddressbook"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "Customer.parquet"
+              },
+              "source": {
+                "table": "Customer"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "Item.parquet"
+              },
+              "source": {
+                "table": "Item"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "Vendor.parquet"
+              },
+              "source": {
+                "table": "Vendor"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "Class.parquet"
+              },
+              "source": {
+                "table": "Class"
+              }
+            }
+          ]
+        },
+        "pipelineReference": {
+          "referenceName": "NetsuiteVT_Pipeline",
+          "type": "PipelineReference"
+        }
+      }
+    ],
+    "runtimeState": "Stopped",
+    "type": "ScheduleTrigger",
+    "typeProperties": {
+      "recurrence": {
+        "frequency": "Day",
+        "interval": 1,
+        "schedule": {},
+        "startTime": "2022-08-08T23:00:00.000Z",
+        "timeZone": "Eastern Standard Time"
+      }
+    }
+  }
 }

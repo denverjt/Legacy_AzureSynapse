@@ -1,17 +1,17 @@
 {
-	"name": "v_MainERP_Item",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW     v_MainERP_Item\n-- drop view v_MainERP_Item\nas\nSELECT          DISTINCT ITNO as        [Item Number]\n,               ITDS as                 [Item Name]\n,               'M3' as                 [Main ERP]\n,               ITCL as                 [Brand Short Name]\n,               STAT as                 [Status]\nFROM            M3.MITMAS\n\n/*\nUNION\n\nSELECT          DISTINCT ID as          [Item Number]\n,                DESCRIPTION as         [Item Name]\n,               'Visual' AS             [Main ERP]\n,               USER_1 AS               [Brand Short Name]\nFROM            ECM.PART\nWHERE           ID NOT IN\n(\n    SELECT      DISTINCT ITNO\n    FROM        M3.MITMAS\n\n    UNION\n\n    SELECT      DISTINCT ITNE\n    FROM        M3.MITMAS\n)\n\nUNION\n\nSELECT          DISTINCT StockCode as          [Item Number]\n,                Description as         [Item Name]\n,               'Syspro G' AS             [Main ERP]\n,               ProductClass AS               [Brand Short Name]\nFROM            SCG.InvMaster\nWHERE           StockCode NOT IN\n(\n    SELECT      DISTINCT ITNO\n    FROM        M3.MITMAS\n\n    UNION\n\n    SELECT      DISTINCT ITNE\n    FROM        M3.MITMAS\n\n    UNION\n\n    SELECT      distinct ID\n    FROM        ECM.PART\n)\n*/",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": -1
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_MainERP_Item",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW     v_MainERP_Item\n-- drop view v_MainERP_Item\nas\nSELECT          DISTINCT ITNO as        [Item Number]\n,               ITDS as                 [Item Name]\n,               'M3' as                 [Main ERP]\n,               ITCL as                 [Brand Short Name]\n,               STAT as                 [Status]\nFROM            M3.MITMAS\n\n/*\nUNION\n\nSELECT          DISTINCT ID as          [Item Number]\n,                DESCRIPTION as         [Item Name]\n,               'Visual' AS             [Main ERP]\n,               USER_1 AS               [Brand Short Name]\nFROM            ECM.PART\nWHERE           ID NOT IN\n(\n    SELECT      DISTINCT ITNO\n    FROM        M3.MITMAS\n\n    UNION\n\n    SELECT      DISTINCT ITNE\n    FROM        M3.MITMAS\n)\n\nUNION\n\nSELECT          DISTINCT StockCode as          [Item Number]\n,                Description as         [Item Name]\n,               'Syspro G' AS             [Main ERP]\n,               ProductClass AS               [Brand Short Name]\nFROM            SCG.InvMaster\nWHERE           StockCode NOT IN\n(\n    SELECT      DISTINCT ITNO\n    FROM        M3.MITMAS\n\n    UNION\n\n    SELECT      DISTINCT ITNE\n    FROM        M3.MITMAS\n\n    UNION\n\n    SELECT      distinct ID\n    FROM        ECM.PART\n)\n*/",
+      "resultLimit": -1
+    },
+    "type": "SqlQuery"
+  }
 }

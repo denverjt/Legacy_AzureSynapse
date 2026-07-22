@@ -1,268 +1,268 @@
 {
-	"name": "M3RT_Hourly_Trigger",
-	"properties": {
-		"annotations": [],
-		"runtimeState": "Stopped",
-		"pipelines": [
-			{
-				"pipelineReference": {
-					"referenceName": "M3RT_Hourly",
-					"type": "PipelineReference"
-				},
-				"parameters": {
-					"cw_items_P1": [
-						{
-							"source": {
-								"table": "cpohed"
-							},
-							"destination": {
-								"fileName": "cpohed.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "cpomat"
-							},
-							"destination": {
-								"fileName": "cpomat.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "fapchk"
-							},
-							"destination": {
-								"fileName": "fapchk.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "fgledg"
-							},
-							"destination": {
-								"fileName": "fgledg.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "fpledg"
-							},
-							"destination": {
-								"fileName": "fpledg.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "fpsugd"
-							},
-							"destination": {
-								"fileName": "fpsugd.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "fpsugs"
-							},
-							"destination": {
-								"fileName": "fpsugs.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "fsledg"
-							},
-							"destination": {
-								"fileName": "fsledg.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "mghead"
-							},
-							"destination": {
-								"fileName": "mghead.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "mgline"
-							},
-							"destination": {
-								"fileName": "mgline.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "mhdish"
-							},
-							"destination": {
-								"fileName": "mhdish.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "mhdisl"
-							},
-							"destination": {
-								"fileName": "mhdisl.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "mhpich"
-							},
-							"destination": {
-								"fileName": "mhpich.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "mitalo"
-							},
-							"destination": {
-								"fileName": "mitalo.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "mitbal"
-							},
-							"destination": {
-								"fileName": "mitbal.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "mittra"
-							},
-							"destination": {
-								"fileName": "mittra.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "mmoplp"
-							},
-							"destination": {
-								"fileName": "mmoplp.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "mphead"
-							},
-							"destination": {
-								"fileName": "mphead.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "mpline"
-							},
-							"destination": {
-								"fileName": "mpline.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "mplire"
-							},
-							"destination": {
-								"fileName": "mplire.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "mpoexp"
-							},
-							"destination": {
-								"fileName": "mpoexp.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "mwohed"
-							},
-							"destination": {
-								"fileName": "mwohed.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "mwomat"
-							},
-							"destination": {
-								"fileName": "mwomat.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "odhead"
-							},
-							"destination": {
-								"fileName": "odhead.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "odline"
-							},
-							"destination": {
-								"fileName": "odline.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "oinvoh"
-							},
-							"destination": {
-								"fileName": "oinvoh.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "oinvol"
-							},
-							"destination": {
-								"fileName": "oinvol.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "oochrg"
-							},
-							"destination": {
-								"fileName": "oochrg.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "oohead"
-							},
-							"destination": {
-								"fileName": "oohead.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "ooline"
-							},
-							"destination": {
-								"fileName": "ooline.parquet"
-							}
-						}
-					]
-				}
-			}
-		],
-		"type": "ScheduleTrigger",
-		"typeProperties": {
-			"recurrence": {
-				"frequency": "Minute",
-				"interval": 30,
-				"startTime": "2024-07-01T14:15:00",
-				"timeZone": "Eastern Standard Time"
-			}
-		}
-	}
+  "name": "M3RT_Hourly_Trigger",
+  "properties": {
+    "annotations": [],
+    "pipelines": [
+      {
+        "parameters": {
+          "cw_items_P1": [
+            {
+              "destination": {
+                "fileName": "cpohed.parquet"
+              },
+              "source": {
+                "table": "cpohed"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "cpomat.parquet"
+              },
+              "source": {
+                "table": "cpomat"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "fapchk.parquet"
+              },
+              "source": {
+                "table": "fapchk"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "fgledg.parquet"
+              },
+              "source": {
+                "table": "fgledg"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "fpledg.parquet"
+              },
+              "source": {
+                "table": "fpledg"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "fpsugd.parquet"
+              },
+              "source": {
+                "table": "fpsugd"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "fpsugs.parquet"
+              },
+              "source": {
+                "table": "fpsugs"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "fsledg.parquet"
+              },
+              "source": {
+                "table": "fsledg"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "mghead.parquet"
+              },
+              "source": {
+                "table": "mghead"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "mgline.parquet"
+              },
+              "source": {
+                "table": "mgline"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "mhdish.parquet"
+              },
+              "source": {
+                "table": "mhdish"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "mhdisl.parquet"
+              },
+              "source": {
+                "table": "mhdisl"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "mhpich.parquet"
+              },
+              "source": {
+                "table": "mhpich"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "mitalo.parquet"
+              },
+              "source": {
+                "table": "mitalo"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "mitbal.parquet"
+              },
+              "source": {
+                "table": "mitbal"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "mittra.parquet"
+              },
+              "source": {
+                "table": "mittra"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "mmoplp.parquet"
+              },
+              "source": {
+                "table": "mmoplp"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "mphead.parquet"
+              },
+              "source": {
+                "table": "mphead"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "mpline.parquet"
+              },
+              "source": {
+                "table": "mpline"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "mplire.parquet"
+              },
+              "source": {
+                "table": "mplire"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "mpoexp.parquet"
+              },
+              "source": {
+                "table": "mpoexp"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "mwohed.parquet"
+              },
+              "source": {
+                "table": "mwohed"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "mwomat.parquet"
+              },
+              "source": {
+                "table": "mwomat"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "odhead.parquet"
+              },
+              "source": {
+                "table": "odhead"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "odline.parquet"
+              },
+              "source": {
+                "table": "odline"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "oinvoh.parquet"
+              },
+              "source": {
+                "table": "oinvoh"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "oinvol.parquet"
+              },
+              "source": {
+                "table": "oinvol"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "oochrg.parquet"
+              },
+              "source": {
+                "table": "oochrg"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "oohead.parquet"
+              },
+              "source": {
+                "table": "oohead"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "ooline.parquet"
+              },
+              "source": {
+                "table": "ooline"
+              }
+            }
+          ]
+        },
+        "pipelineReference": {
+          "referenceName": "M3RT_Hourly",
+          "type": "PipelineReference"
+        }
+      }
+    ],
+    "runtimeState": "Stopped",
+    "type": "ScheduleTrigger",
+    "typeProperties": {
+      "recurrence": {
+        "frequency": "Minute",
+        "interval": 30,
+        "startTime": "2024-07-01T14:15:00.000Z",
+        "timeZone": "Eastern Standard Time"
+      }
+    }
+  }
 }

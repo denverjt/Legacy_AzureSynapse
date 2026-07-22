@@ -1,17 +1,17 @@
 {
-	"name": "v_Inventory_MasterData",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW     v_Inventory_MasterData\n--drop view v_Inventory_MasterData\nas\n\nSELECT          'M3' AS ERP, ML.ITNO, ITDS, ML.WHLO\n,               MM.ITCL as BRAND, MF.APPR as [Average Cost]\n,               sum(STQT) as [Qty on Hand]\n,               sum(REQT) as [Qty on Reserve]\n,               sum(ALQT) as [Qty Allocated]\n,               sum(SSQT) as [Qty on Safety Stock]\n,               sum(QUQT) as [Qty on Inspection]\n,               sum(RJQT) as [Qty Rejected]\n,               ML.BUYE as [Buyer]\nFROM            M3.MITBAL ML\nJOIN            M3.MITMAS MM on ML.ITNO = MM.ITNO\nJOIN            M3.MITFAC MF on ML.ITNO = MF.ITNO AND MF.FACI = 'TLC'\nJOIN            M3.MITWHL WH ON ML.WHLO = WH.WHLO\nWHERE           ISNULL(STQT,0) + ISNULL(ALQT,0) + ISNULL(REQT,0) + ISNULL(SSQT,0) + ISNULL(QUQT,0) + ISNULL(RJQT,0) <> 0\nGROUP BY        ML.ITNO, ML.WHLO, ITDS, itcl, MF.APPR, BUYE\n\n\n/*\nUNION ALL\n\n(\nSELECT          'VISUAL' AS ERP, A.ITNO, A.ITDS, A.WHLO, A.LOCATION_ID, A.[Qty on Hand], A.BRAND\n,               [Qty on Order (Incoming)]\n,               isnull([Qty on Reserve],0) as [Qty on Reserve]\n,               A.[Qty on Hand] - ISNULL([Qty on Reserve],0) as [Qty Available]\nFROM\n(\nSELECT          PART_ID AS ITNO, WAREHOUSE_ID AS WHLO, LOCATION_ID as LOCATION_ID, P.DESCRIPTION AS ITDS, SUM(QTY) AS [Qty on Hand], P.USER_1 as BRAND\nFROM            ECM.PART_LOCATION PL\nJOIN            ECM.PART P on PL.PART_ID = P.ID\nGROUP BY        PART_ID, WAREHOUSE_ID, P.DESCRIPTION, LOCATION_ID, p.user_1\nHAVING          SUM(QTY) <> 0               \n) A\n\nLEFT JOIN\n\n(\nselect\t\t\tPART_ID as ITNO, WAREHOUSE_ID AS WHLO, SUM(ORDER_QTY - TOTAL_RECEIVED_QTY) AS [Qty on Order (Incoming)]\nfrom\t\t\tECM.PURC_ORDER_LINE\nWHERE\t\t\tLINE_STATUS = 'A'\nAND\t\t\t\tWAREHOUSE_ID IS NOT NULL\nGROUP BY\t\tPART_ID, WAREHOUSE_ID\nHAVING\t\t\tSUM(ORDER_QTY - TOTAL_RECEIVED_QTY) > 0    \n) B           ON A.ITNO = B.ITNO and A.WHLO = B.WHLO and A.LOCATION_ID = B.WHLO\n\nLEFT JOIN\n\n(\nSELECT          [Item Number] as ITNO, [Warehouse] as WHLO, SUM(Quantity) as [Qty on Reserve] \nFROM            v_OpenOrdersByStatus\nWHERE           ERP = 'Visual'\nand             [Qty Status] = '3 - Allocated'\nAnd             [IC Flag] <> 'IC'\nGROUP BY        [Item Number], Warehouse\n) C             ON A.ITNO = C.ITNO and A.WHLO = C.WHLO and A.LOCATION_ID = C.WHLO\n)\n*/",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_Inventory_MasterData",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW     v_Inventory_MasterData\n--drop view v_Inventory_MasterData\nas\n\nSELECT          'M3' AS ERP, ML.ITNO, ITDS, ML.WHLO\n,               MM.ITCL as BRAND, MF.APPR as [Average Cost]\n,               sum(STQT) as [Qty on Hand]\n,               sum(REQT) as [Qty on Reserve]\n,               sum(ALQT) as [Qty Allocated]\n,               sum(SSQT) as [Qty on Safety Stock]\n,               sum(QUQT) as [Qty on Inspection]\n,               sum(RJQT) as [Qty Rejected]\n,               ML.BUYE as [Buyer]\nFROM            M3.MITBAL ML\nJOIN            M3.MITMAS MM on ML.ITNO = MM.ITNO\nJOIN            M3.MITFAC MF on ML.ITNO = MF.ITNO AND MF.FACI = 'TLC'\nJOIN            M3.MITWHL WH ON ML.WHLO = WH.WHLO\nWHERE           ISNULL(STQT,0) + ISNULL(ALQT,0) + ISNULL(REQT,0) + ISNULL(SSQT,0) + ISNULL(QUQT,0) + ISNULL(RJQT,0) <> 0\nGROUP BY        ML.ITNO, ML.WHLO, ITDS, itcl, MF.APPR, BUYE\n\n\n/*\nUNION ALL\n\n(\nSELECT          'VISUAL' AS ERP, A.ITNO, A.ITDS, A.WHLO, A.LOCATION_ID, A.[Qty on Hand], A.BRAND\n,               [Qty on Order (Incoming)]\n,               isnull([Qty on Reserve],0) as [Qty on Reserve]\n,               A.[Qty on Hand] - ISNULL([Qty on Reserve],0) as [Qty Available]\nFROM\n(\nSELECT          PART_ID AS ITNO, WAREHOUSE_ID AS WHLO, LOCATION_ID as LOCATION_ID, P.DESCRIPTION AS ITDS, SUM(QTY) AS [Qty on Hand], P.USER_1 as BRAND\nFROM            ECM.PART_LOCATION PL\nJOIN            ECM.PART P on PL.PART_ID = P.ID\nGROUP BY        PART_ID, WAREHOUSE_ID, P.DESCRIPTION, LOCATION_ID, p.user_1\nHAVING          SUM(QTY) <> 0               \n) A\n\nLEFT JOIN\n\n(\nselect\t\t\tPART_ID as ITNO, WAREHOUSE_ID AS WHLO, SUM(ORDER_QTY - TOTAL_RECEIVED_QTY) AS [Qty on Order (Incoming)]\nfrom\t\t\tECM.PURC_ORDER_LINE\nWHERE\t\t\tLINE_STATUS = 'A'\nAND\t\t\t\tWAREHOUSE_ID IS NOT NULL\nGROUP BY\t\tPART_ID, WAREHOUSE_ID\nHAVING\t\t\tSUM(ORDER_QTY - TOTAL_RECEIVED_QTY) > 0    \n) B           ON A.ITNO = B.ITNO and A.WHLO = B.WHLO and A.LOCATION_ID = B.WHLO\n\nLEFT JOIN\n\n(\nSELECT          [Item Number] as ITNO, [Warehouse] as WHLO, SUM(Quantity) as [Qty on Reserve] \nFROM            v_OpenOrdersByStatus\nWHERE           ERP = 'Visual'\nand             [Qty Status] = '3 - Allocated'\nAnd             [IC Flag] <> 'IC'\nGROUP BY        [Item Number], Warehouse\n) C             ON A.ITNO = C.ITNO and A.WHLO = C.WHLO and A.LOCATION_ID = C.WHLO\n)\n*/",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

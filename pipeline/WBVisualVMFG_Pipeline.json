@@ -1,1864 +1,1862 @@
 {
-	"name": "WBVisualVMFG_Pipeline",
-	"properties": {
-		"activities": [
-			{
-				"name": "ForEach_Table",
-				"type": "ForEach",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"items": {
-						"value": "@pipeline().parameters.cw_items",
-						"type": "Expression"
-					},
-					"activities": [
-						{
-							"name": "Copy_Tables",
-							"type": "Copy",
-							"dependsOn": [],
-							"policy": {
-								"timeout": "7.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [
-								{
-									"name": "Source",
-									"value": "dbo.@{item().source.table}"
-								},
-								{
-									"name": "Destination",
-									"value": "tlclakefs/SysproCompG/@{item().destination.fileName}"
-								}
-							],
-							"typeProperties": {
-								"source": {
-									"type": "SqlServerSource",
-									"partitionOption": "None"
-								},
-								"sink": {
-									"type": "ParquetSink",
-									"storeSettings": {
-										"type": "AzureBlobFSWriteSettings"
-									},
-									"formatSettings": {
-										"type": "ParquetWriteSettings"
-									}
-								},
-								"enableStaging": false,
-								"validateDataConsistency": false
-							},
-							"inputs": [
-								{
-									"referenceName": "IN_WBVisualVMFG",
-									"type": "DatasetReference",
-									"parameters": {
-										"cw_table": "@item().source.table"
-									}
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "OUT_WBVisualVMFG",
-									"type": "DatasetReference",
-									"parameters": {
-										"cw_fileName": "@item().destination.fileName"
-									}
-								}
-							]
-						}
-					]
-				}
-			}
-		],
-		"parameters": {
-			"cw_items": {
-				"type": "Array",
-				"defaultValue": [
-					{
-						"source": {
-							"table": "SHIPPER_LINK"
-						},
-						"destination": {
-							"fileName": "SHIPPER_LINK.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CARTON_LINE"
-						},
-						"destination": {
-							"fileName": "CARTON_LINE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CARTON"
-						},
-						"destination": {
-							"fileName": "CARTON.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CUST_BOOK_LINE"
-						},
-						"destination": {
-							"fileName": "CUST_BOOK_LINE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "INVENTORY_TRANS"
-						},
-						"destination": {
-							"fileName": "INVENTORY_TRANS.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SHIPMENT_DIST"
-						},
-						"destination": {
-							"fileName": "SHIPMENT_DIST.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "INV_TRANS_DIST"
-						},
-						"destination": {
-							"fileName": "INV_TRANS_DIST.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SHIPMENT_DETAIL"
-						},
-						"destination": {
-							"fileName": "SHIPMENT_DETAIL.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CUSTOMER_BOOKINGS"
-						},
-						"destination": {
-							"fileName": "CUSTOMER_BOOKINGS.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CUST_ORDER_LINE"
-						},
-						"destination": {
-							"fileName": "CUST_ORDER_LINE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SHIPPER_LINE"
-						},
-						"destination": {
-							"fileName": "SHIPPER_LINE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PURC_ORDER_LINE"
-						},
-						"destination": {
-							"fileName": "PURC_ORDER_LINE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CUSTOMER_ORDER"
-						},
-						"destination": {
-							"fileName": "CUSTOMER_ORDER.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SHIPPER"
-						},
-						"destination": {
-							"fileName": "SHIPPER.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CUST_ADDRESS"
-						},
-						"destination": {
-							"fileName": "CUST_ADDRESS.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PART_LOCATION"
-						},
-						"destination": {
-							"fileName": "PART_LOCATION.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CUST_ORDER_CURR"
-						},
-						"destination": {
-							"fileName": "CUST_ORDER_CURR.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "BOL_LINE"
-						},
-						"destination": {
-							"fileName": "BOL_LINE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "BOL"
-						},
-						"destination": {
-							"fileName": "BOL.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "NOTATION"
-						},
-						"destination": {
-							"fileName": "NOTATION.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "INVENTORY_BALANCE"
-						},
-						"destination": {
-							"fileName": "INVENTORY_BALANCE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ADV_SHIP_NOTICE"
-						},
-						"destination": {
-							"fileName": "ADV_SHIP_NOTICE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "WH_SHIP_ADVICE"
-						},
-						"destination": {
-							"fileName": "WH_SHIP_ADVICE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CONTACT"
-						},
-						"destination": {
-							"fileName": "CONTACT.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CUST_CONTACT"
-						},
-						"destination": {
-							"fileName": "CUST_CONTACT.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CUSTOMER_CONTACT"
-						},
-						"destination": {
-							"fileName": "CUSTOMER_CONTACT.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PART_WAREHOUSE"
-						},
-						"destination": {
-							"fileName": "PART_WAREHOUSE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ADJUSTMENT_DIST"
-						},
-						"destination": {
-							"fileName": "ADJUSTMENT_DIST.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ADJUSTMENT_DETAIL"
-						},
-						"destination": {
-							"fileName": "ADJUSTMENT_DETAIL.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "DEMAND_SUPPLY_LINK"
-						},
-						"destination": {
-							"fileName": "DEMAND_SUPPLY_LINK.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "AA_Freight"
-						},
-						"destination": {
-							"fileName": "AA_Freight.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "JOURNAL"
-						},
-						"destination": {
-							"fileName": "JOURNAL.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PAYABLE_LINE"
-						},
-						"destination": {
-							"fileName": "PAYABLE_LINE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PAYB_LINE_CURR"
-						},
-						"destination": {
-							"fileName": "PAYB_LINE_CURR.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "HISTORY_SCHEMA"
-						},
-						"destination": {
-							"fileName": "HISTORY_SCHEMA.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PURCHASE_DIST"
-						},
-						"destination": {
-							"fileName": "PURCHASE_DIST.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PAYABLE"
-						},
-						"destination": {
-							"fileName": "PAYABLE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PAYABLE_CURR"
-						},
-						"destination": {
-							"fileName": "PAYABLE_CURR.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PURC_MATL_DETAIL"
-						},
-						"destination": {
-							"fileName": "PURC_MATL_DETAIL.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PLANNING_FORECAST"
-						},
-						"destination": {
-							"fileName": "PLANNING_FORECAST.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MASTER_SCHEDULE"
-						},
-						"destination": {
-							"fileName": "MASTER_SCHEDULE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PART_SITE"
-						},
-						"destination": {
-							"fileName": "PART_SITE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CC_CREDIT_CARD_TRANS"
-						},
-						"destination": {
-							"fileName": "CC_CREDIT_CARD_TRANS.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PPD_FREIGHT_COST_1"
-						},
-						"destination": {
-							"fileName": "PPD_FREIGHT_COST_1.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MARKET_PRICE"
-						},
-						"destination": {
-							"fileName": "MARKET_PRICE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CUSTOMER_ENTITY"
-						},
-						"destination": {
-							"fileName": "CUSTOMER_ENTITY.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CUSTOMER_SITE"
-						},
-						"destination": {
-							"fileName": "CUSTOMER_SITE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CC_ACTIVITY_LOG"
-						},
-						"destination": {
-							"fileName": "CC_ACTIVITY_LOG.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "RECEIVER_LINE"
-						},
-						"destination": {
-							"fileName": "RECEIVER_LINE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "USER_PGM_AUTHORITY"
-						},
-						"destination": {
-							"fileName": "USER_PGM_AUTHORITY.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CUST_PRICE_EFFECT"
-						},
-						"destination": {
-							"fileName": "CUST_PRICE_EFFECT.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PROGRAM_NAME"
-						},
-						"destination": {
-							"fileName": "PROGRAM_NAME.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PURCHASE_ORDER"
-						},
-						"destination": {
-							"fileName": "PURCHASE_ORDER.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "RECEIVER"
-						},
-						"destination": {
-							"fileName": "RECEIVER.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CC_CUST_ORDER_CC"
-						},
-						"destination": {
-							"fileName": "CC_CUST_ORDER_CC.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PREFERENCES"
-						},
-						"destination": {
-							"fileName": "PREFERENCES.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ACCOUNT_AT_NATIVE"
-						},
-						"destination": {
-							"fileName": "ACCOUNT_AT_NATIVE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ACCOUNT_BALANCE"
-						},
-						"destination": {
-							"fileName": "ACCOUNT_BALANCE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SOA_CODE_LIST"
-						},
-						"destination": {
-							"fileName": "SOA_CODE_LIST.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "IBT_SHIPPER_LINE"
-						},
-						"destination": {
-							"fileName": "IBT_SHIPPER_LINE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "IBT_LINE"
-						},
-						"destination": {
-							"fileName": "IBT_LINE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "IBT_RECEIVER_LINE"
-						},
-						"destination": {
-							"fileName": "IBT_RECEIVER_LINE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PREF_DESCRIPTION"
-						},
-						"destination": {
-							"fileName": "PREF_DESCRIPTION.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PART"
-						},
-						"destination": {
-							"fileName": "PART.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "JOURNAL_BATCH"
-						},
-						"destination": {
-							"fileName": "JOURNAL_BATCH.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PURC_ORDER_CURR"
-						},
-						"destination": {
-							"fileName": "PURC_ORDER_CURR.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CUSTOMER"
-						},
-						"destination": {
-							"fileName": "CUSTOMER.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PLANNED_ORDER"
-						},
-						"destination": {
-							"fileName": "PLANNED_ORDER.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "RMA_LINE"
-						},
-						"destination": {
-							"fileName": "RMA_LINE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ACCOUNT"
-						},
-						"destination": {
-							"fileName": "ACCOUNT.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "VENDOR_ENTITY"
-						},
-						"destination": {
-							"fileName": "VENDOR_ENTITY.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "RMA"
-						},
-						"destination": {
-							"fileName": "RMA.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CUSTOMER_PRICE"
-						},
-						"destination": {
-							"fileName": "CUSTOMER_PRICE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PURC_LINE_BINARY"
-						},
-						"destination": {
-							"fileName": "PURC_LINE_BINARY.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "RMA_BINARY"
-						},
-						"destination": {
-							"fileName": "RMA_BINARY.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PART_ALIAS"
-						},
-						"destination": {
-							"fileName": "PART_ALIAS.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ENUM_CODES"
-						},
-						"destination": {
-							"fileName": "ENUM_CODES.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PURC_ORDER_BINARY"
-						},
-						"destination": {
-							"fileName": "PURC_ORDER_BINARY.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "USER_SITE"
-						},
-						"destination": {
-							"fileName": "USER_SITE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "USER_MNU_AUTHORITY"
-						},
-						"destination": {
-							"fileName": "USER_MNU_AUTHORITY.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CARRIER"
-						},
-						"destination": {
-							"fileName": "CARRIER.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CURRENCY_EXCHANGE"
-						},
-						"destination": {
-							"fileName": "CURRENCY_EXCHANGE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PART_COST"
-						},
-						"destination": {
-							"fileName": "PART_COST.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "HTS_CODE_UPDATE"
-						},
-						"destination": {
-							"fileName": "HTS_CODE_UPDATE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SETTINGS"
-						},
-						"destination": {
-							"fileName": "SETTINGS.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "WIP_ISSUE_DETAIL"
-						},
-						"destination": {
-							"fileName": "WIP_ISSUE_DETAIL.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "NORMAL_DIST_AREA"
-						},
-						"destination": {
-							"fileName": "NORMAL_DIST_AREA.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SYSPRO_COST"
-						},
-						"destination": {
-							"fileName": "SYSPRO_COST.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "VENDOR"
-						},
-						"destination": {
-							"fileName": "VENDOR.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "STEVE_COMMODITY"
-						},
-						"destination": {
-							"fileName": "STEVE_COMMODITY.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "EC_CUSTOMER_PART"
-						},
-						"destination": {
-							"fileName": "EC_CUSTOMER_PART.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "COMMODITY"
-						},
-						"destination": {
-							"fileName": "COMMODITY.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "APPLICATION_USER"
-						},
-						"destination": {
-							"fileName": "APPLICATION_USER.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "UNIT_PRICE_CONSUMER"
-						},
-						"destination": {
-							"fileName": "UNIT_PRICE_CONSUMER.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "NEXT_NUMBER_GEN"
-						},
-						"destination": {
-							"fileName": "NEXT_NUMBER_GEN.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "IBT_RECEIVER"
-						},
-						"destination": {
-							"fileName": "IBT_RECEIVER.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "IBT_SHIPPER"
-						},
-						"destination": {
-							"fileName": "IBT_SHIPPER.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "IBT"
-						},
-						"destination": {
-							"fileName": "IBT.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ACCOUNT_PERIOD"
-						},
-						"destination": {
-							"fileName": "ACCOUNT_PERIOD.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "APPLICATION_LINK"
-						},
-						"destination": {
-							"fileName": "APPLICATION_LINK.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SHIP_VIA"
-						},
-						"destination": {
-							"fileName": "SHIP_VIA.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "GL_INTERFACE_ACCT"
-						},
-						"destination": {
-							"fileName": "GL_INTERFACE_ACCT.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "TERMS"
-						},
-						"destination": {
-							"fileName": "TERMS.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MENU_NAME"
-						},
-						"destination": {
-							"fileName": "MENU_NAME.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "WIP_RECEIPT_DETAIL"
-						},
-						"destination": {
-							"fileName": "WIP_RECEIPT_DETAIL.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "APPLICATION"
-						},
-						"destination": {
-							"fileName": "APPLICATION.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "VENDOR_PART"
-						},
-						"destination": {
-							"fileName": "VENDOR_PART.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "VENDOR_QUOTE"
-						},
-						"destination": {
-							"fileName": "VENDOR_QUOTE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "WIP_ISSUE_DIST"
-						},
-						"destination": {
-							"fileName": "WIP_ISSUE_DIST.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "HARMONIZED_TARIFF"
-						},
-						"destination": {
-							"fileName": "HARMONIZED_TARIFF.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SOA_DIMENSION"
-						},
-						"destination": {
-							"fileName": "SOA_DIMENSION.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "WIP_RECEIPT_DIST"
-						},
-						"destination": {
-							"fileName": "WIP_RECEIPT_DIST.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "REQUIREMENT"
-						},
-						"destination": {
-							"fileName": "REQUIREMENT.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CUSTOMER_SYNC"
-						},
-						"destination": {
-							"fileName": "CUSTOMER_SYNC.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MARKET"
-						},
-						"destination": {
-							"fileName": "MARKET.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SALES_REP"
-						},
-						"destination": {
-							"fileName": "SALES_REP.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "USER_DIM_PROC_PRI"
-						},
-						"destination": {
-							"fileName": "USER_DIM_PROC_PRI.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "WIP_BALANCE"
-						},
-						"destination": {
-							"fileName": "WIP_BALANCE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "VMDI_SPECIAL_COLS"
-						},
-						"destination": {
-							"fileName": "VMDI_SPECIAL_COLS.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "LABEL_TYPE_VAR"
-						},
-						"destination": {
-							"fileName": "LABEL_TYPE_VAR.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "LOCATION"
-						},
-						"destination": {
-							"fileName": "LOCATION.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CC_USER_AUTH"
-						},
-						"destination": {
-							"fileName": "CC_USER_AUTH.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "T_NORMAL_DIST"
-						},
-						"destination": {
-							"fileName": "T_NORMAL_DIST.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "T_SEC_APPROX_K1"
-						},
-						"destination": {
-							"fileName": "T_SEC_APPROX_K1.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CUST_ORDER_BINARY"
-						},
-						"destination": {
-							"fileName": "CUST_ORDER_BINARY.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "FINANCIAL_PERIOD"
-						},
-						"destination": {
-							"fileName": "FINANCIAL_PERIOD.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "APPLICATION_FIELDS"
-						},
-						"destination": {
-							"fileName": "APPLICATION_FIELDS.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "GL_INTERFACE"
-						},
-						"destination": {
-							"fileName": "GL_INTERFACE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "STATE_PROVINCE"
-						},
-						"destination": {
-							"fileName": "STATE_PROVINCE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SOA_NOUN"
-						},
-						"destination": {
-							"fileName": "SOA_NOUN.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PRODUCT"
-						},
-						"destination": {
-							"fileName": "PRODUCT.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "VENDOR_SYNC"
-						},
-						"destination": {
-							"fileName": "VENDOR_SYNC.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "GAGE"
-						},
-						"destination": {
-							"fileName": "GAGE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "WORK_ORDER"
-						},
-						"destination": {
-							"fileName": "WORK_ORDER.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OPERATION"
-						},
-						"destination": {
-							"fileName": "OPERATION.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SHIPTO_ADDRESS"
-						},
-						"destination": {
-							"fileName": "SHIPTO_ADDRESS.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CC_CUST_CREDIT_CARD"
-						},
-						"destination": {
-							"fileName": "CC_CUST_CREDIT_CARD.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SALES_TAX_PCT"
-						},
-						"destination": {
-							"fileName": "SALES_TAX_PCT.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "NMFC_CODE"
-						},
-						"destination": {
-							"fileName": "NMFC_CODE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "DRILLBACK"
-						},
-						"destination": {
-							"fileName": "DRILLBACK.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "TERRITORY"
-						},
-						"destination": {
-							"fileName": "TERRITORY.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SALES_TAX_GROUP"
-						},
-						"destination": {
-							"fileName": "SALES_TAX_GROUP.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "WAREHOUSE"
-						},
-						"destination": {
-							"fileName": "WAREHOUSE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SLS_TAX_GRP_TAX"
-						},
-						"destination": {
-							"fileName": "SLS_TAX_GRP_TAX.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "FOB_POINT"
-						},
-						"destination": {
-							"fileName": "FOB_POINT.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ADDRESS_POS_SETUP"
-						},
-						"destination": {
-							"fileName": "ADDRESS_POS_SETUP.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CHART_FACTORS"
-						},
-						"destination": {
-							"fileName": "CHART_FACTORS.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "LANGUAGE"
-						},
-						"destination": {
-							"fileName": "LANGUAGE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "EMPLOYEE"
-						},
-						"destination": {
-							"fileName": "EMPLOYEE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SALES_TAX"
-						},
-						"destination": {
-							"fileName": "SALES_TAX.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SEMAPHORE"
-						},
-						"destination": {
-							"fileName": "SEMAPHORE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SOA_CODE_MAP"
-						},
-						"destination": {
-							"fileName": "SOA_CODE_MAP.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SERVICE_CHARGE"
-						},
-						"destination": {
-							"fileName": "SERVICE_CHARGE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SITE_SETTINGS"
-						},
-						"destination": {
-							"fileName": "SITE_SETTINGS.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CUST_ORDER_SYNC"
-						},
-						"destination": {
-							"fileName": "CUST_ORDER_SYNC.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "LABEL_TYPE"
-						},
-						"destination": {
-							"fileName": "LABEL_TYPE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "APPLICATION_GROUP"
-						},
-						"destination": {
-							"fileName": "APPLICATION_GROUP.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "VMDI_ACK_CODES"
-						},
-						"destination": {
-							"fileName": "VMDI_ACK_CODES.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PERSON"
-						},
-						"destination": {
-							"fileName": "PERSON.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PROFILES"
-						},
-						"destination": {
-							"fileName": "PROFILES.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "QRP_CONTROL"
-						},
-						"destination": {
-							"fileName": "QRP_CONTROL.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "UOM_CATEGORY"
-						},
-						"destination": {
-							"fileName": "UOM_CATEGORY.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CURRENCY_ENTITY"
-						},
-						"destination": {
-							"fileName": "CURRENCY_ENTITY.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "DIMENSION_DESC"
-						},
-						"destination": {
-							"fileName": "DIMENSION_DESC.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "REASON"
-						},
-						"destination": {
-							"fileName": "REASON.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PART_ALIAS_TYPE"
-						},
-						"destination": {
-							"fileName": "PART_ALIAS_TYPE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "EC_TYPES"
-						},
-						"destination": {
-							"fileName": "EC_TYPES.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CUST_ORDER_TYPE"
-						},
-						"destination": {
-							"fileName": "CUST_ORDER_TYPE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "DBR_EVENT_TRIGGER"
-						},
-						"destination": {
-							"fileName": "DBR_EVENT_TRIGGER.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ADJ_REASON"
-						},
-						"destination": {
-							"fileName": "ADJ_REASON.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "EC_REASONS"
-						},
-						"destination": {
-							"fileName": "EC_REASONS.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "GROUPS"
-						},
-						"destination": {
-							"fileName": "GROUPS.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "HONORIFIC"
-						},
-						"destination": {
-							"fileName": "HONORIFIC.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ECN_DISPOSITION"
-						},
-						"destination": {
-							"fileName": "ECN_DISPOSITION.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OPERATION_TYPE"
-						},
-						"destination": {
-							"fileName": "OPERATION_TYPE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SHOP_RESOURCE_SITE"
-						},
-						"destination": {
-							"fileName": "SHOP_RESOURCE_SITE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "RECEIVER_LINE_DEL"
-						},
-						"destination": {
-							"fileName": "RECEIVER_LINE_DEL.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "STAGE"
-						},
-						"destination": {
-							"fileName": "STAGE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PURC_LINE_DEL"
-						},
-						"destination": {
-							"fileName": "PURC_LINE_DEL.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PROJECT_TYPE"
-						},
-						"destination": {
-							"fileName": "PROJECT_TYPE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "LOGINS"
-						},
-						"destination": {
-							"fileName": "LOGINS.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "DEFECT_CLASS"
-						},
-						"destination": {
-							"fileName": "DEFECT_CLASS.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ACCOUNTING_ENTITY"
-						},
-						"destination": {
-							"fileName": "ACCOUNTING_ENTITY.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CURRENCY"
-						},
-						"destination": {
-							"fileName": "CURRENCY.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "COST_GROUP"
-						},
-						"destination": {
-							"fileName": "COST_GROUP.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SITE"
-						},
-						"destination": {
-							"fileName": "SITE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "UNITS"
-						},
-						"destination": {
-							"fileName": "UNITS.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "RMA_LINE_BINARY"
-						},
-						"destination": {
-							"fileName": "RMA_LINE_BINARY.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SHOP_RESOURCE"
-						},
-						"destination": {
-							"fileName": "SHOP_RESOURCE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PURC_ORDER_SYNC"
-						},
-						"destination": {
-							"fileName": "PURC_ORDER_SYNC.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "COUNTRY"
-						},
-						"destination": {
-							"fileName": "COUNTRY.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "FINANCIAL_CALENDAR"
-						},
-						"destination": {
-							"fileName": "FINANCIAL_CALENDAR.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "USER_DIMENSION_SETUP"
-						},
-						"destination": {
-							"fileName": "USER_DIMENSION_SETUP.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "VR_PROPERTY"
-						},
-						"destination": {
-							"fileName": "VR_PROPERTY.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "WIP_VAS_SYNC"
-						},
-						"destination": {
-							"fileName": "WIP_VAS_SYNC.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "FOB_POINT_SYNC"
-						},
-						"destination": {
-							"fileName": "FOB_POINT_SYNC.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "IBT_SYNC"
-						},
-						"destination": {
-							"fileName": "IBT_SYNC.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "DEPARTMENT"
-						},
-						"destination": {
-							"fileName": "DEPARTMENT.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "EARNING_CODE"
-						},
-						"destination": {
-							"fileName": "EARNING_CODE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "EMPLOYEE_SYNC"
-						},
-						"destination": {
-							"fileName": "EMPLOYEE_SYNC.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "COMMODITY_SYNC"
-						},
-						"destination": {
-							"fileName": "COMMODITY_SYNC.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CUST_ORD_TYPE_SYNC"
-						},
-						"destination": {
-							"fileName": "CUST_ORD_TYPE_SYNC.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CUST_LINE_BINARY"
-						},
-						"destination": {
-							"fileName": "CUST_LINE_BINARY.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ADJ_REASON_SYNC"
-						},
-						"destination": {
-							"fileName": "ADJ_REASON_SYNC.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "APPLICATION_GLOBAL"
-						},
-						"destination": {
-							"fileName": "APPLICATION_GLOBAL.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "AIC_SYNC"
-						},
-						"destination": {
-							"fileName": "AIC_SYNC.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CARRIER_SYNC"
-						},
-						"destination": {
-							"fileName": "CARRIER_SYNC.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "QUOTE"
-						},
-						"destination": {
-							"fileName": "QUOTE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "QUOTE_LINE"
-						},
-						"destination": {
-							"fileName": "QUOTE_LINE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PRODUCT_SYNC"
-						},
-						"destination": {
-							"fileName": "PRODUCT_SYNC.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PLANNING_CALENDAR"
-						},
-						"destination": {
-							"fileName": "PLANNING_CALENDAR.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "QUOTE_ORDER"
-						},
-						"destination": {
-							"fileName": "QUOTE_ORDER.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "QUOTE_PRICE"
-						},
-						"destination": {
-							"fileName": "QUOTE_PRICE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "NMFC_CODE_SYNC"
-						},
-						"destination": {
-							"fileName": "NMFC_CODE_SYNC.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MASTER_PROD_SCHED"
-						},
-						"destination": {
-							"fileName": "MASTER_PROD_SCHED.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PART_SYNC"
-						},
-						"destination": {
-							"fileName": "PART_SYNC.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SIC_SYNC"
-						},
-						"destination": {
-							"fileName": "SIC_SYNC.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SHIP_VIA_SYNC"
-						},
-						"destination": {
-							"fileName": "SHIP_VIA_SYNC.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ServerName"
-						},
-						"destination": {
-							"fileName": "ServerName.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "RMA_SYNC"
-						},
-						"destination": {
-							"fileName": "RMA_SYNC.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "UDF_LAYOUT"
-						},
-						"destination": {
-							"fileName": "UDF_LAYOUT.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "TERRITORY_SYNC"
-						},
-						"destination": {
-							"fileName": "TERRITORY_SYNC.parquet"
-						}
-					}
-				]
-			}
-		},
-		"annotations": [],
-		"lastPublishTime": "2022-06-05T15:36:46Z"
-	},
-	"type": "Microsoft.Synapse/workspaces/pipelines"
+  "name": "WBVisualVMFG_Pipeline",
+  "properties": {
+    "activities": [
+      {
+        "dependsOn": [],
+        "name": "ForEach_Table",
+        "type": "ForEach",
+        "typeProperties": {
+          "activities": [
+            {
+              "dependsOn": [],
+              "inputs": [
+                {
+                  "parameters": {
+                    "cw_table": "@item().source.table"
+                  },
+                  "referenceName": "IN_WBVisualVMFG",
+                  "type": "DatasetReference"
+                }
+              ],
+              "name": "Copy_Tables",
+              "outputs": [
+                {
+                  "parameters": {
+                    "cw_fileName": "@item().destination.fileName"
+                  },
+                  "referenceName": "OUT_WBVisualVMFG",
+                  "type": "DatasetReference"
+                }
+              ],
+              "policy": {
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false,
+                "timeout": "7.00:00:00"
+              },
+              "type": "Copy",
+              "typeProperties": {
+                "enableStaging": false,
+                "sink": {
+                  "formatSettings": {
+                    "type": "ParquetWriteSettings"
+                  },
+                  "storeSettings": {
+                    "type": "AzureBlobFSWriteSettings"
+                  },
+                  "type": "ParquetSink"
+                },
+                "source": {
+                  "partitionOption": "None",
+                  "type": "SqlServerSource"
+                },
+                "validateDataConsistency": false
+              },
+              "userProperties": [
+                {
+                  "name": "Source",
+                  "value": "dbo.@{item().source.table}"
+                },
+                {
+                  "name": "Destination",
+                  "value": "tlclakefs/SysproCompG/@{item().destination.fileName}"
+                }
+              ]
+            }
+          ],
+          "items": {
+            "type": "Expression",
+            "value": "@pipeline().parameters.cw_items"
+          }
+        },
+        "userProperties": []
+      }
+    ],
+    "annotations": [],
+    "parameters": {
+      "cw_items": {
+        "defaultValue": [
+          {
+            "destination": {
+              "fileName": "SHIPPER_LINK.parquet"
+            },
+            "source": {
+              "table": "SHIPPER_LINK"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CARTON_LINE.parquet"
+            },
+            "source": {
+              "table": "CARTON_LINE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CARTON.parquet"
+            },
+            "source": {
+              "table": "CARTON"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CUST_BOOK_LINE.parquet"
+            },
+            "source": {
+              "table": "CUST_BOOK_LINE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "INVENTORY_TRANS.parquet"
+            },
+            "source": {
+              "table": "INVENTORY_TRANS"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SHIPMENT_DIST.parquet"
+            },
+            "source": {
+              "table": "SHIPMENT_DIST"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "INV_TRANS_DIST.parquet"
+            },
+            "source": {
+              "table": "INV_TRANS_DIST"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SHIPMENT_DETAIL.parquet"
+            },
+            "source": {
+              "table": "SHIPMENT_DETAIL"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CUSTOMER_BOOKINGS.parquet"
+            },
+            "source": {
+              "table": "CUSTOMER_BOOKINGS"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CUST_ORDER_LINE.parquet"
+            },
+            "source": {
+              "table": "CUST_ORDER_LINE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SHIPPER_LINE.parquet"
+            },
+            "source": {
+              "table": "SHIPPER_LINE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PURC_ORDER_LINE.parquet"
+            },
+            "source": {
+              "table": "PURC_ORDER_LINE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CUSTOMER_ORDER.parquet"
+            },
+            "source": {
+              "table": "CUSTOMER_ORDER"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SHIPPER.parquet"
+            },
+            "source": {
+              "table": "SHIPPER"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CUST_ADDRESS.parquet"
+            },
+            "source": {
+              "table": "CUST_ADDRESS"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PART_LOCATION.parquet"
+            },
+            "source": {
+              "table": "PART_LOCATION"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CUST_ORDER_CURR.parquet"
+            },
+            "source": {
+              "table": "CUST_ORDER_CURR"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "BOL_LINE.parquet"
+            },
+            "source": {
+              "table": "BOL_LINE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "BOL.parquet"
+            },
+            "source": {
+              "table": "BOL"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "NOTATION.parquet"
+            },
+            "source": {
+              "table": "NOTATION"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "INVENTORY_BALANCE.parquet"
+            },
+            "source": {
+              "table": "INVENTORY_BALANCE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ADV_SHIP_NOTICE.parquet"
+            },
+            "source": {
+              "table": "ADV_SHIP_NOTICE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "WH_SHIP_ADVICE.parquet"
+            },
+            "source": {
+              "table": "WH_SHIP_ADVICE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CONTACT.parquet"
+            },
+            "source": {
+              "table": "CONTACT"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CUST_CONTACT.parquet"
+            },
+            "source": {
+              "table": "CUST_CONTACT"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CUSTOMER_CONTACT.parquet"
+            },
+            "source": {
+              "table": "CUSTOMER_CONTACT"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PART_WAREHOUSE.parquet"
+            },
+            "source": {
+              "table": "PART_WAREHOUSE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ADJUSTMENT_DIST.parquet"
+            },
+            "source": {
+              "table": "ADJUSTMENT_DIST"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ADJUSTMENT_DETAIL.parquet"
+            },
+            "source": {
+              "table": "ADJUSTMENT_DETAIL"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "DEMAND_SUPPLY_LINK.parquet"
+            },
+            "source": {
+              "table": "DEMAND_SUPPLY_LINK"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "AA_Freight.parquet"
+            },
+            "source": {
+              "table": "AA_Freight"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "JOURNAL.parquet"
+            },
+            "source": {
+              "table": "JOURNAL"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PAYABLE_LINE.parquet"
+            },
+            "source": {
+              "table": "PAYABLE_LINE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PAYB_LINE_CURR.parquet"
+            },
+            "source": {
+              "table": "PAYB_LINE_CURR"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "HISTORY_SCHEMA.parquet"
+            },
+            "source": {
+              "table": "HISTORY_SCHEMA"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PURCHASE_DIST.parquet"
+            },
+            "source": {
+              "table": "PURCHASE_DIST"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PAYABLE.parquet"
+            },
+            "source": {
+              "table": "PAYABLE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PAYABLE_CURR.parquet"
+            },
+            "source": {
+              "table": "PAYABLE_CURR"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PURC_MATL_DETAIL.parquet"
+            },
+            "source": {
+              "table": "PURC_MATL_DETAIL"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PLANNING_FORECAST.parquet"
+            },
+            "source": {
+              "table": "PLANNING_FORECAST"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "MASTER_SCHEDULE.parquet"
+            },
+            "source": {
+              "table": "MASTER_SCHEDULE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PART_SITE.parquet"
+            },
+            "source": {
+              "table": "PART_SITE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CC_CREDIT_CARD_TRANS.parquet"
+            },
+            "source": {
+              "table": "CC_CREDIT_CARD_TRANS"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PPD_FREIGHT_COST_1.parquet"
+            },
+            "source": {
+              "table": "PPD_FREIGHT_COST_1"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "MARKET_PRICE.parquet"
+            },
+            "source": {
+              "table": "MARKET_PRICE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CUSTOMER_ENTITY.parquet"
+            },
+            "source": {
+              "table": "CUSTOMER_ENTITY"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CUSTOMER_SITE.parquet"
+            },
+            "source": {
+              "table": "CUSTOMER_SITE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CC_ACTIVITY_LOG.parquet"
+            },
+            "source": {
+              "table": "CC_ACTIVITY_LOG"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "RECEIVER_LINE.parquet"
+            },
+            "source": {
+              "table": "RECEIVER_LINE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "USER_PGM_AUTHORITY.parquet"
+            },
+            "source": {
+              "table": "USER_PGM_AUTHORITY"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CUST_PRICE_EFFECT.parquet"
+            },
+            "source": {
+              "table": "CUST_PRICE_EFFECT"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PROGRAM_NAME.parquet"
+            },
+            "source": {
+              "table": "PROGRAM_NAME"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PURCHASE_ORDER.parquet"
+            },
+            "source": {
+              "table": "PURCHASE_ORDER"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "RECEIVER.parquet"
+            },
+            "source": {
+              "table": "RECEIVER"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CC_CUST_ORDER_CC.parquet"
+            },
+            "source": {
+              "table": "CC_CUST_ORDER_CC"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PREFERENCES.parquet"
+            },
+            "source": {
+              "table": "PREFERENCES"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ACCOUNT_AT_NATIVE.parquet"
+            },
+            "source": {
+              "table": "ACCOUNT_AT_NATIVE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ACCOUNT_BALANCE.parquet"
+            },
+            "source": {
+              "table": "ACCOUNT_BALANCE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SOA_CODE_LIST.parquet"
+            },
+            "source": {
+              "table": "SOA_CODE_LIST"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "IBT_SHIPPER_LINE.parquet"
+            },
+            "source": {
+              "table": "IBT_SHIPPER_LINE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "IBT_LINE.parquet"
+            },
+            "source": {
+              "table": "IBT_LINE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "IBT_RECEIVER_LINE.parquet"
+            },
+            "source": {
+              "table": "IBT_RECEIVER_LINE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PREF_DESCRIPTION.parquet"
+            },
+            "source": {
+              "table": "PREF_DESCRIPTION"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PART.parquet"
+            },
+            "source": {
+              "table": "PART"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "JOURNAL_BATCH.parquet"
+            },
+            "source": {
+              "table": "JOURNAL_BATCH"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PURC_ORDER_CURR.parquet"
+            },
+            "source": {
+              "table": "PURC_ORDER_CURR"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CUSTOMER.parquet"
+            },
+            "source": {
+              "table": "CUSTOMER"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PLANNED_ORDER.parquet"
+            },
+            "source": {
+              "table": "PLANNED_ORDER"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "RMA_LINE.parquet"
+            },
+            "source": {
+              "table": "RMA_LINE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ACCOUNT.parquet"
+            },
+            "source": {
+              "table": "ACCOUNT"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "VENDOR_ENTITY.parquet"
+            },
+            "source": {
+              "table": "VENDOR_ENTITY"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "RMA.parquet"
+            },
+            "source": {
+              "table": "RMA"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CUSTOMER_PRICE.parquet"
+            },
+            "source": {
+              "table": "CUSTOMER_PRICE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PURC_LINE_BINARY.parquet"
+            },
+            "source": {
+              "table": "PURC_LINE_BINARY"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "RMA_BINARY.parquet"
+            },
+            "source": {
+              "table": "RMA_BINARY"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PART_ALIAS.parquet"
+            },
+            "source": {
+              "table": "PART_ALIAS"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ENUM_CODES.parquet"
+            },
+            "source": {
+              "table": "ENUM_CODES"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PURC_ORDER_BINARY.parquet"
+            },
+            "source": {
+              "table": "PURC_ORDER_BINARY"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "USER_SITE.parquet"
+            },
+            "source": {
+              "table": "USER_SITE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "USER_MNU_AUTHORITY.parquet"
+            },
+            "source": {
+              "table": "USER_MNU_AUTHORITY"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CARRIER.parquet"
+            },
+            "source": {
+              "table": "CARRIER"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CURRENCY_EXCHANGE.parquet"
+            },
+            "source": {
+              "table": "CURRENCY_EXCHANGE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PART_COST.parquet"
+            },
+            "source": {
+              "table": "PART_COST"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "HTS_CODE_UPDATE.parquet"
+            },
+            "source": {
+              "table": "HTS_CODE_UPDATE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SETTINGS.parquet"
+            },
+            "source": {
+              "table": "SETTINGS"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "WIP_ISSUE_DETAIL.parquet"
+            },
+            "source": {
+              "table": "WIP_ISSUE_DETAIL"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "NORMAL_DIST_AREA.parquet"
+            },
+            "source": {
+              "table": "NORMAL_DIST_AREA"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SYSPRO_COST.parquet"
+            },
+            "source": {
+              "table": "SYSPRO_COST"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "VENDOR.parquet"
+            },
+            "source": {
+              "table": "VENDOR"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "STEVE_COMMODITY.parquet"
+            },
+            "source": {
+              "table": "STEVE_COMMODITY"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "EC_CUSTOMER_PART.parquet"
+            },
+            "source": {
+              "table": "EC_CUSTOMER_PART"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "COMMODITY.parquet"
+            },
+            "source": {
+              "table": "COMMODITY"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "APPLICATION_USER.parquet"
+            },
+            "source": {
+              "table": "APPLICATION_USER"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "UNIT_PRICE_CONSUMER.parquet"
+            },
+            "source": {
+              "table": "UNIT_PRICE_CONSUMER"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "NEXT_NUMBER_GEN.parquet"
+            },
+            "source": {
+              "table": "NEXT_NUMBER_GEN"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "IBT_RECEIVER.parquet"
+            },
+            "source": {
+              "table": "IBT_RECEIVER"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "IBT_SHIPPER.parquet"
+            },
+            "source": {
+              "table": "IBT_SHIPPER"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "IBT.parquet"
+            },
+            "source": {
+              "table": "IBT"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ACCOUNT_PERIOD.parquet"
+            },
+            "source": {
+              "table": "ACCOUNT_PERIOD"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "APPLICATION_LINK.parquet"
+            },
+            "source": {
+              "table": "APPLICATION_LINK"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SHIP_VIA.parquet"
+            },
+            "source": {
+              "table": "SHIP_VIA"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "GL_INTERFACE_ACCT.parquet"
+            },
+            "source": {
+              "table": "GL_INTERFACE_ACCT"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "TERMS.parquet"
+            },
+            "source": {
+              "table": "TERMS"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "MENU_NAME.parquet"
+            },
+            "source": {
+              "table": "MENU_NAME"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "WIP_RECEIPT_DETAIL.parquet"
+            },
+            "source": {
+              "table": "WIP_RECEIPT_DETAIL"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "APPLICATION.parquet"
+            },
+            "source": {
+              "table": "APPLICATION"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "VENDOR_PART.parquet"
+            },
+            "source": {
+              "table": "VENDOR_PART"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "VENDOR_QUOTE.parquet"
+            },
+            "source": {
+              "table": "VENDOR_QUOTE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "WIP_ISSUE_DIST.parquet"
+            },
+            "source": {
+              "table": "WIP_ISSUE_DIST"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "HARMONIZED_TARIFF.parquet"
+            },
+            "source": {
+              "table": "HARMONIZED_TARIFF"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SOA_DIMENSION.parquet"
+            },
+            "source": {
+              "table": "SOA_DIMENSION"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "WIP_RECEIPT_DIST.parquet"
+            },
+            "source": {
+              "table": "WIP_RECEIPT_DIST"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "REQUIREMENT.parquet"
+            },
+            "source": {
+              "table": "REQUIREMENT"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CUSTOMER_SYNC.parquet"
+            },
+            "source": {
+              "table": "CUSTOMER_SYNC"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "MARKET.parquet"
+            },
+            "source": {
+              "table": "MARKET"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SALES_REP.parquet"
+            },
+            "source": {
+              "table": "SALES_REP"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "USER_DIM_PROC_PRI.parquet"
+            },
+            "source": {
+              "table": "USER_DIM_PROC_PRI"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "WIP_BALANCE.parquet"
+            },
+            "source": {
+              "table": "WIP_BALANCE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "VMDI_SPECIAL_COLS.parquet"
+            },
+            "source": {
+              "table": "VMDI_SPECIAL_COLS"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "LABEL_TYPE_VAR.parquet"
+            },
+            "source": {
+              "table": "LABEL_TYPE_VAR"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "LOCATION.parquet"
+            },
+            "source": {
+              "table": "LOCATION"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CC_USER_AUTH.parquet"
+            },
+            "source": {
+              "table": "CC_USER_AUTH"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "T_NORMAL_DIST.parquet"
+            },
+            "source": {
+              "table": "T_NORMAL_DIST"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "T_SEC_APPROX_K1.parquet"
+            },
+            "source": {
+              "table": "T_SEC_APPROX_K1"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CUST_ORDER_BINARY.parquet"
+            },
+            "source": {
+              "table": "CUST_ORDER_BINARY"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "FINANCIAL_PERIOD.parquet"
+            },
+            "source": {
+              "table": "FINANCIAL_PERIOD"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "APPLICATION_FIELDS.parquet"
+            },
+            "source": {
+              "table": "APPLICATION_FIELDS"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "GL_INTERFACE.parquet"
+            },
+            "source": {
+              "table": "GL_INTERFACE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "STATE_PROVINCE.parquet"
+            },
+            "source": {
+              "table": "STATE_PROVINCE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SOA_NOUN.parquet"
+            },
+            "source": {
+              "table": "SOA_NOUN"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PRODUCT.parquet"
+            },
+            "source": {
+              "table": "PRODUCT"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "VENDOR_SYNC.parquet"
+            },
+            "source": {
+              "table": "VENDOR_SYNC"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "GAGE.parquet"
+            },
+            "source": {
+              "table": "GAGE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "WORK_ORDER.parquet"
+            },
+            "source": {
+              "table": "WORK_ORDER"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "OPERATION.parquet"
+            },
+            "source": {
+              "table": "OPERATION"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SHIPTO_ADDRESS.parquet"
+            },
+            "source": {
+              "table": "SHIPTO_ADDRESS"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CC_CUST_CREDIT_CARD.parquet"
+            },
+            "source": {
+              "table": "CC_CUST_CREDIT_CARD"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SALES_TAX_PCT.parquet"
+            },
+            "source": {
+              "table": "SALES_TAX_PCT"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "NMFC_CODE.parquet"
+            },
+            "source": {
+              "table": "NMFC_CODE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "DRILLBACK.parquet"
+            },
+            "source": {
+              "table": "DRILLBACK"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "TERRITORY.parquet"
+            },
+            "source": {
+              "table": "TERRITORY"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SALES_TAX_GROUP.parquet"
+            },
+            "source": {
+              "table": "SALES_TAX_GROUP"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "WAREHOUSE.parquet"
+            },
+            "source": {
+              "table": "WAREHOUSE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SLS_TAX_GRP_TAX.parquet"
+            },
+            "source": {
+              "table": "SLS_TAX_GRP_TAX"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "FOB_POINT.parquet"
+            },
+            "source": {
+              "table": "FOB_POINT"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ADDRESS_POS_SETUP.parquet"
+            },
+            "source": {
+              "table": "ADDRESS_POS_SETUP"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CHART_FACTORS.parquet"
+            },
+            "source": {
+              "table": "CHART_FACTORS"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "LANGUAGE.parquet"
+            },
+            "source": {
+              "table": "LANGUAGE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "EMPLOYEE.parquet"
+            },
+            "source": {
+              "table": "EMPLOYEE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SALES_TAX.parquet"
+            },
+            "source": {
+              "table": "SALES_TAX"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SEMAPHORE.parquet"
+            },
+            "source": {
+              "table": "SEMAPHORE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SOA_CODE_MAP.parquet"
+            },
+            "source": {
+              "table": "SOA_CODE_MAP"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SERVICE_CHARGE.parquet"
+            },
+            "source": {
+              "table": "SERVICE_CHARGE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SITE_SETTINGS.parquet"
+            },
+            "source": {
+              "table": "SITE_SETTINGS"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CUST_ORDER_SYNC.parquet"
+            },
+            "source": {
+              "table": "CUST_ORDER_SYNC"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "LABEL_TYPE.parquet"
+            },
+            "source": {
+              "table": "LABEL_TYPE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "APPLICATION_GROUP.parquet"
+            },
+            "source": {
+              "table": "APPLICATION_GROUP"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "VMDI_ACK_CODES.parquet"
+            },
+            "source": {
+              "table": "VMDI_ACK_CODES"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PERSON.parquet"
+            },
+            "source": {
+              "table": "PERSON"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PROFILES.parquet"
+            },
+            "source": {
+              "table": "PROFILES"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "QRP_CONTROL.parquet"
+            },
+            "source": {
+              "table": "QRP_CONTROL"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "UOM_CATEGORY.parquet"
+            },
+            "source": {
+              "table": "UOM_CATEGORY"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CURRENCY_ENTITY.parquet"
+            },
+            "source": {
+              "table": "CURRENCY_ENTITY"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "DIMENSION_DESC.parquet"
+            },
+            "source": {
+              "table": "DIMENSION_DESC"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "REASON.parquet"
+            },
+            "source": {
+              "table": "REASON"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PART_ALIAS_TYPE.parquet"
+            },
+            "source": {
+              "table": "PART_ALIAS_TYPE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "EC_TYPES.parquet"
+            },
+            "source": {
+              "table": "EC_TYPES"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CUST_ORDER_TYPE.parquet"
+            },
+            "source": {
+              "table": "CUST_ORDER_TYPE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "DBR_EVENT_TRIGGER.parquet"
+            },
+            "source": {
+              "table": "DBR_EVENT_TRIGGER"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ADJ_REASON.parquet"
+            },
+            "source": {
+              "table": "ADJ_REASON"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "EC_REASONS.parquet"
+            },
+            "source": {
+              "table": "EC_REASONS"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "GROUPS.parquet"
+            },
+            "source": {
+              "table": "GROUPS"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "HONORIFIC.parquet"
+            },
+            "source": {
+              "table": "HONORIFIC"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ECN_DISPOSITION.parquet"
+            },
+            "source": {
+              "table": "ECN_DISPOSITION"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "OPERATION_TYPE.parquet"
+            },
+            "source": {
+              "table": "OPERATION_TYPE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SHOP_RESOURCE_SITE.parquet"
+            },
+            "source": {
+              "table": "SHOP_RESOURCE_SITE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "RECEIVER_LINE_DEL.parquet"
+            },
+            "source": {
+              "table": "RECEIVER_LINE_DEL"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "STAGE.parquet"
+            },
+            "source": {
+              "table": "STAGE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PURC_LINE_DEL.parquet"
+            },
+            "source": {
+              "table": "PURC_LINE_DEL"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PROJECT_TYPE.parquet"
+            },
+            "source": {
+              "table": "PROJECT_TYPE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "LOGINS.parquet"
+            },
+            "source": {
+              "table": "LOGINS"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "DEFECT_CLASS.parquet"
+            },
+            "source": {
+              "table": "DEFECT_CLASS"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ACCOUNTING_ENTITY.parquet"
+            },
+            "source": {
+              "table": "ACCOUNTING_ENTITY"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CURRENCY.parquet"
+            },
+            "source": {
+              "table": "CURRENCY"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "COST_GROUP.parquet"
+            },
+            "source": {
+              "table": "COST_GROUP"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SITE.parquet"
+            },
+            "source": {
+              "table": "SITE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "UNITS.parquet"
+            },
+            "source": {
+              "table": "UNITS"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "RMA_LINE_BINARY.parquet"
+            },
+            "source": {
+              "table": "RMA_LINE_BINARY"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SHOP_RESOURCE.parquet"
+            },
+            "source": {
+              "table": "SHOP_RESOURCE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PURC_ORDER_SYNC.parquet"
+            },
+            "source": {
+              "table": "PURC_ORDER_SYNC"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "COUNTRY.parquet"
+            },
+            "source": {
+              "table": "COUNTRY"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "FINANCIAL_CALENDAR.parquet"
+            },
+            "source": {
+              "table": "FINANCIAL_CALENDAR"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "USER_DIMENSION_SETUP.parquet"
+            },
+            "source": {
+              "table": "USER_DIMENSION_SETUP"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "VR_PROPERTY.parquet"
+            },
+            "source": {
+              "table": "VR_PROPERTY"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "WIP_VAS_SYNC.parquet"
+            },
+            "source": {
+              "table": "WIP_VAS_SYNC"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "FOB_POINT_SYNC.parquet"
+            },
+            "source": {
+              "table": "FOB_POINT_SYNC"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "IBT_SYNC.parquet"
+            },
+            "source": {
+              "table": "IBT_SYNC"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "DEPARTMENT.parquet"
+            },
+            "source": {
+              "table": "DEPARTMENT"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "EARNING_CODE.parquet"
+            },
+            "source": {
+              "table": "EARNING_CODE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "EMPLOYEE_SYNC.parquet"
+            },
+            "source": {
+              "table": "EMPLOYEE_SYNC"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "COMMODITY_SYNC.parquet"
+            },
+            "source": {
+              "table": "COMMODITY_SYNC"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CUST_ORD_TYPE_SYNC.parquet"
+            },
+            "source": {
+              "table": "CUST_ORD_TYPE_SYNC"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CUST_LINE_BINARY.parquet"
+            },
+            "source": {
+              "table": "CUST_LINE_BINARY"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ADJ_REASON_SYNC.parquet"
+            },
+            "source": {
+              "table": "ADJ_REASON_SYNC"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "APPLICATION_GLOBAL.parquet"
+            },
+            "source": {
+              "table": "APPLICATION_GLOBAL"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "AIC_SYNC.parquet"
+            },
+            "source": {
+              "table": "AIC_SYNC"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CARRIER_SYNC.parquet"
+            },
+            "source": {
+              "table": "CARRIER_SYNC"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "QUOTE.parquet"
+            },
+            "source": {
+              "table": "QUOTE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "QUOTE_LINE.parquet"
+            },
+            "source": {
+              "table": "QUOTE_LINE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PRODUCT_SYNC.parquet"
+            },
+            "source": {
+              "table": "PRODUCT_SYNC"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PLANNING_CALENDAR.parquet"
+            },
+            "source": {
+              "table": "PLANNING_CALENDAR"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "QUOTE_ORDER.parquet"
+            },
+            "source": {
+              "table": "QUOTE_ORDER"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "QUOTE_PRICE.parquet"
+            },
+            "source": {
+              "table": "QUOTE_PRICE"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "NMFC_CODE_SYNC.parquet"
+            },
+            "source": {
+              "table": "NMFC_CODE_SYNC"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "MASTER_PROD_SCHED.parquet"
+            },
+            "source": {
+              "table": "MASTER_PROD_SCHED"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PART_SYNC.parquet"
+            },
+            "source": {
+              "table": "PART_SYNC"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SIC_SYNC.parquet"
+            },
+            "source": {
+              "table": "SIC_SYNC"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SHIP_VIA_SYNC.parquet"
+            },
+            "source": {
+              "table": "SHIP_VIA_SYNC"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ServerName.parquet"
+            },
+            "source": {
+              "table": "ServerName"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "RMA_SYNC.parquet"
+            },
+            "source": {
+              "table": "RMA_SYNC"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "UDF_LAYOUT.parquet"
+            },
+            "source": {
+              "table": "UDF_LAYOUT"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "TERRITORY_SYNC.parquet"
+            },
+            "source": {
+              "table": "TERRITORY_SYNC"
+            }
+          }
+        ],
+        "type": "Array"
+      }
+    }
+  }
 }

@@ -1,17 +1,17 @@
 {
-	"name": "v_PartialLocations",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW v_PartialLocations\nas\nSELECT      A.*, PALLET_QTY, CASE_PACK\nFROM\n(\nSELECT      WHLO, ITNO, WHSL, STQT\nFROM        M3.MITLOC\nWHERE       STQT > 0\n) A\n\nLEFT JOIN\n\n(\nSELECT      MM.ITNO, MP.D1QT AS PALLET_QTY, MP2.D1QT AS CASE_PACK\nFROM        M3.MITMAS MM\nLEFT JOIN   M3.MPACIT MP ON MM.ITNO = MP.ITNO AND MP.PACT LIKE 'P%' AND MP.PACT <> 'PALLET' AND MP.D1QT <> 3\nLEFT JOIN   M3.MPACIT MP2 ON MM.ITNO = MP2.ITNO AND MP2.PACT LIKE 'C%'\n) B         ON A.ITNO = B.ITNO\nWHERE       STQT < PALLET_QTY\nAND         CASE_PACK > 1",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_PartialLocations",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW v_PartialLocations\nas\nSELECT      A.*, PALLET_QTY, CASE_PACK\nFROM\n(\nSELECT      WHLO, ITNO, WHSL, STQT\nFROM        M3.MITLOC\nWHERE       STQT > 0\n) A\n\nLEFT JOIN\n\n(\nSELECT      MM.ITNO, MP.D1QT AS PALLET_QTY, MP2.D1QT AS CASE_PACK\nFROM        M3.MITMAS MM\nLEFT JOIN   M3.MPACIT MP ON MM.ITNO = MP.ITNO AND MP.PACT LIKE 'P%' AND MP.PACT <> 'PALLET' AND MP.D1QT <> 3\nLEFT JOIN   M3.MPACIT MP2 ON MM.ITNO = MP2.ITNO AND MP2.PACT LIKE 'C%'\n) B         ON A.ITNO = B.ITNO\nWHERE       STQT < PALLET_QTY\nAND         CASE_PACK > 1",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

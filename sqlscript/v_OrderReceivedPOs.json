@@ -1,17 +1,17 @@
 {
-	"name": "v_OrderReceivedPOs",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW     v_OrderReceivedPOs\nas\nSELECT          POH.PUNO as PurchaseOrder\n,               POL.PNLI as PurchaseOrderLine\n,               POH.PUDT as PurchaseOrderDate\n,               POH.SUNO as SupplierID\n,               CMA.SUNM as SupplierName\n,               ITM.ITCL as Brand\n,               POL.ITNO as ItemNumber\n,               ITM.ITDS as ItemDescription\n,               POH.WHLO as Warehouse\n,               POL.ORQA as OrderQuantity\n,               POL.PUPR*POL.ORQA as OrderValue\n,               POL.RVQA as ReceivedQuantity\n,               POL.RVQA*POL.PUPR as ReceivedValue\n,               POL.ORQA - RVQA as OpenQuantity\n,               (POL.ORQA - RVQA)*POL.PUPR as OpenValue\nFROM            M3_MPHEAD POH\nJOIN            M3_MPLINE POL ON POH.PUNO = POL.PUNO\nJOIN            M3_MITMAS ITM ON POL.ITNO = ITM.ITNO\nJOIN            M3_CIDMAS CMA ON POH.SUNO = CMA.SUNO\n\n\nselect * from v_OrderReceivedPOs",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_OrderReceivedPOs",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW     v_OrderReceivedPOs\nas\nSELECT          POH.PUNO as PurchaseOrder\n,               POL.PNLI as PurchaseOrderLine\n,               POH.PUDT as PurchaseOrderDate\n,               POH.SUNO as SupplierID\n,               CMA.SUNM as SupplierName\n,               ITM.ITCL as Brand\n,               POL.ITNO as ItemNumber\n,               ITM.ITDS as ItemDescription\n,               POH.WHLO as Warehouse\n,               POL.ORQA as OrderQuantity\n,               POL.PUPR*POL.ORQA as OrderValue\n,               POL.RVQA as ReceivedQuantity\n,               POL.RVQA*POL.PUPR as ReceivedValue\n,               POL.ORQA - RVQA as OpenQuantity\n,               (POL.ORQA - RVQA)*POL.PUPR as OpenValue\nFROM            M3_MPHEAD POH\nJOIN            M3_MPLINE POL ON POH.PUNO = POL.PUNO\nJOIN            M3_MITMAS ITM ON POL.ITNO = ITM.ITNO\nJOIN            M3_CIDMAS CMA ON POH.SUNO = CMA.SUNO\n\n\nselect * from v_OrderReceivedPOs",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

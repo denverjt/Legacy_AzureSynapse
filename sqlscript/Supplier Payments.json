@@ -1,17 +1,17 @@
 {
-	"name": "Supplier Payments",
-	"properties": {
-		"content": {
-			"query": "SELECT          'M3' as ERP\n,               CM.SUNO AS      [Supplier Number]\n,               CM.SUNM AS      [Supplier Name]\n,               FP.SINO AS      [Invoice]\n,               MONTH(FP.ACDT) as [Paid Month]\n,               YEAR(FP.ACDT) as [Paid Year]\n,               SUM(CUAM) as [Paid Amount]\nFROM            M3.FPLEDG FP\nJOIN            M3.CIDMAS CM ON FP.SUNO = CM.SUNO\nWHERE           TRCD = 50\nGROUP BY        CM.SUNO, CM.SUNM, FP.SINO, MONTH(FP.ACDT), YEAR(FP.ACDT)\n",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": -1
-		},
-		"type": "SqlQuery"
-	}
+  "name": "Supplier Payments",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "SELECT          'M3' as ERP\n,               CM.SUNO AS      [Supplier Number]\n,               CM.SUNM AS      [Supplier Name]\n,               FP.SINO AS      [Invoice]\n,               MONTH(FP.ACDT) as [Paid Month]\n,               YEAR(FP.ACDT) as [Paid Year]\n,               SUM(CUAM) as [Paid Amount]\nFROM            M3.FPLEDG FP\nJOIN            M3.CIDMAS CM ON FP.SUNO = CM.SUNO\nWHERE           TRCD = 50\nGROUP BY        CM.SUNO, CM.SUNM, FP.SINO, MONTH(FP.ACDT), YEAR(FP.ACDT)\n",
+      "resultLimit": -1
+    },
+    "type": "SqlQuery"
+  }
 }

@@ -1,17 +1,17 @@
 {
-	"name": "Query History",
-	"properties": {
-		"content": {
-			"query": "SELECT TOP 1000 * FROM sys.dm_exec_requests_history order by start_time desc",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "Query History",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "SELECT TOP 1000 * FROM sys.dm_exec_requests_history order by start_time desc",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

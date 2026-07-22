@@ -1,17 +1,17 @@
 {
-	"name": "v_VNT_OpenPOs",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW     v_VNT_OpenPOs\nas\nSELECT          DISTINCT POH.PUNO AS [PO Number]\n,               POH.PUDT AS [PO Date]\n,               SUP.SUNO as [Supplier ID]\n,               SUP.SUNM as [Supplier Name]\n,               ITM.ITNO AS [Item Number]\n,               ITM.ITDS as [Item Description]\n,               ORQA as [Order Qty]\n,               RVQA as [Received Qty]\n,               ORQA - RVQA as [Open Qty]\n,               POL.RCDT as [Receipt Date]\n,               POH.DWDT as [Requested Delviery Date]\nFROM            dbo.M3_MPHEAD POH\nJOIN            dbo.M3_MPLINE POL ON POH.PUNO = POL.PUNO\nJOIN            dbo.M3_MITMAS ITM ON POL.ITNO = ITM.ITNO\nJOIN            dbo.M3_CIDMAS SUP on POL.SUNO = SUP.SUNO\nWHERE           POL.PUSL < '66'\nAND             ITM.BUAR = 'CNR'\n--drop view v_M3_OpenPurchaseOrders\n\n\n",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_VNT_OpenPOs",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW     v_VNT_OpenPOs\nas\nSELECT          DISTINCT POH.PUNO AS [PO Number]\n,               POH.PUDT AS [PO Date]\n,               SUP.SUNO as [Supplier ID]\n,               SUP.SUNM as [Supplier Name]\n,               ITM.ITNO AS [Item Number]\n,               ITM.ITDS as [Item Description]\n,               ORQA as [Order Qty]\n,               RVQA as [Received Qty]\n,               ORQA - RVQA as [Open Qty]\n,               POL.RCDT as [Receipt Date]\n,               POH.DWDT as [Requested Delviery Date]\nFROM            dbo.M3_MPHEAD POH\nJOIN            dbo.M3_MPLINE POL ON POH.PUNO = POL.PUNO\nJOIN            dbo.M3_MITMAS ITM ON POL.ITNO = ITM.ITNO\nJOIN            dbo.M3_CIDMAS SUP on POL.SUNO = SUP.SUNO\nWHERE           POL.PUSL < '66'\nAND             ITM.BUAR = 'CNR'\n--drop view v_M3_OpenPurchaseOrders\n\n\n",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

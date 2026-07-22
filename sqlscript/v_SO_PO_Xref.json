@@ -1,17 +1,17 @@
 {
-	"name": "v_SO_PO_Xref",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW     v_SO_PO_Xref\n-- DROP VIEW v_SO_PO_Xref\nas\nSELECT\t\t\tDISTINCT DRDN as [Sales Order]\n,               CUOR AS [Customer PO Number]\n,               MP.ITNO as [Item Number]\n,               MP.WHLO as [Warehouse]\n,               ARDN as [PO Number]\nFROM\t\t\tM3.MPREAL MP\nLEFT JOIN       M3.OOLINE OL ON MP.DRDN = OL.ORNO AND OL.ITNO = MP.ITNO AND OL.WHLO = MP.WHLO",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": -1
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_SO_PO_Xref",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW     v_SO_PO_Xref\n-- DROP VIEW v_SO_PO_Xref\nas\nSELECT\t\t\tDISTINCT DRDN as [Sales Order]\n,               CUOR AS [Customer PO Number]\n,               MP.ITNO as [Item Number]\n,               MP.WHLO as [Warehouse]\n,               ARDN as [PO Number]\nFROM\t\t\tM3.MPREAL MP\nLEFT JOIN       M3.OOLINE OL ON MP.DRDN = OL.ORNO AND OL.ITNO = MP.ITNO AND OL.WHLO = MP.WHLO",
+      "resultLimit": -1
+    },
+    "type": "SqlQuery"
+  }
 }

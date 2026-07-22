@@ -1,151 +1,155 @@
 {
-	"name": "AdCraft_Query_Pipeline",
-	"properties": {
-		"activities": [
-			{
-				"name": "Copy_oe_head",
-				"type": "Copy",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [
-					{
-						"name": "Destination",
-						"value": "tlclakefs/AdCraft/systables.parquet"
-					}
-				],
-				"typeProperties": {
-					"source": {
-						"type": "OdbcSource",
-						"query": "select adr\n,ak_batch_no\n,appl_disc_pct\n,ar_customer\n,ar_type\n,blanket_days\n,blanket_first_date\n,blanket_order\n,blanket_qty\n,blanket_shipments\n,blind_ship\n,bol\n,bo_flag\n,calc_rebate\n,calc_surcharge\n,calc_tot_code\n,cancel_date\n,card_encrypt\n,card_is_encrypted\n,card_length\n,card_token\n,cash_change\n,cash_tendered\n,cc_email\n,cell_phone\n,check_it_restrict\n,ci_batch_no\n,company_ar\n,company_cu\n,company_oe\n,company_sa\n,com_pct\n,com_split1\n,com_split2\n,confirmed\n,consolidated_order\n,consolidated_order_3pl\n,consolidated_order_cig\n,consolidate_invc_date\n,consolidate_order\n,consolidate_rec_seq\n,created_by\n,created_date\n,created_time\n,cross_dock\n,cr_aprv_date\n,cr_check_ided\n,cr_expln\n,cr_fail_code\n,cr_rel_id\n,currency_code\n,curx_cash_change\n,curx_cash_tendered\n,curx_c_appl_disc_amt\n,curx_c_disc_amt\n,curx_c_pc_total\n,curx_c_tax_breakdown_amt\n,curx_c_tax_breakdown_pct_amt\n,curx_c_tot_code_amt\n,curx_c_tot_gross\n,curx_c_tot_gross_excl\n,curx_c_tot_net_ar\n,curx_c_tot_points_amt\n,curx_c_tot_taxable\n,curx_c_tot_taxable_it\n,curx_c_tot_tax_amt\n,curx_i_tot_gross\n,curx_opn_tot_gross\n,curx_o_appl_disc_amt\n,curx_o_deposit\n,curx_o_deposit_on_acct\n,curx_o_deposit_open\n,curx_o_disc_amt\n,curx_o_pc_total\n,curx_o_tax_breakdown_amt\n,curx_o_tax_breakdown_pct_amt\n,curx_o_tot_gross\n,curx_o_tot_gross_excl\n,curx_o_tot_net_ar\n,curx_o_tot_points_amt\n,curx_o_tot_taxable\n,curx_o_tot_taxable_it\n,curx_o_tot_tax_amt\n,curx_return_value\n,curx_tot_cod_amt\n,customer\n,customer_ext\n,customer_prospect\n,cu_group\n,cu_po\n,cu_po_date\n,c_appl_disc_amt\n,c_disc_amt\n,c_disc_pct\n,c_pc_total\n,c_tax_breakdown_amt\n,c_tax_breakdown_code\n,c_tax_breakdown_items\n,c_tax_breakdown_pct\n,c_tax_breakdown_pct_amt\n,c_tax_breakdown_units\n,c_tot_code\n,c_tot_code_amt\n,c_tot_code_cost\n,c_tot_cost\n,c_tot_cost_a\n,c_tot_cubes\n,c_tot_extra_points\n,c_tot_gross\n,c_tot_gross_excl\n,c_tot_net_ar\n,c_tot_pieces\n,c_tot_points\n,c_tot_points_amt\n,c_tot_taxable\n,c_tot_taxable_it\n,c_tot_tax_amt\n,c_tot_units\n,c_tot_wt\n,date_out\n,delivery_date\n,delivery_route\n,delivery_terms\n,dept_name\n,dept_no\n,discount_exclude\n,disc_amt\n,disc_date\n,document\n,doc_partner_id\n,doc_src\n,doc_src_seq\n,driver_code\n,due_date\n,edipo_vendor\n,edit_notes\n,edi_misc\n,email\n,enter_by\n,exchange_rate\n,expedite\n,exp_bol\n,fax\n,fc_flag\n,fob\n,follow_up_date\n,free_form_shipto\n,free_freight_flag\n,free_freight_level\n,free_freight_pct\n,free_freight_status\n,freight_amount\n,freight_zone\n,future\n,ics_needs_recalc\n,invc_date\n,invc_seq\n,invoice\n,invoice_group\n,inv_post_date\n,inv_register\n,inv_updated\n,i_cash_disc\n,i_cash_discbl\n,i_disc_amt\n,i_pay_code\n,i_pay_codes_tot\n,i_pay_code_amt\n,i_pay_code_ref\n,i_tot_codes_amt\n,i_tot_codes_cost\n,i_tot_cost\n,i_tot_cost_a\n,i_tot_cubes\n,i_tot_gross\n,i_tot_net_ar\n,i_tot_pieces\n,i_tot_taxable\n,i_tot_taxable_it\n,i_tot_tax_amt\n,i_tot_wt\n,job_rel\n,last_add_line\n,last_line\n,load_status\n,Manifest_id\n,manual_cmmt\n,name\n,no_auto_bill_manifest\n,num_pages\n,oe_prefix\n,opn\n,opn_tot_gross\n,order\n,orderby_adr\n,orderby_country_code\n,orderby_email\n,orderby_fax\n,orderby_name\n,orderby_phone\n,orderby_postal_code\n,orderby_state\n,order_by\n,order_min_ovrd\n,ord_class\n,ord_date\n,ord_ext\n,o_appl_disc_amt\n,o_deposit\n,o_deposit_no\n,o_deposit_on_acct\n,o_deposit_open\n,o_disc_amt\n,o_disc_pct\n,o_pc_total\n,o_tax_breakdown_amt\n,o_tax_breakdown_pct_amt\n,o_tot_cost\n,o_tot_extra_points\n,o_tot_gross\n,o_tot_gross_excl\n,o_tot_net_ar\n,o_tot_pieces\n,o_tot_points\n,o_tot_points_amt\n,o_tot_taxable\n,o_tot_taxable_it\n,o_tot_tax_amt\n,o_tot_units\n,o_tot_wt\n,pay_code\n,pay_code_card\n,pay_code_exp\n,phone\n,phone_ext\n,pick_and_hold\n,pick_and_hold_comp\n,pick_method\n,pick_priority_dt\n,pick_stat\n,pick_user_id\n,points_bonus_flag\n,points_flag\n,points_per_unit\n,postal_code\n,posted\n,post_date\n,prep_time\n,price_by\n,print_credit_flag\n,print_label\n,print_time\n,priority_order\n,proc_date\n,proc_stat\n,proc_time\n,proc_user_id\n,ps_batch_no\n,ps_batch_seq\n,rec_seq\n,rec_type\n,register\n,reminder_string\n,rental_order\n,required_date\n,residential\n,return_date\n,return_pieces\n,return_value\n,route_date\n,rs_ship_via_code\n,salesman1\n,salesman2\n,salesman3\n,sale_close_date\n,sale_prob_pct\n,sec_code\n,sel_flag\n,shipped\n,ship_atn\n,ship_cmpl\n,ship_cmplt_2nd_ps\n,ship_data_exp\n,ship_date\n,ship_dist_ctr\n,ship_group_no\n,ship_grp_seq\n,ship_id\n,ship_via_acct\n,ship_via_code\n,source_code\n,split_due_date\n,split_due_date_2\n,split_due_percent\n,split_due_percent_2\n,split_due_type\n,split_total_payments\n,stat\n,state\n,stop\n,store_num\n,surcharge_calc\n,sy_lookup\n,tax_code\n,tax_exempt\n,terms_code\n,terms_disc_ovrd\n,times_printed\n,tot_cod_amt\n,tot_c_tot_code_amt\n,tot_c_tot_wt\n,truck_code\n,ttime_ent\n,un_sale\n,used_by\n,verify_stat\n,verify_user_id\n,vmi_replen\n,wanted_date\n,wanted_date_range\n,warehouse\n,web_item_check\nfrom \"PUB\".\"oe_head\" "
-					},
-					"sink": {
-						"type": "ParquetSink",
-						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
-						},
-						"formatSettings": {
-							"type": "ParquetWriteSettings"
-						}
-					},
-					"enableStaging": false,
-					"validateDataConsistency": false
-				},
-				"inputs": [
-					{
-						"referenceName": "IN_AdCraftD1_Query",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "OUT_AdCraftD1_oe_head",
-						"type": "DatasetReference"
-					}
-				]
-			},
-			{
-				"name": "Copy_gl_trans_detail",
-				"type": "Copy",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [
-					{
-						"name": "Destination",
-						"value": "tlclakefs/AdCraft/systables.parquet"
-					}
-				],
-				"typeProperties": {
-					"source": {
-						"type": "OdbcSource",
-						"query": "select amount\n, company_ap\n, company_ar\n, company_gl\n, company_it\n, company_oe\n, company_sy\n, gl\n, gl_elim\n, gl_elim_id\n, gl_elim_post_dt\n, gl_elim_register\n, line\n, order\n, posted\n, post_date\n, rec_seq\n, ref_level\n, ref_seq\n, register\n, reg_type\n, trans_date\nfrom gl_trans_detail"
-					},
-					"sink": {
-						"type": "ParquetSink",
-						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
-						},
-						"formatSettings": {
-							"type": "ParquetWriteSettings"
-						}
-					},
-					"enableStaging": false,
-					"validateDataConsistency": false
-				},
-				"inputs": [
-					{
-						"referenceName": "IN_AdCraftD1_Query",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "OUT_AdCraftD1_gl_trans_detail",
-						"type": "DatasetReference"
-					}
-				]
-			},
-			{
-				"name": "Copy_gl_trans",
-				"type": "Copy",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [
-					{
-						"name": "Destination",
-						"value": "tlclakefs/AdCraft/systables.parquet"
-					}
-				],
-				"typeProperties": {
-					"source": {
-						"type": "OdbcSource",
-						"query": "select amount, \ncompany_ap, \ncompany_ar,\ncompany_gl,\ncompany_it,\ncompany_oe,\ncompany_sy,\ncompany_ve,\ncurrency_code,\ndept_no,\nLEFT(descr,80) descr80,\nexchange_rate,\ngl,\nposted,\npost_date,\nregister,\nreg_type,\n'sequence',\ntrans_date,\nuser_id,\nvendor\nfrom gl_trans"
-					},
-					"sink": {
-						"type": "ParquetSink",
-						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
-						},
-						"formatSettings": {
-							"type": "ParquetWriteSettings"
-						}
-					},
-					"enableStaging": false,
-					"validateDataConsistency": false
-				},
-				"inputs": [
-					{
-						"referenceName": "IN_AdCraftD1_Query",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "OUT_AdCraftD1_gl_trans",
-						"type": "DatasetReference"
-					}
-				]
-			}
-		],
-		"annotations": [],
-		"lastPublishTime": "2022-11-04T15:35:50Z"
-	},
-	"type": "Microsoft.Synapse/workspaces/pipelines"
+  "name": "AdCraft_Query_Pipeline",
+  "properties": {
+    "activities": [
+      {
+        "dependsOn": [],
+        "inputs": [
+          {
+            "parameters": {},
+            "referenceName": "IN_AdCraftD1_Query",
+            "type": "DatasetReference"
+          }
+        ],
+        "name": "Copy_oe_head",
+        "outputs": [
+          {
+            "parameters": {},
+            "referenceName": "OUT_AdCraftD1_oe_head",
+            "type": "DatasetReference"
+          }
+        ],
+        "policy": {
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false,
+          "timeout": "7.00:00:00"
+        },
+        "type": "Copy",
+        "typeProperties": {
+          "enableStaging": false,
+          "sink": {
+            "formatSettings": {
+              "type": "ParquetWriteSettings"
+            },
+            "storeSettings": {
+              "type": "AzureBlobFSWriteSettings"
+            },
+            "type": "ParquetSink"
+          },
+          "source": {
+            "query": "select adr\n,ak_batch_no\n,appl_disc_pct\n,ar_customer\n,ar_type\n,blanket_days\n,blanket_first_date\n,blanket_order\n,blanket_qty\n,blanket_shipments\n,blind_ship\n,bol\n,bo_flag\n,calc_rebate\n,calc_surcharge\n,calc_tot_code\n,cancel_date\n,card_encrypt\n,card_is_encrypted\n,card_length\n,card_token\n,cash_change\n,cash_tendered\n,cc_email\n,cell_phone\n,check_it_restrict\n,ci_batch_no\n,company_ar\n,company_cu\n,company_oe\n,company_sa\n,com_pct\n,com_split1\n,com_split2\n,confirmed\n,consolidated_order\n,consolidated_order_3pl\n,consolidated_order_cig\n,consolidate_invc_date\n,consolidate_order\n,consolidate_rec_seq\n,created_by\n,created_date\n,created_time\n,cross_dock\n,cr_aprv_date\n,cr_check_ided\n,cr_expln\n,cr_fail_code\n,cr_rel_id\n,currency_code\n,curx_cash_change\n,curx_cash_tendered\n,curx_c_appl_disc_amt\n,curx_c_disc_amt\n,curx_c_pc_total\n,curx_c_tax_breakdown_amt\n,curx_c_tax_breakdown_pct_amt\n,curx_c_tot_code_amt\n,curx_c_tot_gross\n,curx_c_tot_gross_excl\n,curx_c_tot_net_ar\n,curx_c_tot_points_amt\n,curx_c_tot_taxable\n,curx_c_tot_taxable_it\n,curx_c_tot_tax_amt\n,curx_i_tot_gross\n,curx_opn_tot_gross\n,curx_o_appl_disc_amt\n,curx_o_deposit\n,curx_o_deposit_on_acct\n,curx_o_deposit_open\n,curx_o_disc_amt\n,curx_o_pc_total\n,curx_o_tax_breakdown_amt\n,curx_o_tax_breakdown_pct_amt\n,curx_o_tot_gross\n,curx_o_tot_gross_excl\n,curx_o_tot_net_ar\n,curx_o_tot_points_amt\n,curx_o_tot_taxable\n,curx_o_tot_taxable_it\n,curx_o_tot_tax_amt\n,curx_return_value\n,curx_tot_cod_amt\n,customer\n,customer_ext\n,customer_prospect\n,cu_group\n,cu_po\n,cu_po_date\n,c_appl_disc_amt\n,c_disc_amt\n,c_disc_pct\n,c_pc_total\n,c_tax_breakdown_amt\n,c_tax_breakdown_code\n,c_tax_breakdown_items\n,c_tax_breakdown_pct\n,c_tax_breakdown_pct_amt\n,c_tax_breakdown_units\n,c_tot_code\n,c_tot_code_amt\n,c_tot_code_cost\n,c_tot_cost\n,c_tot_cost_a\n,c_tot_cubes\n,c_tot_extra_points\n,c_tot_gross\n,c_tot_gross_excl\n,c_tot_net_ar\n,c_tot_pieces\n,c_tot_points\n,c_tot_points_amt\n,c_tot_taxable\n,c_tot_taxable_it\n,c_tot_tax_amt\n,c_tot_units\n,c_tot_wt\n,date_out\n,delivery_date\n,delivery_route\n,delivery_terms\n,dept_name\n,dept_no\n,discount_exclude\n,disc_amt\n,disc_date\n,document\n,doc_partner_id\n,doc_src\n,doc_src_seq\n,driver_code\n,due_date\n,edipo_vendor\n,edit_notes\n,edi_misc\n,email\n,enter_by\n,exchange_rate\n,expedite\n,exp_bol\n,fax\n,fc_flag\n,fob\n,follow_up_date\n,free_form_shipto\n,free_freight_flag\n,free_freight_level\n,free_freight_pct\n,free_freight_status\n,freight_amount\n,freight_zone\n,future\n,ics_needs_recalc\n,invc_date\n,invc_seq\n,invoice\n,invoice_group\n,inv_post_date\n,inv_register\n,inv_updated\n,i_cash_disc\n,i_cash_discbl\n,i_disc_amt\n,i_pay_code\n,i_pay_codes_tot\n,i_pay_code_amt\n,i_pay_code_ref\n,i_tot_codes_amt\n,i_tot_codes_cost\n,i_tot_cost\n,i_tot_cost_a\n,i_tot_cubes\n,i_tot_gross\n,i_tot_net_ar\n,i_tot_pieces\n,i_tot_taxable\n,i_tot_taxable_it\n,i_tot_tax_amt\n,i_tot_wt\n,job_rel\n,last_add_line\n,last_line\n,load_status\n,Manifest_id\n,manual_cmmt\n,name\n,no_auto_bill_manifest\n,num_pages\n,oe_prefix\n,opn\n,opn_tot_gross\n,order\n,orderby_adr\n,orderby_country_code\n,orderby_email\n,orderby_fax\n,orderby_name\n,orderby_phone\n,orderby_postal_code\n,orderby_state\n,order_by\n,order_min_ovrd\n,ord_class\n,ord_date\n,ord_ext\n,o_appl_disc_amt\n,o_deposit\n,o_deposit_no\n,o_deposit_on_acct\n,o_deposit_open\n,o_disc_amt\n,o_disc_pct\n,o_pc_total\n,o_tax_breakdown_amt\n,o_tax_breakdown_pct_amt\n,o_tot_cost\n,o_tot_extra_points\n,o_tot_gross\n,o_tot_gross_excl\n,o_tot_net_ar\n,o_tot_pieces\n,o_tot_points\n,o_tot_points_amt\n,o_tot_taxable\n,o_tot_taxable_it\n,o_tot_tax_amt\n,o_tot_units\n,o_tot_wt\n,pay_code\n,pay_code_card\n,pay_code_exp\n,phone\n,phone_ext\n,pick_and_hold\n,pick_and_hold_comp\n,pick_method\n,pick_priority_dt\n,pick_stat\n,pick_user_id\n,points_bonus_flag\n,points_flag\n,points_per_unit\n,postal_code\n,posted\n,post_date\n,prep_time\n,price_by\n,print_credit_flag\n,print_label\n,print_time\n,priority_order\n,proc_date\n,proc_stat\n,proc_time\n,proc_user_id\n,ps_batch_no\n,ps_batch_seq\n,rec_seq\n,rec_type\n,register\n,reminder_string\n,rental_order\n,required_date\n,residential\n,return_date\n,return_pieces\n,return_value\n,route_date\n,rs_ship_via_code\n,salesman1\n,salesman2\n,salesman3\n,sale_close_date\n,sale_prob_pct\n,sec_code\n,sel_flag\n,shipped\n,ship_atn\n,ship_cmpl\n,ship_cmplt_2nd_ps\n,ship_data_exp\n,ship_date\n,ship_dist_ctr\n,ship_group_no\n,ship_grp_seq\n,ship_id\n,ship_via_acct\n,ship_via_code\n,source_code\n,split_due_date\n,split_due_date_2\n,split_due_percent\n,split_due_percent_2\n,split_due_type\n,split_total_payments\n,stat\n,state\n,stop\n,store_num\n,surcharge_calc\n,sy_lookup\n,tax_code\n,tax_exempt\n,terms_code\n,terms_disc_ovrd\n,times_printed\n,tot_cod_amt\n,tot_c_tot_code_amt\n,tot_c_tot_wt\n,truck_code\n,ttime_ent\n,un_sale\n,used_by\n,verify_stat\n,verify_user_id\n,vmi_replen\n,wanted_date\n,wanted_date_range\n,warehouse\n,web_item_check\nfrom \"PUB\".\"oe_head\" ",
+            "type": "OdbcSource"
+          },
+          "validateDataConsistency": false
+        },
+        "userProperties": [
+          {
+            "name": "Destination",
+            "value": "tlclakefs/AdCraft/systables.parquet"
+          }
+        ]
+      },
+      {
+        "dependsOn": [],
+        "inputs": [
+          {
+            "parameters": {},
+            "referenceName": "IN_AdCraftD1_Query",
+            "type": "DatasetReference"
+          }
+        ],
+        "name": "Copy_gl_trans_detail",
+        "outputs": [
+          {
+            "parameters": {},
+            "referenceName": "OUT_AdCraftD1_gl_trans_detail",
+            "type": "DatasetReference"
+          }
+        ],
+        "policy": {
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false,
+          "timeout": "7.00:00:00"
+        },
+        "type": "Copy",
+        "typeProperties": {
+          "enableStaging": false,
+          "sink": {
+            "formatSettings": {
+              "type": "ParquetWriteSettings"
+            },
+            "storeSettings": {
+              "type": "AzureBlobFSWriteSettings"
+            },
+            "type": "ParquetSink"
+          },
+          "source": {
+            "query": "select amount\n, company_ap\n, company_ar\n, company_gl\n, company_it\n, company_oe\n, company_sy\n, gl\n, gl_elim\n, gl_elim_id\n, gl_elim_post_dt\n, gl_elim_register\n, line\n, order\n, posted\n, post_date\n, rec_seq\n, ref_level\n, ref_seq\n, register\n, reg_type\n, trans_date\nfrom gl_trans_detail",
+            "type": "OdbcSource"
+          },
+          "validateDataConsistency": false
+        },
+        "userProperties": [
+          {
+            "name": "Destination",
+            "value": "tlclakefs/AdCraft/systables.parquet"
+          }
+        ]
+      },
+      {
+        "dependsOn": [],
+        "inputs": [
+          {
+            "parameters": {},
+            "referenceName": "IN_AdCraftD1_Query",
+            "type": "DatasetReference"
+          }
+        ],
+        "name": "Copy_gl_trans",
+        "outputs": [
+          {
+            "parameters": {},
+            "referenceName": "OUT_AdCraftD1_gl_trans",
+            "type": "DatasetReference"
+          }
+        ],
+        "policy": {
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false,
+          "timeout": "7.00:00:00"
+        },
+        "type": "Copy",
+        "typeProperties": {
+          "enableStaging": false,
+          "sink": {
+            "formatSettings": {
+              "type": "ParquetWriteSettings"
+            },
+            "storeSettings": {
+              "type": "AzureBlobFSWriteSettings"
+            },
+            "type": "ParquetSink"
+          },
+          "source": {
+            "query": "select amount, \ncompany_ap, \ncompany_ar,\ncompany_gl,\ncompany_it,\ncompany_oe,\ncompany_sy,\ncompany_ve,\ncurrency_code,\ndept_no,\nLEFT(descr,80) descr80,\nexchange_rate,\ngl,\nposted,\npost_date,\nregister,\nreg_type,\n'sequence',\ntrans_date,\nuser_id,\nvendor\nfrom gl_trans",
+            "type": "OdbcSource"
+          },
+          "validateDataConsistency": false
+        },
+        "userProperties": [
+          {
+            "name": "Destination",
+            "value": "tlclakefs/AdCraft/systables.parquet"
+          }
+        ]
+      }
+    ],
+    "annotations": []
+  }
 }

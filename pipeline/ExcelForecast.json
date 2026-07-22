@@ -1,63 +1,63 @@
 {
-	"name": "ExcelForecast",
-	"properties": {
-		"activities": [
-			{
-				"name": "CopyExcel2Parquet",
-				"type": "Copy",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "ExcelSource",
-						"storeSettings": {
-							"type": "AzureBlobFSReadSettings",
-							"recursive": true,
-							"enablePartitionDiscovery": false
-						}
-					},
-					"sink": {
-						"type": "ParquetSink",
-						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
-						},
-						"formatSettings": {
-							"type": "ParquetWriteSettings"
-						}
-					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "IN_ExcelForecast",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "OUT_ExcelForecast",
-						"type": "DatasetReference"
-					}
-				]
-			}
-		],
-		"annotations": [],
-		"lastPublishTime": "2023-05-18T18:54:36Z"
-	},
-	"type": "Microsoft.Synapse/workspaces/pipelines"
+  "name": "ExcelForecast",
+  "properties": {
+    "activities": [
+      {
+        "dependsOn": [],
+        "inputs": [
+          {
+            "parameters": {},
+            "referenceName": "IN_ExcelForecast",
+            "type": "DatasetReference"
+          }
+        ],
+        "name": "CopyExcel2Parquet",
+        "outputs": [
+          {
+            "parameters": {},
+            "referenceName": "OUT_ExcelForecast",
+            "type": "DatasetReference"
+          }
+        ],
+        "policy": {
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false,
+          "timeout": "0.12:00:00"
+        },
+        "type": "Copy",
+        "typeProperties": {
+          "enableStaging": false,
+          "sink": {
+            "formatSettings": {
+              "type": "ParquetWriteSettings"
+            },
+            "storeSettings": {
+              "type": "AzureBlobFSWriteSettings"
+            },
+            "type": "ParquetSink"
+          },
+          "source": {
+            "storeSettings": {
+              "enablePartitionDiscovery": false,
+              "recursive": true,
+              "type": "AzureBlobFSReadSettings"
+            },
+            "type": "ExcelSource"
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          }
+        },
+        "userProperties": []
+      }
+    ],
+    "annotations": []
+  }
 }

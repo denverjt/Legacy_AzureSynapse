@@ -1,439 +1,438 @@
 {
-	"name": "M3JSON",
-	"properties": {
-		"activities": [
-			{
-				"name": "ForEach",
-				"type": "ForEach",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"items": {
-						"value": "@pipeline().parameters.tlcJ2P",
-						"type": "Expression"
-					},
-					"activities": [
-						{
-							"name": "Copy data",
-							"type": "Copy",
-							"dependsOn": [],
-							"policy": {
-								"timeout": "7.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"source": {
-									"type": "JsonSource",
-									"storeSettings": {
-										"type": "AzureBlobFSReadSettings",
-										"recursive": true,
-										"wildcardFolderPath": {
-											"value": "@item().m3FilePath",
-											"type": "Expression"
-										},
-										"wildcardFileName": "*.json",
-										"enablePartitionDiscovery": false
-									},
-									"formatSettings": {
-										"type": "JsonReadSettings"
-									}
-								},
-								"sink": {
-									"type": "ParquetSink",
-									"storeSettings": {
-										"type": "AzureBlobFSWriteSettings",
-										"copyBehavior": "MergeFiles"
-									},
-									"formatSettings": {
-										"type": "ParquetWriteSettings"
-									}
-								},
-								"enableStaging": false
-							},
-							"inputs": [
-								{
-									"referenceName": "IN_M3",
-									"type": "DatasetReference"
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "OUT_M3",
-									"type": "DatasetReference",
-									"parameters": {
-										"destinationName": {
-											"value": "@item().destinationName",
-											"type": "Expression"
-										}
-									}
-								}
-							]
-						}
-					]
-				}
-			}
-		],
-		"parameters": {
-			"tlcJ2P": {
-				"type": "array",
-				"defaultValue": [
-					{
-						"m3FilePath": "M3/JSON/FPSUGS",
-						"destinationName": "FPSUGS.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/OBTREC",
-						"destinationName": "OBTREC.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/OGTAGY",
-						"destinationName": "OGTAGY.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/OBTRAG",
-						"destinationName": "OBTRAG.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/OBTMTX",
-						"destinationName": "OBTMTX.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/ACLTYP",
-						"destinationName": "ACLTYP.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/ACUAGH",
-						"destinationName": "ACUAGH.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/ACUOTY",
-						"destinationName": "ACUOTY.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/CCURRA",
-						"destinationName": "CCURRA.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/CEAEMP",
-						"destinationName": "CEAEMP.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/CFACIL",
-						"destinationName": "CFACIL.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/CIDMAS",
-						"destinationName": "CIDMAS.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/CIDVEN",
-						"destinationName": "CIDVEN.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/CMNCMP",
-						"destinationName": "CMNCMP.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/CMNDIV",
-						"destinationName": "CMNDIV.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/CMNUSR",
-						"destinationName": "CMNUSR.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/CPOCOA",
-						"destinationName": "CPOCOA.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/CPOCOM",
-						"destinationName": "CPOCOM.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/CPOHED",
-						"destinationName": "CPOHED.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/CPOPRO",
-						"destinationName": "CPOPRO.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/CSYCAL",
-						"destinationName": "CSYCAL.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/CSYPAR",
-						"destinationName": "CSYPAR.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/CSYPER",
-						"destinationName": "CSYPER.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/CSYSTR",
-						"destinationName": "CSYSTR.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/CSYSTS",
-						"destinationName": "CSYSTS.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/CSYTAB",
-						"destinationName": "CSYTAB.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/CSYUSR",
-						"destinationName": "CSYUSR.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/CUGEX1",
-						"destinationName": "CUGEX1.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/FBAVAL",
-						"destinationName": "FBAVAL.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/FCHACC",
-						"destinationName": "FCHACC.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/FGLEDG",
-						"destinationName": "FGLEDG.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/FGLEDX",
-						"destinationName": "FGLEDX.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/FPLEDG",
-						"destinationName": "FPLEDG.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/FSLBAL",
-						"destinationName": "FSLBAL.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/FSLEDG",
-						"destinationName": "FSLEDG.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/FSLEDX",
-						"destinationName": "FSLEDX.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MAMOHE",
-						"destinationName": "MAMOHE.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MATRMA",
-						"destinationName": "MATRMA.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MCCOMP",
-						"destinationName": "MCCOMP.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MCCOTY",
-						"destinationName": "MCCOTY.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MCONMA",
-						"destinationName": "MCONMA.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MCPAPD",
-						"destinationName": "MCPAPD.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MIEQCL",
-						"destinationName": "MIEQCL.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MIEQGR",
-						"destinationName": "MIEQGR.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MIEQTP",
-						"destinationName": "MIEQTP.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MILOIN",
-						"destinationName": "MILOIN.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MILOMA",
-						"destinationName": "MILOMA.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MITARE",
-						"destinationName": "MITARE.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MITAUN",
-						"destinationName": "MITAUN.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MITBAL",
-						"destinationName": "MITBAL.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MITFAC",
-						"destinationName": "MITFAC.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MITHRY",
-						"destinationName": "MITHRY.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MITLOC",
-						"destinationName": "MITLOC.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MITPCE",
-						"destinationName": "MITPCE.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MITPTY",
-						"destinationName": "MITPTY.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MITSTA",
-						"destinationName": "MITSTA.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MITTEM",
-						"destinationName": "MITTEM.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MITWHL",
-						"destinationName": "MITWHL.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MMOHED",
-						"destinationName": "MMOHED.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MMORDT",
-						"destinationName": "MMORDT.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MOATTR",
-						"destinationName": "MOATTR.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MPAGRH",
-						"destinationName": "MPAGRH.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MPAGRT",
-						"destinationName": "MPAGRT.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MPDSCF",
-						"destinationName": "MPDSCF.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MPDSHT",
-						"destinationName": "MPDSHT.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MPDWCT",
-						"destinationName": "MPDWCT.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MPORDT",
-						"destinationName": "MPORDT.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MPURST",
-						"destinationName": "MPURST.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MWOHED",
-						"destinationName": "MWOHED.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MWOOPE",
-						"destinationName": "MWOOPE.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MWOPTR",
-						"destinationName": "MWOPTR.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/MWORDT",
-						"destinationName": "MWORDT.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/OAGRHE",
-						"destinationName": "OAGRHE.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/OAGRTP",
-						"destinationName": "OAGRTP.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/OOADRE",
-						"destinationName": "OOADRE.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/OCUSAD",
-						"destinationName": "OCUSAD.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/OCUSIT",
-						"destinationName": "OCUSIT.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/OCUSMA",
-						"destinationName": "OCUSMA.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/ODHEAD",
-						"destinationName": "ODHEAD.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/ODLINE",
-						"destinationName": "ODLINE.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/OGCMPN",
-						"destinationName": "OGCMPN.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/OODOCU",
-						"destinationName": "OODOCU.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/OOTYPE",
-						"destinationName": "OOTYPE.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/OSTORE",
-						"destinationName": "OSTORE.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/SITCOM",
-						"destinationName": "SITCOM.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/SSTYPE",
-						"destinationName": "SSTYPE.parquet"
-					},
-					{
-						"m3FilePath": "M3/JSON/FBAKEY",
-						"destinationName": "FBAKEY.parquet"
-					}
-				]
-			}
-		},
-		"annotations": [],
-		"lastPublishTime": "2023-01-04T15:26:18Z"
-	},
-	"type": "Microsoft.Synapse/workspaces/pipelines"
+  "name": "M3JSON",
+  "properties": {
+    "activities": [
+      {
+        "dependsOn": [],
+        "name": "ForEach",
+        "type": "ForEach",
+        "typeProperties": {
+          "activities": [
+            {
+              "dependsOn": [],
+              "inputs": [
+                {
+                  "parameters": {},
+                  "referenceName": "IN_M3",
+                  "type": "DatasetReference"
+                }
+              ],
+              "name": "Copy data",
+              "outputs": [
+                {
+                  "parameters": {
+                    "destinationName": {
+                      "type": "Expression",
+                      "value": "@item().destinationName"
+                    }
+                  },
+                  "referenceName": "OUT_M3",
+                  "type": "DatasetReference"
+                }
+              ],
+              "policy": {
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false,
+                "timeout": "7.00:00:00"
+              },
+              "type": "Copy",
+              "typeProperties": {
+                "enableStaging": false,
+                "sink": {
+                  "formatSettings": {
+                    "type": "ParquetWriteSettings"
+                  },
+                  "storeSettings": {
+                    "copyBehavior": "MergeFiles",
+                    "type": "AzureBlobFSWriteSettings"
+                  },
+                  "type": "ParquetSink"
+                },
+                "source": {
+                  "formatSettings": {
+                    "type": "JsonReadSettings"
+                  },
+                  "storeSettings": {
+                    "enablePartitionDiscovery": false,
+                    "recursive": true,
+                    "type": "AzureBlobFSReadSettings",
+                    "wildcardFileName": "*.json",
+                    "wildcardFolderPath": {
+                      "type": "Expression",
+                      "value": "@item().m3FilePath"
+                    }
+                  },
+                  "type": "JsonSource"
+                }
+              },
+              "userProperties": []
+            }
+          ],
+          "items": {
+            "type": "Expression",
+            "value": "@pipeline().parameters.tlcJ2P"
+          }
+        },
+        "userProperties": []
+      }
+    ],
+    "annotations": [],
+    "parameters": {
+      "tlcJ2P": {
+        "defaultValue": [
+          {
+            "destinationName": "FPSUGS.parquet",
+            "m3FilePath": "M3/JSON/FPSUGS"
+          },
+          {
+            "destinationName": "OBTREC.parquet",
+            "m3FilePath": "M3/JSON/OBTREC"
+          },
+          {
+            "destinationName": "OGTAGY.parquet",
+            "m3FilePath": "M3/JSON/OGTAGY"
+          },
+          {
+            "destinationName": "OBTRAG.parquet",
+            "m3FilePath": "M3/JSON/OBTRAG"
+          },
+          {
+            "destinationName": "OBTMTX.parquet",
+            "m3FilePath": "M3/JSON/OBTMTX"
+          },
+          {
+            "destinationName": "ACLTYP.parquet",
+            "m3FilePath": "M3/JSON/ACLTYP"
+          },
+          {
+            "destinationName": "ACUAGH.parquet",
+            "m3FilePath": "M3/JSON/ACUAGH"
+          },
+          {
+            "destinationName": "ACUOTY.parquet",
+            "m3FilePath": "M3/JSON/ACUOTY"
+          },
+          {
+            "destinationName": "CCURRA.parquet",
+            "m3FilePath": "M3/JSON/CCURRA"
+          },
+          {
+            "destinationName": "CEAEMP.parquet",
+            "m3FilePath": "M3/JSON/CEAEMP"
+          },
+          {
+            "destinationName": "CFACIL.parquet",
+            "m3FilePath": "M3/JSON/CFACIL"
+          },
+          {
+            "destinationName": "CIDMAS.parquet",
+            "m3FilePath": "M3/JSON/CIDMAS"
+          },
+          {
+            "destinationName": "CIDVEN.parquet",
+            "m3FilePath": "M3/JSON/CIDVEN"
+          },
+          {
+            "destinationName": "CMNCMP.parquet",
+            "m3FilePath": "M3/JSON/CMNCMP"
+          },
+          {
+            "destinationName": "CMNDIV.parquet",
+            "m3FilePath": "M3/JSON/CMNDIV"
+          },
+          {
+            "destinationName": "CMNUSR.parquet",
+            "m3FilePath": "M3/JSON/CMNUSR"
+          },
+          {
+            "destinationName": "CPOCOA.parquet",
+            "m3FilePath": "M3/JSON/CPOCOA"
+          },
+          {
+            "destinationName": "CPOCOM.parquet",
+            "m3FilePath": "M3/JSON/CPOCOM"
+          },
+          {
+            "destinationName": "CPOHED.parquet",
+            "m3FilePath": "M3/JSON/CPOHED"
+          },
+          {
+            "destinationName": "CPOPRO.parquet",
+            "m3FilePath": "M3/JSON/CPOPRO"
+          },
+          {
+            "destinationName": "CSYCAL.parquet",
+            "m3FilePath": "M3/JSON/CSYCAL"
+          },
+          {
+            "destinationName": "CSYPAR.parquet",
+            "m3FilePath": "M3/JSON/CSYPAR"
+          },
+          {
+            "destinationName": "CSYPER.parquet",
+            "m3FilePath": "M3/JSON/CSYPER"
+          },
+          {
+            "destinationName": "CSYSTR.parquet",
+            "m3FilePath": "M3/JSON/CSYSTR"
+          },
+          {
+            "destinationName": "CSYSTS.parquet",
+            "m3FilePath": "M3/JSON/CSYSTS"
+          },
+          {
+            "destinationName": "CSYTAB.parquet",
+            "m3FilePath": "M3/JSON/CSYTAB"
+          },
+          {
+            "destinationName": "CSYUSR.parquet",
+            "m3FilePath": "M3/JSON/CSYUSR"
+          },
+          {
+            "destinationName": "CUGEX1.parquet",
+            "m3FilePath": "M3/JSON/CUGEX1"
+          },
+          {
+            "destinationName": "FBAVAL.parquet",
+            "m3FilePath": "M3/JSON/FBAVAL"
+          },
+          {
+            "destinationName": "FCHACC.parquet",
+            "m3FilePath": "M3/JSON/FCHACC"
+          },
+          {
+            "destinationName": "FGLEDG.parquet",
+            "m3FilePath": "M3/JSON/FGLEDG"
+          },
+          {
+            "destinationName": "FGLEDX.parquet",
+            "m3FilePath": "M3/JSON/FGLEDX"
+          },
+          {
+            "destinationName": "FPLEDG.parquet",
+            "m3FilePath": "M3/JSON/FPLEDG"
+          },
+          {
+            "destinationName": "FSLBAL.parquet",
+            "m3FilePath": "M3/JSON/FSLBAL"
+          },
+          {
+            "destinationName": "FSLEDG.parquet",
+            "m3FilePath": "M3/JSON/FSLEDG"
+          },
+          {
+            "destinationName": "FSLEDX.parquet",
+            "m3FilePath": "M3/JSON/FSLEDX"
+          },
+          {
+            "destinationName": "MAMOHE.parquet",
+            "m3FilePath": "M3/JSON/MAMOHE"
+          },
+          {
+            "destinationName": "MATRMA.parquet",
+            "m3FilePath": "M3/JSON/MATRMA"
+          },
+          {
+            "destinationName": "MCCOMP.parquet",
+            "m3FilePath": "M3/JSON/MCCOMP"
+          },
+          {
+            "destinationName": "MCCOTY.parquet",
+            "m3FilePath": "M3/JSON/MCCOTY"
+          },
+          {
+            "destinationName": "MCONMA.parquet",
+            "m3FilePath": "M3/JSON/MCONMA"
+          },
+          {
+            "destinationName": "MCPAPD.parquet",
+            "m3FilePath": "M3/JSON/MCPAPD"
+          },
+          {
+            "destinationName": "MIEQCL.parquet",
+            "m3FilePath": "M3/JSON/MIEQCL"
+          },
+          {
+            "destinationName": "MIEQGR.parquet",
+            "m3FilePath": "M3/JSON/MIEQGR"
+          },
+          {
+            "destinationName": "MIEQTP.parquet",
+            "m3FilePath": "M3/JSON/MIEQTP"
+          },
+          {
+            "destinationName": "MILOIN.parquet",
+            "m3FilePath": "M3/JSON/MILOIN"
+          },
+          {
+            "destinationName": "MILOMA.parquet",
+            "m3FilePath": "M3/JSON/MILOMA"
+          },
+          {
+            "destinationName": "MITARE.parquet",
+            "m3FilePath": "M3/JSON/MITARE"
+          },
+          {
+            "destinationName": "MITAUN.parquet",
+            "m3FilePath": "M3/JSON/MITAUN"
+          },
+          {
+            "destinationName": "MITBAL.parquet",
+            "m3FilePath": "M3/JSON/MITBAL"
+          },
+          {
+            "destinationName": "MITFAC.parquet",
+            "m3FilePath": "M3/JSON/MITFAC"
+          },
+          {
+            "destinationName": "MITHRY.parquet",
+            "m3FilePath": "M3/JSON/MITHRY"
+          },
+          {
+            "destinationName": "MITLOC.parquet",
+            "m3FilePath": "M3/JSON/MITLOC"
+          },
+          {
+            "destinationName": "MITPCE.parquet",
+            "m3FilePath": "M3/JSON/MITPCE"
+          },
+          {
+            "destinationName": "MITPTY.parquet",
+            "m3FilePath": "M3/JSON/MITPTY"
+          },
+          {
+            "destinationName": "MITSTA.parquet",
+            "m3FilePath": "M3/JSON/MITSTA"
+          },
+          {
+            "destinationName": "MITTEM.parquet",
+            "m3FilePath": "M3/JSON/MITTEM"
+          },
+          {
+            "destinationName": "MITWHL.parquet",
+            "m3FilePath": "M3/JSON/MITWHL"
+          },
+          {
+            "destinationName": "MMOHED.parquet",
+            "m3FilePath": "M3/JSON/MMOHED"
+          },
+          {
+            "destinationName": "MMORDT.parquet",
+            "m3FilePath": "M3/JSON/MMORDT"
+          },
+          {
+            "destinationName": "MOATTR.parquet",
+            "m3FilePath": "M3/JSON/MOATTR"
+          },
+          {
+            "destinationName": "MPAGRH.parquet",
+            "m3FilePath": "M3/JSON/MPAGRH"
+          },
+          {
+            "destinationName": "MPAGRT.parquet",
+            "m3FilePath": "M3/JSON/MPAGRT"
+          },
+          {
+            "destinationName": "MPDSCF.parquet",
+            "m3FilePath": "M3/JSON/MPDSCF"
+          },
+          {
+            "destinationName": "MPDSHT.parquet",
+            "m3FilePath": "M3/JSON/MPDSHT"
+          },
+          {
+            "destinationName": "MPDWCT.parquet",
+            "m3FilePath": "M3/JSON/MPDWCT"
+          },
+          {
+            "destinationName": "MPORDT.parquet",
+            "m3FilePath": "M3/JSON/MPORDT"
+          },
+          {
+            "destinationName": "MPURST.parquet",
+            "m3FilePath": "M3/JSON/MPURST"
+          },
+          {
+            "destinationName": "MWOHED.parquet",
+            "m3FilePath": "M3/JSON/MWOHED"
+          },
+          {
+            "destinationName": "MWOOPE.parquet",
+            "m3FilePath": "M3/JSON/MWOOPE"
+          },
+          {
+            "destinationName": "MWOPTR.parquet",
+            "m3FilePath": "M3/JSON/MWOPTR"
+          },
+          {
+            "destinationName": "MWORDT.parquet",
+            "m3FilePath": "M3/JSON/MWORDT"
+          },
+          {
+            "destinationName": "OAGRHE.parquet",
+            "m3FilePath": "M3/JSON/OAGRHE"
+          },
+          {
+            "destinationName": "OAGRTP.parquet",
+            "m3FilePath": "M3/JSON/OAGRTP"
+          },
+          {
+            "destinationName": "OOADRE.parquet",
+            "m3FilePath": "M3/JSON/OOADRE"
+          },
+          {
+            "destinationName": "OCUSAD.parquet",
+            "m3FilePath": "M3/JSON/OCUSAD"
+          },
+          {
+            "destinationName": "OCUSIT.parquet",
+            "m3FilePath": "M3/JSON/OCUSIT"
+          },
+          {
+            "destinationName": "OCUSMA.parquet",
+            "m3FilePath": "M3/JSON/OCUSMA"
+          },
+          {
+            "destinationName": "ODHEAD.parquet",
+            "m3FilePath": "M3/JSON/ODHEAD"
+          },
+          {
+            "destinationName": "ODLINE.parquet",
+            "m3FilePath": "M3/JSON/ODLINE"
+          },
+          {
+            "destinationName": "OGCMPN.parquet",
+            "m3FilePath": "M3/JSON/OGCMPN"
+          },
+          {
+            "destinationName": "OODOCU.parquet",
+            "m3FilePath": "M3/JSON/OODOCU"
+          },
+          {
+            "destinationName": "OOTYPE.parquet",
+            "m3FilePath": "M3/JSON/OOTYPE"
+          },
+          {
+            "destinationName": "OSTORE.parquet",
+            "m3FilePath": "M3/JSON/OSTORE"
+          },
+          {
+            "destinationName": "SITCOM.parquet",
+            "m3FilePath": "M3/JSON/SITCOM"
+          },
+          {
+            "destinationName": "SSTYPE.parquet",
+            "m3FilePath": "M3/JSON/SSTYPE"
+          },
+          {
+            "destinationName": "FBAKEY.parquet",
+            "m3FilePath": "M3/JSON/FBAKEY"
+          }
+        ],
+        "type": "array"
+      }
+    }
+  }
 }

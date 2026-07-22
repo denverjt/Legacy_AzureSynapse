@@ -1,17 +1,17 @@
 {
-	"name": "v_SafetyStockAllocation",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW     v_SafetyStockAllocation\nas\nSELECT          A.*, B.[Priority 7 Safety Stock Level]\nFROM\n(\nSELECT          ST.OBV2 AS          [Customer Number]\n,               CUNM AS             [Customer Name]\n,               ST.OBV1 AS          [Item Number]\n,                                   [Item Name]\n,               [Master Data Brand] as Brand\n,               MB.WHLO AS          [Warehouse]\n,               SSQT AS             [Safety Stock Qty]\n,               ST.MQSS AS          [Safety Stock Pct]\n,               SSQT*ST.MQSS/100 AS [Safety Stock Allocation]\n--,               ST2.SSPL AS         [Priority 7 Safety Stock Level]\nFROM            M3.CSAFPR ST\nJOIN            M3.OCUSMA OC ON ST.OBV2 = OC.CUNO AND ST.PREX = 2\nJOIN            Prd_ItemMaster IM on ST.OBV1 = IM.[Item Number] \nJOIN            M3.MITBAL MB ON ST.OBV1 = MB.ITNO\n--LEFT JOIN       M3.CSAFPR ST2 ON ST.OBV1 = ST2.OBV1 AND ST2.PREX = 7\nAND             SSQT <> 0\n) A\n\nLEFT JOIN\n\n(\nSELECT          ST.OBV1 AS         [Item Number]\n,               ST.SSPL AS         [Priority 7 Safety Stock Level]\nFROM            M3.CSAFPR ST\nWHERE           PREX = 7\n) B             ON A.[Item Number] = B.[Item Number]\n\n\n\n\n",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": -1
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_SafetyStockAllocation",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW     v_SafetyStockAllocation\nas\nSELECT          A.*, B.[Priority 7 Safety Stock Level]\nFROM\n(\nSELECT          ST.OBV2 AS          [Customer Number]\n,               CUNM AS             [Customer Name]\n,               ST.OBV1 AS          [Item Number]\n,                                   [Item Name]\n,               [Master Data Brand] as Brand\n,               MB.WHLO AS          [Warehouse]\n,               SSQT AS             [Safety Stock Qty]\n,               ST.MQSS AS          [Safety Stock Pct]\n,               SSQT*ST.MQSS/100 AS [Safety Stock Allocation]\n--,               ST2.SSPL AS         [Priority 7 Safety Stock Level]\nFROM            M3.CSAFPR ST\nJOIN            M3.OCUSMA OC ON ST.OBV2 = OC.CUNO AND ST.PREX = 2\nJOIN            Prd_ItemMaster IM on ST.OBV1 = IM.[Item Number] \nJOIN            M3.MITBAL MB ON ST.OBV1 = MB.ITNO\n--LEFT JOIN       M3.CSAFPR ST2 ON ST.OBV1 = ST2.OBV1 AND ST2.PREX = 7\nAND             SSQT <> 0\n) A\n\nLEFT JOIN\n\n(\nSELECT          ST.OBV1 AS         [Item Number]\n,               ST.SSPL AS         [Priority 7 Safety Stock Level]\nFROM            M3.CSAFPR ST\nWHERE           PREX = 7\n) B             ON A.[Item Number] = B.[Item Number]\n\n\n\n\n",
+      "resultLimit": -1
+    },
+    "type": "SqlQuery"
+  }
 }

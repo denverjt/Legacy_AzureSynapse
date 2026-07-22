@@ -1,1928 +1,1926 @@
 {
-	"name": "SysproCompanyO_Pipeline",
-	"properties": {
-		"activities": [
-			{
-				"name": "ForEach_Table",
-				"type": "ForEach",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"items": {
-						"value": "@pipeline().parameters.cw_items",
-						"type": "Expression"
-					},
-					"activities": [
-						{
-							"name": "Copy_Tables",
-							"type": "Copy",
-							"dependsOn": [],
-							"policy": {
-								"timeout": "7.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [
-								{
-									"name": "Source",
-									"value": "dbo.@{item().source.table}"
-								},
-								{
-									"name": "Destination",
-									"value": "tlclakefs/SysproCompG/@{item().destination.fileName}"
-								}
-							],
-							"typeProperties": {
-								"source": {
-									"type": "SqlServerSource",
-									"partitionOption": "None"
-								},
-								"sink": {
-									"type": "ParquetSink",
-									"storeSettings": {
-										"type": "AzureBlobFSWriteSettings"
-									},
-									"formatSettings": {
-										"type": "ParquetWriteSettings"
-									}
-								},
-								"enableStaging": false,
-								"validateDataConsistency": false
-							},
-							"inputs": [
-								{
-									"referenceName": "IN_SysproCompanyO",
-									"type": "DatasetReference",
-									"parameters": {
-										"cw_table": "@item().source.table"
-									}
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "OUT_SysproCompanyO",
-									"type": "DatasetReference",
-									"parameters": {
-										"cw_fileName": "@item().destination.fileName"
-									}
-								}
-							]
-						}
-					]
-				}
-			}
-		],
-		"parameters": {
-			"cw_items": {
-				"type": "Array",
-				"defaultValue": [
-					{
-						"source": {
-							"table": "GenJournalDetail"
-						},
-						"destination": {
-							"fileName": "GenJournalDetail.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "GenTransaction"
-						},
-						"destination": {
-							"fileName": "GenTransaction.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "InvMovements"
-						},
-						"destination": {
-							"fileName": "InvMovements.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "InvJournalDet"
-						},
-						"destination": {
-							"fileName": "InvJournalDet.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "GenJournalDetail_20190205"
-						},
-						"destination": {
-							"fileName": "GenJournalDetail_20190205.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "WipJobPost"
-						},
-						"destination": {
-							"fileName": "WipJobPost.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "GenTransaction_20190205"
-						},
-						"destination": {
-							"fileName": "GenTransaction_20190205.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "WipJobAllMat"
-						},
-						"destination": {
-							"fileName": "WipJobAllMat.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "InvMastAmendJnl"
-						},
-						"destination": {
-							"fileName": "InvMastAmendJnl.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SorDetail"
-						},
-						"destination": {
-							"fileName": "SorDetail.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SorDetailRep"
-						},
-						"destination": {
-							"fileName": "SorDetailRep.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "AdmSignatureLogDet"
-						},
-						"destination": {
-							"fileName": "AdmSignatureLogDet.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "BomAmendmentJnl"
-						},
-						"destination": {
-							"fileName": "BomAmendmentJnl.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SorAdditions"
-						},
-						"destination": {
-							"fileName": "SorAdditions.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ArTrnDetail"
-						},
-						"destination": {
-							"fileName": "ArTrnDetail.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "GenJournalCtl"
-						},
-						"destination": {
-							"fileName": "GenJournalCtl.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ArSalesMove"
-						},
-						"destination": {
-							"fileName": "ArSalesMove.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SorDeliveryPerf"
-						},
-						"destination": {
-							"fileName": "SorDeliveryPerf.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "GenJournalCtl_20190205"
-						},
-						"destination": {
-							"fileName": "GenJournalCtl_20190205.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ApGlDisburse"
-						},
-						"destination": {
-							"fileName": "ApGlDisburse.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "InvJournalCtl"
-						},
-						"destination": {
-							"fileName": "InvJournalCtl.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "WipPartBook"
-						},
-						"destination": {
-							"fileName": "WipPartBook.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ArInvoice"
-						},
-						"destination": {
-							"fileName": "ArInvoice.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ArTrnSummary"
-						},
-						"destination": {
-							"fileName": "ArTrnSummary.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "WipMaster"
-						},
-						"destination": {
-							"fileName": "WipMaster.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SalHistoryMaster"
-						},
-						"destination": {
-							"fileName": "SalHistoryMaster.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ArInvoiceReference"
-						},
-						"destination": {
-							"fileName": "ArInvoiceReference.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SorMaster"
-						},
-						"destination": {
-							"fileName": "SorMaster.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SorMasterRep"
-						},
-						"destination": {
-							"fileName": "SorMasterRep.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SorUsaTaxRep"
-						},
-						"destination": {
-							"fileName": "SorUsaTaxRep.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SorReprintInv"
-						},
-						"destination": {
-							"fileName": "SorReprintInv.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SalSalesTax"
-						},
-						"destination": {
-							"fileName": "SalSalesTax.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SalSalesTaxDet"
-						},
-						"destination": {
-							"fileName": "SalSalesTaxDet.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SalUsaTax"
-						},
-						"destination": {
-							"fileName": "SalUsaTax.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SalCommission"
-						},
-						"destination": {
-							"fileName": "SalCommission.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "AdmTaxReturn"
-						},
-						"destination": {
-							"fileName": "AdmTaxReturn.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ArTrnTax"
-						},
-						"destination": {
-							"fileName": "ArTrnTax.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ArTrnTaxCode"
-						},
-						"destination": {
-							"fileName": "ArTrnTaxCode.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ApInvoicePay"
-						},
-						"destination": {
-							"fileName": "ApInvoicePay.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ApJnlDistrib"
-						},
-						"destination": {
-							"fileName": "ApJnlDistrib.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ApPayRunDet"
-						},
-						"destination": {
-							"fileName": "ApPayRunDet.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ApJnlSummary"
-						},
-						"destination": {
-							"fileName": "ApJnlSummary.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CshApPayments"
-						},
-						"destination": {
-							"fileName": "CshApPayments.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ArInvoicePay"
-						},
-						"destination": {
-							"fileName": "ArInvoicePay.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ApInvoice"
-						},
-						"destination": {
-							"fileName": "ApInvoice.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "InvSerialTrn"
-						},
-						"destination": {
-							"fileName": "InvSerialTrn.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CshGlEntries"
-						},
-						"destination": {
-							"fileName": "CshGlEntries.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CshJnlGl"
-						},
-						"destination": {
-							"fileName": "CshJnlGl.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "InvPrice"
-						},
-						"destination": {
-							"fileName": "InvPrice.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ArCshJnlPay"
-						},
-						"destination": {
-							"fileName": "ArCshJnlPay.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "GenJournalRef"
-						},
-						"destination": {
-							"fileName": "GenJournalRef.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PorMasterDetail"
-						},
-						"destination": {
-							"fileName": "PorMasterDetail.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CshArPayments"
-						},
-						"destination": {
-							"fileName": "CshArPayments.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CshJnl"
-						},
-						"destination": {
-							"fileName": "CshJnl.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "BomStructure"
-						},
-						"destination": {
-							"fileName": "BomStructure.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CshTransactions"
-						},
-						"destination": {
-							"fileName": "CshTransactions.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "DiagDepObjects"
-						},
-						"destination": {
-							"fileName": "DiagDepObjects.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "AdmSignatureLog"
-						},
-						"destination": {
-							"fileName": "AdmSignatureLog.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MrpSoMasterHdr"
-						},
-						"destination": {
-							"fileName": "MrpSoMasterHdr.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "DiagObjects"
-						},
-						"destination": {
-							"fileName": "DiagObjects.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "RmaComment"
-						},
-						"destination": {
-							"fileName": "RmaComment.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ApCheckIss"
-						},
-						"destination": {
-							"fileName": "ApCheckIss.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SorDetailSerRep"
-						},
-						"destination": {
-							"fileName": "SorDetailSerRep.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "InvSerialCrossRef"
-						},
-						"destination": {
-							"fileName": "InvSerialCrossRef.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "InvSerialHead"
-						},
-						"destination": {
-							"fileName": "InvSerialHead.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ArCshJnlDet"
-						},
-						"destination": {
-							"fileName": "ArCshJnlDet.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PorHistReceipt"
-						},
-						"destination": {
-							"fileName": "PorHistReceipt.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "GrnDetails"
-						},
-						"destination": {
-							"fileName": "GrnDetails.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ArPayHistory"
-						},
-						"destination": {
-							"fileName": "ArPayHistory.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "GrnMatching"
-						},
-						"destination": {
-							"fileName": "GrnMatching.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "InvWarehouse"
-						},
-						"destination": {
-							"fileName": "InvWarehouse.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "InvMaster"
-						},
-						"destination": {
-							"fileName": "InvMaster.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CshJnlCtl"
-						},
-						"destination": {
-							"fileName": "CshJnlCtl.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "InvWhatIfCost"
-						},
-						"destination": {
-							"fileName": "InvWhatIfCost.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MrpWarehouse"
-						},
-						"destination": {
-							"fileName": "MrpWarehouse.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CusSorDetailMerch+"
-						},
-						"destination": {
-							"fileName": "CusSorDetailMerchPlus.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "BomParentInfo"
-						},
-						"destination": {
-							"fileName": "BomParentInfo.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ApJnlControl"
-						},
-						"destination": {
-							"fileName": "ApJnlControl.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PorMasterHdr"
-						},
-						"destination": {
-							"fileName": "PorMasterHdr.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "AdmEventLog"
-						},
-						"destination": {
-							"fileName": "AdmEventLog.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ArCshJnlCtl"
-						},
-						"destination": {
-							"fileName": "ArCshJnlCtl.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MrpJobAllMat"
-						},
-						"destination": {
-							"fileName": "MrpJobAllMat.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "GenHistory"
-						},
-						"destination": {
-							"fileName": "GenHistory.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CusSorMaster+"
-						},
-						"destination": {
-							"fileName": "CusSorMasterPlus.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SorChanges"
-						},
-						"destination": {
-							"fileName": "SorChanges.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ArRegisterRef"
-						},
-						"destination": {
-							"fileName": "ArRegisterRef.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ArCustomerBal"
-						},
-						"destination": {
-							"fileName": "ArCustomerBal.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ArCustomer"
-						},
-						"destination": {
-							"fileName": "ArCustomer.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "GrnPriceVariance"
-						},
-						"destination": {
-							"fileName": "GrnPriceVariance.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ArNarration"
-						},
-						"destination": {
-							"fileName": "ArNarration.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "EDIArchive"
-						},
-						"destination": {
-							"fileName": "EDIArchive.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PorMasterHdr+"
-						},
-						"destination": {
-							"fileName": "PorMasterHdrPlus.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "GenHistory_20190205"
-						},
-						"destination": {
-							"fileName": "GenHistory_20190205.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ApPayRunHdr"
-						},
-						"destination": {
-							"fileName": "ApPayRunHdr.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "InvWhAmendJnl"
-						},
-						"destination": {
-							"fileName": "InvWhAmendJnl.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PorSupStkInfo"
-						},
-						"destination": {
-							"fileName": "PorSupStkInfo.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ArMasterSub"
-						},
-						"destination": {
-							"fileName": "ArMasterSub.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MrpPoMasterHdr"
-						},
-						"destination": {
-							"fileName": "MrpPoMasterHdr.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SorCancelled"
-						},
-						"destination": {
-							"fileName": "SorCancelled.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ApSupplier"
-						},
-						"destination": {
-							"fileName": "ApSupplier.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ApSupplierAddr"
-						},
-						"destination": {
-							"fileName": "ApSupplierAddr.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ApSupplierAddrFIX"
-						},
-						"destination": {
-							"fileName": "ApSupplierAddrFIX.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "InvNarration"
-						},
-						"destination": {
-							"fileName": "InvNarration.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "RmaDetail"
-						},
-						"destination": {
-							"fileName": "RmaDetail.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "RmaMaster"
-						},
-						"destination": {
-							"fileName": "RmaMaster.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "WipPartBill"
-						},
-						"destination": {
-							"fileName": "WipPartBill.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ApSupplierNar"
-						},
-						"destination": {
-							"fileName": "ApSupplierNar.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "InvPriceHistory"
-						},
-						"destination": {
-							"fileName": "InvPriceHistory.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ArCustomer+"
-						},
-						"destination": {
-							"fileName": "ArCustomerPlus.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "EftApSupplier"
-						},
-						"destination": {
-							"fileName": "EftApSupplier.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "EDIXRefLocation"
-						},
-						"destination": {
-							"fileName": "EDIXRefLocation.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "DiagTables"
-						},
-						"destination": {
-							"fileName": "DiagTables.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ArNarrationHdr"
-						},
-						"destination": {
-							"fileName": "ArNarrationHdr.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "GrnAdjustment"
-						},
-						"destination": {
-							"fileName": "GrnAdjustment.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "GrnJournal"
-						},
-						"destination": {
-							"fileName": "GrnJournal.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MrpSoDetail"
-						},
-						"destination": {
-							"fileName": "MrpSoDetail.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PorMasterDetail+"
-						},
-						"destination": {
-							"fileName": "PorMasterDetailPlus.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "WipDistrMat"
-						},
-						"destination": {
-							"fileName": "WipDistrMat.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "InvNarrationHdr"
-						},
-						"destination": {
-							"fileName": "InvNarrationHdr.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "DiagObsObjects"
-						},
-						"destination": {
-							"fileName": "DiagObsObjects.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "DiagExpObjects"
-						},
-						"destination": {
-							"fileName": "DiagExpObjects.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "GenMaster"
-						},
-						"destination": {
-							"fileName": "GenMaster.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CshTransactionsBal"
-						},
-						"destination": {
-							"fileName": "CshTransactionsBal.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SalProductClass"
-						},
-						"destination": {
-							"fileName": "SalProductClass.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "GenBudgets"
-						},
-						"destination": {
-							"fileName": "GenBudgets.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SalSalespersonSum"
-						},
-						"destination": {
-							"fileName": "SalSalespersonSum.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SalGlIntSale"
-						},
-						"destination": {
-							"fileName": "SalGlIntSale.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "GrnInvoiceVar"
-						},
-						"destination": {
-							"fileName": "GrnInvoiceVar.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "WipJobPostSer"
-						},
-						"destination": {
-							"fileName": "WipJobPostSer.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MrpPoMasterDet"
-						},
-						"destination": {
-							"fileName": "MrpPoMasterDet.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "AdmSqlHealthBal"
-						},
-						"destination": {
-							"fileName": "AdmSqlHealthBal.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ApSupplierNarHdr"
-						},
-						"destination": {
-							"fileName": "ApSupplierNarHdr.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SorContractPrice"
-						},
-						"destination": {
-							"fileName": "SorContractPrice.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "InvMaster+"
-						},
-						"destination": {
-							"fileName": "InvMasterPlus.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ApDummyCheck"
-						},
-						"destination": {
-							"fileName": "ApDummyCheck.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MrpJobMaster"
-						},
-						"destination": {
-							"fileName": "MrpJobMaster.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "IntEdiInvDet"
-						},
-						"destination": {
-							"fileName": "IntEdiInvDet.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "InvLedgerInt"
-						},
-						"destination": {
-							"fileName": "InvLedgerInt.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "InvAltSupplier"
-						},
-						"destination": {
-							"fileName": "InvAltSupplier.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SalSalesperson"
-						},
-						"destination": {
-							"fileName": "SalSalesperson.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SalArea"
-						},
-						"destination": {
-							"fileName": "SalArea.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SalProductClassSum"
-						},
-						"destination": {
-							"fileName": "SalProductClassSum.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "IntEdiInvDetEx"
-						},
-						"destination": {
-							"fileName": "IntEdiInvDetEx.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "GenStdJnlDet"
-						},
-						"destination": {
-							"fileName": "GenStdJnlDet.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "AdmFormControl"
-						},
-						"destination": {
-							"fileName": "AdmFormControl.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SalProductClassDes"
-						},
-						"destination": {
-							"fileName": "SalProductClassDes.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "TblArTerms"
-						},
-						"destination": {
-							"fileName": "TblArTerms.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "EDIMasterInfo"
-						},
-						"destination": {
-							"fileName": "EDIMasterInfo.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "GenBudAltDesc"
-						},
-						"destination": {
-							"fileName": "GenBudAltDesc.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SalBranch"
-						},
-						"destination": {
-							"fileName": "SalBranch.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SalBranch+"
-						},
-						"destination": {
-							"fileName": "SalBranchPlus.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "TblSoDiscount"
-						},
-						"destination": {
-							"fileName": "TblSoDiscount.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "IntEdiInvExtra"
-						},
-						"destination": {
-							"fileName": "IntEdiInvExtra.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "IntEdiInvHdr"
-						},
-						"destination": {
-							"fileName": "IntEdiInvHdr.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "TblApTerms"
-						},
-						"destination": {
-							"fileName": "TblApTerms.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "TblSoShipInst"
-						},
-						"destination": {
-							"fileName": "TblSoShipInst.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SalGlIntPayment"
-						},
-						"destination": {
-							"fileName": "SalGlIntPayment.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "GenGroups"
-						},
-						"destination": {
-							"fileName": "GenGroups.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ApBank"
-						},
-						"destination": {
-							"fileName": "ApBank.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "TblSoStdCom"
-						},
-						"destination": {
-							"fileName": "TblSoStdCom.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "InvWhControl"
-						},
-						"destination": {
-							"fileName": "InvWhControl.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "AdmUsaTax"
-						},
-						"destination": {
-							"fileName": "AdmUsaTax.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "BomRoute"
-						},
-						"destination": {
-							"fileName": "BomRoute.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "EDIMasterDocument"
-						},
-						"destination": {
-							"fileName": "EDIMasterDocument.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "RmaActionHistory"
-						},
-						"destination": {
-							"fileName": "RmaActionHistory.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "TblSoReason"
-						},
-						"destination": {
-							"fileName": "TblSoReason.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "EDIXRefReference"
-						},
-						"destination": {
-							"fileName": "EDIXRefReference.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "InvBuyer"
-						},
-						"destination": {
-							"fileName": "InvBuyer.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "AdmVersionHistory"
-						},
-						"destination": {
-							"fileName": "AdmVersionHistory.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "AdmMultimediaCtl"
-						},
-						"destination": {
-							"fileName": "AdmMultimediaCtl.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "TblPoComment"
-						},
-						"destination": {
-							"fileName": "TblPoComment.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "TblGlUserJnl"
-						},
-						"destination": {
-							"fileName": "TblGlUserJnl.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "TblSoBuyingGroup"
-						},
-						"destination": {
-							"fileName": "TblSoBuyingGroup.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "AdmTax"
-						},
-						"destination": {
-							"fileName": "AdmTax.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ApBank+"
-						},
-						"destination": {
-							"fileName": "ApBankPlus.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "AdmFormValidation"
-						},
-						"destination": {
-							"fileName": "AdmFormValidation.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "InvInspect"
-						},
-						"destination": {
-							"fileName": "InvInspect.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "InvInspectDet"
-						},
-						"destination": {
-							"fileName": "InvInspectDet.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "InvInspectDoc"
-						},
-						"destination": {
-							"fileName": "InvInspectDoc.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "GenStdJnlCtl"
-						},
-						"destination": {
-							"fileName": "GenStdJnlCtl.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "EDIXRefPID"
-						},
-						"destination": {
-							"fileName": "EDIXRefPID.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "EDIXRefProduct"
-						},
-						"destination": {
-							"fileName": "EDIXRefProduct.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "EDIJournal"
-						},
-						"destination": {
-							"fileName": "EDIJournal.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "EDIXRefStockSub"
-						},
-						"destination": {
-							"fileName": "EDIXRefStockSub.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "AdmHealthLog"
-						},
-						"destination": {
-							"fileName": "AdmHealthLog.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "AdmFormList"
-						},
-						"destination": {
-							"fileName": "AdmFormList.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ArCustStkXref"
-						},
-						"destination": {
-							"fileName": "ArCustStkXref.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ArcControl"
-						},
-						"destination": {
-							"fileName": "ArcControl.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "AdmMultimedia"
-						},
-						"destination": {
-							"fileName": "AdmMultimedia.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "AdmEvent"
-						},
-						"destination": {
-							"fileName": "AdmEvent.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ApBranch"
-						},
-						"destination": {
-							"fileName": "ApBranch.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "EDIMasterPartner"
-						},
-						"destination": {
-							"fileName": "EDIMasterPartner.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "EDIXRefDateTime"
-						},
-						"destination": {
-							"fileName": "EDIXRefDateTime.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "GenControl"
-						},
-						"destination": {
-							"fileName": "GenControl.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "InvCompanyCtl"
-						},
-						"destination": {
-							"fileName": "InvCompanyCtl.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "TblSupplierClass"
-						},
-						"destination": {
-							"fileName": "TblSupplierClass.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PorSupComment"
-						},
-						"destination": {
-							"fileName": "PorSupComment.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PorDeliveryAddr"
-						},
-						"destination": {
-							"fileName": "PorDeliveryAddr.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SalControl"
-						},
-						"destination": {
-							"fileName": "SalControl.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "RmaProblemCodes"
-						},
-						"destination": {
-							"fileName": "RmaProblemCodes.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SalGlIntControl"
-						},
-						"destination": {
-							"fileName": "SalGlIntControl.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "RmaCrossShipment"
-						},
-						"destination": {
-							"fileName": "RmaCrossShipment.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "RmaDetailSer"
-						},
-						"destination": {
-							"fileName": "RmaDetailSer.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "PorControl"
-						},
-						"destination": {
-							"fileName": "PorControl.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MrpReqCtl"
-						},
-						"destination": {
-							"fileName": "MrpReqCtl.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "TblCurrency"
-						},
-						"destination": {
-							"fileName": "TblCurrency.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "TblCustomerClass"
-						},
-						"destination": {
-							"fileName": "TblCustomerClass.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SorControl"
-						},
-						"destination": {
-							"fileName": "SorControl.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "TblSoCommission"
-						},
-						"destination": {
-							"fileName": "TblSoCommission.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "TblPoPriceUom"
-						},
-						"destination": {
-							"fileName": "TblPoPriceUom.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "WipControl"
-						},
-						"destination": {
-							"fileName": "WipControl.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "InvControl"
-						},
-						"destination": {
-							"fileName": "InvControl.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "InvAltStock"
-						},
-						"destination": {
-							"fileName": "InvAltStock.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "InvLedgerIntCtl"
-						},
-						"destination": {
-							"fileName": "InvLedgerIntCtl.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "LotControl"
-						},
-						"destination": {
-							"fileName": "LotControl.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "EDIXRefAddress"
-						},
-						"destination": {
-							"fileName": "EDIXRefAddress.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "EDIXRefCarrierSCAC"
-						},
-						"destination": {
-							"fileName": "EDIXRefCarrierSCAC.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "EDIXRefShipVia"
-						},
-						"destination": {
-							"fileName": "EDIXRefShipVia.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "EccControl"
-						},
-						"destination": {
-							"fileName": "EccControl.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "DiagCompanySetup"
-						},
-						"destination": {
-							"fileName": "DiagCompanySetup.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "DiagHistory"
-						},
-						"destination": {
-							"fileName": "DiagHistory.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "EDIControl"
-						},
-						"destination": {
-							"fileName": "EDIControl.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "BomControl"
-						},
-						"destination": {
-							"fileName": "BomControl.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CshControl"
-						},
-						"destination": {
-							"fileName": "CshControl.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ApIntegrationCtl"
-						},
-						"destination": {
-							"fileName": "ApIntegrationCtl.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "AdmVersion"
-						},
-						"destination": {
-							"fileName": "AdmVersion.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ApControl"
-						},
-						"destination": {
-							"fileName": "ApControl.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ArCstStkPrc"
-						},
-						"destination": {
-							"fileName": "ArCstStkPrc.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ArControl"
-						},
-						"destination": {
-							"fileName": "ArControl.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ArIntegrationCtl"
-						},
-						"destination": {
-							"fileName": "ArIntegrationCtl.parquet"
-						}
-					}
-				]
-			}
-		},
-		"annotations": [],
-		"lastPublishTime": "2022-05-01T18:13:39Z"
-	},
-	"type": "Microsoft.Synapse/workspaces/pipelines"
+  "name": "SysproCompanyO_Pipeline",
+  "properties": {
+    "activities": [
+      {
+        "dependsOn": [],
+        "name": "ForEach_Table",
+        "type": "ForEach",
+        "typeProperties": {
+          "activities": [
+            {
+              "dependsOn": [],
+              "inputs": [
+                {
+                  "parameters": {
+                    "cw_table": "@item().source.table"
+                  },
+                  "referenceName": "IN_SysproCompanyO",
+                  "type": "DatasetReference"
+                }
+              ],
+              "name": "Copy_Tables",
+              "outputs": [
+                {
+                  "parameters": {
+                    "cw_fileName": "@item().destination.fileName"
+                  },
+                  "referenceName": "OUT_SysproCompanyO",
+                  "type": "DatasetReference"
+                }
+              ],
+              "policy": {
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false,
+                "timeout": "7.00:00:00"
+              },
+              "type": "Copy",
+              "typeProperties": {
+                "enableStaging": false,
+                "sink": {
+                  "formatSettings": {
+                    "type": "ParquetWriteSettings"
+                  },
+                  "storeSettings": {
+                    "type": "AzureBlobFSWriteSettings"
+                  },
+                  "type": "ParquetSink"
+                },
+                "source": {
+                  "partitionOption": "None",
+                  "type": "SqlServerSource"
+                },
+                "validateDataConsistency": false
+              },
+              "userProperties": [
+                {
+                  "name": "Source",
+                  "value": "dbo.@{item().source.table}"
+                },
+                {
+                  "name": "Destination",
+                  "value": "tlclakefs/SysproCompG/@{item().destination.fileName}"
+                }
+              ]
+            }
+          ],
+          "items": {
+            "type": "Expression",
+            "value": "@pipeline().parameters.cw_items"
+          }
+        },
+        "userProperties": []
+      }
+    ],
+    "annotations": [],
+    "parameters": {
+      "cw_items": {
+        "defaultValue": [
+          {
+            "destination": {
+              "fileName": "GenJournalDetail.parquet"
+            },
+            "source": {
+              "table": "GenJournalDetail"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "GenTransaction.parquet"
+            },
+            "source": {
+              "table": "GenTransaction"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "InvMovements.parquet"
+            },
+            "source": {
+              "table": "InvMovements"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "InvJournalDet.parquet"
+            },
+            "source": {
+              "table": "InvJournalDet"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "GenJournalDetail_20190205.parquet"
+            },
+            "source": {
+              "table": "GenJournalDetail_20190205"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "WipJobPost.parquet"
+            },
+            "source": {
+              "table": "WipJobPost"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "GenTransaction_20190205.parquet"
+            },
+            "source": {
+              "table": "GenTransaction_20190205"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "WipJobAllMat.parquet"
+            },
+            "source": {
+              "table": "WipJobAllMat"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "InvMastAmendJnl.parquet"
+            },
+            "source": {
+              "table": "InvMastAmendJnl"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SorDetail.parquet"
+            },
+            "source": {
+              "table": "SorDetail"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SorDetailRep.parquet"
+            },
+            "source": {
+              "table": "SorDetailRep"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "AdmSignatureLogDet.parquet"
+            },
+            "source": {
+              "table": "AdmSignatureLogDet"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "BomAmendmentJnl.parquet"
+            },
+            "source": {
+              "table": "BomAmendmentJnl"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SorAdditions.parquet"
+            },
+            "source": {
+              "table": "SorAdditions"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ArTrnDetail.parquet"
+            },
+            "source": {
+              "table": "ArTrnDetail"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "GenJournalCtl.parquet"
+            },
+            "source": {
+              "table": "GenJournalCtl"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ArSalesMove.parquet"
+            },
+            "source": {
+              "table": "ArSalesMove"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SorDeliveryPerf.parquet"
+            },
+            "source": {
+              "table": "SorDeliveryPerf"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "GenJournalCtl_20190205.parquet"
+            },
+            "source": {
+              "table": "GenJournalCtl_20190205"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ApGlDisburse.parquet"
+            },
+            "source": {
+              "table": "ApGlDisburse"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "InvJournalCtl.parquet"
+            },
+            "source": {
+              "table": "InvJournalCtl"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "WipPartBook.parquet"
+            },
+            "source": {
+              "table": "WipPartBook"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ArInvoice.parquet"
+            },
+            "source": {
+              "table": "ArInvoice"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ArTrnSummary.parquet"
+            },
+            "source": {
+              "table": "ArTrnSummary"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "WipMaster.parquet"
+            },
+            "source": {
+              "table": "WipMaster"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SalHistoryMaster.parquet"
+            },
+            "source": {
+              "table": "SalHistoryMaster"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ArInvoiceReference.parquet"
+            },
+            "source": {
+              "table": "ArInvoiceReference"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SorMaster.parquet"
+            },
+            "source": {
+              "table": "SorMaster"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SorMasterRep.parquet"
+            },
+            "source": {
+              "table": "SorMasterRep"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SorUsaTaxRep.parquet"
+            },
+            "source": {
+              "table": "SorUsaTaxRep"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SorReprintInv.parquet"
+            },
+            "source": {
+              "table": "SorReprintInv"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SalSalesTax.parquet"
+            },
+            "source": {
+              "table": "SalSalesTax"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SalSalesTaxDet.parquet"
+            },
+            "source": {
+              "table": "SalSalesTaxDet"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SalUsaTax.parquet"
+            },
+            "source": {
+              "table": "SalUsaTax"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SalCommission.parquet"
+            },
+            "source": {
+              "table": "SalCommission"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "AdmTaxReturn.parquet"
+            },
+            "source": {
+              "table": "AdmTaxReturn"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ArTrnTax.parquet"
+            },
+            "source": {
+              "table": "ArTrnTax"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ArTrnTaxCode.parquet"
+            },
+            "source": {
+              "table": "ArTrnTaxCode"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ApInvoicePay.parquet"
+            },
+            "source": {
+              "table": "ApInvoicePay"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ApJnlDistrib.parquet"
+            },
+            "source": {
+              "table": "ApJnlDistrib"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ApPayRunDet.parquet"
+            },
+            "source": {
+              "table": "ApPayRunDet"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ApJnlSummary.parquet"
+            },
+            "source": {
+              "table": "ApJnlSummary"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CshApPayments.parquet"
+            },
+            "source": {
+              "table": "CshApPayments"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ArInvoicePay.parquet"
+            },
+            "source": {
+              "table": "ArInvoicePay"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ApInvoice.parquet"
+            },
+            "source": {
+              "table": "ApInvoice"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "InvSerialTrn.parquet"
+            },
+            "source": {
+              "table": "InvSerialTrn"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CshGlEntries.parquet"
+            },
+            "source": {
+              "table": "CshGlEntries"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CshJnlGl.parquet"
+            },
+            "source": {
+              "table": "CshJnlGl"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "InvPrice.parquet"
+            },
+            "source": {
+              "table": "InvPrice"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ArCshJnlPay.parquet"
+            },
+            "source": {
+              "table": "ArCshJnlPay"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "GenJournalRef.parquet"
+            },
+            "source": {
+              "table": "GenJournalRef"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PorMasterDetail.parquet"
+            },
+            "source": {
+              "table": "PorMasterDetail"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CshArPayments.parquet"
+            },
+            "source": {
+              "table": "CshArPayments"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CshJnl.parquet"
+            },
+            "source": {
+              "table": "CshJnl"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "BomStructure.parquet"
+            },
+            "source": {
+              "table": "BomStructure"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CshTransactions.parquet"
+            },
+            "source": {
+              "table": "CshTransactions"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "DiagDepObjects.parquet"
+            },
+            "source": {
+              "table": "DiagDepObjects"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "AdmSignatureLog.parquet"
+            },
+            "source": {
+              "table": "AdmSignatureLog"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "MrpSoMasterHdr.parquet"
+            },
+            "source": {
+              "table": "MrpSoMasterHdr"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "DiagObjects.parquet"
+            },
+            "source": {
+              "table": "DiagObjects"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "RmaComment.parquet"
+            },
+            "source": {
+              "table": "RmaComment"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ApCheckIss.parquet"
+            },
+            "source": {
+              "table": "ApCheckIss"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SorDetailSerRep.parquet"
+            },
+            "source": {
+              "table": "SorDetailSerRep"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "InvSerialCrossRef.parquet"
+            },
+            "source": {
+              "table": "InvSerialCrossRef"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "InvSerialHead.parquet"
+            },
+            "source": {
+              "table": "InvSerialHead"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ArCshJnlDet.parquet"
+            },
+            "source": {
+              "table": "ArCshJnlDet"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PorHistReceipt.parquet"
+            },
+            "source": {
+              "table": "PorHistReceipt"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "GrnDetails.parquet"
+            },
+            "source": {
+              "table": "GrnDetails"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ArPayHistory.parquet"
+            },
+            "source": {
+              "table": "ArPayHistory"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "GrnMatching.parquet"
+            },
+            "source": {
+              "table": "GrnMatching"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "InvWarehouse.parquet"
+            },
+            "source": {
+              "table": "InvWarehouse"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "InvMaster.parquet"
+            },
+            "source": {
+              "table": "InvMaster"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CshJnlCtl.parquet"
+            },
+            "source": {
+              "table": "CshJnlCtl"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "InvWhatIfCost.parquet"
+            },
+            "source": {
+              "table": "InvWhatIfCost"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "MrpWarehouse.parquet"
+            },
+            "source": {
+              "table": "MrpWarehouse"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CusSorDetailMerchPlus.parquet"
+            },
+            "source": {
+              "table": "CusSorDetailMerch+"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "BomParentInfo.parquet"
+            },
+            "source": {
+              "table": "BomParentInfo"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ApJnlControl.parquet"
+            },
+            "source": {
+              "table": "ApJnlControl"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PorMasterHdr.parquet"
+            },
+            "source": {
+              "table": "PorMasterHdr"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "AdmEventLog.parquet"
+            },
+            "source": {
+              "table": "AdmEventLog"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ArCshJnlCtl.parquet"
+            },
+            "source": {
+              "table": "ArCshJnlCtl"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "MrpJobAllMat.parquet"
+            },
+            "source": {
+              "table": "MrpJobAllMat"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "GenHistory.parquet"
+            },
+            "source": {
+              "table": "GenHistory"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CusSorMasterPlus.parquet"
+            },
+            "source": {
+              "table": "CusSorMaster+"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SorChanges.parquet"
+            },
+            "source": {
+              "table": "SorChanges"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ArRegisterRef.parquet"
+            },
+            "source": {
+              "table": "ArRegisterRef"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ArCustomerBal.parquet"
+            },
+            "source": {
+              "table": "ArCustomerBal"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ArCustomer.parquet"
+            },
+            "source": {
+              "table": "ArCustomer"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "GrnPriceVariance.parquet"
+            },
+            "source": {
+              "table": "GrnPriceVariance"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ArNarration.parquet"
+            },
+            "source": {
+              "table": "ArNarration"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "EDIArchive.parquet"
+            },
+            "source": {
+              "table": "EDIArchive"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PorMasterHdrPlus.parquet"
+            },
+            "source": {
+              "table": "PorMasterHdr+"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "GenHistory_20190205.parquet"
+            },
+            "source": {
+              "table": "GenHistory_20190205"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ApPayRunHdr.parquet"
+            },
+            "source": {
+              "table": "ApPayRunHdr"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "InvWhAmendJnl.parquet"
+            },
+            "source": {
+              "table": "InvWhAmendJnl"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PorSupStkInfo.parquet"
+            },
+            "source": {
+              "table": "PorSupStkInfo"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ArMasterSub.parquet"
+            },
+            "source": {
+              "table": "ArMasterSub"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "MrpPoMasterHdr.parquet"
+            },
+            "source": {
+              "table": "MrpPoMasterHdr"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SorCancelled.parquet"
+            },
+            "source": {
+              "table": "SorCancelled"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ApSupplier.parquet"
+            },
+            "source": {
+              "table": "ApSupplier"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ApSupplierAddr.parquet"
+            },
+            "source": {
+              "table": "ApSupplierAddr"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ApSupplierAddrFIX.parquet"
+            },
+            "source": {
+              "table": "ApSupplierAddrFIX"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "InvNarration.parquet"
+            },
+            "source": {
+              "table": "InvNarration"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "RmaDetail.parquet"
+            },
+            "source": {
+              "table": "RmaDetail"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "RmaMaster.parquet"
+            },
+            "source": {
+              "table": "RmaMaster"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "WipPartBill.parquet"
+            },
+            "source": {
+              "table": "WipPartBill"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ApSupplierNar.parquet"
+            },
+            "source": {
+              "table": "ApSupplierNar"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "InvPriceHistory.parquet"
+            },
+            "source": {
+              "table": "InvPriceHistory"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ArCustomerPlus.parquet"
+            },
+            "source": {
+              "table": "ArCustomer+"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "EftApSupplier.parquet"
+            },
+            "source": {
+              "table": "EftApSupplier"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "EDIXRefLocation.parquet"
+            },
+            "source": {
+              "table": "EDIXRefLocation"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "DiagTables.parquet"
+            },
+            "source": {
+              "table": "DiagTables"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ArNarrationHdr.parquet"
+            },
+            "source": {
+              "table": "ArNarrationHdr"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "GrnAdjustment.parquet"
+            },
+            "source": {
+              "table": "GrnAdjustment"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "GrnJournal.parquet"
+            },
+            "source": {
+              "table": "GrnJournal"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "MrpSoDetail.parquet"
+            },
+            "source": {
+              "table": "MrpSoDetail"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PorMasterDetailPlus.parquet"
+            },
+            "source": {
+              "table": "PorMasterDetail+"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "WipDistrMat.parquet"
+            },
+            "source": {
+              "table": "WipDistrMat"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "InvNarrationHdr.parquet"
+            },
+            "source": {
+              "table": "InvNarrationHdr"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "DiagObsObjects.parquet"
+            },
+            "source": {
+              "table": "DiagObsObjects"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "DiagExpObjects.parquet"
+            },
+            "source": {
+              "table": "DiagExpObjects"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "GenMaster.parquet"
+            },
+            "source": {
+              "table": "GenMaster"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CshTransactionsBal.parquet"
+            },
+            "source": {
+              "table": "CshTransactionsBal"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SalProductClass.parquet"
+            },
+            "source": {
+              "table": "SalProductClass"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "GenBudgets.parquet"
+            },
+            "source": {
+              "table": "GenBudgets"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SalSalespersonSum.parquet"
+            },
+            "source": {
+              "table": "SalSalespersonSum"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SalGlIntSale.parquet"
+            },
+            "source": {
+              "table": "SalGlIntSale"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "GrnInvoiceVar.parquet"
+            },
+            "source": {
+              "table": "GrnInvoiceVar"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "WipJobPostSer.parquet"
+            },
+            "source": {
+              "table": "WipJobPostSer"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "MrpPoMasterDet.parquet"
+            },
+            "source": {
+              "table": "MrpPoMasterDet"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "AdmSqlHealthBal.parquet"
+            },
+            "source": {
+              "table": "AdmSqlHealthBal"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ApSupplierNarHdr.parquet"
+            },
+            "source": {
+              "table": "ApSupplierNarHdr"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SorContractPrice.parquet"
+            },
+            "source": {
+              "table": "SorContractPrice"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "InvMasterPlus.parquet"
+            },
+            "source": {
+              "table": "InvMaster+"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ApDummyCheck.parquet"
+            },
+            "source": {
+              "table": "ApDummyCheck"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "MrpJobMaster.parquet"
+            },
+            "source": {
+              "table": "MrpJobMaster"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "IntEdiInvDet.parquet"
+            },
+            "source": {
+              "table": "IntEdiInvDet"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "InvLedgerInt.parquet"
+            },
+            "source": {
+              "table": "InvLedgerInt"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "InvAltSupplier.parquet"
+            },
+            "source": {
+              "table": "InvAltSupplier"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SalSalesperson.parquet"
+            },
+            "source": {
+              "table": "SalSalesperson"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SalArea.parquet"
+            },
+            "source": {
+              "table": "SalArea"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SalProductClassSum.parquet"
+            },
+            "source": {
+              "table": "SalProductClassSum"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "IntEdiInvDetEx.parquet"
+            },
+            "source": {
+              "table": "IntEdiInvDetEx"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "GenStdJnlDet.parquet"
+            },
+            "source": {
+              "table": "GenStdJnlDet"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "AdmFormControl.parquet"
+            },
+            "source": {
+              "table": "AdmFormControl"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SalProductClassDes.parquet"
+            },
+            "source": {
+              "table": "SalProductClassDes"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "TblArTerms.parquet"
+            },
+            "source": {
+              "table": "TblArTerms"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "EDIMasterInfo.parquet"
+            },
+            "source": {
+              "table": "EDIMasterInfo"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "GenBudAltDesc.parquet"
+            },
+            "source": {
+              "table": "GenBudAltDesc"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SalBranch.parquet"
+            },
+            "source": {
+              "table": "SalBranch"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SalBranchPlus.parquet"
+            },
+            "source": {
+              "table": "SalBranch+"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "TblSoDiscount.parquet"
+            },
+            "source": {
+              "table": "TblSoDiscount"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "IntEdiInvExtra.parquet"
+            },
+            "source": {
+              "table": "IntEdiInvExtra"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "IntEdiInvHdr.parquet"
+            },
+            "source": {
+              "table": "IntEdiInvHdr"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "TblApTerms.parquet"
+            },
+            "source": {
+              "table": "TblApTerms"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "TblSoShipInst.parquet"
+            },
+            "source": {
+              "table": "TblSoShipInst"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SalGlIntPayment.parquet"
+            },
+            "source": {
+              "table": "SalGlIntPayment"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "GenGroups.parquet"
+            },
+            "source": {
+              "table": "GenGroups"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ApBank.parquet"
+            },
+            "source": {
+              "table": "ApBank"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "TblSoStdCom.parquet"
+            },
+            "source": {
+              "table": "TblSoStdCom"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "InvWhControl.parquet"
+            },
+            "source": {
+              "table": "InvWhControl"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "AdmUsaTax.parquet"
+            },
+            "source": {
+              "table": "AdmUsaTax"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "BomRoute.parquet"
+            },
+            "source": {
+              "table": "BomRoute"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "EDIMasterDocument.parquet"
+            },
+            "source": {
+              "table": "EDIMasterDocument"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "RmaActionHistory.parquet"
+            },
+            "source": {
+              "table": "RmaActionHistory"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "TblSoReason.parquet"
+            },
+            "source": {
+              "table": "TblSoReason"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "EDIXRefReference.parquet"
+            },
+            "source": {
+              "table": "EDIXRefReference"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "InvBuyer.parquet"
+            },
+            "source": {
+              "table": "InvBuyer"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "AdmVersionHistory.parquet"
+            },
+            "source": {
+              "table": "AdmVersionHistory"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "AdmMultimediaCtl.parquet"
+            },
+            "source": {
+              "table": "AdmMultimediaCtl"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "TblPoComment.parquet"
+            },
+            "source": {
+              "table": "TblPoComment"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "TblGlUserJnl.parquet"
+            },
+            "source": {
+              "table": "TblGlUserJnl"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "TblSoBuyingGroup.parquet"
+            },
+            "source": {
+              "table": "TblSoBuyingGroup"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "AdmTax.parquet"
+            },
+            "source": {
+              "table": "AdmTax"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ApBankPlus.parquet"
+            },
+            "source": {
+              "table": "ApBank+"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "AdmFormValidation.parquet"
+            },
+            "source": {
+              "table": "AdmFormValidation"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "InvInspect.parquet"
+            },
+            "source": {
+              "table": "InvInspect"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "InvInspectDet.parquet"
+            },
+            "source": {
+              "table": "InvInspectDet"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "InvInspectDoc.parquet"
+            },
+            "source": {
+              "table": "InvInspectDoc"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "GenStdJnlCtl.parquet"
+            },
+            "source": {
+              "table": "GenStdJnlCtl"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "EDIXRefPID.parquet"
+            },
+            "source": {
+              "table": "EDIXRefPID"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "EDIXRefProduct.parquet"
+            },
+            "source": {
+              "table": "EDIXRefProduct"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "EDIJournal.parquet"
+            },
+            "source": {
+              "table": "EDIJournal"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "EDIXRefStockSub.parquet"
+            },
+            "source": {
+              "table": "EDIXRefStockSub"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "AdmHealthLog.parquet"
+            },
+            "source": {
+              "table": "AdmHealthLog"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "AdmFormList.parquet"
+            },
+            "source": {
+              "table": "AdmFormList"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ArCustStkXref.parquet"
+            },
+            "source": {
+              "table": "ArCustStkXref"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ArcControl.parquet"
+            },
+            "source": {
+              "table": "ArcControl"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "AdmMultimedia.parquet"
+            },
+            "source": {
+              "table": "AdmMultimedia"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "AdmEvent.parquet"
+            },
+            "source": {
+              "table": "AdmEvent"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ApBranch.parquet"
+            },
+            "source": {
+              "table": "ApBranch"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "EDIMasterPartner.parquet"
+            },
+            "source": {
+              "table": "EDIMasterPartner"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "EDIXRefDateTime.parquet"
+            },
+            "source": {
+              "table": "EDIXRefDateTime"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "GenControl.parquet"
+            },
+            "source": {
+              "table": "GenControl"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "InvCompanyCtl.parquet"
+            },
+            "source": {
+              "table": "InvCompanyCtl"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "TblSupplierClass.parquet"
+            },
+            "source": {
+              "table": "TblSupplierClass"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PorSupComment.parquet"
+            },
+            "source": {
+              "table": "PorSupComment"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PorDeliveryAddr.parquet"
+            },
+            "source": {
+              "table": "PorDeliveryAddr"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SalControl.parquet"
+            },
+            "source": {
+              "table": "SalControl"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "RmaProblemCodes.parquet"
+            },
+            "source": {
+              "table": "RmaProblemCodes"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SalGlIntControl.parquet"
+            },
+            "source": {
+              "table": "SalGlIntControl"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "RmaCrossShipment.parquet"
+            },
+            "source": {
+              "table": "RmaCrossShipment"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "RmaDetailSer.parquet"
+            },
+            "source": {
+              "table": "RmaDetailSer"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "PorControl.parquet"
+            },
+            "source": {
+              "table": "PorControl"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "MrpReqCtl.parquet"
+            },
+            "source": {
+              "table": "MrpReqCtl"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "TblCurrency.parquet"
+            },
+            "source": {
+              "table": "TblCurrency"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "TblCustomerClass.parquet"
+            },
+            "source": {
+              "table": "TblCustomerClass"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "SorControl.parquet"
+            },
+            "source": {
+              "table": "SorControl"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "TblSoCommission.parquet"
+            },
+            "source": {
+              "table": "TblSoCommission"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "TblPoPriceUom.parquet"
+            },
+            "source": {
+              "table": "TblPoPriceUom"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "WipControl.parquet"
+            },
+            "source": {
+              "table": "WipControl"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "InvControl.parquet"
+            },
+            "source": {
+              "table": "InvControl"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "InvAltStock.parquet"
+            },
+            "source": {
+              "table": "InvAltStock"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "InvLedgerIntCtl.parquet"
+            },
+            "source": {
+              "table": "InvLedgerIntCtl"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "LotControl.parquet"
+            },
+            "source": {
+              "table": "LotControl"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "EDIXRefAddress.parquet"
+            },
+            "source": {
+              "table": "EDIXRefAddress"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "EDIXRefCarrierSCAC.parquet"
+            },
+            "source": {
+              "table": "EDIXRefCarrierSCAC"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "EDIXRefShipVia.parquet"
+            },
+            "source": {
+              "table": "EDIXRefShipVia"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "EccControl.parquet"
+            },
+            "source": {
+              "table": "EccControl"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "DiagCompanySetup.parquet"
+            },
+            "source": {
+              "table": "DiagCompanySetup"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "DiagHistory.parquet"
+            },
+            "source": {
+              "table": "DiagHistory"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "EDIControl.parquet"
+            },
+            "source": {
+              "table": "EDIControl"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "BomControl.parquet"
+            },
+            "source": {
+              "table": "BomControl"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "CshControl.parquet"
+            },
+            "source": {
+              "table": "CshControl"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ApIntegrationCtl.parquet"
+            },
+            "source": {
+              "table": "ApIntegrationCtl"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "AdmVersion.parquet"
+            },
+            "source": {
+              "table": "AdmVersion"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ApControl.parquet"
+            },
+            "source": {
+              "table": "ApControl"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ArCstStkPrc.parquet"
+            },
+            "source": {
+              "table": "ArCstStkPrc"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ArControl.parquet"
+            },
+            "source": {
+              "table": "ArControl"
+            }
+          },
+          {
+            "destination": {
+              "fileName": "ArIntegrationCtl.parquet"
+            },
+            "source": {
+              "table": "ArIntegrationCtl"
+            }
+          }
+        ],
+        "type": "Array"
+      }
+    }
+  }
 }

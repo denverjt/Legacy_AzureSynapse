@@ -1,17 +1,17 @@
 {
-	"name": "v_DCP_Consolidation",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW     v_DCP_Consolidation\n-- drop view v_DCP_Consolidation\n-- select * from v_DCP_Consolidation where [Item Number] = 'AFO52295SS'\nas\nSELECT          OC.CUNO [Customer Number]\n,               OC.CUNM [Customer Name]\n,               OH.ORNO [Order Number]\n,               OH.CUOR [PO Number]\n,               OH.ORDT [Order Date]\n,               OL.DWDT [Requested Date]\n,               OH.UCA7 [Carrier]\n,               OH.ADID [Ship to ID]\n,               AD.TOWN [Ship to City]\n,               AD.PONO [Ship to Zip]\n,               AD.ECAR [Ship to State]\n,               OL.ITNO [Item Number]\n,               OL.ORQT [Order Qty]\n,               NULLIF(IC.D1QT,1) [Case Pack]\n,               NULLIF(IC2.D1QT,1) [Pallet Pack]\n,               ISNULL(OL.ORQT/NULLIF(NULLIF(IC.D1QT,1),0),OL.ORQT) [Carton Qty]\n,               OL.ORQT/NULLIF(NULLIF(IC2.D1QT,1),0) [Pallet Qty]\n,               MM.GRWE [Gross Weight]\n,               ISNULL(NULLIF(MP.PACL,1), NULLIF(MP3.PACL,1))[Case Length]\n,               ISNULL(NULLIF(MP.PACW,1), NULLIF(MP3.PACW,1)) [Case Width]\n,               ISNULL(NULLIF(MP.PACH,1), NULLIF(MP3.PACH,1)) [Case Height]\n,               ISNULL(NULLIF((MP.PACL*MP.PACW*MP.PACH),1),NULLIF((MP3.PACL*MP3.PACW*MP3.PACH),1))/(1728) AS Volume\n,               OL.ORQT*MM.GRWE [Total Weight]\n,               OL.WHLO as [Warehouse]\nFROM            M3.OOHEAD OH\nJOIN            M3.OOLINE OL ON OH.ORNO = OL.ORNO\nJOIN            M3.MITMAS MM ON OL.ITNO = MM.ITNO\nJOIN            M3.OCUSMA OC ON OH.CUNO = OC.CUNO\nLEFT JOIN       M3.MPACIT IC ON MM.ITNO = IC.ITNO AND IC.PACT LIKE 'C%'\nLEFT JOIN       M3.MITPAC MP ON IC.PACT = MP.PACT\nLEFT JOIN       M3.MPACIT IC2 ON MM.ITNO = IC2.ITNO AND IC2.PACT LIKE 'P%' and IC2.PACT NOT IN ('PALLET', 'P00000')\nLEFT JOIN       M3.MITPAC MP2 ON IC2.PACT = MP2.PACT\nLEFT JOIN       M3.MPACIT IC3 ON MM.ITNO = IC3.ITNO AND IC3.PACT LIKE 'E%'\nLEFT JOIN       M3.MITPAC MP3 ON IC3.PACT = MP3.PACT\nLEFT JOIN       M3.OOADRE AD ON OH.ORNO = AD.ORNO AND AD.ADRT = '1'\nWHERE           OL.ORST <= '33'",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": -1
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_DCP_Consolidation",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW     v_DCP_Consolidation\n-- drop view v_DCP_Consolidation\n-- select * from v_DCP_Consolidation where [Item Number] = 'AFO52295SS'\nas\nSELECT          OC.CUNO [Customer Number]\n,               OC.CUNM [Customer Name]\n,               OH.ORNO [Order Number]\n,               OH.CUOR [PO Number]\n,               OH.ORDT [Order Date]\n,               OL.DWDT [Requested Date]\n,               OH.UCA7 [Carrier]\n,               OH.ADID [Ship to ID]\n,               AD.TOWN [Ship to City]\n,               AD.PONO [Ship to Zip]\n,               AD.ECAR [Ship to State]\n,               OL.ITNO [Item Number]\n,               OL.ORQT [Order Qty]\n,               NULLIF(IC.D1QT,1) [Case Pack]\n,               NULLIF(IC2.D1QT,1) [Pallet Pack]\n,               ISNULL(OL.ORQT/NULLIF(NULLIF(IC.D1QT,1),0),OL.ORQT) [Carton Qty]\n,               OL.ORQT/NULLIF(NULLIF(IC2.D1QT,1),0) [Pallet Qty]\n,               MM.GRWE [Gross Weight]\n,               ISNULL(NULLIF(MP.PACL,1), NULLIF(MP3.PACL,1))[Case Length]\n,               ISNULL(NULLIF(MP.PACW,1), NULLIF(MP3.PACW,1)) [Case Width]\n,               ISNULL(NULLIF(MP.PACH,1), NULLIF(MP3.PACH,1)) [Case Height]\n,               ISNULL(NULLIF((MP.PACL*MP.PACW*MP.PACH),1),NULLIF((MP3.PACL*MP3.PACW*MP3.PACH),1))/(1728) AS Volume\n,               OL.ORQT*MM.GRWE [Total Weight]\n,               OL.WHLO as [Warehouse]\nFROM            M3.OOHEAD OH\nJOIN            M3.OOLINE OL ON OH.ORNO = OL.ORNO\nJOIN            M3.MITMAS MM ON OL.ITNO = MM.ITNO\nJOIN            M3.OCUSMA OC ON OH.CUNO = OC.CUNO\nLEFT JOIN       M3.MPACIT IC ON MM.ITNO = IC.ITNO AND IC.PACT LIKE 'C%'\nLEFT JOIN       M3.MITPAC MP ON IC.PACT = MP.PACT\nLEFT JOIN       M3.MPACIT IC2 ON MM.ITNO = IC2.ITNO AND IC2.PACT LIKE 'P%' and IC2.PACT NOT IN ('PALLET', 'P00000')\nLEFT JOIN       M3.MITPAC MP2 ON IC2.PACT = MP2.PACT\nLEFT JOIN       M3.MPACIT IC3 ON MM.ITNO = IC3.ITNO AND IC3.PACT LIKE 'E%'\nLEFT JOIN       M3.MITPAC MP3 ON IC3.PACT = MP3.PACT\nLEFT JOIN       M3.OOADRE AD ON OH.ORNO = AD.ORNO AND AD.ADRT = '1'\nWHERE           OL.ORST <= '33'",
+      "resultLimit": -1
+    },
+    "type": "SqlQuery"
+  }
 }

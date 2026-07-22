@@ -1,16 +1,15 @@
 {
-	"name": "AvantiWH",
-	"type": "Microsoft.Synapse/workspaces/linkedservices",
-	"properties": {
-		"annotations": [],
-		"type": "SqlServer",
-		"typeProperties": {
-			"connectionString": "integrated security=False;data source=AVPBI01.avantiproducts.com;initial catalog=Avanti_Warehouse;user id=AzureSynapse",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI0MmQwNDMzMi1mOWQ4LTQzNDEtYjUwYy00NzY1MjA2NGEyYjAiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
-		},
-		"connectVia": {
-			"referenceName": "tlcdwintegration",
-			"type": "IntegrationRuntimeReference"
-		}
-	}
+  "name": "AvantiWH",
+  "properties": {
+    "annotations": [],
+    "connectVia": {
+      "referenceName": "tlcdwintegration",
+      "type": "IntegrationRuntimeReference"
+    },
+    "type": "SqlServer",
+    "typeProperties": {
+      "connectionString": "integrated security=False;data source=AVPBI01.avantiproducts.com;initial catalog=Avanti_Warehouse;user id=AzureSynapse",
+      "encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI0MmQwNDMzMi1mOWQ4LTQzNDEtYjUwYy00NzY1MjA2NGEyYjAiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+    }
+  }
 }

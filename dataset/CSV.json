@@ -1,1198 +1,1197 @@
 {
-	"name": "CSV",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "tlcdw-WorkspaceDefaultStorage",
-			"type": "LinkedServiceReference"
-		},
-		"annotations": [],
-		"type": "DelimitedText",
-		"typeProperties": {
-			"location": {
-				"type": "AzureBlobFSLocation",
-				"fileName": "20230919_OOLINE.csv",
-				"folderPath": "M3Arch",
-				"fileSystem": "tlclakefs"
-			},
-			"columnDelimiter": "|",
-			"escapeChar": "\\",
-			"firstRowAsHeader": true,
-			"quoteChar": "\""
-		},
-		"schema": [
-			{
-				"name": "CONO",
-				"type": "String"
-			},
-			{
-				"name": "DIVI",
-				"type": "String"
-			},
-			{
-				"name": "ORNO",
-				"type": "String"
-			},
-			{
-				"name": "PONR",
-				"type": "String"
-			},
-			{
-				"name": "POSX",
-				"type": "String"
-			},
-			{
-				"name": "LTYP",
-				"type": "String"
-			},
-			{
-				"name": "ORST",
-				"type": "String"
-			},
-			{
-				"name": "FACI",
-				"type": "String"
-			},
-			{
-				"name": "WHLO",
-				"type": "String"
-			},
-			{
-				"name": "ITNO",
-				"type": "String"
-			},
-			{
-				"name": "REPI",
-				"type": "String"
-			},
-			{
-				"name": "ITDS",
-				"type": "String"
-			},
-			{
-				"name": "TEDS",
-				"type": "String"
-			},
-			{
-				"name": "ORQT",
-				"type": "String"
-			},
-			{
-				"name": "ORQA",
-				"type": "String"
-			},
-			{
-				"name": "RNQT",
-				"type": "String"
-			},
-			{
-				"name": "RNQA",
-				"type": "String"
-			},
-			{
-				"name": "ALQT",
-				"type": "String"
-			},
-			{
-				"name": "ALQA",
-				"type": "String"
-			},
-			{
-				"name": "PLQT",
-				"type": "String"
-			},
-			{
-				"name": "PLQA",
-				"type": "String"
-			},
-			{
-				"name": "DLQT",
-				"type": "String"
-			},
-			{
-				"name": "DLQA",
-				"type": "String"
-			},
-			{
-				"name": "IVQT",
-				"type": "String"
-			},
-			{
-				"name": "IVQA",
-				"type": "String"
-			},
-			{
-				"name": "DCCD",
-				"type": "String"
-			},
-			{
-				"name": "ALUN",
-				"type": "String"
-			},
-			{
-				"name": "DCCA",
-				"type": "String"
-			},
-			{
-				"name": "COFA",
-				"type": "String"
-			},
-			{
-				"name": "DMCF",
-				"type": "String"
-			},
-			{
-				"name": "SPUN",
-				"type": "String"
-			},
-			{
-				"name": "PCOF",
-				"type": "String"
-			},
-			{
-				"name": "DCCS",
-				"type": "String"
-			},
-			{
-				"name": "COFS",
-				"type": "String"
-			},
-			{
-				"name": "DMCS",
-				"type": "String"
-			},
-			{
-				"name": "POPN",
-				"type": "String"
-			},
-			{
-				"name": "ALWT",
-				"type": "String"
-			},
-			{
-				"name": "ALWQ",
-				"type": "String"
-			},
-			{
-				"name": "SAPR",
-				"type": "String"
-			},
-			{
-				"name": "NEPR",
-				"type": "String"
-			},
-			{
-				"name": "SACD",
-				"type": "String"
-			},
-			{
-				"name": "PRMO",
-				"type": "String"
-			},
-			{
-				"name": "DIC1",
-				"type": "String"
-			},
-			{
-				"name": "DIC2",
-				"type": "String"
-			},
-			{
-				"name": "DIC3",
-				"type": "String"
-			},
-			{
-				"name": "DIC4",
-				"type": "String"
-			},
-			{
-				"name": "DIC5",
-				"type": "String"
-			},
-			{
-				"name": "DIC6",
-				"type": "String"
-			},
-			{
-				"name": "DIP1",
-				"type": "String"
-			},
-			{
-				"name": "DIP2",
-				"type": "String"
-			},
-			{
-				"name": "DIP3",
-				"type": "String"
-			},
-			{
-				"name": "DIP4",
-				"type": "String"
-			},
-			{
-				"name": "DIP5",
-				"type": "String"
-			},
-			{
-				"name": "DIP6",
-				"type": "String"
-			},
-			{
-				"name": "DIA1",
-				"type": "String"
-			},
-			{
-				"name": "DIA2",
-				"type": "String"
-			},
-			{
-				"name": "DIA3",
-				"type": "String"
-			},
-			{
-				"name": "DIA4",
-				"type": "String"
-			},
-			{
-				"name": "DIA5",
-				"type": "String"
-			},
-			{
-				"name": "DIA6",
-				"type": "String"
-			},
-			{
-				"name": "CMP1",
-				"type": "String"
-			},
-			{
-				"name": "CMP2",
-				"type": "String"
-			},
-			{
-				"name": "CMP3",
-				"type": "String"
-			},
-			{
-				"name": "CMP4",
-				"type": "String"
-			},
-			{
-				"name": "CMP5",
-				"type": "String"
-			},
-			{
-				"name": "CMP6",
-				"type": "String"
-			},
-			{
-				"name": "DIBE",
-				"type": "String"
-			},
-			{
-				"name": "DIRE",
-				"type": "String"
-			},
-			{
-				"name": "DCHA",
-				"type": "String"
-			},
-			{
-				"name": "DPST",
-				"type": "String"
-			},
-			{
-				"name": "DDSU",
-				"type": "String"
-			},
-			{
-				"name": "IDSC",
-				"type": "String"
-			},
-			{
-				"name": "ACRF",
-				"type": "String"
-			},
-			{
-				"name": "OTDI",
-				"type": "String"
-			},
-			{
-				"name": "DWDT",
-				"type": "String"
-			},
-			{
-				"name": "DWHM",
-				"type": "String"
-			},
-			{
-				"name": "CODT",
-				"type": "String"
-			},
-			{
-				"name": "COHM",
-				"type": "String"
-			},
-			{
-				"name": "DWDZ",
-				"type": "String"
-			},
-			{
-				"name": "DWHZ",
-				"type": "String"
-			},
-			{
-				"name": "CODZ",
-				"type": "String"
-			},
-			{
-				"name": "COHZ",
-				"type": "String"
-			},
-			{
-				"name": "TIZO",
-				"type": "String"
-			},
-			{
-				"name": "DLTS",
-				"type": "String"
-			},
-			{
-				"name": "STCD",
-				"type": "String"
-			},
-			{
-				"name": "PRCH",
-				"type": "String"
-			},
-			{
-				"name": "RORC",
-				"type": "String"
-			},
-			{
-				"name": "RORN",
-				"type": "String"
-			},
-			{
-				"name": "RORL",
-				"type": "String"
-			},
-			{
-				"name": "UCOS",
-				"type": "String"
-			},
-			{
-				"name": "COCD",
-				"type": "String"
-			},
-			{
-				"name": "UCCD",
-				"type": "String"
-			},
-			{
-				"name": "CMNO",
-				"type": "String"
-			},
-			{
-				"name": "HDPR",
-				"type": "String"
-			},
-			{
-				"name": "CFIN",
-				"type": "String"
-			},
-			{
-				"name": "ECVS",
-				"type": "String"
-			},
-			{
-				"name": "VTCD",
-				"type": "String"
-			},
-			{
-				"name": "JDCD",
-				"type": "String"
-			},
-			{
-				"name": "DLSP",
-				"type": "String"
-			},
-			{
-				"name": "LNAM",
-				"type": "String"
-			},
-			{
-				"name": "LNA2",
-				"type": "String"
-			},
-			{
-				"name": "DINR",
-				"type": "String"
-			},
-			{
-				"name": "DISX",
-				"type": "String"
-			},
-			{
-				"name": "AGNO",
-				"type": "String"
-			},
-			{
-				"name": "BAGC",
-				"type": "String"
-			},
-			{
-				"name": "BAGD",
-				"type": "String"
-			},
-			{
-				"name": "AGLN",
-				"type": "String"
-			},
-			{
-				"name": "PRRF",
-				"type": "String"
-			},
-			{
-				"name": "NTCD",
-				"type": "String"
-			},
-			{
-				"name": "CNQT",
-				"type": "String"
-			},
-			{
-				"name": "EDFP",
-				"type": "String"
-			},
-			{
-				"name": "SMCD",
-				"type": "String"
-			},
-			{
-				"name": "BNCD",
-				"type": "String"
-			},
-			{
-				"name": "PRAC",
-				"type": "String"
-			},
-			{
-				"name": "VRCD",
-				"type": "String"
-			},
-			{
-				"name": "ECLC",
-				"type": "String"
-			},
-			{
-				"name": "ORCO",
-				"type": "String"
-			},
-			{
-				"name": "PRTX",
-				"type": "String"
-			},
-			{
-				"name": "POTX",
-				"type": "String"
-			},
-			{
-				"name": "DTID",
-				"type": "String"
-			},
-			{
-				"name": "DELS",
-				"type": "String"
-			},
-			{
-				"name": "E0PA",
-				"type": "String"
-			},
-			{
-				"name": "DSGP",
-				"type": "String"
-			},
-			{
-				"name": "MOYE",
-				"type": "String"
-			},
-			{
-				"name": "PUSN",
-				"type": "String"
-			},
-			{
-				"name": "PUTP",
-				"type": "String"
-			},
-			{
-				"name": "QTQL",
-				"type": "String"
-			},
-			{
-				"name": "TEPA",
-				"type": "String"
-			},
-			{
-				"name": "PACT",
-				"type": "String"
-			},
-			{
-				"name": "CUPA",
-				"type": "String"
-			},
-			{
-				"name": "D1QT",
-				"type": "String"
-			},
-			{
-				"name": "CUNO",
-				"type": "String"
-			},
-			{
-				"name": "CUOR",
-				"type": "String"
-			},
-			{
-				"name": "CUPO",
-				"type": "String"
-			},
-			{
-				"name": "CUSX",
-				"type": "String"
-			},
-			{
-				"name": "SMCC",
-				"type": "String"
-			},
-			{
-				"name": "RSCD",
-				"type": "String"
-			},
-			{
-				"name": "MUFT",
-				"type": "String"
-			},
-			{
-				"name": "INPR",
-				"type": "String"
-			},
-			{
-				"name": "CUCT",
-				"type": "String"
-			},
-			{
-				"name": "ABNO",
-				"type": "String"
-			},
-			{
-				"name": "PROJ",
-				"type": "String"
-			},
-			{
-				"name": "ELNO",
-				"type": "String"
-			},
-			{
-				"name": "BPAT",
-				"type": "String"
-			},
-			{
-				"name": "BPST",
-				"type": "String"
-			},
-			{
-				"name": "NOAA",
-				"type": "String"
-			},
-			{
-				"name": "CPRE",
-				"type": "String"
-			},
-			{
-				"name": "HAFE",
-				"type": "String"
-			},
-			{
-				"name": "CAWE",
-				"type": "String"
-			},
-			{
-				"name": "WHSL",
-				"type": "String"
-			},
-			{
-				"name": "BANO",
-				"type": "String"
-			},
-			{
-				"name": "CAMU",
-				"type": "String"
-			},
-			{
-				"name": "ADID",
-				"type": "String"
-			},
-			{
-				"name": "ROUT",
-				"type": "String"
-			},
-			{
-				"name": "RODN",
-				"type": "String"
-			},
-			{
-				"name": "DSDT",
-				"type": "String"
-			},
-			{
-				"name": "DSHM",
-				"type": "String"
-			},
-			{
-				"name": "DSTX",
-				"type": "String"
-			},
-			{
-				"name": "DEFC",
-				"type": "String"
-			},
-			{
-				"name": "PLDT",
-				"type": "String"
-			},
-			{
-				"name": "PLHM",
-				"type": "String"
-			},
-			{
-				"name": "SRCD",
-				"type": "String"
-			},
-			{
-				"name": "SPLC",
-				"type": "String"
-			},
-			{
-				"name": "DLBU",
-				"type": "String"
-			},
-			{
-				"name": "SPOS",
-				"type": "String"
-			},
-			{
-				"name": "FDED",
-				"type": "String"
-			},
-			{
-				"name": "LDED",
-				"type": "String"
-			},
-			{
-				"name": "AETY",
-				"type": "String"
-			},
-			{
-				"name": "ATNR",
-				"type": "String"
-			},
-			{
-				"name": "SCMO",
-				"type": "String"
-			},
-			{
-				"name": "PRPR",
-				"type": "String"
-			},
-			{
-				"name": "CINA",
-				"type": "String"
-			},
-			{
-				"name": "ATV1",
-				"type": "String"
-			},
-			{
-				"name": "ATV2",
-				"type": "String"
-			},
-			{
-				"name": "ATV3",
-				"type": "String"
-			},
-			{
-				"name": "ATV4",
-				"type": "String"
-			},
-			{
-				"name": "ATV5",
-				"type": "String"
-			},
-			{
-				"name": "ATV6",
-				"type": "String"
-			},
-			{
-				"name": "ATV7",
-				"type": "String"
-			},
-			{
-				"name": "ATV8",
-				"type": "String"
-			},
-			{
-				"name": "ATV9",
-				"type": "String"
-			},
-			{
-				"name": "ATV0",
-				"type": "String"
-			},
-			{
-				"name": "CNNR",
-				"type": "String"
-			},
-			{
-				"name": "MNIN",
-				"type": "String"
-			},
-			{
-				"name": "REPN",
-				"type": "String"
-			},
-			{
-				"name": "ATPR",
-				"type": "String"
-			},
-			{
-				"name": "ATMO",
-				"type": "String"
-			},
-			{
-				"name": "ORTY",
-				"type": "String"
-			},
-			{
-				"name": "SUNO",
-				"type": "String"
-			},
-			{
-				"name": "PUPR",
-				"type": "String"
-			},
-			{
-				"name": "PUCD",
-				"type": "String"
-			},
-			{
-				"name": "PPUN",
-				"type": "String"
-			},
-			{
-				"name": "CUCD",
-				"type": "String"
-			},
-			{
-				"name": "ODI1",
-				"type": "String"
-			},
-			{
-				"name": "ODI2",
-				"type": "String"
-			},
-			{
-				"name": "ODI3",
-				"type": "String"
-			},
-			{
-				"name": "OURR",
-				"type": "String"
-			},
-			{
-				"name": "OURT",
-				"type": "String"
-			},
-			{
-				"name": "BUYE",
-				"type": "String"
-			},
-			{
-				"name": "FWHL",
-				"type": "String"
-			},
-			{
-				"name": "PRNO",
-				"type": "String"
-			},
-			{
-				"name": "SCHN",
-				"type": "String"
-			},
-			{
-				"name": "MODL",
-				"type": "String"
-			},
-			{
-				"name": "TEDL",
-				"type": "String"
-			},
-			{
-				"name": "TEL2",
-				"type": "String"
-			},
-			{
-				"name": "RGDT",
-				"type": "String"
-			},
-			{
-				"name": "RGTM",
-				"type": "String"
-			},
-			{
-				"name": "LMDT",
-				"type": "String"
-			},
-			{
-				"name": "CHNO",
-				"type": "String"
-			},
-			{
-				"name": "CHID",
-				"type": "String"
-			},
-			{
-				"name": "RORX",
-				"type": "String"
-			},
-			{
-				"name": "LMTS",
-				"type": "String"
-			},
-			{
-				"name": "RTQA",
-				"type": "String"
-			},
-			{
-				"name": "RTQT",
-				"type": "String"
-			},
-			{
-				"name": "PRHL",
-				"type": "String"
-			},
-			{
-				"name": "SERN",
-				"type": "String"
-			},
-			{
-				"name": "CTNO",
-				"type": "String"
-			},
-			{
-				"name": "APBA",
-				"type": "String"
-			},
-			{
-				"name": "CFGL",
-				"type": "String"
-			},
-			{
-				"name": "WATP",
-				"type": "String"
-			},
-			{
-				"name": "GWTP",
-				"type": "String"
-			},
-			{
-				"name": "PRHW",
-				"type": "String"
-			},
-			{
-				"name": "SERW",
-				"type": "String"
-			},
-			{
-				"name": "PWNR",
-				"type": "String"
-			},
-			{
-				"name": "PWSX",
-				"type": "String"
-			},
-			{
-				"name": "EWST",
-				"type": "String"
-			},
-			{
-				"name": "AGNB",
-				"type": "String"
-			},
-			{
-				"name": "CTNS",
-				"type": "String"
-			},
-			{
-				"name": "WATQ",
-				"type": "String"
-			},
-			{
-				"name": "TECN",
-				"type": "String"
-			},
-			{
-				"name": "INAP",
-				"type": "String"
-			},
-			{
-				"name": "PCNR",
-				"type": "String"
-			},
-			{
-				"name": "PCSU",
-				"type": "String"
-			},
-			{
-				"name": "RELI",
-				"type": "String"
-			},
-			{
-				"name": "PIDE",
-				"type": "String"
-			},
-			{
-				"name": "PCLA",
-				"type": "String"
-			},
-			{
-				"name": "BOP1",
-				"type": "String"
-			},
-			{
-				"name": "SCLB",
-				"type": "String"
-			},
-			{
-				"name": "OFNO",
-				"type": "String"
-			},
-			{
-				"name": "VERS",
-				"type": "String"
-			},
-			{
-				"name": "OFNR",
-				"type": "String"
-			},
-			{
-				"name": "OFSX",
-				"type": "String"
-			},
-			{
-				"name": "DECU",
-				"type": "String"
-			},
-			{
-				"name": "TEPY",
-				"type": "String"
-			},
-			{
-				"name": "ARST",
-				"type": "String"
-			},
-			{
-				"name": "RSC1",
-				"type": "String"
-			},
-			{
-				"name": "PMOR",
-				"type": "String"
-			},
-			{
-				"name": "CBSM",
-				"type": "String"
-			},
-			{
-				"name": "INIP",
-				"type": "String"
-			},
-			{
-				"name": "UPAV",
-				"type": "String"
-			},
-			{
-				"name": "QTBC",
-				"type": "String"
-			},
-			{
-				"name": "MPID",
-				"type": "String"
-			},
-			{
-				"name": "TOMU",
-				"type": "String"
-			},
-			{
-				"name": "ENNO",
-				"type": "String"
-			},
-			{
-				"name": "LNCL",
-				"type": "String"
-			},
-			{
-				"name": "PRIO",
-				"type": "String"
-			},
-			{
-				"name": "CCSA",
-				"type": "String"
-			},
-			{
-				"name": "RAGN",
-				"type": "String"
-			},
-			{
-				"name": "RASN",
-				"type": "String"
-			},
-			{
-				"name": "CLAT",
-				"type": "String"
-			},
-			{
-				"name": "OLSC",
-				"type": "String"
-			},
-			{
-				"name": "MIGI",
-				"type": "String"
-			},
-			{
-				"name": "PIKD",
-				"type": "String"
-			},
-			{
-				"name": "DPOL",
-				"type": "String"
-			},
-			{
-				"name": "RSC5",
-				"type": "String"
-			},
-			{
-				"name": "RSC6",
-				"type": "String"
-			},
-			{
-				"name": "RSC7",
-				"type": "String"
-			},
-			{
-				"name": "MPRD",
-				"type": "String"
-			},
-			{
-				"name": "UCA1",
-				"type": "String"
-			},
-			{
-				"name": "UCA2",
-				"type": "String"
-			},
-			{
-				"name": "UCA3",
-				"type": "String"
-			},
-			{
-				"name": "UCA4",
-				"type": "String"
-			},
-			{
-				"name": "UCA5",
-				"type": "String"
-			},
-			{
-				"name": "UCA6",
-				"type": "String"
-			},
-			{
-				"name": "UCA7",
-				"type": "String"
-			},
-			{
-				"name": "UCA8",
-				"type": "String"
-			},
-			{
-				"name": "UCA9",
-				"type": "String"
-			},
-			{
-				"name": "UCA0",
-				"type": "String"
-			},
-			{
-				"name": "UDN1",
-				"type": "String"
-			},
-			{
-				"name": "UDN2",
-				"type": "String"
-			},
-			{
-				"name": "UDN3",
-				"type": "String"
-			},
-			{
-				"name": "UDN4",
-				"type": "String"
-			},
-			{
-				"name": "UDN5",
-				"type": "String"
-			},
-			{
-				"name": "UDN6",
-				"type": "String"
-			},
-			{
-				"name": "UID1",
-				"type": "String"
-			},
-			{
-				"name": "UID2",
-				"type": "String"
-			},
-			{
-				"name": "UID3",
-				"type": "String"
-			},
-			{
-				"name": "UCT1",
-				"type": "String"
-			},
-			{
-				"name": "accountingEntity",
-				"type": "String"
-			},
-			{
-				"name": "archived",
-				"type": "String"
-			},
-			{
-				"name": "deleted",
-				"type": "String"
-			},
-			{
-				"name": "timestamp",
-				"type": "String"
-			},
-			{
-				"name": "variationNumber",
-				"type": "String"
-			}
-		]
-	},
-	"type": "Microsoft.Synapse/workspaces/datasets"
+  "name": "CSV",
+  "properties": {
+    "annotations": [],
+    "linkedServiceName": {
+      "referenceName": "tlcdw-WorkspaceDefaultStorage",
+      "type": "LinkedServiceReference"
+    },
+    "schema": [
+      {
+        "name": "CONO",
+        "type": "String"
+      },
+      {
+        "name": "DIVI",
+        "type": "String"
+      },
+      {
+        "name": "ORNO",
+        "type": "String"
+      },
+      {
+        "name": "PONR",
+        "type": "String"
+      },
+      {
+        "name": "POSX",
+        "type": "String"
+      },
+      {
+        "name": "LTYP",
+        "type": "String"
+      },
+      {
+        "name": "ORST",
+        "type": "String"
+      },
+      {
+        "name": "FACI",
+        "type": "String"
+      },
+      {
+        "name": "WHLO",
+        "type": "String"
+      },
+      {
+        "name": "ITNO",
+        "type": "String"
+      },
+      {
+        "name": "REPI",
+        "type": "String"
+      },
+      {
+        "name": "ITDS",
+        "type": "String"
+      },
+      {
+        "name": "TEDS",
+        "type": "String"
+      },
+      {
+        "name": "ORQT",
+        "type": "String"
+      },
+      {
+        "name": "ORQA",
+        "type": "String"
+      },
+      {
+        "name": "RNQT",
+        "type": "String"
+      },
+      {
+        "name": "RNQA",
+        "type": "String"
+      },
+      {
+        "name": "ALQT",
+        "type": "String"
+      },
+      {
+        "name": "ALQA",
+        "type": "String"
+      },
+      {
+        "name": "PLQT",
+        "type": "String"
+      },
+      {
+        "name": "PLQA",
+        "type": "String"
+      },
+      {
+        "name": "DLQT",
+        "type": "String"
+      },
+      {
+        "name": "DLQA",
+        "type": "String"
+      },
+      {
+        "name": "IVQT",
+        "type": "String"
+      },
+      {
+        "name": "IVQA",
+        "type": "String"
+      },
+      {
+        "name": "DCCD",
+        "type": "String"
+      },
+      {
+        "name": "ALUN",
+        "type": "String"
+      },
+      {
+        "name": "DCCA",
+        "type": "String"
+      },
+      {
+        "name": "COFA",
+        "type": "String"
+      },
+      {
+        "name": "DMCF",
+        "type": "String"
+      },
+      {
+        "name": "SPUN",
+        "type": "String"
+      },
+      {
+        "name": "PCOF",
+        "type": "String"
+      },
+      {
+        "name": "DCCS",
+        "type": "String"
+      },
+      {
+        "name": "COFS",
+        "type": "String"
+      },
+      {
+        "name": "DMCS",
+        "type": "String"
+      },
+      {
+        "name": "POPN",
+        "type": "String"
+      },
+      {
+        "name": "ALWT",
+        "type": "String"
+      },
+      {
+        "name": "ALWQ",
+        "type": "String"
+      },
+      {
+        "name": "SAPR",
+        "type": "String"
+      },
+      {
+        "name": "NEPR",
+        "type": "String"
+      },
+      {
+        "name": "SACD",
+        "type": "String"
+      },
+      {
+        "name": "PRMO",
+        "type": "String"
+      },
+      {
+        "name": "DIC1",
+        "type": "String"
+      },
+      {
+        "name": "DIC2",
+        "type": "String"
+      },
+      {
+        "name": "DIC3",
+        "type": "String"
+      },
+      {
+        "name": "DIC4",
+        "type": "String"
+      },
+      {
+        "name": "DIC5",
+        "type": "String"
+      },
+      {
+        "name": "DIC6",
+        "type": "String"
+      },
+      {
+        "name": "DIP1",
+        "type": "String"
+      },
+      {
+        "name": "DIP2",
+        "type": "String"
+      },
+      {
+        "name": "DIP3",
+        "type": "String"
+      },
+      {
+        "name": "DIP4",
+        "type": "String"
+      },
+      {
+        "name": "DIP5",
+        "type": "String"
+      },
+      {
+        "name": "DIP6",
+        "type": "String"
+      },
+      {
+        "name": "DIA1",
+        "type": "String"
+      },
+      {
+        "name": "DIA2",
+        "type": "String"
+      },
+      {
+        "name": "DIA3",
+        "type": "String"
+      },
+      {
+        "name": "DIA4",
+        "type": "String"
+      },
+      {
+        "name": "DIA5",
+        "type": "String"
+      },
+      {
+        "name": "DIA6",
+        "type": "String"
+      },
+      {
+        "name": "CMP1",
+        "type": "String"
+      },
+      {
+        "name": "CMP2",
+        "type": "String"
+      },
+      {
+        "name": "CMP3",
+        "type": "String"
+      },
+      {
+        "name": "CMP4",
+        "type": "String"
+      },
+      {
+        "name": "CMP5",
+        "type": "String"
+      },
+      {
+        "name": "CMP6",
+        "type": "String"
+      },
+      {
+        "name": "DIBE",
+        "type": "String"
+      },
+      {
+        "name": "DIRE",
+        "type": "String"
+      },
+      {
+        "name": "DCHA",
+        "type": "String"
+      },
+      {
+        "name": "DPST",
+        "type": "String"
+      },
+      {
+        "name": "DDSU",
+        "type": "String"
+      },
+      {
+        "name": "IDSC",
+        "type": "String"
+      },
+      {
+        "name": "ACRF",
+        "type": "String"
+      },
+      {
+        "name": "OTDI",
+        "type": "String"
+      },
+      {
+        "name": "DWDT",
+        "type": "String"
+      },
+      {
+        "name": "DWHM",
+        "type": "String"
+      },
+      {
+        "name": "CODT",
+        "type": "String"
+      },
+      {
+        "name": "COHM",
+        "type": "String"
+      },
+      {
+        "name": "DWDZ",
+        "type": "String"
+      },
+      {
+        "name": "DWHZ",
+        "type": "String"
+      },
+      {
+        "name": "CODZ",
+        "type": "String"
+      },
+      {
+        "name": "COHZ",
+        "type": "String"
+      },
+      {
+        "name": "TIZO",
+        "type": "String"
+      },
+      {
+        "name": "DLTS",
+        "type": "String"
+      },
+      {
+        "name": "STCD",
+        "type": "String"
+      },
+      {
+        "name": "PRCH",
+        "type": "String"
+      },
+      {
+        "name": "RORC",
+        "type": "String"
+      },
+      {
+        "name": "RORN",
+        "type": "String"
+      },
+      {
+        "name": "RORL",
+        "type": "String"
+      },
+      {
+        "name": "UCOS",
+        "type": "String"
+      },
+      {
+        "name": "COCD",
+        "type": "String"
+      },
+      {
+        "name": "UCCD",
+        "type": "String"
+      },
+      {
+        "name": "CMNO",
+        "type": "String"
+      },
+      {
+        "name": "HDPR",
+        "type": "String"
+      },
+      {
+        "name": "CFIN",
+        "type": "String"
+      },
+      {
+        "name": "ECVS",
+        "type": "String"
+      },
+      {
+        "name": "VTCD",
+        "type": "String"
+      },
+      {
+        "name": "JDCD",
+        "type": "String"
+      },
+      {
+        "name": "DLSP",
+        "type": "String"
+      },
+      {
+        "name": "LNAM",
+        "type": "String"
+      },
+      {
+        "name": "LNA2",
+        "type": "String"
+      },
+      {
+        "name": "DINR",
+        "type": "String"
+      },
+      {
+        "name": "DISX",
+        "type": "String"
+      },
+      {
+        "name": "AGNO",
+        "type": "String"
+      },
+      {
+        "name": "BAGC",
+        "type": "String"
+      },
+      {
+        "name": "BAGD",
+        "type": "String"
+      },
+      {
+        "name": "AGLN",
+        "type": "String"
+      },
+      {
+        "name": "PRRF",
+        "type": "String"
+      },
+      {
+        "name": "NTCD",
+        "type": "String"
+      },
+      {
+        "name": "CNQT",
+        "type": "String"
+      },
+      {
+        "name": "EDFP",
+        "type": "String"
+      },
+      {
+        "name": "SMCD",
+        "type": "String"
+      },
+      {
+        "name": "BNCD",
+        "type": "String"
+      },
+      {
+        "name": "PRAC",
+        "type": "String"
+      },
+      {
+        "name": "VRCD",
+        "type": "String"
+      },
+      {
+        "name": "ECLC",
+        "type": "String"
+      },
+      {
+        "name": "ORCO",
+        "type": "String"
+      },
+      {
+        "name": "PRTX",
+        "type": "String"
+      },
+      {
+        "name": "POTX",
+        "type": "String"
+      },
+      {
+        "name": "DTID",
+        "type": "String"
+      },
+      {
+        "name": "DELS",
+        "type": "String"
+      },
+      {
+        "name": "E0PA",
+        "type": "String"
+      },
+      {
+        "name": "DSGP",
+        "type": "String"
+      },
+      {
+        "name": "MOYE",
+        "type": "String"
+      },
+      {
+        "name": "PUSN",
+        "type": "String"
+      },
+      {
+        "name": "PUTP",
+        "type": "String"
+      },
+      {
+        "name": "QTQL",
+        "type": "String"
+      },
+      {
+        "name": "TEPA",
+        "type": "String"
+      },
+      {
+        "name": "PACT",
+        "type": "String"
+      },
+      {
+        "name": "CUPA",
+        "type": "String"
+      },
+      {
+        "name": "D1QT",
+        "type": "String"
+      },
+      {
+        "name": "CUNO",
+        "type": "String"
+      },
+      {
+        "name": "CUOR",
+        "type": "String"
+      },
+      {
+        "name": "CUPO",
+        "type": "String"
+      },
+      {
+        "name": "CUSX",
+        "type": "String"
+      },
+      {
+        "name": "SMCC",
+        "type": "String"
+      },
+      {
+        "name": "RSCD",
+        "type": "String"
+      },
+      {
+        "name": "MUFT",
+        "type": "String"
+      },
+      {
+        "name": "INPR",
+        "type": "String"
+      },
+      {
+        "name": "CUCT",
+        "type": "String"
+      },
+      {
+        "name": "ABNO",
+        "type": "String"
+      },
+      {
+        "name": "PROJ",
+        "type": "String"
+      },
+      {
+        "name": "ELNO",
+        "type": "String"
+      },
+      {
+        "name": "BPAT",
+        "type": "String"
+      },
+      {
+        "name": "BPST",
+        "type": "String"
+      },
+      {
+        "name": "NOAA",
+        "type": "String"
+      },
+      {
+        "name": "CPRE",
+        "type": "String"
+      },
+      {
+        "name": "HAFE",
+        "type": "String"
+      },
+      {
+        "name": "CAWE",
+        "type": "String"
+      },
+      {
+        "name": "WHSL",
+        "type": "String"
+      },
+      {
+        "name": "BANO",
+        "type": "String"
+      },
+      {
+        "name": "CAMU",
+        "type": "String"
+      },
+      {
+        "name": "ADID",
+        "type": "String"
+      },
+      {
+        "name": "ROUT",
+        "type": "String"
+      },
+      {
+        "name": "RODN",
+        "type": "String"
+      },
+      {
+        "name": "DSDT",
+        "type": "String"
+      },
+      {
+        "name": "DSHM",
+        "type": "String"
+      },
+      {
+        "name": "DSTX",
+        "type": "String"
+      },
+      {
+        "name": "DEFC",
+        "type": "String"
+      },
+      {
+        "name": "PLDT",
+        "type": "String"
+      },
+      {
+        "name": "PLHM",
+        "type": "String"
+      },
+      {
+        "name": "SRCD",
+        "type": "String"
+      },
+      {
+        "name": "SPLC",
+        "type": "String"
+      },
+      {
+        "name": "DLBU",
+        "type": "String"
+      },
+      {
+        "name": "SPOS",
+        "type": "String"
+      },
+      {
+        "name": "FDED",
+        "type": "String"
+      },
+      {
+        "name": "LDED",
+        "type": "String"
+      },
+      {
+        "name": "AETY",
+        "type": "String"
+      },
+      {
+        "name": "ATNR",
+        "type": "String"
+      },
+      {
+        "name": "SCMO",
+        "type": "String"
+      },
+      {
+        "name": "PRPR",
+        "type": "String"
+      },
+      {
+        "name": "CINA",
+        "type": "String"
+      },
+      {
+        "name": "ATV1",
+        "type": "String"
+      },
+      {
+        "name": "ATV2",
+        "type": "String"
+      },
+      {
+        "name": "ATV3",
+        "type": "String"
+      },
+      {
+        "name": "ATV4",
+        "type": "String"
+      },
+      {
+        "name": "ATV5",
+        "type": "String"
+      },
+      {
+        "name": "ATV6",
+        "type": "String"
+      },
+      {
+        "name": "ATV7",
+        "type": "String"
+      },
+      {
+        "name": "ATV8",
+        "type": "String"
+      },
+      {
+        "name": "ATV9",
+        "type": "String"
+      },
+      {
+        "name": "ATV0",
+        "type": "String"
+      },
+      {
+        "name": "CNNR",
+        "type": "String"
+      },
+      {
+        "name": "MNIN",
+        "type": "String"
+      },
+      {
+        "name": "REPN",
+        "type": "String"
+      },
+      {
+        "name": "ATPR",
+        "type": "String"
+      },
+      {
+        "name": "ATMO",
+        "type": "String"
+      },
+      {
+        "name": "ORTY",
+        "type": "String"
+      },
+      {
+        "name": "SUNO",
+        "type": "String"
+      },
+      {
+        "name": "PUPR",
+        "type": "String"
+      },
+      {
+        "name": "PUCD",
+        "type": "String"
+      },
+      {
+        "name": "PPUN",
+        "type": "String"
+      },
+      {
+        "name": "CUCD",
+        "type": "String"
+      },
+      {
+        "name": "ODI1",
+        "type": "String"
+      },
+      {
+        "name": "ODI2",
+        "type": "String"
+      },
+      {
+        "name": "ODI3",
+        "type": "String"
+      },
+      {
+        "name": "OURR",
+        "type": "String"
+      },
+      {
+        "name": "OURT",
+        "type": "String"
+      },
+      {
+        "name": "BUYE",
+        "type": "String"
+      },
+      {
+        "name": "FWHL",
+        "type": "String"
+      },
+      {
+        "name": "PRNO",
+        "type": "String"
+      },
+      {
+        "name": "SCHN",
+        "type": "String"
+      },
+      {
+        "name": "MODL",
+        "type": "String"
+      },
+      {
+        "name": "TEDL",
+        "type": "String"
+      },
+      {
+        "name": "TEL2",
+        "type": "String"
+      },
+      {
+        "name": "RGDT",
+        "type": "String"
+      },
+      {
+        "name": "RGTM",
+        "type": "String"
+      },
+      {
+        "name": "LMDT",
+        "type": "String"
+      },
+      {
+        "name": "CHNO",
+        "type": "String"
+      },
+      {
+        "name": "CHID",
+        "type": "String"
+      },
+      {
+        "name": "RORX",
+        "type": "String"
+      },
+      {
+        "name": "LMTS",
+        "type": "String"
+      },
+      {
+        "name": "RTQA",
+        "type": "String"
+      },
+      {
+        "name": "RTQT",
+        "type": "String"
+      },
+      {
+        "name": "PRHL",
+        "type": "String"
+      },
+      {
+        "name": "SERN",
+        "type": "String"
+      },
+      {
+        "name": "CTNO",
+        "type": "String"
+      },
+      {
+        "name": "APBA",
+        "type": "String"
+      },
+      {
+        "name": "CFGL",
+        "type": "String"
+      },
+      {
+        "name": "WATP",
+        "type": "String"
+      },
+      {
+        "name": "GWTP",
+        "type": "String"
+      },
+      {
+        "name": "PRHW",
+        "type": "String"
+      },
+      {
+        "name": "SERW",
+        "type": "String"
+      },
+      {
+        "name": "PWNR",
+        "type": "String"
+      },
+      {
+        "name": "PWSX",
+        "type": "String"
+      },
+      {
+        "name": "EWST",
+        "type": "String"
+      },
+      {
+        "name": "AGNB",
+        "type": "String"
+      },
+      {
+        "name": "CTNS",
+        "type": "String"
+      },
+      {
+        "name": "WATQ",
+        "type": "String"
+      },
+      {
+        "name": "TECN",
+        "type": "String"
+      },
+      {
+        "name": "INAP",
+        "type": "String"
+      },
+      {
+        "name": "PCNR",
+        "type": "String"
+      },
+      {
+        "name": "PCSU",
+        "type": "String"
+      },
+      {
+        "name": "RELI",
+        "type": "String"
+      },
+      {
+        "name": "PIDE",
+        "type": "String"
+      },
+      {
+        "name": "PCLA",
+        "type": "String"
+      },
+      {
+        "name": "BOP1",
+        "type": "String"
+      },
+      {
+        "name": "SCLB",
+        "type": "String"
+      },
+      {
+        "name": "OFNO",
+        "type": "String"
+      },
+      {
+        "name": "VERS",
+        "type": "String"
+      },
+      {
+        "name": "OFNR",
+        "type": "String"
+      },
+      {
+        "name": "OFSX",
+        "type": "String"
+      },
+      {
+        "name": "DECU",
+        "type": "String"
+      },
+      {
+        "name": "TEPY",
+        "type": "String"
+      },
+      {
+        "name": "ARST",
+        "type": "String"
+      },
+      {
+        "name": "RSC1",
+        "type": "String"
+      },
+      {
+        "name": "PMOR",
+        "type": "String"
+      },
+      {
+        "name": "CBSM",
+        "type": "String"
+      },
+      {
+        "name": "INIP",
+        "type": "String"
+      },
+      {
+        "name": "UPAV",
+        "type": "String"
+      },
+      {
+        "name": "QTBC",
+        "type": "String"
+      },
+      {
+        "name": "MPID",
+        "type": "String"
+      },
+      {
+        "name": "TOMU",
+        "type": "String"
+      },
+      {
+        "name": "ENNO",
+        "type": "String"
+      },
+      {
+        "name": "LNCL",
+        "type": "String"
+      },
+      {
+        "name": "PRIO",
+        "type": "String"
+      },
+      {
+        "name": "CCSA",
+        "type": "String"
+      },
+      {
+        "name": "RAGN",
+        "type": "String"
+      },
+      {
+        "name": "RASN",
+        "type": "String"
+      },
+      {
+        "name": "CLAT",
+        "type": "String"
+      },
+      {
+        "name": "OLSC",
+        "type": "String"
+      },
+      {
+        "name": "MIGI",
+        "type": "String"
+      },
+      {
+        "name": "PIKD",
+        "type": "String"
+      },
+      {
+        "name": "DPOL",
+        "type": "String"
+      },
+      {
+        "name": "RSC5",
+        "type": "String"
+      },
+      {
+        "name": "RSC6",
+        "type": "String"
+      },
+      {
+        "name": "RSC7",
+        "type": "String"
+      },
+      {
+        "name": "MPRD",
+        "type": "String"
+      },
+      {
+        "name": "UCA1",
+        "type": "String"
+      },
+      {
+        "name": "UCA2",
+        "type": "String"
+      },
+      {
+        "name": "UCA3",
+        "type": "String"
+      },
+      {
+        "name": "UCA4",
+        "type": "String"
+      },
+      {
+        "name": "UCA5",
+        "type": "String"
+      },
+      {
+        "name": "UCA6",
+        "type": "String"
+      },
+      {
+        "name": "UCA7",
+        "type": "String"
+      },
+      {
+        "name": "UCA8",
+        "type": "String"
+      },
+      {
+        "name": "UCA9",
+        "type": "String"
+      },
+      {
+        "name": "UCA0",
+        "type": "String"
+      },
+      {
+        "name": "UDN1",
+        "type": "String"
+      },
+      {
+        "name": "UDN2",
+        "type": "String"
+      },
+      {
+        "name": "UDN3",
+        "type": "String"
+      },
+      {
+        "name": "UDN4",
+        "type": "String"
+      },
+      {
+        "name": "UDN5",
+        "type": "String"
+      },
+      {
+        "name": "UDN6",
+        "type": "String"
+      },
+      {
+        "name": "UID1",
+        "type": "String"
+      },
+      {
+        "name": "UID2",
+        "type": "String"
+      },
+      {
+        "name": "UID3",
+        "type": "String"
+      },
+      {
+        "name": "UCT1",
+        "type": "String"
+      },
+      {
+        "name": "accountingEntity",
+        "type": "String"
+      },
+      {
+        "name": "archived",
+        "type": "String"
+      },
+      {
+        "name": "deleted",
+        "type": "String"
+      },
+      {
+        "name": "timestamp",
+        "type": "String"
+      },
+      {
+        "name": "variationNumber",
+        "type": "String"
+      }
+    ],
+    "type": "DelimitedText",
+    "typeProperties": {
+      "columnDelimiter": "|",
+      "escapeChar": "\\",
+      "firstRowAsHeader": true,
+      "location": {
+        "fileName": "20230919_OOLINE.csv",
+        "fileSystem": "tlclakefs",
+        "folderPath": "M3Arch",
+        "type": "AzureBlobFSLocation"
+      },
+      "quoteChar": "\""
+    }
+  }
 }

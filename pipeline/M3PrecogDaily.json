@@ -1,1296 +1,1294 @@
 {
-	"name": "M3PrecogDaily",
-	"properties": {
-		"activities": [
-			{
-				"name": "ForEach_PrecogM3Table",
-				"type": "ForEach",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"items": {
-						"value": "@pipeline().parameters.cw_items",
-						"type": "Expression"
-					},
-					"activities": [
-						{
-							"name": "Copy",
-							"type": "Copy",
-							"dependsOn": [],
-							"policy": {
-								"timeout": "0.12:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [
-								{
-									"name": "Source",
-									"value": "M3.@{item().source.table}"
-								},
-								{
-									"name": "Destination",
-									"value": "tlclakefs/M3P/@{item().destination.fileName}"
-								}
-							],
-							"typeProperties": {
-								"source": {
-									"type": "AzureSqlSource",
-									"partitionOption": "None"
-								},
-								"sink": {
-									"type": "ParquetSink",
-									"storeSettings": {
-										"type": "AzureBlobFSWriteSettings"
-									},
-									"formatSettings": {
-										"type": "ParquetWriteSettings"
-									}
-								},
-								"enableStaging": false,
-								"validateDataConsistency": false,
-								"translator": {
-									"type": "TabularTranslator",
-									"typeConversion": true,
-									"typeConversionSettings": {
-										"allowDataTruncation": true,
-										"treatBooleanAsNumber": false
-									}
-								}
-							},
-							"inputs": [
-								{
-									"referenceName": "IN_M3P",
-									"type": "DatasetReference",
-									"parameters": {
-										"cw_table": "@item().source.table"
-									}
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "OUT_M3P",
-									"type": "DatasetReference",
-									"parameters": {
-										"cw_fileName": "@item().destination.fileName"
-									}
-								}
-							]
-						}
-					]
-				}
-			}
-		],
-		"parameters": {
-			"cw_items": {
-				"type": "Array",
-				"defaultValue": [
-					{
-						"source": {
-							"table": "ACLTYP"
-						},
-						"destination": {
-							"filename": "ACLTYP.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ACUAGH"
-						},
-						"destination": {
-							"filename": "ACUAGH.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ACUOLS"
-						},
-						"destination": {
-							"filename": "ACUOLS.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ACUOTY"
-						},
-						"destination": {
-							"filename": "ACUOTY.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CAEVEN"
-						},
-						"destination": {
-							"filename": "CAEVEN.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CASTDV"
-						},
-						"destination": {
-							"filename": "CASTDV.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CATYPE"
-						},
-						"destination": {
-							"filename": "CATYPE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CCURRA"
-						},
-						"destination": {
-							"filename": "CCURRA.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CEAEMP"
-						},
-						"destination": {
-							"filename": "CEAEMP.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CFACIL"
-						},
-						"destination": {
-							"filename": "CFACIL.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CIDADR"
-						},
-						"destination": {
-							"filename": "CIDADR.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CIDMAS"
-						},
-						"destination": {
-							"filename": "CIDMAS.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CIDVEN"
-						},
-						"destination": {
-							"filename": "CIDVEN.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CINACC"
-						},
-						"destination": {
-							"filename": "CINACC.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CMNCMP"
-						},
-						"destination": {
-							"filename": "CMNCMP.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CMNDIV"
-						},
-						"destination": {
-							"filename": "CMNDIV.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CMNFNG"
-						},
-						"destination": {
-							"filename": "CMNFNG.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CMNUSR"
-						},
-						"destination": {
-							"filename": "CMNUSR.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CPOCOA"
-						},
-						"destination": {
-							"filename": "CPOCOA.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CPOCOM"
-						},
-						"destination": {
-							"filename": "CPOCOM.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CPOCOS"
-						},
-						"destination": {
-							"filename": "CPOCOS.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CPOPRO"
-						},
-						"destination": {
-							"filename": "CPOPRO.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CSMCDX"
-						},
-						"destination": {
-							"filename": "CSMCDX.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CSYCAL"
-						},
-						"destination": {
-							"filename": "CSYCAL.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CSYPAR"
-						},
-						"destination": {
-							"filename": "CSYPAR.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CSYPER"
-						},
-						"destination": {
-							"filename": "CSYPER.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CSYSTR"
-						},
-						"destination": {
-							"filename": "CSYSTR.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CSYSTS"
-						},
-						"destination": {
-							"filename": "CSYSTS.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CSYTAB"
-						},
-						"destination": {
-							"filename": "CSYTAB.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CSYUSR"
-						},
-						"destination": {
-							"filename": "CSYUSR.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CUGEX1"
-						},
-						"destination": {
-							"filename": "CUGEX1.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "FBAKEY"
-						},
-						"destination": {
-							"filename": "FBAKEY.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "FBAVAL"
-						},
-						"destination": {
-							"filename": "FBAVAL.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "FCHACC"
-						},
-						"destination": {
-							"filename": "FCHACC.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "FFRPCL"
-						},
-						"destination": {
-							"filename": "FFRPCL.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "FGLEDX"
-						},
-						"destination": {
-							"filename": "FGLEDX.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "FGRECL"
-						},
-						"destination": {
-							"filename": "FGRECL.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "FPLEDX"
-						},
-						"destination": {
-							"filename": "FPLEDX.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "FPSUGD"
-						},
-						"destination": {
-							"filename": "FPSUGD.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "FPSUGS"
-						},
-						"destination": {
-							"filename": "FPSUGS.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "FSLBAL"
-						},
-						"destination": {
-							"filename": "FSLBAL.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "FSLEDX"
-						},
-						"destination": {
-							"filename": "FSLEDX.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MAMOHE"
-						},
-						"destination": {
-							"filename": "MAMOHE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MATRMA"
-						},
-						"destination": {
-							"filename": "MATRMA.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MCCOMA"
-						},
-						"destination": {
-							"filename": "MCCOMA.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MCCOML"
-						},
-						"destination": {
-							"filename": "MCCOML.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MCCOMP"
-						},
-						"destination": {
-							"filename": "MCCOMP.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MCCOTY"
-						},
-						"destination": {
-							"filename": "MCCOTY.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MCHEAD"
-						},
-						"destination": {
-							"filename": "MCHEAD.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MCONMA"
-						},
-						"destination": {
-							"filename": "MCONMA.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MCPAPD"
-						},
-						"destination": {
-							"filename": "MCPAPD.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MIEQCL"
-						},
-						"destination": {
-							"filename": "MIEQCL.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MIEQGR"
-						},
-						"destination": {
-							"filename": "MIEQGR.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MIEQTP"
-						},
-						"destination": {
-							"filename": "MIEQTP.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MILOIN"
-						},
-						"destination": {
-							"filename": "MILOIN.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MILOMA"
-						},
-						"destination": {
-							"filename": "MILOMA.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MITARE"
-						},
-						"destination": {
-							"filename": "MITARE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MITAUN"
-						},
-						"destination": {
-							"filename": "MITAUN.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MITFAC"
-						},
-						"destination": {
-							"filename": "MITFAC.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MITHRY"
-						},
-						"destination": {
-							"filename": "MITHRY.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MITLOC"
-						},
-						"destination": {
-							"filename": "MITLOC.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MITPCE"
-						},
-						"destination": {
-							"filename": "MITPCE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MITPOP"
-						},
-						"destination": {
-							"filename": "MITPOP.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MITPTY"
-						},
-						"destination": {
-							"filename": "MITPTY.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MITSTA"
-						},
-						"destination": {
-							"filename": "MITSTA.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MITTEM"
-						},
-						"destination": {
-							"filename": "MITTEM.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MITTKH"
-						},
-						"destination": {
-							"filename": "MITTKH.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MITWHL"
-						},
-						"destination": {
-							"filename": "MITWHL.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MMOHED"
-						},
-						"destination": {
-							"filename": "MMOHED.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MMOOPE"
-						},
-						"destination": {
-							"filename": "MMOOPE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MMORDT"
-						},
-						"destination": {
-							"filename": "MMORDT.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MMOSER"
-						},
-						"destination": {
-							"filename": "MMOSER.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MOATTR"
-						},
-						"destination": {
-							"filename": "MOATTR.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MPAGRH"
-						},
-						"destination": {
-							"filename": "MPAGRH.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MPAGRT"
-						},
-						"destination": {
-							"filename": "MPAGRT.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MPDCAD"
-						},
-						"destination": {
-							"filename": "MPDCAD.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MPDSCF"
-						},
-						"destination": {
-							"filename": "MPDSCF.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MPDSHT"
-						},
-						"destination": {
-							"filename": "MPDSHT.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MPDWCT"
-						},
-						"destination": {
-							"filename": "MPDWCT.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MPOPLP"
-						},
-						"destination": {
-							"filename": "MPOPLP.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MPORDT"
-						},
-						"destination": {
-							"filename": "MPORDT.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MPURST"
-						},
-						"destination": {
-							"filename": "MPURST.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MSCHMA"
-						},
-						"destination": {
-							"filename": "MSCHMA.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MWOHED"
-						},
-						"destination": {
-							"filename": "MWOHED.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MWOMAT"
-						},
-						"destination": {
-							"filename": "MWOMAT.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MWOOPE"
-						},
-						"destination": {
-							"filename": "MWOOPE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MWOPTR"
-						},
-						"destination": {
-							"filename": "MWOPTR.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MWORDT"
-						},
-						"destination": {
-							"filename": "MWORDT.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OAGRHE"
-						},
-						"destination": {
-							"filename": "OAGRHE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OAGRTP"
-						},
-						"destination": {
-							"filename": "OAGRTP.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OBTMTX"
-						},
-						"destination": {
-							"filename": "OBTMTX.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OBTRAG"
-						},
-						"destination": {
-							"filename": "OBTRAG.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OBTREC"
-						},
-						"destination": {
-							"filename": "OBTREC.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OCUSAD"
-						},
-						"destination": {
-							"filename": "OCUSAD.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OCUSIT"
-						},
-						"destination": {
-							"filename": "OCUSIT.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OCUSMA"
-						},
-						"destination": {
-							"filename": "OCUSMA.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OGCMPN"
-						},
-						"destination": {
-							"filename": "OGCMPN.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OGTAGY"
-						},
-						"destination": {
-							"filename": "OGTAGY.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OOADRE"
-						},
-						"destination": {
-							"filename": "OOADRE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OODOCU"
-						},
-						"destination": {
-							"filename": "OODOCU.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OOTYPE"
-						},
-						"destination": {
-							"filename": "OOTYPE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OPROMH"
-						},
-						"destination": {
-							"filename": "OPROMH.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OSASTD"
-						},
-						"destination": {
-							"filename": "OSASTD.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OSBSTD"
-						},
-						"destination": {
-							"filename": "OSBSTD.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OSBUID"
-						},
-						"destination": {
-							"filename": "OSBUID.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OSTORE"
-						},
-						"destination": {
-							"filename": "OSTORE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CRPDLN"
-						},
-						"destination": {
-							"filename": "CRPDLN.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MPLIND"
-						},
-						"destination": {
-							"filename": "MPLIND.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MPTRNS"
-						},
-						"destination": {
-							"filename": "MPTRNS.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ACUINV"
-						},
-						"destination": {
-							"filename": "ACUINV.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ACUORH"
-						},
-						"destination": {
-							"filename": "ACUORH.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "ACUORL"
-						},
-						"destination": {
-							"filename": "ACUORL.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CRACTR"
-						},
-						"destination": {
-							"filename": "CRACTR.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CUGEFA"
-						},
-						"destination": {
-							"filename": "CUGEFA.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "DDOCUX"
-						},
-						"destination": {
-							"filename": "DDOCUX.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MBMTRD"
-						},
-						"destination": {
-							"filename": "MBMTRD.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MBMTRN"
-						},
-						"destination": {
-							"filename": "MBMTRN.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MMOPTR"
-						},
-						"destination": {
-							"filename": "MMOPTR.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MPDHED"
-						},
-						"destination": {
-							"filename": "MPDHED.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MPDMAT"
-						},
-						"destination": {
-							"filename": "MPDMAT.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MSPLMX"
-						},
-						"destination": {
-							"filename": "MSPLMX.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SITCOM"
-						},
-						"destination": {
-							"filename": "SITCOM.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "SSTYPE"
-						},
-						"destination": {
-							"filename": "SSTYPE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OBTTRA"
-						},
-						"destination": {
-							"filename": "OBTTRA.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MPCELE"
-						},
-						"destination": {
-							"filename": "MPCELE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OPRICH"
-						},
-						"destination": {
-							"filename": "OPRICH.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MPREAL"
-						},
-						"destination": {
-							"filename": "MPREAL.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OPRMTX"
-						},
-						"destination": {
-							"filename": "OPRMTX.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OPRBAS"
-						},
-						"destination": {
-							"filename": "OPRBAS.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "FPPPAY"
-						},
-						"destination": {
-							"filename": "FPPPAY.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CSAFPR"
-						},
-						"destination": {
-							"filename": "CSAFPR.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CCUCRL"
-						},
-						"destination": {
-							"filename": "CCUCRL.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OPRBAS"
-						},
-						"destination": {
-							"filename": "OPRBAS.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MITPAC"
-						},
-						"destination": {
-							"filename": "MITPAC.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MPACIT"
-						},
-						"destination": {
-							"filename": "MPACIT.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MFTRNS"
-						},
-						"destination": {
-							"filename": "MFTRNS.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CIADDR"
-						},
-						"destination": {
-							"filename": "CIADDR.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MPDOPE"
-						},
-						"destination": {
-							"filename": "MPDOPE.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "FGINLC"
-						},
-						"destination": {
-							"filename": "FGINLC.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "FGINLI"
-						},
-						"destination": {
-							"filename": "FGINLI.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OINACC"
-						},
-						"destination": {
-							"filename": "OINACC.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MSYTXL"
-						},
-						"destination": {
-							"filename": "MSYTXL.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MSYTXH"
-						},
-						"destination": {
-							"filename": "MSYTXH.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OPRMTX"
-						},
-						"destination": {
-							"filename": "OPRMTX.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "MITDFO"
-						},
-						"destination": {
-							"filename": "MITDFO.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OGDMTX"
-						},
-						"destination": {
-							"filename": "OGDMTX.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CBMINH"
-						},
-						"destination": {
-							"filename": "CBMINH.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "CSYDPM"
-						},
-						"destination": {
-							"filename": "CSYDPM.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "FCAAVP"
-						},
-						"destination": {
-							"filename": "FCAAVP.parquet"
-						}
-					},
-					{
-						"source": {
-							"table": "OSYTXL"
-						},
-						"destination": {
-							"filename": "OSYTXL.parquet"
-						}
-					}
-				]
-			}
-		},
-		"annotations": [],
-		"lastPublishTime": "2026-07-15T20:53:28Z"
-	},
-	"type": "Microsoft.Synapse/workspaces/pipelines"
+  "name": "M3PrecogDaily",
+  "properties": {
+    "activities": [
+      {
+        "dependsOn": [],
+        "name": "ForEach_PrecogM3Table",
+        "type": "ForEach",
+        "typeProperties": {
+          "activities": [
+            {
+              "dependsOn": [],
+              "inputs": [
+                {
+                  "parameters": {
+                    "cw_table": "@item().source.table"
+                  },
+                  "referenceName": "IN_M3P",
+                  "type": "DatasetReference"
+                }
+              ],
+              "name": "Copy",
+              "outputs": [
+                {
+                  "parameters": {
+                    "cw_fileName": "@item().destination.fileName"
+                  },
+                  "referenceName": "OUT_M3P",
+                  "type": "DatasetReference"
+                }
+              ],
+              "policy": {
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false,
+                "timeout": "0.12:00:00"
+              },
+              "type": "Copy",
+              "typeProperties": {
+                "enableStaging": false,
+                "sink": {
+                  "formatSettings": {
+                    "type": "ParquetWriteSettings"
+                  },
+                  "storeSettings": {
+                    "type": "AzureBlobFSWriteSettings"
+                  },
+                  "type": "ParquetSink"
+                },
+                "source": {
+                  "partitionOption": "None",
+                  "type": "AzureSqlSource"
+                },
+                "translator": {
+                  "type": "TabularTranslator",
+                  "typeConversion": true,
+                  "typeConversionSettings": {
+                    "allowDataTruncation": true,
+                    "treatBooleanAsNumber": false
+                  }
+                },
+                "validateDataConsistency": false
+              },
+              "userProperties": [
+                {
+                  "name": "Source",
+                  "value": "M3.@{item().source.table}"
+                },
+                {
+                  "name": "Destination",
+                  "value": "tlclakefs/M3P/@{item().destination.fileName}"
+                }
+              ]
+            }
+          ],
+          "items": {
+            "type": "Expression",
+            "value": "@pipeline().parameters.cw_items"
+          }
+        },
+        "userProperties": []
+      }
+    ],
+    "annotations": [],
+    "parameters": {
+      "cw_items": {
+        "defaultValue": [
+          {
+            "destination": {
+              "filename": "ACLTYP.parquet"
+            },
+            "source": {
+              "table": "ACLTYP"
+            }
+          },
+          {
+            "destination": {
+              "filename": "ACUAGH.parquet"
+            },
+            "source": {
+              "table": "ACUAGH"
+            }
+          },
+          {
+            "destination": {
+              "filename": "ACUOLS.parquet"
+            },
+            "source": {
+              "table": "ACUOLS"
+            }
+          },
+          {
+            "destination": {
+              "filename": "ACUOTY.parquet"
+            },
+            "source": {
+              "table": "ACUOTY"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CAEVEN.parquet"
+            },
+            "source": {
+              "table": "CAEVEN"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CASTDV.parquet"
+            },
+            "source": {
+              "table": "CASTDV"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CATYPE.parquet"
+            },
+            "source": {
+              "table": "CATYPE"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CCURRA.parquet"
+            },
+            "source": {
+              "table": "CCURRA"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CEAEMP.parquet"
+            },
+            "source": {
+              "table": "CEAEMP"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CFACIL.parquet"
+            },
+            "source": {
+              "table": "CFACIL"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CIDADR.parquet"
+            },
+            "source": {
+              "table": "CIDADR"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CIDMAS.parquet"
+            },
+            "source": {
+              "table": "CIDMAS"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CIDVEN.parquet"
+            },
+            "source": {
+              "table": "CIDVEN"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CINACC.parquet"
+            },
+            "source": {
+              "table": "CINACC"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CMNCMP.parquet"
+            },
+            "source": {
+              "table": "CMNCMP"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CMNDIV.parquet"
+            },
+            "source": {
+              "table": "CMNDIV"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CMNFNG.parquet"
+            },
+            "source": {
+              "table": "CMNFNG"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CMNUSR.parquet"
+            },
+            "source": {
+              "table": "CMNUSR"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CPOCOA.parquet"
+            },
+            "source": {
+              "table": "CPOCOA"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CPOCOM.parquet"
+            },
+            "source": {
+              "table": "CPOCOM"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CPOCOS.parquet"
+            },
+            "source": {
+              "table": "CPOCOS"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CPOPRO.parquet"
+            },
+            "source": {
+              "table": "CPOPRO"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CSMCDX.parquet"
+            },
+            "source": {
+              "table": "CSMCDX"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CSYCAL.parquet"
+            },
+            "source": {
+              "table": "CSYCAL"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CSYPAR.parquet"
+            },
+            "source": {
+              "table": "CSYPAR"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CSYPER.parquet"
+            },
+            "source": {
+              "table": "CSYPER"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CSYSTR.parquet"
+            },
+            "source": {
+              "table": "CSYSTR"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CSYSTS.parquet"
+            },
+            "source": {
+              "table": "CSYSTS"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CSYTAB.parquet"
+            },
+            "source": {
+              "table": "CSYTAB"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CSYUSR.parquet"
+            },
+            "source": {
+              "table": "CSYUSR"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CUGEX1.parquet"
+            },
+            "source": {
+              "table": "CUGEX1"
+            }
+          },
+          {
+            "destination": {
+              "filename": "FBAKEY.parquet"
+            },
+            "source": {
+              "table": "FBAKEY"
+            }
+          },
+          {
+            "destination": {
+              "filename": "FBAVAL.parquet"
+            },
+            "source": {
+              "table": "FBAVAL"
+            }
+          },
+          {
+            "destination": {
+              "filename": "FCHACC.parquet"
+            },
+            "source": {
+              "table": "FCHACC"
+            }
+          },
+          {
+            "destination": {
+              "filename": "FFRPCL.parquet"
+            },
+            "source": {
+              "table": "FFRPCL"
+            }
+          },
+          {
+            "destination": {
+              "filename": "FGLEDX.parquet"
+            },
+            "source": {
+              "table": "FGLEDX"
+            }
+          },
+          {
+            "destination": {
+              "filename": "FGRECL.parquet"
+            },
+            "source": {
+              "table": "FGRECL"
+            }
+          },
+          {
+            "destination": {
+              "filename": "FPLEDX.parquet"
+            },
+            "source": {
+              "table": "FPLEDX"
+            }
+          },
+          {
+            "destination": {
+              "filename": "FPSUGD.parquet"
+            },
+            "source": {
+              "table": "FPSUGD"
+            }
+          },
+          {
+            "destination": {
+              "filename": "FPSUGS.parquet"
+            },
+            "source": {
+              "table": "FPSUGS"
+            }
+          },
+          {
+            "destination": {
+              "filename": "FSLBAL.parquet"
+            },
+            "source": {
+              "table": "FSLBAL"
+            }
+          },
+          {
+            "destination": {
+              "filename": "FSLEDX.parquet"
+            },
+            "source": {
+              "table": "FSLEDX"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MAMOHE.parquet"
+            },
+            "source": {
+              "table": "MAMOHE"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MATRMA.parquet"
+            },
+            "source": {
+              "table": "MATRMA"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MCCOMA.parquet"
+            },
+            "source": {
+              "table": "MCCOMA"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MCCOML.parquet"
+            },
+            "source": {
+              "table": "MCCOML"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MCCOMP.parquet"
+            },
+            "source": {
+              "table": "MCCOMP"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MCCOTY.parquet"
+            },
+            "source": {
+              "table": "MCCOTY"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MCHEAD.parquet"
+            },
+            "source": {
+              "table": "MCHEAD"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MCONMA.parquet"
+            },
+            "source": {
+              "table": "MCONMA"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MCPAPD.parquet"
+            },
+            "source": {
+              "table": "MCPAPD"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MIEQCL.parquet"
+            },
+            "source": {
+              "table": "MIEQCL"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MIEQGR.parquet"
+            },
+            "source": {
+              "table": "MIEQGR"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MIEQTP.parquet"
+            },
+            "source": {
+              "table": "MIEQTP"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MILOIN.parquet"
+            },
+            "source": {
+              "table": "MILOIN"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MILOMA.parquet"
+            },
+            "source": {
+              "table": "MILOMA"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MITARE.parquet"
+            },
+            "source": {
+              "table": "MITARE"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MITAUN.parquet"
+            },
+            "source": {
+              "table": "MITAUN"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MITFAC.parquet"
+            },
+            "source": {
+              "table": "MITFAC"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MITHRY.parquet"
+            },
+            "source": {
+              "table": "MITHRY"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MITLOC.parquet"
+            },
+            "source": {
+              "table": "MITLOC"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MITPCE.parquet"
+            },
+            "source": {
+              "table": "MITPCE"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MITPOP.parquet"
+            },
+            "source": {
+              "table": "MITPOP"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MITPTY.parquet"
+            },
+            "source": {
+              "table": "MITPTY"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MITSTA.parquet"
+            },
+            "source": {
+              "table": "MITSTA"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MITTEM.parquet"
+            },
+            "source": {
+              "table": "MITTEM"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MITTKH.parquet"
+            },
+            "source": {
+              "table": "MITTKH"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MITWHL.parquet"
+            },
+            "source": {
+              "table": "MITWHL"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MMOHED.parquet"
+            },
+            "source": {
+              "table": "MMOHED"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MMOOPE.parquet"
+            },
+            "source": {
+              "table": "MMOOPE"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MMORDT.parquet"
+            },
+            "source": {
+              "table": "MMORDT"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MMOSER.parquet"
+            },
+            "source": {
+              "table": "MMOSER"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MOATTR.parquet"
+            },
+            "source": {
+              "table": "MOATTR"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MPAGRH.parquet"
+            },
+            "source": {
+              "table": "MPAGRH"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MPAGRT.parquet"
+            },
+            "source": {
+              "table": "MPAGRT"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MPDCAD.parquet"
+            },
+            "source": {
+              "table": "MPDCAD"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MPDSCF.parquet"
+            },
+            "source": {
+              "table": "MPDSCF"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MPDSHT.parquet"
+            },
+            "source": {
+              "table": "MPDSHT"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MPDWCT.parquet"
+            },
+            "source": {
+              "table": "MPDWCT"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MPOPLP.parquet"
+            },
+            "source": {
+              "table": "MPOPLP"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MPORDT.parquet"
+            },
+            "source": {
+              "table": "MPORDT"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MPURST.parquet"
+            },
+            "source": {
+              "table": "MPURST"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MSCHMA.parquet"
+            },
+            "source": {
+              "table": "MSCHMA"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MWOHED.parquet"
+            },
+            "source": {
+              "table": "MWOHED"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MWOMAT.parquet"
+            },
+            "source": {
+              "table": "MWOMAT"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MWOOPE.parquet"
+            },
+            "source": {
+              "table": "MWOOPE"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MWOPTR.parquet"
+            },
+            "source": {
+              "table": "MWOPTR"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MWORDT.parquet"
+            },
+            "source": {
+              "table": "MWORDT"
+            }
+          },
+          {
+            "destination": {
+              "filename": "OAGRHE.parquet"
+            },
+            "source": {
+              "table": "OAGRHE"
+            }
+          },
+          {
+            "destination": {
+              "filename": "OAGRTP.parquet"
+            },
+            "source": {
+              "table": "OAGRTP"
+            }
+          },
+          {
+            "destination": {
+              "filename": "OBTMTX.parquet"
+            },
+            "source": {
+              "table": "OBTMTX"
+            }
+          },
+          {
+            "destination": {
+              "filename": "OBTRAG.parquet"
+            },
+            "source": {
+              "table": "OBTRAG"
+            }
+          },
+          {
+            "destination": {
+              "filename": "OBTREC.parquet"
+            },
+            "source": {
+              "table": "OBTREC"
+            }
+          },
+          {
+            "destination": {
+              "filename": "OCUSAD.parquet"
+            },
+            "source": {
+              "table": "OCUSAD"
+            }
+          },
+          {
+            "destination": {
+              "filename": "OCUSIT.parquet"
+            },
+            "source": {
+              "table": "OCUSIT"
+            }
+          },
+          {
+            "destination": {
+              "filename": "OCUSMA.parquet"
+            },
+            "source": {
+              "table": "OCUSMA"
+            }
+          },
+          {
+            "destination": {
+              "filename": "OGCMPN.parquet"
+            },
+            "source": {
+              "table": "OGCMPN"
+            }
+          },
+          {
+            "destination": {
+              "filename": "OGTAGY.parquet"
+            },
+            "source": {
+              "table": "OGTAGY"
+            }
+          },
+          {
+            "destination": {
+              "filename": "OOADRE.parquet"
+            },
+            "source": {
+              "table": "OOADRE"
+            }
+          },
+          {
+            "destination": {
+              "filename": "OODOCU.parquet"
+            },
+            "source": {
+              "table": "OODOCU"
+            }
+          },
+          {
+            "destination": {
+              "filename": "OOTYPE.parquet"
+            },
+            "source": {
+              "table": "OOTYPE"
+            }
+          },
+          {
+            "destination": {
+              "filename": "OPROMH.parquet"
+            },
+            "source": {
+              "table": "OPROMH"
+            }
+          },
+          {
+            "destination": {
+              "filename": "OSASTD.parquet"
+            },
+            "source": {
+              "table": "OSASTD"
+            }
+          },
+          {
+            "destination": {
+              "filename": "OSBSTD.parquet"
+            },
+            "source": {
+              "table": "OSBSTD"
+            }
+          },
+          {
+            "destination": {
+              "filename": "OSBUID.parquet"
+            },
+            "source": {
+              "table": "OSBUID"
+            }
+          },
+          {
+            "destination": {
+              "filename": "OSTORE.parquet"
+            },
+            "source": {
+              "table": "OSTORE"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CRPDLN.parquet"
+            },
+            "source": {
+              "table": "CRPDLN"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MPLIND.parquet"
+            },
+            "source": {
+              "table": "MPLIND"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MPTRNS.parquet"
+            },
+            "source": {
+              "table": "MPTRNS"
+            }
+          },
+          {
+            "destination": {
+              "filename": "ACUINV.parquet"
+            },
+            "source": {
+              "table": "ACUINV"
+            }
+          },
+          {
+            "destination": {
+              "filename": "ACUORH.parquet"
+            },
+            "source": {
+              "table": "ACUORH"
+            }
+          },
+          {
+            "destination": {
+              "filename": "ACUORL.parquet"
+            },
+            "source": {
+              "table": "ACUORL"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CRACTR.parquet"
+            },
+            "source": {
+              "table": "CRACTR"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CUGEFA.parquet"
+            },
+            "source": {
+              "table": "CUGEFA"
+            }
+          },
+          {
+            "destination": {
+              "filename": "DDOCUX.parquet"
+            },
+            "source": {
+              "table": "DDOCUX"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MBMTRD.parquet"
+            },
+            "source": {
+              "table": "MBMTRD"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MBMTRN.parquet"
+            },
+            "source": {
+              "table": "MBMTRN"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MMOPTR.parquet"
+            },
+            "source": {
+              "table": "MMOPTR"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MPDHED.parquet"
+            },
+            "source": {
+              "table": "MPDHED"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MPDMAT.parquet"
+            },
+            "source": {
+              "table": "MPDMAT"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MSPLMX.parquet"
+            },
+            "source": {
+              "table": "MSPLMX"
+            }
+          },
+          {
+            "destination": {
+              "filename": "SITCOM.parquet"
+            },
+            "source": {
+              "table": "SITCOM"
+            }
+          },
+          {
+            "destination": {
+              "filename": "SSTYPE.parquet"
+            },
+            "source": {
+              "table": "SSTYPE"
+            }
+          },
+          {
+            "destination": {
+              "filename": "OBTTRA.parquet"
+            },
+            "source": {
+              "table": "OBTTRA"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MPCELE.parquet"
+            },
+            "source": {
+              "table": "MPCELE"
+            }
+          },
+          {
+            "destination": {
+              "filename": "OPRICH.parquet"
+            },
+            "source": {
+              "table": "OPRICH"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MPREAL.parquet"
+            },
+            "source": {
+              "table": "MPREAL"
+            }
+          },
+          {
+            "destination": {
+              "filename": "OPRMTX.parquet"
+            },
+            "source": {
+              "table": "OPRMTX"
+            }
+          },
+          {
+            "destination": {
+              "filename": "OPRBAS.parquet"
+            },
+            "source": {
+              "table": "OPRBAS"
+            }
+          },
+          {
+            "destination": {
+              "filename": "FPPPAY.parquet"
+            },
+            "source": {
+              "table": "FPPPAY"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CSAFPR.parquet"
+            },
+            "source": {
+              "table": "CSAFPR"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CCUCRL.parquet"
+            },
+            "source": {
+              "table": "CCUCRL"
+            }
+          },
+          {
+            "destination": {
+              "filename": "OPRBAS.parquet"
+            },
+            "source": {
+              "table": "OPRBAS"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MITPAC.parquet"
+            },
+            "source": {
+              "table": "MITPAC"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MPACIT.parquet"
+            },
+            "source": {
+              "table": "MPACIT"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MFTRNS.parquet"
+            },
+            "source": {
+              "table": "MFTRNS"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CIADDR.parquet"
+            },
+            "source": {
+              "table": "CIADDR"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MPDOPE.parquet"
+            },
+            "source": {
+              "table": "MPDOPE"
+            }
+          },
+          {
+            "destination": {
+              "filename": "FGINLC.parquet"
+            },
+            "source": {
+              "table": "FGINLC"
+            }
+          },
+          {
+            "destination": {
+              "filename": "FGINLI.parquet"
+            },
+            "source": {
+              "table": "FGINLI"
+            }
+          },
+          {
+            "destination": {
+              "filename": "OINACC.parquet"
+            },
+            "source": {
+              "table": "OINACC"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MSYTXL.parquet"
+            },
+            "source": {
+              "table": "MSYTXL"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MSYTXH.parquet"
+            },
+            "source": {
+              "table": "MSYTXH"
+            }
+          },
+          {
+            "destination": {
+              "filename": "OPRMTX.parquet"
+            },
+            "source": {
+              "table": "OPRMTX"
+            }
+          },
+          {
+            "destination": {
+              "filename": "MITDFO.parquet"
+            },
+            "source": {
+              "table": "MITDFO"
+            }
+          },
+          {
+            "destination": {
+              "filename": "OGDMTX.parquet"
+            },
+            "source": {
+              "table": "OGDMTX"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CBMINH.parquet"
+            },
+            "source": {
+              "table": "CBMINH"
+            }
+          },
+          {
+            "destination": {
+              "filename": "CSYDPM.parquet"
+            },
+            "source": {
+              "table": "CSYDPM"
+            }
+          },
+          {
+            "destination": {
+              "filename": "FCAAVP.parquet"
+            },
+            "source": {
+              "table": "FCAAVP"
+            }
+          },
+          {
+            "destination": {
+              "filename": "OSYTXL.parquet"
+            },
+            "source": {
+              "table": "OSYTXL"
+            }
+          }
+        ],
+        "type": "Array"
+      }
+    }
+  }
 }

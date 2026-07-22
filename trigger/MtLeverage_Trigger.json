@@ -1,44 +1,45 @@
 {
-	"name": "MtLeverage_Trigger",
-	"properties": {
-		"annotations": [],
-		"runtimeState": "Started",
-		"pipelines": [
-			{
-				"pipelineReference": {
-					"referenceName": "MtLeverage_Pipeline",
-					"type": "PipelineReference"
-				},
-				"parameters": {
-					"cw_items": [
-						{
-							"source": {
-								"table": "warehouse_packages"
-							},
-							"destination": {
-								"fileName": "warehouse_packages.parquet"
-							}
-						},
-						{
-							"source": {
-								"table": "warehouse_picks"
-							},
-							"destination": {
-								"fileName": "warehouse_picks.parquet"
-							}
-						}
-					]
-				}
-			}
-		],
-		"type": "ScheduleTrigger",
-		"typeProperties": {
-			"recurrence": {
-				"frequency": "Day",
-				"interval": 1,
-				"startTime": "2024-03-09T01:00:00",
-				"timeZone": "Eastern Standard Time"
-			}
-		}
-	}
+  "name": "MtLeverage_Trigger",
+  "properties": {
+    "annotations": [],
+    "pipelines": [
+      {
+        "parameters": {
+          "cw_items": [
+            {
+              "destination": {
+                "fileName": "warehouse_packages.parquet"
+              },
+              "source": {
+                "table": "warehouse_packages"
+              }
+            },
+            {
+              "destination": {
+                "fileName": "warehouse_picks.parquet"
+              },
+              "source": {
+                "table": "warehouse_picks"
+              }
+            }
+          ]
+        },
+        "pipelineReference": {
+          "referenceName": "MtLeverage_Pipeline",
+          "type": "PipelineReference"
+        }
+      }
+    ],
+    "runtimeState": "Started",
+    "type": "ScheduleTrigger",
+    "typeProperties": {
+      "recurrence": {
+        "frequency": "Day",
+        "interval": 1,
+        "schedule": {},
+        "startTime": "2024-03-09T01:00:00.000Z",
+        "timeZone": "Eastern Standard Time"
+      }
+    }
+  }
 }

@@ -1,17 +1,17 @@
 {
-	"name": "AdCraft All Warehouses Physical Inventory",
-	"properties": {
-		"content": {
-			"query": "SELECT          'Munoz' as Responsible\n,               w.WAREHOUSE as WarehouseCode\n,               w.name as WarehouseName\n,               i.item as PartId\n,               i.descr as PartName\n,               SUM(wi.QTY_OH) as Qty\n,               SUM(QTY_OH*AVG_COST) as InventoryValue\nFROM            ADC.warehouse w\nJOIN            ADC.wa_item wi on w.warehouse = wi.warehouse\nJOIN            ADC.item I on wi.item = I.item\nwhere           1=1 \nand             wi.company_it = 'AD'\nAND             I.company_it = 'AD'\nAND             W.company_it = 'AD'\nAND             wi.qty_oh <> 0\nGROUP BY        w.WAREHOUSE, w.name, i.item, i.descr",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "AdCraft All Warehouses Physical Inventory",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "SELECT          'Munoz' as Responsible\n,               w.WAREHOUSE as WarehouseCode\n,               w.name as WarehouseName\n,               i.item as PartId\n,               i.descr as PartName\n,               SUM(wi.QTY_OH) as Qty\n,               SUM(QTY_OH*AVG_COST) as InventoryValue\nFROM            ADC.warehouse w\nJOIN            ADC.wa_item wi on w.warehouse = wi.warehouse\nJOIN            ADC.item I on wi.item = I.item\nwhere           1=1 \nand             wi.company_it = 'AD'\nAND             I.company_it = 'AD'\nAND             W.company_it = 'AD'\nAND             wi.qty_oh <> 0\nGROUP BY        w.WAREHOUSE, w.name, i.item, i.descr",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

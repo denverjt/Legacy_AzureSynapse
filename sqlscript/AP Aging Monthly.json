@@ -1,17 +1,17 @@
 {
-	"name": "AP Aging Monthly",
-	"properties": {
-		"content": {
-			"query": "SELECT *\n, '7/31/2024' as Month, case when DATEDIFF(DAY, [Due Date], '2024-09-01') < 1 then 'Current'  \nwhen DATEDIFF(DAY, [Due Date], '2024-09-01') < 31 then '1 - 30'  \nwhen DATEDIFF(DAY, [Due Date], '2024-09-01') < 61 then '31 - 60' \nwhen DATEDIFF(DAY, [Due Date], '2024-09-01') < 90 then '61 - 90'  \nwhen DATEDIFF(DAY, [Due Date], '2024-09-01') < 181 then '91 - 180' else '180 +' end as [Age Bucket]\nFROM v_AP_Aging_Test2 \nwhere [Accounting Date] < '2024-09-01'\n\n\n\nselect *\nfrom v_AP_Aging_Test2\nwhere [Accounting Date] < '2024-09-05'",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": -1
-		},
-		"type": "SqlQuery"
-	}
+  "name": "AP Aging Monthly",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "SELECT *\n, '7/31/2024' as Month, case when DATEDIFF(DAY, [Due Date], '2024-09-01') < 1 then 'Current'  \nwhen DATEDIFF(DAY, [Due Date], '2024-09-01') < 31 then '1 - 30'  \nwhen DATEDIFF(DAY, [Due Date], '2024-09-01') < 61 then '31 - 60' \nwhen DATEDIFF(DAY, [Due Date], '2024-09-01') < 90 then '61 - 90'  \nwhen DATEDIFF(DAY, [Due Date], '2024-09-01') < 181 then '91 - 180' else '180 +' end as [Age Bucket]\nFROM v_AP_Aging_Test2 \nwhere [Accounting Date] < '2024-09-01'\n\n\n\nselect *\nfrom v_AP_Aging_Test2\nwhere [Accounting Date] < '2024-09-05'",
+      "resultLimit": -1
+    },
+    "type": "SqlQuery"
+  }
 }

@@ -1,17 +1,17 @@
 {
-	"name": "v_Usage",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW      v_Usage\n-- drop view v_Usage\nas\n/*\nSELECT          'Sales' as [Usage Type]\n--,               OC.CUNO AS [Customer Number]\n--,               OC.CUNM as [Customer Name]\n,               OH.ORNO as [Order Number]\n--,               OH.CUOR as [Customer PO]\n--,               OH.RLDT as [Requested Date]\n,               cast(cast(ODH.ACDT as varchar(10)) as date)  as [Tran Date]\n,               IM.ITCL as Brand\n--,               OL.PONR as [Line Number]\n,               OL.ITNO as [Item Number]\n,               IM.ITDS as [Item Name]\n,               OL.WHLO as [Warehouse]\n,               IM.PRGP as [Procurement Group]\n--,               OL.NEPR as [Unit Price]\n,               SUM(ODL.IVQT) as [Quantity]\n,               0 as [Cost]\nFROM\t\t\tM3.FSLEDG LE --26749\nJOIN\t\t\tM3.OINVOH IV ON LE.CINO = IV.EXIN --15784\nJOIN\t\t\tM3.ODHEAD ODH ON ODH.IVNO = IV.IVNO AND LE.PYNO = ODH.PYNO and LE.ACDT = cast(cast(ODH.ACDT as varchar(10)) as date)\nJOIN\t\t\tM3.ODLINE ODL ON ODH.ORNO = ODL.ORNO AND ODH.DLIX = ODL.DLIX\nJOIN\t\t\tM3.OOLINE AS OL ON ODL.ORNO = OL.ORNO AND ODL.PONR = OL.PONR AND ODL.POSX = OL.POSX\nJOIN            M3.OOHEAD OH on OL.ORNO = OH.ORNO\nJOIN\t\t\tM3.OCUSMA AS OC ON ODH.CUNO = OC.CUNO \nJOIN\t\t\tM3.MITMAS AS IM ON ODL.ITNO = IM.ITNO\nWHERE\t\t\tLE.TRCD = 10\nAND\t\t\t\tLE.IVTP <> 'CN'\nand             ODH.ACDT <> 0\nand             OH.ORNO NOT LIKE '5%'\nGROUP BY        OH.ORNO, ODH.ACDT, IM.ITCL, OL.ITNO, IM.ITDS, OL.WHLO, IM.PRGP\n\nUNION ALL       \n*/\n\nSELECT\t\t\tA.*\n,\t\t\t\tB.Cost\nFROM\n(\nSELECT\t\t\t'Manufacturing' as [Usage Type]\n,\t\t\t\tMWH.MFNO AS [Order Number]\n,\t\t\t\tCAST(CAST(MWH.RPDT AS varchar(10)) AS date) AS [Tran Date]\n,\t\t\t\tMI.ITCL as Brand\n,\t\t\t\tMWM.MTNO as [Item Number]\n,\t\t\t\tMI.ITDS AS [Item Name]\n,\t\t\t\tMWH.WHLO AS Warehouse\n,\t\t\t\tMI.PRGP AS [Procurement Group]\n,\t\t\t\tSUM(RPQT) AS Quantity\nFROM            M3.MWOHED AS MWH\nJOIN\t\t\tM3.MWOMAT AS MWM on MWH.MFNO = MWM.MFNO and MWH.ITNO = MWM.PRNO\nJOIN\t\t\tM3.MITMAS AS MI ON MWM.MTNO = MI.ITNO \nWHERE\t\t\t(MWH.WHHS IN (60, 80, 90)) AND (MWH.MAQA <> 0)\nGROUP BY\t\tMWM.MTNO, MI.ITDS, MI.PRGP, MWH.WHLO, MWH.MFNO, MWH.RPDT, MI.ITCL\n) A \n\nLEFT JOIN\n\n(\nSELECT\t\t\tRIDN AS [Order Number]\n,\t\t\t\tMTNO as [Item Number]\n,\t\t\t\tAVG(TOAF) AS Cost\nFROM            M3.CPOMAT\nGROUP BY\t\tRIDN, MTNO\n) B ON A.[Order Number] = B.[Order Number] and A.[Item Number] = B.[Item Number]",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": -1
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_Usage",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW      v_Usage\n-- drop view v_Usage\nas\n/*\nSELECT          'Sales' as [Usage Type]\n--,               OC.CUNO AS [Customer Number]\n--,               OC.CUNM as [Customer Name]\n,               OH.ORNO as [Order Number]\n--,               OH.CUOR as [Customer PO]\n--,               OH.RLDT as [Requested Date]\n,               cast(cast(ODH.ACDT as varchar(10)) as date)  as [Tran Date]\n,               IM.ITCL as Brand\n--,               OL.PONR as [Line Number]\n,               OL.ITNO as [Item Number]\n,               IM.ITDS as [Item Name]\n,               OL.WHLO as [Warehouse]\n,               IM.PRGP as [Procurement Group]\n--,               OL.NEPR as [Unit Price]\n,               SUM(ODL.IVQT) as [Quantity]\n,               0 as [Cost]\nFROM\t\t\tM3.FSLEDG LE --26749\nJOIN\t\t\tM3.OINVOH IV ON LE.CINO = IV.EXIN --15784\nJOIN\t\t\tM3.ODHEAD ODH ON ODH.IVNO = IV.IVNO AND LE.PYNO = ODH.PYNO and LE.ACDT = cast(cast(ODH.ACDT as varchar(10)) as date)\nJOIN\t\t\tM3.ODLINE ODL ON ODH.ORNO = ODL.ORNO AND ODH.DLIX = ODL.DLIX\nJOIN\t\t\tM3.OOLINE AS OL ON ODL.ORNO = OL.ORNO AND ODL.PONR = OL.PONR AND ODL.POSX = OL.POSX\nJOIN            M3.OOHEAD OH on OL.ORNO = OH.ORNO\nJOIN\t\t\tM3.OCUSMA AS OC ON ODH.CUNO = OC.CUNO \nJOIN\t\t\tM3.MITMAS AS IM ON ODL.ITNO = IM.ITNO\nWHERE\t\t\tLE.TRCD = 10\nAND\t\t\t\tLE.IVTP <> 'CN'\nand             ODH.ACDT <> 0\nand             OH.ORNO NOT LIKE '5%'\nGROUP BY        OH.ORNO, ODH.ACDT, IM.ITCL, OL.ITNO, IM.ITDS, OL.WHLO, IM.PRGP\n\nUNION ALL       \n*/\n\nSELECT\t\t\tA.*\n,\t\t\t\tB.Cost\nFROM\n(\nSELECT\t\t\t'Manufacturing' as [Usage Type]\n,\t\t\t\tMWH.MFNO AS [Order Number]\n,\t\t\t\tCAST(CAST(MWH.RPDT AS varchar(10)) AS date) AS [Tran Date]\n,\t\t\t\tMI.ITCL as Brand\n,\t\t\t\tMWM.MTNO as [Item Number]\n,\t\t\t\tMI.ITDS AS [Item Name]\n,\t\t\t\tMWH.WHLO AS Warehouse\n,\t\t\t\tMI.PRGP AS [Procurement Group]\n,\t\t\t\tSUM(RPQT) AS Quantity\nFROM            M3.MWOHED AS MWH\nJOIN\t\t\tM3.MWOMAT AS MWM on MWH.MFNO = MWM.MFNO and MWH.ITNO = MWM.PRNO\nJOIN\t\t\tM3.MITMAS AS MI ON MWM.MTNO = MI.ITNO \nWHERE\t\t\t(MWH.WHHS IN (60, 80, 90)) AND (MWH.MAQA <> 0)\nGROUP BY\t\tMWM.MTNO, MI.ITDS, MI.PRGP, MWH.WHLO, MWH.MFNO, MWH.RPDT, MI.ITCL\n) A \n\nLEFT JOIN\n\n(\nSELECT\t\t\tRIDN AS [Order Number]\n,\t\t\t\tMTNO as [Item Number]\n,\t\t\t\tAVG(TOAF) AS Cost\nFROM            M3.CPOMAT\nGROUP BY\t\tRIDN, MTNO\n) B ON A.[Order Number] = B.[Order Number] and A.[Item Number] = B.[Item Number]",
+      "resultLimit": -1
+    },
+    "type": "SqlQuery"
+  }
 }

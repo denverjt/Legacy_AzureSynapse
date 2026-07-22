@@ -1,17 +1,17 @@
 {
-	"name": "v_AzureSpendData",
-	"properties": {
-		"content": {
-			"query": "--DROP VIEW v_AzureSpendData  \nCREATE VIEW v_AzureSpendData AS \nSELECT \n    [date], serviceFamily, consumedService, meterName, meterCategory, meterSubCategory, productName, [resourceGroupName], [location]\n    ,effectivePrice, quantity, unitOfMeasure, chargeType, costInBillingCurrency, ResourceId, tags\nFROM\n    OPENROWSET(\n        BULK 'https://tlclake.dfs.core.windows.net/tlclakefs/Azure/TLC/*/',\n        FORMAT = 'CSV',\n        HEADER_ROW = TRUE,\n        PARSER_VERSION = '2.0'\n    ) AS [result]\n",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_AzureSpendData",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "--DROP VIEW v_AzureSpendData  \nCREATE VIEW v_AzureSpendData AS \nSELECT \n    [date], serviceFamily, consumedService, meterName, meterCategory, meterSubCategory, productName, [resourceGroupName], [location]\n    ,effectivePrice, quantity, unitOfMeasure, chargeType, costInBillingCurrency, ResourceId, tags\nFROM\n    OPENROWSET(\n        BULK 'https://tlclake.dfs.core.windows.net/tlclakefs/Azure/TLC/*/',\n        FORMAT = 'CSV',\n        HEADER_ROW = TRUE,\n\u202f\u202f\u202f\u202f\u202f\u202f\u202f\u202fPARSER_VERSION = '2.0'\n    ) AS [result]\n",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

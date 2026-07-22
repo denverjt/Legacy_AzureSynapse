@@ -1,17 +1,17 @@
 {
-	"name": "V_Commission_Matrix",
-	"properties": {
-		"content": {
-			"query": "SELECT      OBT.TAGN AS [Trade Agreement Number]\n,           TX40 AS [Trade Agreement Description]\n,           TX15 AS [Trade Agreement Name]\n,           OBT2.TREC AS [Sales Rep ID]\n,           OBT3.OBV2 as [Brand]\n,           CSM.OBV1 as [Sales Territory]\n,           OBT2.FVDT as [From Date]\n,           OBT2.TVDT as [To Date]\nFROM        M3.OBTRAG OBT\nJOIN        M3.OBTREC OBT2 ON OBT.TAGN = OBT2.TAGN\nJOIN        M3.OBTMTX OBT3 on OBT.TAGN = OBT3.TAGN and OBT2.TREC = OBT3.OBV1\nJOIN        M3.CSMCDX CSM on OBT3.OBV2 = CSM.OBV2 and CSM.SMD1 = OBT2.TREC\n\n",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": -1
-		},
-		"type": "SqlQuery"
-	}
+  "name": "V_Commission_Matrix",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "SELECT      OBT.TAGN AS [Trade Agreement Number]\n,           TX40 AS [Trade Agreement Description]\n,           TX15 AS [Trade Agreement Name]\n,           OBT2.TREC AS [Sales Rep ID]\n,           OBT3.OBV2 as [Brand]\n,           CSM.OBV1 as [Sales Territory]\n,           OBT2.FVDT as [From Date]\n,           OBT2.TVDT as [To Date]\nFROM        M3.OBTRAG OBT\nJOIN        M3.OBTREC OBT2 ON OBT.TAGN = OBT2.TAGN\nJOIN        M3.OBTMTX OBT3 on OBT.TAGN = OBT3.TAGN and OBT2.TREC = OBT3.OBV1\nJOIN        M3.CSMCDX CSM on OBT3.OBV2 = CSM.OBV2 and CSM.SMD1 = OBT2.TREC\n\n",
+      "resultLimit": -1
+    },
+    "type": "SqlQuery"
+  }
 }

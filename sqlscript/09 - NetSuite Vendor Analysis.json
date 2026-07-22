@@ -1,17 +1,17 @@
 {
-	"name": "09 - NetSuite Vendor Analysis",
-	"properties": {
-		"content": {
-			"query": "/*SELECT [createddate], [abbrevtype], [recordtype] ,[entity], [entitytitle] ,[memo], [trandisplayname], [foreigntotal]\n FROM [NET].[NetSuiteTransaction] left join [NET].[Entity] on NetSuiteTransaction.entity=Entity.id\n WHERE YEAR([createddate])=2022 and abbrevtype='BILLPMT'*/\n\nSELECT [entityID] [VendorNumber], [entitytitle] [Vendor Name], COUNT(*) [Number of Payments], max(createddate) [Recent Payment Date]\n FROM [NET].[NetSuiteTransaction] left join [NET].[Entity] on NetSuiteTransaction.entity=Entity.id\n WHERE YEAR([createddate])>=2022 and abbrevtype IN ('BILLPMT')\n GROUP BY [entityID], [entitytitle]",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "09 - NetSuite Vendor Analysis",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "/*SELECT [createddate], [abbrevtype], [recordtype] ,[entity], [entitytitle] ,[memo], [trandisplayname], [foreigntotal]\n FROM [NET].[NetSuiteTransaction] left join [NET].[Entity] on NetSuiteTransaction.entity=Entity.id\n WHERE YEAR([createddate])=2022 and abbrevtype='BILLPMT'*/\n\nSELECT [entityID] [VendorNumber], [entitytitle] [Vendor Name], COUNT(*) [Number of Payments], max(createddate) [Recent Payment Date]\n FROM [NET].[NetSuiteTransaction] left join [NET].[Entity] on NetSuiteTransaction.entity=Entity.id\n WHERE YEAR([createddate])>=2022 and abbrevtype IN ('BILLPMT')\n GROUP BY [entityID], [entitytitle]",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

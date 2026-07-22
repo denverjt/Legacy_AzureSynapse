@@ -1,17 +1,17 @@
 {
-	"name": "v_ReceivingPOs",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW\t\t\tv_ReceivingPOs\nas\nSELECT\t\t\t\tML.WHLO as Warehouse\n,           \t\tMM.ITCL as Brand\n,           \t\tMM.ITNO as ItemNumber\n,           \t\tMM.ITDS as ItemDescription\n,           \t\tML.RVQA as Qty\n,\t\t\t\t\tcast(CAST(NULLIF(ML.RCDT,0) as varchar(10)) as date) as [Received Date]\nFROM        \t\tM3.MPHEAD MP \t\nJOIN        \t\tM3.MPLINE ML ON MP.PUNO = ML.PUNO\nJOIN        \t\tM3.MITMAS MM ON ML.ITNO = MM.ITNO",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_ReceivingPOs",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW\t\t\tv_ReceivingPOs\nas\nSELECT\t\t\t\tML.WHLO as Warehouse\n,           \t\tMM.ITCL as Brand\n,           \t\tMM.ITNO as ItemNumber\n,           \t\tMM.ITDS as ItemDescription\n,           \t\tML.RVQA as Qty\n,\t\t\t\t\tcast(CAST(NULLIF(ML.RCDT,0) as varchar(10)) as date) as [Received Date]\nFROM        \t\tM3.MPHEAD MP \t\nJOIN        \t\tM3.MPLINE ML ON MP.PUNO = ML.PUNO\nJOIN        \t\tM3.MITMAS MM ON ML.ITNO = MM.ITNO",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

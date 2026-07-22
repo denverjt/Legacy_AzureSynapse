@@ -1,36 +1,34 @@
 {
-	"name": "SourceDataset_vhs",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "SysproCompanyL",
-			"type": "LinkedServiceReference"
-		},
-		"annotations": [],
-		"type": "SqlServerTable",
-		"schema": [
-			{
-				"name": "Branch",
-				"type": "varchar",
-				"precision": 0,
-				"scale": 0
-			},
-			{
-				"name": "ProductClass",
-				"type": "varchar",
-				"precision": 0,
-				"scale": 0
-			},
-			{
-				"name": "Brand",
-				"type": "varchar",
-				"precision": 0,
-				"scale": 0
-			}
-		],
-		"typeProperties": {
-			"schema": "dbo",
-			"table": "SalProductClass+"
-		}
-	},
-	"type": "Microsoft.Synapse/workspaces/datasets"
+  "name": "SourceDataset_vhs",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "SysproCompanyL",
+      "type": "LinkedServiceReference"
+    },
+    "schema": [
+      {
+        "name": "Branch",
+        "precision": 0,
+        "scale": 0,
+        "type": "varchar"
+      },
+      {
+        "name": "ProductClass",
+        "precision": 0,
+        "scale": 0,
+        "type": "varchar"
+      },
+      {
+        "name": "Brand",
+        "precision": 0,
+        "scale": 0,
+        "type": "varchar"
+      }
+    ],
+    "type": "SqlServerTable",
+    "typeProperties": {
+      "schema": "dbo",
+      "table": "SalProductClass+"
+    }
+  }
 }

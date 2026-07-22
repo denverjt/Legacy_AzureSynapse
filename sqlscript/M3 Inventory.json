@@ -1,17 +1,17 @@
 {
-	"name": "M3 Inventory",
-	"properties": {
-		"content": {
-			"query": "SELECT      MM.ITNO, MM.ITDS, BAL.WHLO, SUM(STQT) AS OnHandApproved, SUM(QUQT) as OnHandInspect, SUM(RJQT) as OnHandReject\n,           APPR--, (SUM(STQT)+SUM(QUQT)+SUM(RJQT))*APPR as InventoryValue\nFROM        M3.MITBAL BAL\nJOIN        M3.MITMAS MM ON BAL.ITNO = BAL.ITNO\nLEFT JOIN   M3.MITFAC MF ON MM.ITNO = MF.ITNO AND MF.FACI = 'TLC'\nGROUP BY    MM.ITNO, MM.ITDS, BAL.WHLO, APPR\nHAVING      SUM(STQT) + SUM(QUQT) + SUM(RJQT) > 0\n\n\n\nselect itno, count(*) from m3.mitfac where FACI = 'TLC' group by itno having count(*) > 1\nselect * from m3.mitfac where itno = 'Z-131060-BLACK'",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": -1
-		},
-		"type": "SqlQuery"
-	}
+  "name": "M3 Inventory",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "SELECT      MM.ITNO, MM.ITDS, BAL.WHLO, SUM(STQT) AS OnHandApproved, SUM(QUQT) as OnHandInspect, SUM(RJQT) as OnHandReject\n,           APPR--, (SUM(STQT)+SUM(QUQT)+SUM(RJQT))*APPR as InventoryValue\nFROM        M3.MITBAL BAL\nJOIN        M3.MITMAS MM ON BAL.ITNO = BAL.ITNO\nLEFT JOIN   M3.MITFAC MF ON MM.ITNO = MF.ITNO AND MF.FACI = 'TLC'\nGROUP BY    MM.ITNO, MM.ITDS, BAL.WHLO, APPR\nHAVING      SUM(STQT) + SUM(QUQT) + SUM(RJQT) > 0\n\n\n\nselect itno, count(*) from m3.mitfac where FACI = 'TLC' group by itno having count(*) > 1\nselect * from m3.mitfac where itno = 'Z-131060-BLACK'",
+      "resultLimit": -1
+    },
+    "type": "SqlQuery"
+  }
 }

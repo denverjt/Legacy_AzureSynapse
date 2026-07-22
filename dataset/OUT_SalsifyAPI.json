@@ -1,21 +1,20 @@
 {
-	"name": "OUT_SalsifyAPI",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "tlcdw-WorkspaceDefaultStorage",
-			"type": "LinkedServiceReference"
-		},
-		"annotations": [],
-		"type": "Json",
-		"typeProperties": {
-			"location": {
-				"type": "AzureBlobFSLocation",
-				"fileName": "SalsifyTest.json",
-				"folderPath": "Salsify",
-				"fileSystem": "tlclakefs"
-			}
-		},
-		"schema": {}
-	},
-	"type": "Microsoft.Synapse/workspaces/datasets"
+  "name": "OUT_SalsifyAPI",
+  "properties": {
+    "annotations": [],
+    "linkedServiceName": {
+      "referenceName": "tlcdw-WorkspaceDefaultStorage",
+      "type": "LinkedServiceReference"
+    },
+    "schema": {},
+    "type": "Json",
+    "typeProperties": {
+      "location": {
+        "fileName": "SalsifyTest.json",
+        "fileSystem": "tlclakefs",
+        "folderPath": "Salsify",
+        "type": "AzureBlobFSLocation"
+      }
+    }
+  }
 }

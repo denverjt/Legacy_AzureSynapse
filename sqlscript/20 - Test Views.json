@@ -1,17 +1,17 @@
 {
-	"name": "20 - Test Views",
-	"properties": {
-		"content": {
-			"query": "DECLARE @ViewName NVARCHAR(128);\nDECLARE @SQL NVARCHAR(4000);\nDECLARE @ErrorMessage NVARCHAR(4000);\nDECLARE @ErrorSeverity INT;\n\nIF OBJECT_ID('tempdb..#ViewsToTest') IS NOT NULL\n    DROP TABLE #ViewsToTest;\n\nIF OBJECT_ID('tempdb..#ViewTestResults') IS NOT NULL\n    DROP TABLE #ViewTestResults;\n\nCREATE TABLE #ViewsToTest\n(\n    ViewName NVARCHAR(128)\n);\n\nCREATE TABLE #ViewTestResults\n(\n    ViewName NVARCHAR(128),\n    TestResult BIT,\n    ErrorMessage NVARCHAR(4000),\n    ErrorSeverity INT\n);\n\nINSERT INTO #ViewsToTest\nSELECT QUOTENAME(OBJECT_SCHEMA_NAME(object_id)) + '.' + QUOTENAME(name) AS [ViewName]\nFROM sys.views;\n\nWHILE EXISTS (SELECT 1 FROM #ViewsToTest)\nBEGIN\n    SELECT TOP 1 @ViewName = ViewName\n    FROM #ViewsToTest;\n\n    SET @SQL = N'SELECT TOP 1 1 FROM ' + @ViewName;\n\n    BEGIN TRY\n        EXEC sp_executesql @SQL;\n        INSERT INTO #ViewTestResults (ViewName, TestResult)\n        VALUES (@ViewName, 1);\n    END TRY\n    BEGIN CATCH\n        SET @ErrorMessage = ERROR_MESSAGE();\n        SET @ErrorSeverity = ERROR_SEVERITY();\n\n        INSERT INTO #ViewTestResults (ViewName, TestResult, ErrorMessage, ErrorSeverity)\n        VALUES (@ViewName, 0, @ErrorMessage, @ErrorSeverity);\n    END CATCH;\n\n    DELETE FROM #ViewsToTest WHERE ViewName = @ViewName;\nEND;\n\n-- Query the results from #ViewTestResults table\nSELECT ViewName, TestResult, ErrorMessage, ErrorSeverity\nFROM #ViewTestResults;\n\nDROP TABLE #ViewsToTest;\nDROP TABLE #ViewTestResults;\n",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "TLCSQL",
-				"poolName": "TLCSQL"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "20 - Test Views",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "TLCSQL",
+        "poolName": "TLCSQL"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "DECLARE @ViewName NVARCHAR(128);\nDECLARE @SQL NVARCHAR(4000);\nDECLARE @ErrorMessage NVARCHAR(4000);\nDECLARE @ErrorSeverity INT;\n\nIF OBJECT_ID('tempdb..#ViewsToTest') IS NOT NULL\n    DROP TABLE #ViewsToTest;\n\nIF OBJECT_ID('tempdb..#ViewTestResults') IS NOT NULL\n    DROP TABLE #ViewTestResults;\n\nCREATE TABLE #ViewsToTest\n(\n    ViewName NVARCHAR(128)\n);\n\nCREATE TABLE #ViewTestResults\n(\n    ViewName NVARCHAR(128),\n    TestResult BIT,\n    ErrorMessage NVARCHAR(4000),\n    ErrorSeverity INT\n);\n\nINSERT INTO #ViewsToTest\nSELECT QUOTENAME(OBJECT_SCHEMA_NAME(object_id)) + '.' + QUOTENAME(name) AS [ViewName]\nFROM sys.views;\n\nWHILE EXISTS (SELECT 1 FROM #ViewsToTest)\nBEGIN\n    SELECT TOP 1 @ViewName = ViewName\n    FROM #ViewsToTest;\n\n    SET @SQL = N'SELECT TOP 1 1 FROM ' + @ViewName;\n\n    BEGIN TRY\n        EXEC sp_executesql @SQL;\n        INSERT INTO #ViewTestResults (ViewName, TestResult)\n        VALUES (@ViewName, 1);\n    END TRY\n    BEGIN CATCH\n        SET @ErrorMessage = ERROR_MESSAGE();\n        SET @ErrorSeverity = ERROR_SEVERITY();\n\n        INSERT INTO #ViewTestResults (ViewName, TestResult, ErrorMessage, ErrorSeverity)\n        VALUES (@ViewName, 0, @ErrorMessage, @ErrorSeverity);\n    END CATCH;\n\n    DELETE FROM #ViewsToTest WHERE ViewName = @ViewName;\nEND;\n\n-- Query the results from #ViewTestResults table\nSELECT ViewName, TestResult, ErrorMessage, ErrorSeverity\nFROM #ViewTestResults;\n\nDROP TABLE #ViewsToTest;\nDROP TABLE #ViewTestResults;\n",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

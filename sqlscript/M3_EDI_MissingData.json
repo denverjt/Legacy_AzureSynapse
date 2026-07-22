@@ -1,17 +1,17 @@
 {
-	"name": "M3_EDI_MissingData",
-	"properties": {
-		"content": {
-			"query": "SELECT          DISTINCT OH.CUNO AS CUSTOMER_NUMBER\n,               CM.CUNM AS CUSTOMER_NAME\n,               OH.ORNO AS SALES_ORDER\n,               OH.CUOR AS PO_NUMBER\n,               OH.UCA3 AS BOL_ARN\n,               OD.DLIX AS DELIVERY_NUMBER\n,               OH.RASN AS RAIL_STATION\n,               MPTRNS.ETRN AS EXTERNAL_TRACKING_NO\n,               MPTRNS.DLRM AS REMARK\nFROM            M3_OOHEAD OH\nJOIN            M3_OOLINE OL ON OH.ORNO = OL.ORNO\nJOIN            M3_MITMAS IM ON OL.ITNO = IM.ITNO\nJOIN            M3_OCUSMA CM ON OH.CUNO = CM.CUNO\nJOIN            M3_ODHEAD OD ON OH.ORNO = OD.ORNO\nWHERE           OH.CUOR = '5XBTWPGA'",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "M3_EDI_MissingData",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "SELECT          DISTINCT OH.CUNO AS CUSTOMER_NUMBER\n,               CM.CUNM AS CUSTOMER_NAME\n,               OH.ORNO AS SALES_ORDER\n,               OH.CUOR AS PO_NUMBER\n,               OH.UCA3 AS BOL_ARN\n,               OD.DLIX AS DELIVERY_NUMBER\n,               OH.RASN AS RAIL_STATION\n,               MPTRNS.ETRN AS EXTERNAL_TRACKING_NO\n,               MPTRNS.DLRM AS REMARK\nFROM            M3_OOHEAD OH\nJOIN            M3_OOLINE OL ON OH.ORNO = OL.ORNO\nJOIN            M3_MITMAS IM ON OL.ITNO = IM.ITNO\nJOIN            M3_OCUSMA CM ON OH.CUNO = CM.CUNO\nJOIN            M3_ODHEAD OD ON OH.ORNO = OD.ORNO\nWHERE           OH.CUOR = '5XBTWPGA'",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

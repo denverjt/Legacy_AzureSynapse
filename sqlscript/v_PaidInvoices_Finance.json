@@ -1,17 +1,17 @@
 {
-	"name": "v_PaidInvoices_Finance",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW v_PaidInvoices_Finance\nas\nSELECT      A.*, B.[Paid Date], [Paid Amount]\nFROM\n(\nSELECT      CINO as [Invoice Number]\n,           ACDT as [Invoice Date]\n,           FS.PYNO as [Payer]\n,           OC.CUNM as [Payer Name]\n,           OC.CUNO as [Customer]\n,           OC2.CUNM as [Customer Name]\n,           SUM(CUAM) as [Invoiced Amount]\nFROM        M3.FSLEDG FS\nLEFT JOIN   M3.OCUSMA OC ON FS.PYNO = OC.CUNO\nLEFT JOIN   M3.OCUSMA OC2 ON FS.PYNO = OC2.CUNO\nWHERE       TRCD = 10\nAND         ACDT >= '2023-01-01'\nGROUP BY    CINO, ACDT, FS.PYNO, OC.CUNO, OC.CUNM, OC2.CUNM\n) A\n\nLEFT JOIN\n\n(\nSELECT      CINO as [Invoice Number]\n,           ACDT as [Paid Date]\n,           SUM(CUAM) as [Paid Amount]\nFROM        M3.FSLEDG\nWHERE       TRCD = 20\nAND         ACDT >= '2023-01-01'\nGROUP BY    CINO, ACDT\n) B on      A.[Invoice Number] = B.[Invoice Number]",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_PaidInvoices_Finance",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW v_PaidInvoices_Finance\nas\nSELECT      A.*, B.[Paid Date], [Paid Amount]\nFROM\n(\nSELECT      CINO as [Invoice Number]\n,           ACDT as [Invoice Date]\n,           FS.PYNO as [Payer]\n,           OC.CUNM as [Payer Name]\n,           OC.CUNO as [Customer]\n,           OC2.CUNM as [Customer Name]\n,           SUM(CUAM) as [Invoiced Amount]\nFROM        M3.FSLEDG FS\nLEFT JOIN   M3.OCUSMA OC ON FS.PYNO = OC.CUNO\nLEFT JOIN   M3.OCUSMA OC2 ON FS.PYNO = OC2.CUNO\nWHERE       TRCD = 10\nAND         ACDT >= '2023-01-01'\nGROUP BY    CINO, ACDT, FS.PYNO, OC.CUNO, OC.CUNM, OC2.CUNM\n) A\n\nLEFT JOIN\n\n(\nSELECT      CINO as [Invoice Number]\n,           ACDT as [Paid Date]\n,           SUM(CUAM) as [Paid Amount]\nFROM        M3.FSLEDG\nWHERE       TRCD = 20\nAND         ACDT >= '2023-01-01'\nGROUP BY    CINO, ACDT\n) B on      A.[Invoice Number] = B.[Invoice Number]",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

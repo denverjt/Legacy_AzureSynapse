@@ -1,17 +1,17 @@
 {
-	"name": "v_Avanti_OpenOrdersWithDelivery",
-	"properties": {
-		"content": {
-			"query": "SELECT      DISTINCT CM.SUNM as SupplierName\n,           MH.SUNO as SupplierNumber\n,           MH.PUNO as PurchaseOrderNumber\n,           MM.ITNO as ItemNumber\n,           MM.ITCL as Brand\n,           MH.WHLO as Warehouse\n,           ML.RVQA as ReceivedQty\n,           ML.ORQA - ML.RVQA as OpenQty\n,           ML.SUDO as ContainerNumber\n,           MH.DWDT as RequestedDate\nFROM        M3.MPHEAD MH\nJOIN        M3.MPLINE ML on MH.PUNO = ML.PUNO\nJOIN        M3.CIDMAS CM on MH.SUNO = CM.SUNO\nJOIN        M3.MITMAS MM ON ML.ITNO = MM.ITNO\n\n\n\nSELECT * FROM M3.OOHEAD WHERE OREF <> '' AND FRE1 = 'CNAVA'",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_Avanti_OpenOrdersWithDelivery",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "SELECT      DISTINCT CM.SUNM as SupplierName\n,           MH.SUNO as SupplierNumber\n,           MH.PUNO as PurchaseOrderNumber\n,           MM.ITNO as ItemNumber\n,           MM.ITCL as Brand\n,           MH.WHLO as Warehouse\n,           ML.RVQA as ReceivedQty\n,           ML.ORQA - ML.RVQA as OpenQty\n,           ML.SUDO as ContainerNumber\n,           MH.DWDT as RequestedDate\nFROM        M3.MPHEAD MH\nJOIN        M3.MPLINE ML on MH.PUNO = ML.PUNO\nJOIN        M3.CIDMAS CM on MH.SUNO = CM.SUNO\nJOIN        M3.MITMAS MM ON ML.ITNO = MM.ITNO\n\n\n\nSELECT * FROM M3.OOHEAD WHERE OREF <> '' AND FRE1 = 'CNAVA'",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

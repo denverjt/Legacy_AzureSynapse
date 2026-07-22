@@ -1,17 +1,17 @@
 {
-	"name": "v_TransactionsByUser",
-	"properties": {
-		"content": {
-			"query": "CREATE VIEW v_TransactionsByUser\nas\nSELECT      RESP AS [User]\n,           TTYP AS [Transaction Type]\n,           TRDT AS [Transaction Date]\n,           RIDN AS [Order Number]\n,           RIDL AS [Order Line]\n,           ITNO AS [Item]\n,           WHSL AS [Warehouse Location]\n,           TRQT AS [Transaction Qty]\nFROM        M3.MITTRA",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "tlcdw",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "v_TransactionsByUser",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW v_TransactionsByUser\nas\nSELECT      RESP AS [User]\n,           TTYP AS [Transaction Type]\n,           TRDT AS [Transaction Date]\n,           RIDN AS [Order Number]\n,           RIDL AS [Order Line]\n,           ITNO AS [Item]\n,           WHSL AS [Warehouse Location]\n,           TRQT AS [Transaction Qty]\nFROM        M3.MITTRA",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

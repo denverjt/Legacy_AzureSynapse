@@ -1,17 +1,17 @@
 {
-	"name": "NetSuite Address Analysis",
-	"properties": {
-		"content": {
-			"query": "SELECT\n    TOP 100 *\nFROM NET.TransactionAccountingLine TL LEFT JOIN NET.Account A on TL.Account=A.ID\n--WHERE amountpaid=86940\nWHERE [transaction] IN (315626, 310496, 326293, 342126, 311962, 310294, 310304, 333466, 310269, 315629, 310284, 331164, 315618, \n                        327710, 311952, 311957, 311935, 341773) and account is not null\n\nSELECT TOP 100 trandate, tranID, otherrefnum, entity, account, amount, amountpaid, amountunpaid\nFROM NET.NetSuiteTransaction TR LEFT JOIN NET.TransactionAccountingLine TL on TR.id=TL.[transaction] and TL.account=120\nWHERE [id] IN (315626, 342135, 298155, 334428)\n\nSELECT TOP 100 *\nFROM M3_OOHEAD\nWHERE CUOR='012600119137'\n\nSELECT\n    TOP 100 *\nFROM\n    OPENROWSET(\n        BULK 'https://tlclake.dfs.core.windows.net/tlclakefs/NetsuiteVT/Entity.parquet',\n        FORMAT = 'PARQUET'\n    ) AS [result]\nWHERE id=304509\n\n-- This is auto-generated code\nSELECT\n    TOP 100 *\nFROM\n    OPENROWSET(\n        BULK 'https://tlclake.dfs.core.windows.net/tlclakefs/NetsuiteVT/Backups/customerAddressbook.parquet',\n        FORMAT = 'PARQUET'\n    ) AS [result]\nWHERE entity=304509\n\n-- This is auto-generated code\nSELECT\n    TOP 100 *\nFROM\n    OPENROWSET(\n        BULK 'https://tlclake.dfs.core.windows.net/tlclakefs/NetsuiteVT/entityAddressbook.parquet',\n        FORMAT = 'PARQUET'\n    ) AS [result]\nWHERE entity=304509\n\n-- This is auto-generated code\nSELECT\n    TOP 100 *\nFROM\n    OPENROWSET(\n        BULK 'https://tlclake.dfs.core.windows.net/tlclakefs/NetsuiteVT/Backups/CompanyAddressbookEntityAddress.parquet',\n        FORMAT = 'PARQUET'\n    ) AS [result]\nWHERE addressee LIKE '%Newman%'\n\n",
-			"metadata": {
-				"language": "sql"
-			},
-			"currentConnection": {
-				"databaseName": "master",
-				"poolName": "Built-in"
-			},
-			"resultLimit": 5000
-		},
-		"type": "SqlQuery"
-	}
+  "name": "NetSuite Address Analysis",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "master",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "SELECT\n    TOP 100 *\nFROM NET.TransactionAccountingLine TL LEFT JOIN NET.Account A on TL.Account=A.ID\n--WHERE amountpaid=86940\nWHERE [transaction] IN (315626, 310496, 326293, 342126, 311962, 310294, 310304, 333466, 310269, 315629, 310284, 331164, 315618, \n                        327710, 311952, 311957, 311935, 341773) and account is not null\n\nSELECT TOP 100 trandate, tranID, otherrefnum, entity, account, amount, amountpaid, amountunpaid\nFROM NET.NetSuiteTransaction TR LEFT JOIN NET.TransactionAccountingLine TL on TR.id=TL.[transaction] and TL.account=120\nWHERE [id] IN (315626, 342135, 298155, 334428)\n\nSELECT TOP 100 *\nFROM M3_OOHEAD\nWHERE CUOR='012600119137'\n\nSELECT\n    TOP 100 *\nFROM\n    OPENROWSET(\n        BULK 'https://tlclake.dfs.core.windows.net/tlclakefs/NetsuiteVT/Entity.parquet',\n        FORMAT = 'PARQUET'\n    ) AS [result]\nWHERE id=304509\n\n-- This is auto-generated code\nSELECT\n    TOP 100 *\nFROM\n    OPENROWSET(\n        BULK 'https://tlclake.dfs.core.windows.net/tlclakefs/NetsuiteVT/Backups/customerAddressbook.parquet',\n        FORMAT = 'PARQUET'\n    ) AS [result]\nWHERE entity=304509\n\n-- This is auto-generated code\nSELECT\n    TOP 100 *\nFROM\n    OPENROWSET(\n        BULK 'https://tlclake.dfs.core.windows.net/tlclakefs/NetsuiteVT/entityAddressbook.parquet',\n        FORMAT = 'PARQUET'\n    ) AS [result]\nWHERE entity=304509\n\n-- This is auto-generated code\nSELECT\n    TOP 100 *\nFROM\n    OPENROWSET(\n        BULK 'https://tlclake.dfs.core.windows.net/tlclakefs/NetsuiteVT/Backups/CompanyAddressbookEntityAddress.parquet',\n        FORMAT = 'PARQUET'\n    ) AS [result]\nWHERE addressee LIKE '%Newman%'\n\n",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
 }

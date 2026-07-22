@@ -1,365 +1,365 @@
 {
-	"name": "M3JSONProcess_Trigger",
-	"properties": {
-		"annotations": [],
-		"runtimeState": "Stopped",
-		"pipelines": [
-			{
-				"pipelineReference": {
-					"referenceName": "M3JSON_Process",
-					"type": "PipelineReference"
-				},
-				"parameters": {
-					"tlcJ2PConsolidate": [
-						{
-							"M3FileName": "OCLINE"
-						},
-						{
-							"M3FileName": "OCHEAD"
-						},
-						{
-							"M3FileName": "FAPCHK"
-						},
-						{
-							"M3FileName": "OPROMH"
-						},
-						{
-							"M3FileName": "CPOCOS"
-						},
-						{
-							"M3FileName": "ACLTYP"
-						},
-						{
-							"M3FileName": "ACUAGH"
-						},
-						{
-							"M3FileName": "ACUOTY"
-						},
-						{
-							"M3FileName": "CCURRA"
-						},
-						{
-							"M3FileName": "CEAEMP"
-						},
-						{
-							"M3FileName": "CFACIL"
-						},
-						{
-							"M3FileName": "CIDADR"
-						},
-						{
-							"M3FileName": "CIDMAS"
-						},
-						{
-							"M3FileName": "CIDVEN"
-						},
-						{
-							"M3FileName": "CMNCMP"
-						},
-						{
-							"M3FileName": "CMNDIV"
-						},
-						{
-							"M3FileName": "CMNUSR"
-						},
-						{
-							"M3FileName": "CPOCOA"
-						},
-						{
-							"M3FileName": "CPOCOM"
-						},
-						{
-							"M3FileName": "CPOHED"
-						},
-						{
-							"M3FileName": "CPOPRO"
-						},
-						{
-							"M3FileName": "CSYCAL"
-						},
-						{
-							"M3FileName": "CSYPAR"
-						},
-						{
-							"M3FileName": "CSYPER"
-						},
-						{
-							"M3FileName": "CSYSTR"
-						},
-						{
-							"M3FileName": "CSYSTS"
-						},
-						{
-							"M3FileName": "CSYTAB"
-						},
-						{
-							"M3FileName": "CSYUSR"
-						},
-						{
-							"M3FileName": "CUGEX1"
-						},
-						{
-							"M3FileName": "FBAKEY"
-						},
-						{
-							"M3FileName": "FBAVAL"
-						},
-						{
-							"M3FileName": "FCHACC"
-						},
-						{
-							"M3FileName": "FGLEDG"
-						},
-						{
-							"M3FileName": "FGLEDX"
-						},
-						{
-							"M3FileName": "FPLEDG"
-						},
-						{
-							"M3FileName": "FPSUGS"
-						},
-						{
-							"M3FileName": "FSLBAL"
-						},
-						{
-							"M3FileName": "FSLEDG"
-						},
-						{
-							"M3FileName": "FSLEDX"
-						},
-						{
-							"M3FileName": "MAMOHE"
-						},
-						{
-							"M3FileName": "MATRMA"
-						},
-						{
-							"M3FileName": "MCCOMP"
-						},
-						{
-							"M3FileName": "MCCOTY"
-						},
-						{
-							"M3FileName": "MCONMA"
-						},
-						{
-							"M3FileName": "MCPAPD"
-						},
-						{
-							"M3FileName": "MIEQCL"
-						},
-						{
-							"M3FileName": "MIEQGR"
-						},
-						{
-							"M3FileName": "MIEQTP"
-						},
-						{
-							"M3FileName": "MILOMA"
-						},
-						{
-							"M3FileName": "MITARE"
-						},
-						{
-							"M3FileName": "MITAUN"
-						},
-						{
-							"M3FileName": "MITBAL"
-						},
-						{
-							"M3FileName": "MITHRY"
-						},
-						{
-							"M3FileName": "MITLOC"
-						},
-						{
-							"M3FileName": "MITPCE"
-						},
-						{
-							"M3FileName": "MITPTY"
-						},
-						{
-							"M3FileName": "MITSTA"
-						},
-						{
-							"M3FileName": "MITTEM"
-						},
-						{
-							"M3FileName": "MITWHL"
-						},
-						{
-							"M3FileName": "MMOHED"
-						},
-						{
-							"M3FileName": "MMORDT"
-						},
-						{
-							"M3FileName": "MOATTR"
-						},
-						{
-							"M3FileName": "MPAGRH"
-						},
-						{
-							"M3FileName": "MPAGRT"
-						},
-						{
-							"M3FileName": "MPDSCF"
-						},
-						{
-							"M3FileName": "MPDSHT"
-						},
-						{
-							"M3FileName": "MPDWCT"
-						},
-						{
-							"M3FileName": "MPORDT"
-						},
-						{
-							"M3FileName": "MPURST"
-						},
-						{
-							"M3FileName": "MWOHED"
-						},
-						{
-							"M3FileName": "MWOOPE"
-						},
-						{
-							"M3FileName": "MWOPTR"
-						},
-						{
-							"M3FileName": "MWORDT"
-						},
-						{
-							"M3FileName": "OAGRHE"
-						},
-						{
-							"M3FileName": "OAGRTP"
-						},
-						{
-							"M3FileName": "OBTRAG"
-						},
-						{
-							"M3FileName": "OBTREC"
-						},
-						{
-							"M3FileName": "OCUSAD"
-						},
-						{
-							"M3FileName": "OCUSIT"
-						},
-						{
-							"M3FileName": "OCUSMA"
-						},
-						{
-							"M3FileName": "ODHEAD"
-						},
-						{
-							"M3FileName": "ODLINE"
-						},
-						{
-							"M3FileName": "OGCMPN"
-						},
-						{
-							"M3FileName": "OGTAGY"
-						},
-						{
-							"M3FileName": "OOADRE"
-						},
-						{
-							"M3FileName": "OODOCU"
-						},
-						{
-							"M3FileName": "OOTYPE"
-						},
-						{
-							"M3FileName": "OSTORE"
-						},
-						{
-							"M3FileName": "SITCOM"
-						},
-						{
-							"M3FileName": "SSTYPE"
-						}
-					]
-				}
-			},
-			{
-				"pipelineReference": {
-					"referenceName": "M3JSON_Exceptions_Process",
-					"type": "PipelineReference"
-				},
-				"parameters": {
-					"tlcJ2PConsolidate": [
-						{
-							"M3FileName": "FGRPCL"
-						},
-						{
-							"M3FileName": "MITMAS"
-						},
-						{
-							"M3FileName": "MCCOMA"
-						},
-						{
-							"M3FileName": "MITFAC"
-						},
-						{
-							"M3FileName": "MCCOML"
-						},
-						{
-							"M3FileName": "MCHEAD"
-						},
-						{
-							"M3FileName": "MITTRA"
-						},
-						{
-							"M3FileName": "MPHEAD"
-						},
-						{
-							"M3FileName": "MPOPLP"
-						},
-						{
-							"M3FileName": "OOHEAD"
-						},
-						{
-							"M3FileName": "OOLINE"
-						},
-						{
-							"M3FileName": "OSASTD"
-						},
-						{
-							"M3FileName": "OSBSTD"
-						},
-						{
-							"M3FileName": "MPLINE"
-						},
-						{
-							"M3FileName": "FFRPCL"
-						},
-						{
-							"M3FileName": "FGRECL"
-						},
-						{
-							"M3FileName": "ACUOLS"
-						},
-						{
-							"M3FileName": "OBTMTX"
-						},
-						{
-							"M3FileName": "MILOIN"
-						}
-					]
-				}
-			}
-		],
-		"type": "ScheduleTrigger",
-		"typeProperties": {
-			"recurrence": {
-				"frequency": "Hour",
-				"interval": 6,
-				"startTime": "2023-01-23T15:30:00",
-				"timeZone": "Eastern Standard Time"
-			}
-		}
-	}
+  "name": "M3JSONProcess_Trigger",
+  "properties": {
+    "annotations": [],
+    "pipelines": [
+      {
+        "parameters": {
+          "tlcJ2PConsolidate": [
+            {
+              "M3FileName": "OCLINE"
+            },
+            {
+              "M3FileName": "OCHEAD"
+            },
+            {
+              "M3FileName": "FAPCHK"
+            },
+            {
+              "M3FileName": "OPROMH"
+            },
+            {
+              "M3FileName": "CPOCOS"
+            },
+            {
+              "M3FileName": "ACLTYP"
+            },
+            {
+              "M3FileName": "ACUAGH"
+            },
+            {
+              "M3FileName": "ACUOTY"
+            },
+            {
+              "M3FileName": "CCURRA"
+            },
+            {
+              "M3FileName": "CEAEMP"
+            },
+            {
+              "M3FileName": "CFACIL"
+            },
+            {
+              "M3FileName": "CIDADR"
+            },
+            {
+              "M3FileName": "CIDMAS"
+            },
+            {
+              "M3FileName": "CIDVEN"
+            },
+            {
+              "M3FileName": "CMNCMP"
+            },
+            {
+              "M3FileName": "CMNDIV"
+            },
+            {
+              "M3FileName": "CMNUSR"
+            },
+            {
+              "M3FileName": "CPOCOA"
+            },
+            {
+              "M3FileName": "CPOCOM"
+            },
+            {
+              "M3FileName": "CPOHED"
+            },
+            {
+              "M3FileName": "CPOPRO"
+            },
+            {
+              "M3FileName": "CSYCAL"
+            },
+            {
+              "M3FileName": "CSYPAR"
+            },
+            {
+              "M3FileName": "CSYPER"
+            },
+            {
+              "M3FileName": "CSYSTR"
+            },
+            {
+              "M3FileName": "CSYSTS"
+            },
+            {
+              "M3FileName": "CSYTAB"
+            },
+            {
+              "M3FileName": "CSYUSR"
+            },
+            {
+              "M3FileName": "CUGEX1"
+            },
+            {
+              "M3FileName": "FBAKEY"
+            },
+            {
+              "M3FileName": "FBAVAL"
+            },
+            {
+              "M3FileName": "FCHACC"
+            },
+            {
+              "M3FileName": "FGLEDG"
+            },
+            {
+              "M3FileName": "FGLEDX"
+            },
+            {
+              "M3FileName": "FPLEDG"
+            },
+            {
+              "M3FileName": "FPSUGS"
+            },
+            {
+              "M3FileName": "FSLBAL"
+            },
+            {
+              "M3FileName": "FSLEDG"
+            },
+            {
+              "M3FileName": "FSLEDX"
+            },
+            {
+              "M3FileName": "MAMOHE"
+            },
+            {
+              "M3FileName": "MATRMA"
+            },
+            {
+              "M3FileName": "MCCOMP"
+            },
+            {
+              "M3FileName": "MCCOTY"
+            },
+            {
+              "M3FileName": "MCONMA"
+            },
+            {
+              "M3FileName": "MCPAPD"
+            },
+            {
+              "M3FileName": "MIEQCL"
+            },
+            {
+              "M3FileName": "MIEQGR"
+            },
+            {
+              "M3FileName": "MIEQTP"
+            },
+            {
+              "M3FileName": "MILOMA"
+            },
+            {
+              "M3FileName": "MITARE"
+            },
+            {
+              "M3FileName": "MITAUN"
+            },
+            {
+              "M3FileName": "MITBAL"
+            },
+            {
+              "M3FileName": "MITHRY"
+            },
+            {
+              "M3FileName": "MITLOC"
+            },
+            {
+              "M3FileName": "MITPCE"
+            },
+            {
+              "M3FileName": "MITPTY"
+            },
+            {
+              "M3FileName": "MITSTA"
+            },
+            {
+              "M3FileName": "MITTEM"
+            },
+            {
+              "M3FileName": "MITWHL"
+            },
+            {
+              "M3FileName": "MMOHED"
+            },
+            {
+              "M3FileName": "MMORDT"
+            },
+            {
+              "M3FileName": "MOATTR"
+            },
+            {
+              "M3FileName": "MPAGRH"
+            },
+            {
+              "M3FileName": "MPAGRT"
+            },
+            {
+              "M3FileName": "MPDSCF"
+            },
+            {
+              "M3FileName": "MPDSHT"
+            },
+            {
+              "M3FileName": "MPDWCT"
+            },
+            {
+              "M3FileName": "MPORDT"
+            },
+            {
+              "M3FileName": "MPURST"
+            },
+            {
+              "M3FileName": "MWOHED"
+            },
+            {
+              "M3FileName": "MWOOPE"
+            },
+            {
+              "M3FileName": "MWOPTR"
+            },
+            {
+              "M3FileName": "MWORDT"
+            },
+            {
+              "M3FileName": "OAGRHE"
+            },
+            {
+              "M3FileName": "OAGRTP"
+            },
+            {
+              "M3FileName": "OBTRAG"
+            },
+            {
+              "M3FileName": "OBTREC"
+            },
+            {
+              "M3FileName": "OCUSAD"
+            },
+            {
+              "M3FileName": "OCUSIT"
+            },
+            {
+              "M3FileName": "OCUSMA"
+            },
+            {
+              "M3FileName": "ODHEAD"
+            },
+            {
+              "M3FileName": "ODLINE"
+            },
+            {
+              "M3FileName": "OGCMPN"
+            },
+            {
+              "M3FileName": "OGTAGY"
+            },
+            {
+              "M3FileName": "OOADRE"
+            },
+            {
+              "M3FileName": "OODOCU"
+            },
+            {
+              "M3FileName": "OOTYPE"
+            },
+            {
+              "M3FileName": "OSTORE"
+            },
+            {
+              "M3FileName": "SITCOM"
+            },
+            {
+              "M3FileName": "SSTYPE"
+            }
+          ]
+        },
+        "pipelineReference": {
+          "referenceName": "M3JSON_Process",
+          "type": "PipelineReference"
+        }
+      },
+      {
+        "parameters": {
+          "tlcJ2PConsolidate": [
+            {
+              "M3FileName": "FGRPCL"
+            },
+            {
+              "M3FileName": "MITMAS"
+            },
+            {
+              "M3FileName": "MCCOMA"
+            },
+            {
+              "M3FileName": "MITFAC"
+            },
+            {
+              "M3FileName": "MCCOML"
+            },
+            {
+              "M3FileName": "MCHEAD"
+            },
+            {
+              "M3FileName": "MITTRA"
+            },
+            {
+              "M3FileName": "MPHEAD"
+            },
+            {
+              "M3FileName": "MPOPLP"
+            },
+            {
+              "M3FileName": "OOHEAD"
+            },
+            {
+              "M3FileName": "OOLINE"
+            },
+            {
+              "M3FileName": "OSASTD"
+            },
+            {
+              "M3FileName": "OSBSTD"
+            },
+            {
+              "M3FileName": "MPLINE"
+            },
+            {
+              "M3FileName": "FFRPCL"
+            },
+            {
+              "M3FileName": "FGRECL"
+            },
+            {
+              "M3FileName": "ACUOLS"
+            },
+            {
+              "M3FileName": "OBTMTX"
+            },
+            {
+              "M3FileName": "MILOIN"
+            }
+          ]
+        },
+        "pipelineReference": {
+          "referenceName": "M3JSON_Exceptions_Process",
+          "type": "PipelineReference"
+        }
+      }
+    ],
+    "runtimeState": "Stopped",
+    "type": "ScheduleTrigger",
+    "typeProperties": {
+      "recurrence": {
+        "frequency": "Hour",
+        "interval": 6,
+        "startTime": "2023-01-23T15:30:00.000Z",
+        "timeZone": "Eastern Standard Time"
+      }
+    }
+  }
 }

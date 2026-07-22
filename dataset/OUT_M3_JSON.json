@@ -1,36 +1,35 @@
 {
-	"name": "OUT_M3_JSON",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "tlcdw-WorkspaceDefaultStorage",
-			"type": "LinkedServiceReference"
-		},
-		"parameters": {
-			"destinationName": {
-				"type": "string"
-			}
-		},
-		"annotations": [],
-		"type": "Json",
-		"typeProperties": {
-			"location": {
-				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "@concat('Full_',dataset().destinationName,'.json')",
-					"type": "Expression"
-				},
-				"folderPath": {
-					"value": "@concat('M3/JSON/',dataset().destinationName)",
-					"type": "Expression"
-				},
-				"fileSystem": "tlclakefs"
-			},
-			"compression": {
-				"type": "deflate",
-				"level": "Optimal"
-			}
-		},
-		"schema": {}
-	},
-	"type": "Microsoft.Synapse/workspaces/datasets"
+  "name": "OUT_M3_JSON",
+  "properties": {
+    "annotations": [],
+    "linkedServiceName": {
+      "referenceName": "tlcdw-WorkspaceDefaultStorage",
+      "type": "LinkedServiceReference"
+    },
+    "parameters": {
+      "destinationName": {
+        "type": "string"
+      }
+    },
+    "schema": {},
+    "type": "Json",
+    "typeProperties": {
+      "compression": {
+        "level": "Optimal",
+        "type": "deflate"
+      },
+      "location": {
+        "fileName": {
+          "type": "Expression",
+          "value": "@concat('Full_',dataset().destinationName,'.json')"
+        },
+        "fileSystem": "tlclakefs",
+        "folderPath": {
+          "type": "Expression",
+          "value": "@concat('M3/JSON/',dataset().destinationName)"
+        },
+        "type": "AzureBlobFSLocation"
+      }
+    }
+  }
 }
