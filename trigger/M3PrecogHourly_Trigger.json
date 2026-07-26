@@ -318,7 +318,7 @@
         }
       }
     ],
-    "runtimeState": "Started",
+    "runtimeState": "Stopped",
     "type": "ScheduleTrigger",
     "typeProperties": {
       "recurrence": {
