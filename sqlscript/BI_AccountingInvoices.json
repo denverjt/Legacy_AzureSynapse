@@ -1,0 +1,17 @@
+{
+  "name": "BI_AccountingInvoices",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW BI_AccountingInvoices\n --drop view BI_AccountingInvoices\n\nAS\n\nSELECT\n    CC.AIT1 AS [GL],\n    CC.AIT2 AS [AIT2],\n    CC.AIT3 AS [AIT3],\n    CC.AIT4 AS [AIT4],\n    CC.AIT5 AS [AIT5],\n    CC.AIT6 AS [AIT6],\n    CC.AIT7 AS [AIT7],\n    CC.ACDT AS [Invoice Date],\n    CC.ACAM AS [Amount],\n    CC.EXIN AS [Invoice Number],\n    CC.ORNO AS [Order Number],\n    CC.DLIX AS [Delivery Number],\n    CC.PYNO AS [Payer Number],\n    CC.CUNO AS [Customer Number],\n    OH.VONO AS [Voucher Number],\n    ODL.ITNO AS [Item Number]\nFROM M3.OINACC CC\nLEFT JOIN M3.OINVOH OH ON CC.EXIN = OH.EXIN AND CC.PYNO = OH.PYNO\nLEFT JOIN M3.ODLINE ODL ON\n    CC.EXIN = ODL.EXIN AND\n    CC.DLIX = ODL.DLIX AND\n    CAST(LEFT(CC.IVRF, CHARINDEX(' ', CC.IVRF)) AS INT) = ODL.PONR AND\n    CAST(SUBSTRING(CC.IVRF, 6, LEN(CC.IVRF) ) AS INT) = ODL.POSX AND\n    CAST(SUBSTRING(CC.IVRF, 6, LEN(CC.IVRF) ) AS INT) = ODL.POSX\nWHERE CC.TRCD = 11 AND CC.YEA4 > 2024 AND CC.AIT1 IN ( '421055', '421070', '421050', '421060' )\n",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
+}
