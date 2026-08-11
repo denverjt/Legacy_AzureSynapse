@@ -1,0 +1,17 @@
+{
+  "name": "SLS_KatomAssortment",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "--DROP VIEW BI_KatomAssortment;\n--DROP EXTERNAL TABLE SLS.KatomAssortment;\n\n--External Table\nCREATE EXTERNAL TABLE SLS.KatomAssortment (\n    [SKU] nvarchar(4000),\n    [Aligned Item Number] nvarchar(4000),\n    [M3 Model Number] nvarchar(4000),\n    [Brand] nvarchar(4000),\n    [Item Type] nvarchar(4000),\n    [Status] nvarchar(4000)\n)\nWITH (\n    LOCATION = 'Salsify/KatomAssortment_PowerBI.csv',\n    DATA_SOURCE = [tlclakefs_tlclake_dfs_core_windows_net],\n    FILE_FORMAT = [SynapseDelimitedTextFormatQuote]\n);\nGO\n\n--View\n--SELECT * FROM BI_KatomAssortment\n\nCREATE VIEW BI_KatomAssortment\nAS\n\nSELECT\n    [SKU] AS [Salsify SKU],\n    [Aligned Item Number],\n    [M3 Model Number],\n    [Brand],\n    [Item Type],\n    [Status],\n    CASE\n        WHEN [M3 Model Number] IS NOT NULL\n             AND LTRIM(RTRIM([M3 Model Number])) <> ''\n        THEN [M3 Model Number]\n        ELSE [SKU]\n    END AS [Item Number]\n\nFROM SLS.KatomAssortment\n",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
+}
