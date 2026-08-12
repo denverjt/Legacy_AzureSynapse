@@ -1,0 +1,17 @@
+{
+  "name": "BI_PackagingSpecs",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "CREATE VIEW BI_PackagingSpecs\n--drop view BI_PackagingSpecs\n\nAS\n\nSELECT\n    PC.ITNO AS [Item Number],\n    PA.PACT AS [Packaging],\n    PA.PANM AS [Packaging Name],\n    PA.PACL AS [Packaging Lenght],\n    PA.PACW AS [Packaging Width],\n    PA.PACH AS [Packaging Height],\n    PC.D1QT AS [Standard Qty],\n    CASE LEFT(PA.PACT, 1)\n        WHEN 'E' THEN 'Each'\n        WHEN 'C' THEN 'Case'\n        WHEN 'P' THEN 'Pallet'\n    END AS [Package Type]\nFROM M3.MITPAC PA\nLEFT JOIN M3.MPACIT PC ON PA.PACT = PC.PACT\nWHERE\n    LEFT(PA.PACT, 1) IN ('E', 'C', 'P')\n    AND PA.PACT NOT IN ('PALLET', 'P00000')\n",
+      "resultLimit": 5000
+    },
+    "type": "SqlQuery"
+  }
+}
