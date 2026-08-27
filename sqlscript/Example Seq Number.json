@@ -1,0 +1,17 @@
+{
+  "name": "Example Seq Number",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "SELECT \n    PRNO,\n    MSEQ,\n    STRT,\n    ITCL,\n    Category,\n    [Sub Brand]\nFROM M3.MPDMAT\nLEFT JOIN M3.MITMAS ON PRNO = ITNO\nLEFT JOIN SLS.Products_BI ON PRNO = [Salsify Item Number]\nWHERE \n    ITCL = 'WIN' \n    AND MSEQ = 20\n\n\n   ",
+      "resultLimit": -1
+    },
+    "type": "SqlQuery"
+  }
+}
