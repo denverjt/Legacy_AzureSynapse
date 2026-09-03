@@ -1,0 +1,17 @@
+{
+  "name": "BI_ExternalCommissions",
+  "properties": {
+    "content": {
+      "currentConnection": {
+        "databaseName": "tlcdw",
+        "poolName": "Built-in"
+      },
+      "metadata": {
+        "language": "sql"
+      },
+      "query": "SELECT\n    TAR.TREC AS [Trade Agreement Recepient],\n    CS.TX40 AS [Recepient Name],\n    TAR.FVDT AS [Receipient Valid From Date],\n    TAR.TVDT AS [Recepient Valid To Date],\n    COALESCE(TAR.TAGN, TAH.TAGN) AS [Trade Agreement Number],\n    TAR.RATE AS [Rate],\n    TAH.TX40 AS [Trade Agreement Description],\n    TAH.TX15 AS [Trade Agreement Name],\n    TAH.TBST AS [Trade Agreement Status],\n    TAH.STDE AS [Trade Agreement Valid From Date],\n    TAH.LVDT AS [Trade Agreement Valid To Date],\n    CASE WHEN TAR.TREC IS NULL THEN 'N' ELSE 'Y' END AS [Recepient Y/N]\nFROM M3.OBTREC TAR\nFULL JOIN M3.OBTRAG TAH ON TAR.TAGN = TAH.TAGN\nLEFT JOIN M3.CSYTAB CS ON TAR.TREC = CS.STKY AND CS.STCO = 'SMCD'\nORDER BY COALESCE(TAR.TAGN, TAH.TAGN)\n\n\n",
+      "resultLimit": -1
+    },
+    "type": "SqlQuery"
+  }
+}
